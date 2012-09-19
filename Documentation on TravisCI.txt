@@ -1,0 +1,2 @@
+okay gutter med at Morten Salte skapte projektet før jeg fikk pushet opp config filene til som TravisCI ville ha, så nå tror TravisCI at vi driver
+med et Ruby prosjekt
