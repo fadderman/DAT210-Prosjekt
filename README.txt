@@ -1,1 +1,1 @@
-"!https://secure.travis-ci.org/fadderman/DAT210-Prosjekt.png!":http://travis-ci.org/fadderman/DAT210-Prosjekt
+https://secure.travis-ci.org/fadderman/DAT210-Prosjekt.png
