@@ -1,0 +1,21 @@
+src/controllers
+-----------
+This package should contain Servlet classes that take requests from a browser, "does work" through 
+the business classes, puts data into models and then lastly send the models to a view for representation.
+
+
+src/business.*
+--------
+These packages should contain classes that "does the work"
+
+
+src/models
+------
+This package should contain classes that hold data such as User, Subject, SubjectCard etc.
+
+
+WebContent
+----------
+Put the views here (.jsp files)
+bootstrap folder contains the Twitter Bootstrap files
+
