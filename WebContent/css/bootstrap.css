@@ -1954,7 +1954,7 @@ table {
 
 .table-hover tbody tr:hover td,
 .table-hover tbody tr:hover th {
-  background-color: #f5f5f5;
+  background-color: #c9e6ff;
 }
 
 table [class*=span],
@@ -2938,7 +2938,7 @@ table [class*=span],
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color: #f5f5f5;
+  background-color: #fdfdfd;
   border: 1px solid #e3e3e3;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
@@ -4335,8 +4335,8 @@ input[type="submit"].btn.btn-mini {
 
 .navbar-fixed-top .navbar-inner,
 .navbar-fixed-bottom .navbar-inner {
-  padding-right: 0;
-  padding-left: 0;
+  padding-right: 5;
+  padding-left: 5;
   -webkit-border-radius: 0;
      -moz-border-radius: 0;
           border-radius: 0;
@@ -5728,7 +5728,7 @@ a.badge:hover {
 .hero-unit {
   padding: 60px;
   margin-bottom: 30px;
-  background-color: #eeeeee;
+  background-color: #fdfdfd;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
