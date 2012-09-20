@@ -3,34 +3,34 @@ package models;
 import java.util.ArrayList;
 
 public class Connection {
-	private ArrayList<User> mentorList;
-	private ArrayList<User> traineeList;
+	private User mentor;
+	private User trainee;
 	private Subject subject;
 	private int difficultyLevel;
 	private ArrayList<Comment> comments;
 	
 	public Connection() {
-		this.mentorList = null;
-		this.traineeList = null;
+		this.mentor = null;
+		this.trainee = null;
 		this.subject = null;
 		this.difficultyLevel = 0;
 		this.comments = null;
 	}
-
-	public ArrayList<User> getMentorList() {
-		return mentorList;
+	
+	public User getMentor() {
+		return mentor;
 	}
 
-	public void setMentorList(ArrayList<User> mentorList) {
-		this.mentorList = mentorList;
+	public void setMentor(User mentor) {
+		this.mentor = mentor;
 	}
 
-	public ArrayList<User> getTraineeList() {
-		return traineeList;
+	public User getTrainee() {
+		return trainee;
 	}
 
-	public void setTraineeList(ArrayList<User> traineeList) {
-		this.traineeList = traineeList;
+	public void setTrainee(User trainee) {
+		this.trainee = trainee;
 	}
 
 	public Subject getSubject() {
@@ -56,7 +56,4 @@ public class Connection {
 	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
 	}
-	
-	
-	
 }
