@@ -29,16 +29,16 @@ public class ConnectionTest {
 
 	@Test
 	public void testMentorList() {
-		ArrayList<User> mentorList = new ArrayList<User>();
-		connection.setMentorList(mentorList);
-		assertEquals(mentorList, connection.getMentorList());
+		User mentor = new User();
+		connection.setMentor(mentor);
+		assertEquals(mentor, connection.getMentor());
 	}
 	
 	@Test
-	public void testTraineeList() {
-		ArrayList<User> traineeList = new ArrayList<User>();
-		connection.setTraineeList(traineeList);
-		assertEquals(traineeList, connection.getTraineeList());
+	public void testTrainee() {
+		User trainee = new User();
+		connection.setTrainee(trainee);
+		assertEquals(trainee, connection.getTrainee());
 	}
 	
 	@Test
