@@ -1,3 +1,8 @@
+<p><a href="http://travis-ci.org/fadderman/DAT210-Prosjekt"><img src="https://secure.travis-ci.org/fadderman/DAT210-Prosjekt.png" alt="" /></a></p>
+
+
+
+
 src/controllers
 -----------
 This package should contain Servlet classes that take requests from a browser, "does work" through 
