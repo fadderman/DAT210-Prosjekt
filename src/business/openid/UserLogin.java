@@ -3,8 +3,9 @@ package business.openid;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,16 +25,18 @@ import org.openid4java.message.ax.FetchResponse;
 
 public class UserLogin {
 
-	public ConsumerManager manager;
+	private ConsumerManager manager;
+	private ServletContext context;
 	
 	public static String Google = "https://www.google.com/accounts/o8/id";
 	
 	private String returnToUrl =  "http://example.com/openid";
 
-	public UserLogin() throws ConsumerException
+	public UserLogin(ServletContext context) throws ConsumerException
 	{
 		// instantiate a ConsumerManager object
 		manager = new ConsumerManager();
+		this.context=context;
 	}
 
 	// --- placing the authentication request ---		//This method is called from a servlet
@@ -78,7 +81,7 @@ public class UserLogin {
 
 			// attach the extension to the authentication request
 			authReq.addExtension(fetch);
-
+			authReq.getOPEndpoint();
 
 			if (! discovered.isVersion2() )			//check this!!!!
 			{
@@ -92,11 +95,17 @@ public class UserLogin {
 			{
 				// Option 2: HTML FORM Redirection (Allows payloads >2048 bytes)
 				
-//				RequestDispatcher dispatcher =
-//						getServletContext().getRequestDispatcher("formredirection.jsp");
-//				httpReq.setAttribute("parameterMap", authReq.getParameterMap());
-//				httpReq.setAttribute("destinationUrl", authReq.getDestinationUrl(false));
-//				dispatcher.forward(httpReq, httpResp);
+				RequestDispatcher dispatcher =
+						context.getRequestDispatcher("formredirection.jsp");
+				httpReq.setAttribute("parameterMap", authReq.getParameterMap());
+				httpReq.setAttribute("destinationUrl", authReq.getDestinationUrl(false));
+//				httpReq.setAttribute("authReq", authReq);
+				try {
+					dispatcher.forward(httpReq, httpResp);
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		catch (OpenIDException e)
