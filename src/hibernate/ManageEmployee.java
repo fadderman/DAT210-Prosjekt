@@ -1,38 +1,34 @@
 package hibernate;
 
-import java.util.List; 
-import java.util.Date;
+import java.util.List;
 import java.util.Iterator; 
 
 import org.hibernate.HibernateException; 
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
 public class ManageEmployee {
-	private static SessionFactory sessionFactory; 
-	private static ServiceRegistry serviceRegistry;
+	private static SessionFactory sessionFactory;
 	public static void main(String[] args) {
 
 		sessionFactory = HibernateUtil.getSessionFactory();
 		ManageEmployee ME = new ManageEmployee();
 
 		/* Add few employee records in database */
-		Integer empID1 = ME.addEmployee("Zara", "Ali", 1000);
-		Integer empID2 = ME.addEmployee("Daisy", "Das", 5000);
-		Integer empID3 = ME.addEmployee("John", "Paul", 10000);
+		ME.addEmployee("Zara", "Ali", 1000);
+//		Integer empID2 = ME.addEmployee("Daisy", "Das", 5000);
+//		Integer empID3 = ME.addEmployee("John", "Paul", 10000);
+		
 
 		/* List down all the employees */
 		ME.listEmployees();
 
 		/* Update employee's records */
-		ME.updateEmployee(empID1, 5000);
+//		ME.updateEmployee(empID1, 5000);
 
 		/* Delete an employee from the database */
-		ME.deleteEmployee(empID2);
+//		ME.deleteEmployee(empID2);
 
 		/* List down new list of the employees */
 		ME.listEmployees();
@@ -86,8 +82,7 @@ public class ManageEmployee {
 		Transaction tx = null;
 		try{
 			tx = session.beginTransaction();
-			Employee employee = 
-					(Employee)session.get(Employee.class, EmployeeID); 
+			Employee employee = (Employee)session.get(Employee.class, EmployeeID); 
 			employee.setSalary( salary );
 			session.update(employee); 
 			tx.commit();
