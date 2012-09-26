@@ -1,17 +1,50 @@
 package models;
 
+import java.util.ArrayList;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "SUBJECT")
 public class Subject {
 
+	@Id @GeneratedValue
+	@Column(name = "subject_id")
+	private int subjectID;
+	
+	@Column(name = "title")
 	private String title;
+	
+	@Column(name = "description")
 	private String description;
+	
+	@Column(name = "category")
 	private Category category;
 	
-	public Subject() {
-		this.title = "";
-		this.description = "";
-		this.category = null;
+	
+	
+//TODO ManyToMany relation with User?
+	
+	
+	public Subject(){
+		
 	}
 	
+	public Subject(int subjectID, String title, String description, Category category) {
+		this.subjectID = subjectID;
+		this.title = title;
+		this.description = description;
+		this.category = category;
+	}
+	
+	public int getSubjectID() {
+		return subjectID;
+	}
+
+	public void setSubjectID(int subjectID) {
+		this.subjectID = subjectID;
+	}
+
 	public String getTitle() {
 		return title;
 	}

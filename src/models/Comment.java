@@ -2,17 +2,33 @@ package models;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "COMMENT")
 public class Comment {
 
+	@Column
 	private Connection connection;
 	private User author;
+	
+	@Column(name = "comment")
 	private String comment;
+	
+	
+	//TODO sjer her? 
+	@Column(name = "timestamp")
 	private Date timestamp;
 	
-	public Comment() {
-		this.connection = null;
-		this.author = null;
-		this.comment = "";
+	public Comment(){
+		
+	}
+	
+	public Comment(Connection connection, User author, String comment) {
+		this.connection = connection;
+		this.author = author;
+		this.comment = comment;
 	}
 	
 	public Date getTimestamp() {

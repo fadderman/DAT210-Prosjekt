@@ -2,15 +2,34 @@ package models;
 
 import java.util.ArrayList;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "CATEGORY")
 public class Category {
+	
+	@Column(name = "title")
 	private String title;
+	
+	@Column(name = "description")
 	private String description;
+	
+	
+	//TODO ManyToMany or ManyToOne?
+	@ManyToOne
+	@OrderBy("title")
 	private ArrayList<Subject> subjectList;
 	
-	public Category() {
-		this.title = "";
-		this.description = "";
-		this.subjectList = null;
+	
+	public Category(){
+		
+	}
+	
+	public Category(String title, String description, ArrayList<Subject> subjectList) {
+		this.title = title;
+		this.description = description;
+		this.subjectList = subjectList;
 	}
 	
 	public String getTitle() {
