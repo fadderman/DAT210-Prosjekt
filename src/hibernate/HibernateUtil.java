@@ -1,5 +1,7 @@
 package hibernate;
 
+import java.util.Iterator;
+
 import org.hibernate.*;
 import org.hibernate.cfg.*;
 import org.hibernate.service.ServiceRegistry;
@@ -9,11 +11,16 @@ public class HibernateUtil {
 	private static SessionFactory sessionFactory;
 	private static ServiceRegistry serviceRegistry;
 
-
 	static {    	
 		Configuration configuration = new Configuration();
 		configuration.configure("../hibXml/hibernate.cfg.xml");
-		configuration.addAnnotatedClass(Employee.class);
+		ClassToDatabase classToDatabase = new ClassToDatabase();
+		
+		Iterator<Class> ctDBIterator = classToDatabase.getClassToDatabase().iterator();
+		while(ctDBIterator.hasNext()){
+			configuration.addAnnotatedClass(ctDBIterator.next());
+		}
+		
 		serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
 		try{
 			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
