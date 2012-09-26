@@ -1,15 +1,26 @@
 package models;
 
+import java.util.Date;
+
 public class Comment {
 
 	private Connection connection;
 	private User author;
 	private String comment;
+	private Date timestamp;
 	
 	public Comment() {
 		this.connection = null;
 		this.author = null;
 		this.comment = "";
+	}
+	
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public Connection getConnection() {
