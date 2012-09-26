@@ -11,11 +11,14 @@
 		com.mysql.jdbc.Driver
     </property>
     <property name="hibernate.connection.url">
-		jdbc:mysql://localhost/hibernate
+		jdbc:mysql://msalte86db.cw11b8lqnnnm.eu-west-1.rds.amazonaws.com/minerva
     </property>
     <property name="hibernate.connection.username">
-		root
+		minerva
     </property>
+	<property name="hibernate.connection.password">
+		lisaGikkTilSkolen
+	</property>
     <property name="hibernate.show_sql">
 		true
 	</property>
@@ -23,7 +26,7 @@
 		true
 	</property>
     <property name="hbm2ddl.auto">
-		create
+		update
 	</property>
 	<!--Using annotated mapping in persistent classes -->
 
