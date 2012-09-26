@@ -2,26 +2,65 @@ package models;
 
 import java.util.ArrayList;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "USER")
 public class User {
 
+	@Id @GeneratedValue
+	@Column(name = "user_id")
+	private int userID;
+	
+	@Column(name = "username")
+	private String username;
+	
+	@Column(name = "first_name")
 	private String firstName;
+	
+	@Column(name = "last_Name")
 	private String lastName;
-	private String identifier;
+	
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "location")
 	private String location;
 	
+	//TODO should these be ordered or indexed?
+//	@ManyToMany
+//	@OrderBy("title")
 	private ArrayList<Subject> mentorList;
+	
+	//TODO should these be ordered or indexed?
+//	@ManyToMany
+//	@OrderBy("title")
 	private ArrayList<Subject> traineeList;
 	
-	public User() {
-		this.firstName = "";
-		this.lastName = "";
-		this.identifier = "";
-		this.email = "";
-		this.location = "";
+	//TODO Needs normalization
+//	@OneToOne
+//	private Connection connection;
+	
+	public User() {}
+	
+	//TODO Business methods pass empty variables if fields are to be left empty
+	public User(String username, String firstName, String lastName, String email, String location) {
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.location = location;
 		
 		this.mentorList = new ArrayList<Subject>();
 		this.traineeList = new ArrayList<Subject>();
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public void setFirstName(String firstName) {
@@ -40,12 +79,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getIdentifier() {
-		return identifier;
+	public int getUserID() {
+		return userID;
 	}
 
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 
 	public String getEmail() {

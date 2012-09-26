@@ -2,6 +2,7 @@ package hibernate;
 
 import java.util.ArrayList;
 import java.util.List;
+import models.*;
 /**
  * Classes that are to be made persistent by Hibernate need to be added
  * to the ArrayList in this class.
@@ -13,7 +14,9 @@ public class ClassToDatabase {
 	private List<Class> classToDatabase;
 	public ClassToDatabase(){
 		classToDatabase = new ArrayList<Class>();
-		classToDatabase.add(Employee.class);
+		classToDatabase.add(User.class);
+		classToDatabase.add(Connection.class);
+		classToDatabase.add(Subject.class);
 	}
 	/**
 	 * 
