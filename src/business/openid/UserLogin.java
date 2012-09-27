@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,7 +24,7 @@ import org.openid4java.message.ax.FetchRequest;
 import org.openid4java.message.ax.FetchResponse;
 
 
-public class UserLogin {
+public class UserLogin extends HttpServlet{
 
 	private ConsumerManager manager;
 	private ServletContext context;
@@ -32,11 +33,15 @@ public class UserLogin {
 	
 	private String returnToUrl =  "http://example.com/openid";
 
-	public UserLogin(ServletContext context) throws ConsumerException
+	public UserLogin(ServletContext context)
 	{
 		// instantiate a ConsumerManager object
 		manager = new ConsumerManager();
 		this.context=context;
+	}
+	
+	public UserLogin(){
+		manager = new ConsumerManager();
 	}
 
 	// --- placing the authentication request ---		//This method is called from a servlet
@@ -96,7 +101,7 @@ public class UserLogin {
 				// Option 2: HTML FORM Redirection (Allows payloads >2048 bytes)
 				
 				RequestDispatcher dispatcher =
-						context.getRequestDispatcher("formredirection.jsp");
+						context.getRequestDispatcher("/formredirection.jsp");
 				httpReq.setAttribute("parameterMap", authReq.getParameterMap());
 				httpReq.setAttribute("destinationUrl", authReq.getDestinationUrl(false));
 //				httpReq.setAttribute("authReq", authReq);
