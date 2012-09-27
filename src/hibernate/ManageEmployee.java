@@ -40,11 +40,11 @@ public class ManageEmployee {
 		Integer employeeID = null;
 		try{
 			tx = session.beginTransaction();
-			Employee employee = new Employee();
-			employee.setFirstName(fname);
-			employee.setLastName(lname);
-			employee.setSalary(salary);
-			employeeID = (Integer) session.save(employee); 
+//			Employee employee = new Employee();
+//			employee.setFirstName(fname);
+//			employee.setLastName(lname);
+//			employee.setSalary(salary);
+//			employeeID = (Integer) session.save(employee); 
 			tx.commit();
 		}catch (HibernateException e) {
 			if (tx!=null) tx.rollback();
@@ -63,10 +63,10 @@ public class ManageEmployee {
 			List employees = session.createQuery("FROM Employee").list(); 
 			for (Iterator iterator = 
 					employees.iterator(); iterator.hasNext();){
-				Employee employee = (Employee) iterator.next(); 
-				System.out.print("First Name: " + employee.getFirstName()); 
-				System.out.print("  Last Name: " + employee.getLastName()); 
-				System.out.println("  Salary: " + employee.getSalary()); 
+//				Employee employee = (Employee) iterator.next(); 
+//				System.out.print("First Name: " + employee.getFirstName()); 
+//				System.out.print("  Last Name: " + employee.getLastName()); 
+//				System.out.println("  Salary: " + employee.getSalary()); 
 			}
 			tx.commit();
 		}catch (HibernateException e) {
@@ -82,9 +82,9 @@ public class ManageEmployee {
 		Transaction tx = null;
 		try{
 			tx = session.beginTransaction();
-			Employee employee = (Employee)session.get(Employee.class, EmployeeID); 
-			employee.setSalary( salary );
-			session.update(employee); 
+//			Employee employee = (Employee)session.get(Employee.class, EmployeeID); 
+//			employee.setSalary( salary );
+//			session.update(employee); 
 			tx.commit();
 		}catch (HibernateException e) {
 			if (tx!=null) tx.rollback();
@@ -99,9 +99,9 @@ public class ManageEmployee {
 		Transaction tx = null;
 		try{
 			tx = session.beginTransaction();
-			Employee employee = 
-					(Employee)session.get(Employee.class, EmployeeID); 
-			session.delete(employee); 
+//			Employee employee = 
+//					(Employee)session.get(Employee.class, EmployeeID); 
+//			session.delete(employee); 
 			tx.commit();
 		}catch (HibernateException e) {
 			if (tx!=null) tx.rollback();

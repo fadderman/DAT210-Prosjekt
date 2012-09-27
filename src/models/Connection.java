@@ -19,7 +19,7 @@ public class Connection {
 	private Subject subject;
 	
 	@Id @GeneratedValue
-	@Column(name = "connection_ID")
+	@Column(name = "connection_id")
 	private int connectionID;
 	
 
@@ -27,7 +27,7 @@ public class Connection {
 	@Column(name = "difficultyLevel")
 	private int difficultyLevel;
 	
-	//TODO relasjon?
+	//TODO relasjon? ManyToMany or ManyToOne
 	private ArrayList<Comment> comments;
 	
 	public Connection(){
