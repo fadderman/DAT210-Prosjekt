@@ -1,27 +1,8 @@
 package models;
 
 import java.util.ArrayList;
-
-<<<<<<< HEAD
-public class User {
-
-	private String firstName;
-	private String lastName;
-	private String identifier;
-	private String email;
-	private String location;
-	
-	private ArrayList<Subject> mentorList;
-	private ArrayList<Subject> traineeList;
-	
-	public User() {
-		this.firstName = "";
-		this.lastName = "";
-		this.identifier = "";
-		this.email = "";
-		this.location = "";
-=======
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "USER")
@@ -30,6 +11,10 @@ public class User {
 	@Id @GeneratedValue
 	@Column(name = "user_id")
 	private int userID;
+	
+	@Id @GeneratedValue
+	@Column(name = "identifier")
+	private String identifier;
 	
 	@Column(name = "username")
 	private String username;
@@ -69,14 +54,12 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.location = location;
->>>>>>> origin/Hibernate
+
 		
 		this.mentorList = new ArrayList<Subject>();
 		this.traineeList = new ArrayList<Subject>();
 	}
 
-<<<<<<< HEAD
-=======
 	public String getUsername() {
 		return username;
 	}
@@ -85,7 +68,6 @@ public class User {
 		this.username = username;
 	}
 
->>>>>>> origin/Hibernate
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -102,21 +84,21 @@ public class User {
 		this.lastName = lastName;
 	}
 
-<<<<<<< HEAD
+
 	public String getIdentifier() {
 		return identifier;
 	}
 
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
-=======
+	}
+
 	public int getUserID() {
 		return userID;
 	}
 
 	public void setUserID(int userID) {
 		this.userID = userID;
->>>>>>> origin/Hibernate
 	}
 
 	public String getEmail() {

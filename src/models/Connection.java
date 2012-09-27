@@ -2,21 +2,6 @@ package models;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-public class Connection {
-	private User mentor;
-	private User trainee;
-	private Subject subject;
-	private int difficultyLevel;
-	private ArrayList<Comment> comments;
-	
-	public Connection() {
-		this.mentor = null;
-		this.trainee = null;
-		this.subject = null;
-		this.difficultyLevel = 0;
-		this.comments = null;
-=======
 import javax.persistence.*;
 
 
@@ -56,7 +41,6 @@ public class Connection {
 		this.difficultyLevel = difficultyLevel;
 		this.comments = comments;
 		this.connectionID = connectionID;
->>>>>>> origin/Hibernate
 	}
 	
 	public User getMentor() {
@@ -98,8 +82,7 @@ public class Connection {
 	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
 	}
-<<<<<<< HEAD
-=======
+
 	public int getConnectionID() {
 		return connectionID;
 	}
@@ -107,5 +90,5 @@ public class Connection {
 	public void setConnectionID(int connectionID) {
 		this.connectionID = connectionID;
 	}
->>>>>>> origin/Hibernate
+
 }

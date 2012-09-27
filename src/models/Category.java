@@ -1,18 +1,6 @@
 package models;
 
 import java.util.ArrayList;
-
-<<<<<<< HEAD
-public class Category {
-	private String title;
-	private String description;
-	private ArrayList<Subject> subjectList;
-	
-	public Category() {
-		this.title = "";
-		this.description = "";
-		this.subjectList = null;
-=======
 import javax.persistence.*;
 
 
@@ -41,7 +29,6 @@ public class Category {
 		this.title = title;
 		this.description = description;
 		this.subjectList = subjectList;
->>>>>>> origin/Hibernate
 	}
 	
 	public String getTitle() {

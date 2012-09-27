@@ -1,19 +1,5 @@
 package models;
 
-<<<<<<< HEAD
-public class Subject {
-
-	private String title;
-	private String description;
-	private Category category;
-	
-	public Subject() {
-		this.title = "";
-		this.description = "";
-		this.category = null;
-	}
-	
-=======
 import java.util.ArrayList;
 
 import javax.persistence.*;
@@ -59,7 +45,6 @@ public class Subject {
 		this.subjectID = subjectID;
 	}
 
->>>>>>> origin/Hibernate
 	public String getTitle() {
 		return title;
 	}

@@ -1,17 +1,6 @@
 package models;
 
-<<<<<<< HEAD
-public class Comment {
 
-	private Connection connection;
-	private User author;
-	private String comment;
-	
-	public Comment() {
-		this.connection = null;
-		this.author = null;
-		this.comment = "";
-=======
 import java.util.Date;
 
 import javax.persistence.*;
@@ -49,7 +38,6 @@ public class Comment {
 
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
->>>>>>> origin/Hibernate
 	}
 
 	public Connection getConnection() {
