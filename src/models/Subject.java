@@ -18,6 +18,7 @@ public class Subject {
 	@Column(name = "description")
 	private String description;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
 	@Column(name = "category")
 	private Category category;
 	
@@ -30,8 +31,7 @@ public class Subject {
 		
 	}
 	
-	public Subject(int subjectID, String title, String description, Category category) {
-		this.subjectID = subjectID;
+	public Subject(String title, String description, Category category) {
 		this.title = title;
 		this.description = description;
 		this.category = category;

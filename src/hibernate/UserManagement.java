@@ -51,7 +51,7 @@ public class UserManagement {
 			session.close(); 
 		}
 	}
-	//TODO Are users to be removed from DB or just marked as "obsolete" or "unused"?
+	//TODO Are users to be removed from DB or just marked as "obsolete" or "unused"? Using "drop table" in SQL for testing.
 	public void UserRemove(){
 		
 	}
@@ -64,12 +64,12 @@ public class UserManagement {
 			tx = session.beginTransaction();
 			
 			//TODO fix errors!
-			List users = session.createQuery("FROM USER").list(); 
-			for (Iterator iterator = 
+			List<User> users = session.createQuery("FROM USER").list(); 
+			for (Iterator<User> iterator = 
 					users.iterator(); iterator.hasNext();){
 				User user = (User) iterator.next(); 
 				System.out.print("First Name: " + user.getFirstName()); 
-				System.out.print("  Last Name: " + user.getLastName()); 
+				System.out.println("  Last Name: " + user.getLastName()); 
 				System.out.println("  Username: " + user.getUsername()); 
 				System.out.println("  email: " + user.getEmail());
 				System.out.println("  Location: " + user.getLocation());

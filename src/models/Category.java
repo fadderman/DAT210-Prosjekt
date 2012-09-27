@@ -9,15 +9,17 @@ import javax.persistence.*;
 @Table(name = "CATEGORY")
 public class Category {
 	
+	@Id @GeneratedValue
+	@Column(name = "category_id")
+	private int categoryID;
+	
 	@Column(name = "title")
 	private String title;
 	
 	@Column(name = "description")
 	private String description;
 	
-	
-	//TODO ManyToMany or ManyToOne?
-	@ManyToOne
+	@Column(name = "subject_list")
 	@OrderBy("title")
 	private ArrayList<Subject> subjectList;
 	
@@ -26,12 +28,27 @@ public class Category {
 		
 	}
 	
+	public Category(String title, String description, Subject subject){
+		this.title = title;
+		this.description = description;
+		subjectList = new ArrayList<Subject>();
+		subjectList.add(subject);
+	}
+	
 	public Category(String title, String description, ArrayList<Subject> subjectList) {
 		this.title = title;
 		this.description = description;
 		this.subjectList = subjectList;
 	}
 	
+	public int getCategoryID() {
+		return categoryID;
+	}
+
+	public void setCategoryID(int categoryID) {
+		this.categoryID = categoryID;
+	}
+
 	public String getTitle() {
 		return title;
 	}

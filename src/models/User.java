@@ -15,6 +15,9 @@ public class User {
 	@Column(name = "username")
 	private String username;
 	
+	@Column(name = "identifier_openID")
+	private String identifierOpenID;
+	
 	@Column(name = "first_name")
 	private String firstName;
 	
@@ -28,8 +31,10 @@ public class User {
 	private String location;
 	
 	//TODO should these be ordered or indexed?
-//	@ManyToMany
-//	@OrderBy("title")
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
+	@OrderBy("title")
 	private ArrayList<Subject> mentorList;
 	
 	//TODO should these be ordered or indexed?
@@ -61,6 +66,14 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getIdentifierOpenID() {
+		return identifierOpenID;
+	}
+
+	public void setIdentifierOpenID(String identifierOpenID) {
+		this.identifierOpenID = identifierOpenID;
 	}
 
 	public void setFirstName(String firstName) {
