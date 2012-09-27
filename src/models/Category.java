@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -19,13 +20,19 @@ public class Category {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "subject_list")
+	@OneToMany(mappedBy = "category")
 	@OrderBy("title")
-	private ArrayList<Subject> subjectList;
+	private List<Subject> subjectList;
 	
 	
 	public Category(){
 		
+	}
+	
+	public Category(String title, String description){
+		this.title = title;
+		this.description = description;
+		subjectList = new ArrayList<Subject>();		
 	}
 	
 	public Category(String title, String description, Subject subject){
@@ -64,8 +71,12 @@ public class Category {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public void addSubject(Subject subject){
+		subjectList.add(subject);
+	}
 
-	public ArrayList<Subject> getSubjectList() {
+	public List<Subject> getSubjectList() {
 		return subjectList;
 	}
 

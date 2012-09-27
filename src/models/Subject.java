@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -18,14 +19,26 @@ public class Subject {
 	@Column(name = "description")
 	private String description;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@Column(name = "category")
+	@ManyToOne
+	@JoinColumn(name = "category_fk")
 	private Category category;
 	
+	@ManyToMany(
+			targetEntity = models.User.class,
+			cascade = {CascadeType.ALL},
+			mappedBy = "mentorList")
+	private List<User> mentorUserList;
 	
+	@ManyToMany(
+			targetEntity = models.User.class,
+			cascade = {CascadeType.ALL},
+			mappedBy = "traineeList")
+	private List<User> traineeUserList;
 	
-//TODO ManyToMany relation with User?
-	
+	//TODO Ordered or indexed?
+	@OneToMany(mappedBy = "subject")
+	@OrderBy("title")
+	private List<Connection> connectionList;
 	
 	public Subject(){
 		
@@ -67,6 +80,30 @@ public class Subject {
 	
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public List<User> getMentorUserList() {
+		return  mentorUserList;
+	}
+
+	public void setMentorUserList(ArrayList<User> mentorUserList) {
+		this.mentorUserList = mentorUserList;
+	}
+
+	public List<User> getTraineeUserList() {
+		return traineeUserList;
+	}
+
+	public void setTraineeUserList(ArrayList<User> traineeUserList) {
+		this.traineeUserList = traineeUserList;
+	}
+
+	public List<Connection> getConnectionList() {
+		return connectionList;
+	}
+
+	public void setConnectionList(List<Connection> connectionList) {
+		this.connectionList = connectionList;
 	}
 	
 	

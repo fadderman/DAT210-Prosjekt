@@ -60,14 +60,14 @@ public class SubjectManagement {
 	}
 	
 	//TODO only for a quick test. Will be removed/moved to a unit test later.
-		public void listAllUsers( ){
+		public void listAllSubjects( ){
 			Session session = sessionFactory.openSession();
 			Transaction tx = null;
 			try{
 				tx = session.beginTransaction();
 				
 				//TODO fix errors!
-				List<Subject> subjects = session.createQuery("FROM SUBJECT").list(); 
+				List<Subject> subjects = session.createQuery("FROM models.Subject").list(); 
 				for (Iterator<Subject> iterator = 
 						subjects.iterator(); iterator.hasNext();){
 					Subject subject = (Subject) iterator.next(); 

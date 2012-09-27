@@ -1,6 +1,8 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -31,20 +33,27 @@ public class User {
 	private String location;
 	
 	//TODO should these be ordered or indexed?
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(targetEntity = models.Subject.class,
+			cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
 			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
 	@OrderBy("title")
-	private ArrayList<Subject> mentorList;
+	private List<Subject> mentorList;
 	
 	//TODO should these be ordered or indexed?
-//	@ManyToMany
-//	@OrderBy("title")
-	private ArrayList<Subject> traineeList;
+	@ManyToMany(targetEntity = models.Subject.class,
+			cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
+	@OrderBy("title")
+	private List<Subject> traineeList;
 	
-	//TODO Needs normalization
-//	@OneToOne
-//	private Connection connection;
+
+	@OneToOne(mappedBy = "mentor")
+	private Connection connectionMentor;
+	
+	@OneToOne(mappedBy = "trainee")
+	private Connection connectionTrainee;
 	
 	public User() {}
 	
@@ -116,7 +125,7 @@ public class User {
 		this.location = location;
 	}
 
-	public ArrayList<Subject> getMentorList() {
+	public List<Subject> getMentorList() {
 		return mentorList;
 	}
 
@@ -124,12 +133,28 @@ public class User {
 		this.mentorList = mentorList;
 	}
 
-	public ArrayList<Subject> getTraineeList() {
+	public List<Subject> getTraineeList() {
 		return traineeList;
 	}
 
 	public void setTraineeList(ArrayList<Subject> traineeList) {
 		this.traineeList = traineeList;
+	}
+
+	public Connection getConnectionMentor() {
+		return connectionMentor;
+	}
+
+	public void setConnectionMentor(Connection connectionMentor) {
+		this.connectionMentor = connectionMentor;
+	}
+
+	public Connection getConnectionTrainee() {
+		return connectionTrainee;
+	}
+
+	public void setConnectionTrainee(Connection connectionTrainee) {
+		this.connectionTrainee = connectionTrainee;
 	}
 	
 	

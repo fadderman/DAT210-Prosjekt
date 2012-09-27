@@ -9,13 +9,17 @@ import javax.persistence.*;
 @Table(name = "CONNECTION")
 public class Connection {
 
-	@Column(name = "mentor")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "connectionMentor_fk")
 	private User mentor;
 	
-	@Column(name = "trainee")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "connectionTrainee_fk")
 	private User trainee;
 	
-	@Column(name = "subject")
+	//TODO
+	@ManyToOne
+	@JoinColumn(name = "subject_fk")
 	private Subject subject;
 	
 	@Id @GeneratedValue

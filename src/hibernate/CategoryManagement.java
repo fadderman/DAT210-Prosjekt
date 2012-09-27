@@ -8,6 +8,7 @@ import models.Subject;
 import models.User;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -63,18 +64,17 @@ public class CategoryManagement {
 		Transaction tx = null;
 		try{
 			tx = session.beginTransaction();
-			
-			//TODO fix errors!
-			List<Category> categories = session.createQuery("FROM USER").list(); 
+			List<Category> categories = session.createQuery("FROM models.Category").list(); 
 			for (Iterator<Category> iterator = 
 					categories.iterator(); iterator.hasNext();){
 				Category category = (Category) iterator.next(); 
+				System.out.println("This has been pulled from the database:");
 				System.out.println("Category: " + category.getTitle());
 				System.out.println("Description: " + category.getDescription());
-				System.out.println("Subjects: ");
-				for(Iterator<Subject> subjectiterator = category.getSubjectList().iterator(); subjectiterator.hasNext();){
-					System.out.println(subjectiterator.next().getTitle() + ", " + "Description: " + subjectiterator.next());
-				}
+				if(category.getSubjectList().isEmpty()){
+					System.out.println("Subject list is empty.");
+				} else
+				System.out.println("First subject in list: " + category.getSubjectList().get(1).getTitle());
 			}
 			tx.commit();
 		}catch (HibernateException e) {
@@ -85,25 +85,18 @@ public class CategoryManagement {
 		}
 	}
 	
-	public Category getCategory(){
+	public Category getCategory(String catNameToPull){
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Category pulledCategory = new Category("Not Pulled", null, new Subject("Not pulled",null,null));
 		try{
 			tx = session.beginTransaction();
+
+			Query query = session.createQuery("FROM models.Category where title = :title");
+			query.setString("title", catNameToPull);
+			Object queryResult = query.uniqueResult();
+			pulledCategory = (Category) queryResult;
 			
-			//TODO fix errors!
-			List<Category> categories = session.createQuery("FROM USER").list(); 
-			for (Iterator<Category> iterator = 
-					categories.iterator(); iterator.hasNext();){
-				Category category = (Category) iterator.next(); 
-				System.out.println("Category: " + category.getTitle());
-				System.out.println("Description: " + category.getDescription());
-				System.out.println("Subjects: ");
-				for(Iterator<Subject> subjectiterator = category.getSubjectList().iterator(); subjectiterator.hasNext();){
-					System.out.println(subjectiterator.next().getTitle() + ", " + "Description: " + subjectiterator.next());
-				}
-			}
 			tx.commit();
 		}catch (HibernateException e) {
 			if (tx!=null) tx.rollback();
