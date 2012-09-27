@@ -85,6 +85,7 @@ public class CategoryManagement {
 		}
 	}
 	
+	//TODO change to pull one Class at a time
 	public Category getCategory(){
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
