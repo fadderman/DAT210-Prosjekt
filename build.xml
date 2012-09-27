@@ -38,6 +38,26 @@
         <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="EAR Libraries.libraryclasspath"/>
+<<<<<<< HEAD
+=======
+        <pathelement location="lib/OpenID/commons-codec-1.3.jar"/>
+        <pathelement location="lib/OpenID/commons-logging-1.03.jar"/>
+        <pathelement location="lib/OpenID/guice-2.0.jar"/>
+        <pathelement location="lib/OpenID/httpclient-4.0.jar"/>
+        <pathelement location="lib/OpenID/httpcore-4.0.1.jar"/>
+        <pathelement location="lib/OpenID/nekohtml-1.9.14.jar"/>
+        <pathelement location="lib/OpenID/openid4java-0.9.6.jar"/>
+        <pathelement location="lib/OpenID/xercesImpl-2.8.1.jar"/>
+        <pathelement location="lib/Hibernate/antlr-2.7.7.jar"/>
+        <pathelement location="lib/Hibernate/dom4j-1.6.1.jar"/>
+        <pathelement location="lib/Hibernate/hibernate-commons-annotations-4.0.1.Final.jar"/>
+        <pathelement location="lib/Hibernate/hibernate-core-4.1.6.Final.jar"/>
+        <pathelement location="lib/Hibernate/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+        <pathelement location="lib/Hibernate/javassist-3.15.0-GA.jar"/>
+        <pathelement location="lib/Hibernate/jboss-logging-3.1.0.GA.jar"/>
+        <pathelement location="lib/Hibernate/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
+        <pathelement location="lib/Hibernate/mysql-connector-java-5.1.22-bin.jar"/>
+>>>>>>> origin/Hibernate
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
@@ -74,4 +94,30 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+<<<<<<< HEAD
+=======
+	<target name="unit-test-1" >
+
+	    <mkdir dir="${reports.tests}"/>
+
+	    <junit printsummary="yes" haltonfailure="yes">
+	      <classpath>
+	        <pathelement location="${project.class.path}"/>
+	        <pathelement location="${build.tests}"/>
+	        <pathelement path="${java.class.path}"/>
+	      </classpath>
+
+	      <formatter type="plain"/>
+	      <formatter type="xml"/>
+
+	      <batchtest fork="yes" todir="${reports.tests}">
+	        <fileset dir="${test}">
+	          <include name="**/*Test*.java"/>
+	        </fileset>
+	      </batchtest>
+
+	    </junit>
+
+	</target>
+>>>>>>> origin/Hibernate
 </project>

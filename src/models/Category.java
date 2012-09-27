@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 public class Category {
 	private String title;
 	private String description;
@@ -11,6 +12,36 @@ public class Category {
 		this.title = "";
 		this.description = "";
 		this.subjectList = null;
+=======
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "CATEGORY")
+public class Category {
+	
+	@Column(name = "title")
+	private String title;
+	
+	@Column(name = "description")
+	private String description;
+	
+	
+	//TODO ManyToMany or ManyToOne?
+	@ManyToOne
+	@OrderBy("title")
+	private ArrayList<Subject> subjectList;
+	
+	
+	public Category(){
+		
+	}
+	
+	public Category(String title, String description, ArrayList<Subject> subjectList) {
+		this.title = title;
+		this.description = description;
+		this.subjectList = subjectList;
+>>>>>>> origin/Hibernate
 	}
 	
 	public String getTitle() {

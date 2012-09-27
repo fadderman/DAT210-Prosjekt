@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 public class User {
 
 	private String firstName;
@@ -19,11 +20,72 @@ public class User {
 		this.identifier = "";
 		this.email = "";
 		this.location = "";
+=======
+import javax.persistence.*;
+
+@Entity
+@Table(name = "USER")
+public class User {
+
+	@Id @GeneratedValue
+	@Column(name = "user_id")
+	private int userID;
+	
+	@Column(name = "username")
+	private String username;
+	
+	@Column(name = "first_name")
+	private String firstName;
+	
+	@Column(name = "last_Name")
+	private String lastName;
+	
+	@Column(name = "email")
+	private String email;
+	
+	@Column(name = "location")
+	private String location;
+	
+	//TODO should these be ordered or indexed?
+//	@ManyToMany
+//	@OrderBy("title")
+	private ArrayList<Subject> mentorList;
+	
+	//TODO should these be ordered or indexed?
+//	@ManyToMany
+//	@OrderBy("title")
+	private ArrayList<Subject> traineeList;
+	
+	//TODO Needs normalization
+//	@OneToOne
+//	private Connection connection;
+	
+	public User() {}
+	
+	//TODO Business methods pass empty variables if fields are to be left empty
+	public User(String username, String firstName, String lastName, String email, String location) {
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.location = location;
+>>>>>>> origin/Hibernate
 		
 		this.mentorList = new ArrayList<Subject>();
 		this.traineeList = new ArrayList<Subject>();
 	}
 
+<<<<<<< HEAD
+=======
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+>>>>>>> origin/Hibernate
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -40,12 +102,21 @@ public class User {
 		this.lastName = lastName;
 	}
 
+<<<<<<< HEAD
 	public String getIdentifier() {
 		return identifier;
 	}
 
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
+=======
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+>>>>>>> origin/Hibernate
 	}
 
 	public String getEmail() {
