@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--<?eclipse.ant.import?>  -->
-<target name="unit-test-1">
+<?eclipse.ant.import?>
+
+<target name="Test">
 
 	<mkdir dir="${reports.tests}" />
 
 	<junit printsummary="yes" haltonfailure="yes">
 		<classpath>
-			<pathelement location="${project.class.path}" />
+			<pathelement location="${DAT210-Prosjekt.classpath}" />
 			<pathelement location="${build.tests}" />
 			<pathelement path="${java.class.path}" />
 		</classpath>
@@ -15,7 +16,7 @@
 		<formatter type="xml" />
 
 		<batchtest fork="yes" todir="${reports.tests}">
-			<fileset dir="${src.test}">
+			<fileset dir="${test}">
 				<include name="**/*Test*.java" />
 			</fileset>
 		</batchtest>
