@@ -91,4 +91,9 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+    <target name="New_configuration">
+        <java classname="" failonerror="true" fork="yes">
+            <classpath refid="DAT210-Prosjekt.classpath"/>
+        </java>
+    </target>
 </project>
