@@ -48,12 +48,14 @@ public class User {
 	@OrderBy("title")
 	private List<Subject> traineeList;
 	
-
 	@OneToOne(mappedBy = "mentor")
 	private Connection connectionMentor;
 	
 	@OneToOne(mappedBy = "trainee")
 	private Connection connectionTrainee;
+	
+	@OneToMany(mappedBy = "author")
+	private List<Comment>  commentList;
 	
 	public User() {}
 	
@@ -65,8 +67,10 @@ public class User {
 		this.email = email;
 		this.location = location;
 		
-		this.mentorList = new ArrayList<Subject>();
-		this.traineeList = new ArrayList<Subject>();
+		mentorList = new ArrayList<Subject>();
+		traineeList = new ArrayList<Subject>();
+		commentList = new ArrayList<Comment>();
+		
 	}
 
 	public String getUsername() {
@@ -155,6 +159,14 @@ public class User {
 
 	public void setConnectionTrainee(Connection connectionTrainee) {
 		this.connectionTrainee = connectionTrainee;
+	}
+
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(ArrayList<Comment> commentList) {
+		this.commentList = commentList;
 	}
 	
 	

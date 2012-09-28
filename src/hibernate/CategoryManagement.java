@@ -1,5 +1,6 @@
 package hibernate;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,34 +18,21 @@ public class CategoryManagement {
 	
 	private static SessionFactory sessionFactory;
 	
-	private Category category;
-	
 	public CategoryManagement() {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
 	
 	public void createCategory(String title, String description){
-		createCategory(title, description, new Subject(null,null,null));
+		createCategory(title, description, null);
 	}
 	
 	public void createCategory(String title, String description, Subject subject) {
 		Category category = new Category(title, description, subject);
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try{
-			tx = session.beginTransaction();
-			session.save(category); 
-			tx.commit();
-		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace(); 
-		}finally {
-			session.close(); 
-		}
+		addCategory(category);
 	}
 	
 	public void addCategory(Category category){
-		this.category = category;
+
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{
@@ -89,18 +77,15 @@ public class CategoryManagement {
 		}
 	}
 	
-	public Category getCategory(String catNameToPull){
+	public List<Category> getCategoryByTitle(Category category){
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
-		Category pulledCategory = new Category("Not Pulled", null, new Subject("Not pulled",null,null));
+		List<Category> categories = new ArrayList<Category>();
 		try{
 			tx = session.beginTransaction();
-
 			Query query = session.createQuery("FROM models.Category where title = :title");
-			query.setString("title", catNameToPull);
-			Object queryResult = query.uniqueResult();
-			pulledCategory = (Category) queryResult;
-			
+			query.setString("title", category.getTitle());
+			categories = query.list();			
 			tx.commit();
 		}catch (HibernateException e) {
 			if (tx!=null) tx.rollback();
@@ -108,7 +93,7 @@ public class CategoryManagement {
 		}finally {
 			session.close(); 
 		}
-		return pulledCategory;
+		return categories;
 	}
 
 }

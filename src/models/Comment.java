@@ -9,8 +9,12 @@ import javax.persistence.*;
 @Table(name = "COMMENT")
 public class Comment {
 
-	@Column
+	@ManyToOne
+	@JoinColumn(name = "connection_fk")
 	private Connection connection;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_fk")
 	private User author;
 	
 	@Column(name = "comment")

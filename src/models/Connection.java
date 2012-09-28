@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -28,19 +29,20 @@ public class Connection {
 	@Column(name = "difficultyLevel")
 	private int difficultyLevel;
 	
-	//TODO relasjon? ManyToMany or ManyToOne
-	private ArrayList<Comment> comments;
+	@OneToMany(mappedBy = "connection")
+	@OrderBy("timestamp")
+	private List<Comment> comments;
 	
 	public Connection(){
 		
 	}
 	
-	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel, ArrayList<Comment> comments) {
+	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel) {
 		this.mentor = mentor;
 		this.trainee = trainee;
 		this.subject = subject;
 		this.difficultyLevel = difficultyLevel;
-		this.comments = comments;
+		comments = new ArrayList<Comment>();
 	}
 	
 	public User getMentor() {
@@ -75,7 +77,7 @@ public class Connection {
 		this.difficultyLevel = difficultyLevel;
 	}
 
-	public ArrayList<Comment> getComments() {
+	public List<Comment> getComments() {
 		return comments;
 	}
 

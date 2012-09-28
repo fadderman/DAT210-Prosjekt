@@ -13,31 +13,17 @@ import models.User;
 public class UserManagement {
 	
 	private static SessionFactory sessionFactory;
-
-	private User user;
 	
 	public UserManagement() {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
 
 	public void createUser(String username, String firstName, String lastName, String email, String location){
-		user = new User(username, firstName, lastName, email, location);
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try{
-			tx = session.beginTransaction();
-			session.save(user); 
-			tx.commit();
-		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace(); 
-		}finally {
-			session.close(); 
-		}
+		User user = new User(username, firstName, lastName, email, location);
+		addUser(user);
 	}
 	
 	public void addUser(User user){
-		this.user = user;
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{
