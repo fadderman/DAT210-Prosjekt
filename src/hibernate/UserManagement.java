@@ -20,7 +20,7 @@ public class UserManagement {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
 
-	public void UserCreate(String username, String firstName, String lastName, String email, String location){
+	public void createUser(String username, String firstName, String lastName, String email, String location){
 		user = new User(username, firstName, lastName, email, location);
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -36,7 +36,7 @@ public class UserManagement {
 		}
 	}
 	
-	public void UserAdd(User user){
+	public void addUser(User user){
 		this.user = user;
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -64,7 +64,7 @@ public class UserManagement {
 			tx = session.beginTransaction();
 			
 			//TODO fix errors!
-			List<User> users = session.createQuery("FROM USER").list(); 
+			List<User> users = session.createQuery("FROM models.User").list(); 
 			for (Iterator<User> iterator = 
 					users.iterator(); iterator.hasNext();){
 				User user = (User) iterator.next(); 

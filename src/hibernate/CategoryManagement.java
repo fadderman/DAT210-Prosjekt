@@ -23,7 +23,11 @@ public class CategoryManagement {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
 	
-	public void CategoryCreate(String title, String description, Subject subject) {
+	public void createCategory(String title, String description){
+		createCategory(title, description, new Subject(null,null,null));
+	}
+	
+	public void createCategory(String title, String description, Subject subject) {
 		Category category = new Category(title, description, subject);
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -39,7 +43,7 @@ public class CategoryManagement {
 		}
 	}
 	
-	public void CategoryAdd(Category category){
+	public void addCategory(Category category){
 		this.category = category;
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;

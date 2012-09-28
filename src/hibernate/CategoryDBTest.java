@@ -12,8 +12,8 @@ public class CategoryDBTest {
 		Category catJava = new Category("Java", "THIS IS JAVAAAAA");
 		Category catCsharp = new Category("C#", "Kinda like Java but not really");
 		
-		cm.CategoryAdd(catJava);
-		cm.CategoryAdd(catCsharp);
+		cm.addCategory(catJava);
+		cm.addCategory(catCsharp);
 
 		cm.listAllCategories();
 		

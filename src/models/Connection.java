@@ -17,7 +17,6 @@ public class Connection {
 	@JoinColumn(name = "connectionTrainee_fk")
 	private User trainee;
 	
-	//TODO
 	@ManyToOne
 	@JoinColumn(name = "subject_fk")
 	private Subject subject;
@@ -26,8 +25,6 @@ public class Connection {
 	@Column(name = "connection_id")
 	private int connectionID;
 	
-
-
 	@Column(name = "difficultyLevel")
 	private int difficultyLevel;
 	
@@ -38,13 +35,12 @@ public class Connection {
 		
 	}
 	
-	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel, ArrayList<Comment> comments, int connectionID) {
+	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel, ArrayList<Comment> comments) {
 		this.mentor = mentor;
 		this.trainee = trainee;
 		this.subject = subject;
 		this.difficultyLevel = difficultyLevel;
 		this.comments = comments;
-		this.connectionID = connectionID;
 	}
 	
 	public User getMentor() {

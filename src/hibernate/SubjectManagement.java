@@ -22,7 +22,7 @@ public class SubjectManagement {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
 	
-	public void SubjectCreate(String title, String description, Category category){
+	public void createSubject(String title, String description, Category category){
 		subject = new Subject(title, description, category);
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -38,7 +38,7 @@ public class SubjectManagement {
 		}
 	}
 	
-	public void SubjectAdd(Subject subject){
+	public void addSubject(Subject subject){
 		this.subject = subject;
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -52,11 +52,6 @@ public class SubjectManagement {
 		}finally {
 			session.close(); 
 		}
-	}
-	
-	//TODO Are subjects to be removed from DB or just marked as "obsolete" or "unused"? Using "drop table" in SQL for testing.
-	public void SubjectRemove(){
-		
 	}
 	
 	//TODO only for a quick test. Will be removed/moved to a unit test later.
@@ -83,5 +78,5 @@ public class SubjectManagement {
 				session.close(); 
 			}
 		}
-		//TODO SubjectModify methods on desired fields.
+		//TODO ModifySubject and lookupSubject methods on desired fields.
 }
