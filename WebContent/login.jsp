@@ -88,16 +88,13 @@
 							</p><p>
 							<input type="Submit"  class="btn btn-large btn-info span12" value="Twitter"></input>
 							</p><p>
-<<<<<<< HEAD
 							<a href="<%=response.encodeURL("login?openid_identifier=https://www.google.com/accounts/o8/id")%>" class="btn btn-large btn-warning span12">Google</a>
 						<!--"login?openid_identifier=https://www.google.com/accounts/o8/id"  -->
 							
 							</p>
 							<a href="<%=response.encodeURL("login?openid_identifier=https://me.yahoo.com/")%>" class="btn btn-large btn-warning span12">Yahoo</a>
-=======
 							<input type="Submit"  class="btn btn-large btn-warning span12" value="Google"></input>
 							</p>
->>>>>>> origin/Hibernate
 							<input type="Submit"  class="btn btn-large btn-success span12" value="Windows Live"></input>
 						</form>
 					</div>

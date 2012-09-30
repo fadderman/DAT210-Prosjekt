@@ -48,8 +48,8 @@ public class User {
 	public User() {}
 	
 	//TODO Business methods pass empty variables if fields are to be left empty
-	public User(String username, String firstName, String lastName, String email, String location) {
-		this.username = username;
+	public User(String identifier, String firstName, String lastName, String email, String location) {
+		this.identifier = identifier;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
