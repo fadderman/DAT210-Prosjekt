@@ -10,6 +10,7 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
     <property name="source" value="1.7"/>
+    <import file="exportantsettings.xml"/>
     <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
         <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/annotations-api.jar"/>
         <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/catalina-ant.jar"/>
@@ -33,10 +34,6 @@
     </path>
     <path id="Web App Libraries.libraryclasspath"/>
     <path id="EAR Libraries.libraryclasspath"/>
-    <path id="JUnit 4.libraryclasspath">
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.10.0.v4_10_0_v20120426-0900/junit.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
-    </path>
     <path id="DAT210-Prosjekt.classpath">
         <pathelement location="build/classes"/>
         <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
@@ -59,7 +56,7 @@
         <pathelement location="lib/Hibernate/jboss-logging-3.1.0.GA.jar"/>
         <pathelement location="lib/Hibernate/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
         <pathelement location="lib/Hibernate/mysql-connector-java-5.1.22-bin.jar"/>
-        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="lib/JUnit/junit.jar"/>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
