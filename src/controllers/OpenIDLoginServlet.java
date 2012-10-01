@@ -60,7 +60,6 @@ public class OpenIDLoginServlet extends HttpServlet{
 	//		try {
 	//			userLogin = new UserLogin(getServletContext());
 	//		} catch (ConsumerException e) {
-	//			// TODO Auto-generated catch block
 	//			e.printStackTrace();
 	//		}
 	//		super.init(config);
@@ -83,7 +82,6 @@ public class OpenIDLoginServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(req, resp);
 	}
 
@@ -177,7 +175,6 @@ public class OpenIDLoginServlet extends HttpServlet{
 			//				try {
 			//					dispatcher.forward(httpReq, httpResp);
 			//				} catch (ServletException e) {
-			//					// TODO Auto-generated catch block
 			//					e.printStackTrace();
 			//				}
 			//			}
@@ -254,7 +251,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 						System.out.println("firstname: " + firstname + ", lastname: " + lastname);
 					}
 					httpReq.setAttribute("user", user);
-					this.getServletContext().getRequestDispatcher("/login.jsp").forward(httpReq, httpResp); //change!
+					this.getServletContext().getRequestDispatcher("/firstTimeLogin.jsp").forward(httpReq, httpResp); //change!
 				}
 
 //				if (authSuccess.hasExtension(AxMessage.OPENID_NS_AX))
