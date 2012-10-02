@@ -18,4 +18,16 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <description></description>
+    <display-name>CreateNewUserServlet</display-name>
+    <servlet-name>CreateNewUserServlet</servlet-name>
+    <servlet-class>controllers.CreateNewUserServlet</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping>
+    <servlet-name>CreateNewUserServlet</servlet-name>
+    <url-pattern>/createNewUser</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

@@ -80,23 +80,29 @@
 				<!-- right side -->
 				<div class="span4">
 					<div>
-						<form class="well shadow">
-						<p style="font-size:16pt;">Sign in with:</p>
-							<hr>
-							<p>
-							<input type="Submit" class="btn btn-large btn-primary span12" value="Facebook"></input>
-							</p><p>
-							<input type="Submit"  class="btn btn-large btn-info span12" value="Twitter"></input>
-							</p><p>
-							<a href="<%=response.encodeURL("login?openid_identifier=https://www.google.com/accounts/o8/id")%>" class="btn btn-large btn-warning span12">Google</a>
-						<!--"login?openid_identifier=https://www.google.com/accounts/o8/id"  -->
-							
-							</p>
-							<a href="<%=response.encodeURL("login?openid_identifier=https://me.yahoo.com/")%>" class="btn btn-large btn-warning span12">Yahoo</a>
-							<input type="Submit"  class="btn btn-large btn-warning span12" value="Google"></input>
-							</p>
-							<input type="Submit"  class="btn btn-large btn-success span12" value="Windows Live"></input>
-						</form>
+					<form class="well shadow">
+
+                                        <p style="font-size: 16pt;">Sign in with:</p>
+
+                                        <hr>
+
+                                        <a type="Submit" class="btn btn-large btn-warning span12"
+
+                                               style="margin-bottom: 5px" href="<%=response.encodeURL("login?openid_identifier=https://www.google.com/accounts/o8/id")%>">Google</a>
+
+                                               <a type="Submit" class="btn btn-large btn-success span12"
+
+                                               style="margin-bottom: 5px" href="<%=response.encodeURL("login?openid_identifier=https://me.yahoo.com/")%>">Yahoo</a>
+
+                                        <!-- <a type="Submit" class="btn btn-large btn-primary disabled span12"
+
+                                               style="margin-bottom: 5px">Facebook</a> <a type="Submit"
+
+                                               class="btn btn-large btn-info span12 disabled" style="margin-bottom: 5px">Twitter</a> -->
+
+                                        <div class="padding"></div>
+
+                                  </form>
 					</div>
 				</div>
 			</div>
