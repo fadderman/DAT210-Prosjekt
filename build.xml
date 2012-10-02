@@ -13,6 +13,7 @@
   <path id="classpath.test">
     <pathelement location="${lib}" />
     <pathelement location="${test}" />
+  	<pathelement location="${src}"/>
     <pathelement location="${build}/main"/>
     <pathelement location="${build}/test"/>
   </path>
@@ -28,6 +29,7 @@
     <javac srcdir="${src}" destdir="${build}/main"/>
     <javac srcdir="${test}" destdir="${build}/test">
       <classpath>
+      	<path refid="classpath.test"/>
         <pathelement location="${lib}"/>
       	<fileset dir="${lib}">
       		<include name="**/*.jar" />
