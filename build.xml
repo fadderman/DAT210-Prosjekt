@@ -32,6 +32,7 @@
       	<fileset dir="${lib}">
       		<include name="**/*.jar" />
       	</fileset>
+      	<pathelement location="${src}"/>
       	<fileset dir="${src}">
       		<include name="**/*.java" />
       		<exclude name="**/*Test*.java"/>
