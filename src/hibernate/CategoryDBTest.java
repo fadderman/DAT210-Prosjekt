@@ -19,10 +19,20 @@ public class CategoryDBTest {
 		
 		cm.addCategory(catJava);
 		cm.addCategory(catCsharp);
+		
+		Subject subJava3D = new Subject("Java 3D", "Old 3D graphics API for n00bs", cm.getByTitle("Java").get(0));
+		Subject subJava2D = new Subject("Java 2D", "2D Java graphics API", cm.getByTitle("Java").get(0));
+		
+		Subject subCSh1 = new Subject("C# subject 1", "C# for everybody", cm.getByTitle("C#").get(0));
 
+		sm.addSubject(subJava3D);
+		sm.addSubject(subJava2D);
+		sm.addSubject(subCSh1);
+		
 		cm.listAllCategories();
 		
-		List<Category> pulledCats = cm.getCategoryByTitle(catJava);
+		/*
+		List<Category> pulledCats = cm.getByTitle(catJava.getTitle());
 		for(Iterator<Category> iterator = pulledCats.iterator(); iterator.hasNext();){
 			Category current = iterator.next();
 			System.out.println("Pulled Category title: " + current.getTitle());
@@ -30,12 +40,11 @@ public class CategoryDBTest {
 			if(current.getSubjectList().isEmpty()){
 				System.out.println("Subject list is empty.");
 			} else {
-				List<Subject> currentSubjectList = sm.getSubjectByTitle(current.getSubjectList().get(1));
-				System.out.println("First subject in list: " + current.getSubjectList().get(1).); 
+				List<Subject> currentSubjectList = sm.getSubjectByTitle(current.getSubjectList().get(1)); //TODO something's wrong here..
+				System.out.println("First subject in list: " + currentSubjectList.get(1).getTitle()); 
 			}
-				
-
 		}
+		*/
 
 	}
 

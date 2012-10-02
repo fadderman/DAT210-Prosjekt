@@ -24,6 +24,9 @@ public class Category {
 	@OrderBy("title")
 	private List<Subject> subjectList;
 	
+	//TODO do we need this?
+	//rivate List<Category> subcategories;
+	
 	
 	public Category(){
 		

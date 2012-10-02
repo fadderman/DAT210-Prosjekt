@@ -18,8 +18,8 @@ public class UserManagement {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
 
-	public void createUser(String username, String firstName, String lastName, String email, String location){
-		User user = new User(username, firstName, lastName, email, location);
+	public void createUser(String firstName, String lastName, String email, String location){
+		User user = new User(firstName, lastName, email, location);
 		addUser(user);
 	}
 	
@@ -56,7 +56,6 @@ public class UserManagement {
 				User user = (User) iterator.next(); 
 				System.out.print("First Name: " + user.getFirstName()); 
 				System.out.println("  Last Name: " + user.getLastName()); 
-				System.out.println("  Username: " + user.getUsername()); 
 				System.out.println("  email: " + user.getEmail());
 				System.out.println("  Location: " + user.getLocation());
 			}

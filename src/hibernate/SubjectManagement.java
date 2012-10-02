@@ -73,7 +73,7 @@ public class SubjectManagement {
 			List<Subject> subjects = new ArrayList<Subject>();
 			try{
 				tx = session.beginTransaction();
-				Query query = session.createQuery("FROM models.Category where title = :title");
+				Query query = session.createQuery("FROM models.Subject where title = :title");
 				query.setString("title", subject.getTitle());
 				subjects = query.list();			
 				tx.commit();

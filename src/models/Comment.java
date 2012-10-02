@@ -9,6 +9,10 @@ import javax.persistence.*;
 @Table(name = "COMMENT")
 public class Comment {
 
+	@Id @GeneratedValue
+	@Column(name = "comment_id")
+	private int commentID;
+	
 	@ManyToOne
 	@JoinColumn(name = "connection_fk")
 	private Connection connection;
@@ -20,8 +24,6 @@ public class Comment {
 	@Column(name = "comment")
 	private String comment;
 	
-	
-	//TODO sjer her? 
 	@Column(name = "timestamp")
 	private Date timestamp;
 	

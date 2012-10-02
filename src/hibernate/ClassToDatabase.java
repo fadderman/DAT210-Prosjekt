@@ -18,6 +18,7 @@ public class ClassToDatabase {
 		classToDatabase.add(Connection.class);
 		classToDatabase.add(Subject.class);
 		classToDatabase.add(Category.class);
+		classToDatabase.add(Comment.class);
 	}
 	/**
 	 * 

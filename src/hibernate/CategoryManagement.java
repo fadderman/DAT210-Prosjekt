@@ -46,27 +46,27 @@ public class CategoryManagement {
 			session.close(); 
 		}
 	}
-	//TODO Are categories to be removed from DB or just marked as "obsolete" or "unused"? Using "drop table" in SQL for testing.
-	public void CategoryRemove(){
-		
-	}
 	
-	public void listAllCategories(){
+	public List<Category> listAllCategories(){
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
+		List<Category> categories = null;
 		try{
 			tx = session.beginTransaction();
-			List<Category> categories = session.createQuery("FROM models.Category").list(); 
-			for (Iterator<Category> iterator = 
-					categories.iterator(); iterator.hasNext();){
+			categories = session.createQuery("FROM models.Category").list(); 
+			for (Iterator<Category> iterator = categories.iterator(); iterator.hasNext();){
 				Category category = (Category) iterator.next(); 
 				System.out.println("This has been pulled from the database:");
 				System.out.println("Category: " + category.getTitle());
 				System.out.println("Description: " + category.getDescription());
 				if(category.getSubjectList().isEmpty()){
 					System.out.println("Subject list is empty.");
-				} else
-				System.out.println("First subject in list: " + category.getSubjectList().get(1).getTitle());
+				} else {
+					List<Subject> pulledSubjectList = category.getSubjectList();
+					for(Iterator<Subject> itS = pulledSubjectList.iterator(); itS.hasNext();){
+						System.out.println("Subject in list: " + itS.next().getTitle());
+					}
+				}
 			}
 			tx.commit();
 		}catch (HibernateException e) {
@@ -75,16 +75,19 @@ public class CategoryManagement {
 		}finally {
 			session.close(); 
 		}
+		
+		return categories;
 	}
 	
-	public List<Category> getCategoryByTitle(Category category){
+	public List<Category> getByTitle(String title){
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		List<Category> categories = new ArrayList<Category>();
 		try{
 			tx = session.beginTransaction();
+			//Query query = session.createSQLQuery("SELECT s.title FROM SUBJECT s, CATEGORY c WHERE s.title = 'Java 3D' AND c.title = 'Java'");
 			Query query = session.createQuery("FROM models.Category where title = :title");
-			query.setString("title", category.getTitle());
+			query.setString("title", title);
 			categories = query.list();			
 			tx.commit();
 		}catch (HibernateException e) {
@@ -96,4 +99,16 @@ public class CategoryManagement {
 		return categories;
 	}
 
+	public void getCategorByID(){
+		//TODO placeholder
+	}
+	
+	public void updateTitle(){
+		//TODO placeholder
+	}
+	
+	//TODO Are categories to be removed from DB or just marked as "obsolete" or "unused"? Using "drop table" in SQL for testing.
+	public void CategoryRemove(){
+		
+	}
 }
