@@ -24,10 +24,17 @@ public class CategoryDBTest {
 		Subject subJava2D = new Subject("Java 2D", "2D Java graphics API", cm.getByTitle("Java").get(0));
 		
 		Subject subCSh1 = new Subject("C# subject 1", "C# for everybody", cm.getByTitle("C#").get(0));
+		Subject subCSh2 = new Subject("C#", "C# for extreme", cm.getByTitle("C#").get(0));
+		Subject subCSh3 = new Subject("C#","C# General",cm.getByTitle("C#").get(0));
 
+		Subject subCpluss = new Subject("C++","C++ General",cm.getByTitle("C++").get(0));
+		
 		sm.addSubject(subJava3D);
 		sm.addSubject(subJava2D);
 		sm.addSubject(subCSh1);
+		sm.addSubject(subCSh2);
+		sm.addSubject(subCSh3);
+		sm.addSubject(subCpluss);
 		
 		//cm.listAllCategories();
 		
