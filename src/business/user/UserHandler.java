@@ -8,11 +8,11 @@ import models.User;
 
 public class UserHandler {
 	
-	private static ArrayList<User> users;		//holds all the users in the system
+	private static ArrayList<User> users= new ArrayList<User>();;		//holds all the users in the system
 	private static UserManagement userManager;		//access to the database
 	
 	public UserHandler(){
-		users = new ArrayList<User>();
+//		users = new ArrayList<User>();
 //		userManager = new UserManagement();
 	}
 
