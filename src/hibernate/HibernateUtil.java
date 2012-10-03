@@ -32,6 +32,22 @@ public class HibernateUtil {
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+	
+	public void addToDatabase(Object toBeAdded){
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{
+			tx = session.beginTransaction();
+			session.save(toBeAdded); 
+			tx.commit();
+		}catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		}finally {
+			session.close(); 
+		}
+	}
+	
 	public <T> List<T> fetch(String queryString){
 		return fetch(queryString, null, null);
 	}
@@ -44,7 +60,7 @@ public class HibernateUtil {
 			tx = session.beginTransaction();
 			Query query = session.createQuery(queryString);
 			if(criteria == null){
-				//force a skip on null values
+				//force a skip on null values, criteria not needed for SELECT *
 			}
 			else if(criteria.getClass() == String.class){
 				query.setString(queryVariable, (String) criteria);
@@ -74,7 +90,7 @@ public class HibernateUtil {
 			tx = session.beginTransaction();
 			Query query = session.createQuery(queryString);
 			if(criteria == null){
-				//force a skip on null values
+				//force a skip on null values, criteria not needed for SELECT *
 			}
 			else if(criteria.getClass() == String.class){
 				query.setString(queryVariable, (String) criteria);
@@ -96,7 +112,7 @@ public class HibernateUtil {
 		return result;
 	}
 
-	public int updateSingle(String queryString, String oldQueryVariable, String newQueryVariable, Object oldValue, Object newValue, int id){
+	public int updateSingle(String queryString, String newQueryVariable, Object newValue, int id){
 		int updateCounter = -1;
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -104,19 +120,16 @@ public class HibernateUtil {
 			tx = session.beginTransaction();
 			Query query = session.createQuery(queryString);
 			query.setInteger("id", id);
-			if(oldValue.getClass() == String.class){
+			if(newValue.getClass() == String.class){
 				query.setString(newQueryVariable, (String) newValue);
-				query.setString(oldQueryVariable, (String) oldValue);
 			}
-			if(oldValue.getClass() == Integer.class){
+			if(newValue.getClass() == Integer.class){
 				Integer newInt = (Integer) newValue;
-				Integer oldInt = (Integer) oldValue;
 				query.setInteger(newQueryVariable, newInt.intValue());
-				query.setInteger(oldQueryVariable, oldInt.intValue());
 			}
-			if(oldValue.getClass() == Date.class)
+			if(newValue.getClass() == Date.class){
 				query.setDate(newQueryVariable, (Date) newValue);
-			query.setDate(oldQueryVariable, (Date) oldValue);
+			}
 			updateCounter = query.executeUpdate();
 			if(updateCounter < 1)
 				System.out.println("No entities updated.");

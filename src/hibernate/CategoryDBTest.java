@@ -16,9 +16,11 @@ public class CategoryDBTest {
 		SubjectManagement sm = new SubjectManagement();
 		Category catJava = new Category("Java", "THIS IS JAVAAAAA");
 		Category catCsharp = new Category("C#", "Kinda like Java but not really");
+		Category catCplus = new Category("C++", "Cplusplus");
 		
 		cm.addCategory(catJava);
 		cm.addCategory(catCsharp);
+		cm.addCategory(catCplus);
 		
 		Subject subJava3D = new Subject("Java 3D", "Old 3D graphics API for n00bs", cm.getByTitle("Java").get(0));
 		Subject subJava2D = new Subject("Java 2D", "2D Java graphics API", cm.getByTitle("Java").get(0));
@@ -36,22 +38,13 @@ public class CategoryDBTest {
 		sm.addSubject(subCSh3);
 		sm.addSubject(subCpluss);
 		
-		cm.listAllCategories();
+		cm.getAllCategories();
+		
+		cm.updateTitle(cm.getSingleByTitle("C#"), "C sharp");
+		cm.updateDescription(cm.getSingleByTitle("C sharp"), "Cminusminus");
+		
 		System.out.println("-----------------------------------------------");
 		
-		List<Category> pulledCats = cm.getByTitle(catJava.getTitle());
-		for(Iterator<Category> iterator = pulledCats.iterator(); iterator.hasNext();){
-			Category current = iterator.next();
-			System.out.println("Pulled Category title: " + current.getTitle());
-			System.out.println("Pulled Category description: " + current.getDescription());
-			if(cm.fetchSubjectList(current).isEmpty()){
-				System.out.println("Subject list is empty.");
-			} else {
-				List<Subject> pulledSubjectList = current.getSubjectList();
-				for(Iterator<Subject> itS = pulledSubjectList.iterator(); itS.hasNext();){
-					System.out.println("Subject in list: " + itS.next().getTitle());
-				}
-			}
-		}
+		cm.getAllCategories();
 	}
 }
