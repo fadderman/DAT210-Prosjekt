@@ -107,6 +107,10 @@ public class CategoryManagement {
 		//TODO placeholder
 	}
 	
+	public void updateDescription(){
+		//TODO placeholder
+	}
+	
 	//TODO Are categories to be removed from DB or just marked as "obsolete" or "unused"? Using "drop table" in SQL for testing.
 	public void CategoryRemove(){
 		
