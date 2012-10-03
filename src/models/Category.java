@@ -20,7 +20,9 @@ public class Category {
 	@Column(name = "description")
 	private String description;
 	
-	@OneToMany(mappedBy = "category")
+	@OneToMany(
+			mappedBy = "category", 
+			fetch=FetchType.EAGER)
 	@OrderBy("title")
 	private List<Subject> subjectList;
 	

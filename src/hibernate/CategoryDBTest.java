@@ -36,8 +36,8 @@ public class CategoryDBTest {
 		sm.addSubject(subCSh3);
 		sm.addSubject(subCpluss);
 		
-		//cm.listAllCategories();
-		
+		cm.listAllCategories();
+		System.out.println("-----------------------------------------------");
 		
 		List<Category> pulledCats = cm.getByTitle(catJava.getTitle());
 		for(Iterator<Category> iterator = pulledCats.iterator(); iterator.hasNext();){
@@ -47,7 +47,7 @@ public class CategoryDBTest {
 			if(cm.fetchSubjectList(current).isEmpty()){
 				System.out.println("Subject list is empty.");
 			} else {
-				List<Subject> pulledSubjectList = cm.fetchSubjectList(current);
+				List<Subject> pulledSubjectList = current.getSubjectList();
 				for(Iterator<Subject> itS = pulledSubjectList.iterator(); itS.hasNext();){
 					System.out.println("Subject in list: " + itS.next().getTitle());
 				}

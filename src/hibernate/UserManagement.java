@@ -18,8 +18,8 @@ public class UserManagement {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
 
-	public void createUser(String firstName, String lastName, String email, String location){
-		User user = new User(firstName, lastName, email, location);
+	public void createUser(String firstName, String lastName, String email, String location, String identifierOpenID){
+		User user = new User(firstName, lastName, email, location, identifierOpenID);
 		addUser(user);
 	}
 	

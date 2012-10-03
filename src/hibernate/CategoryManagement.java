@@ -14,23 +14,23 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class CategoryManagement {
-	
+public class CategoryManagement extends HibernateUtil{
+
 	private static SessionFactory sessionFactory;
-	
+
 	public CategoryManagement() {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
-	
+
 	public void createCategory(String title, String description){
 		createCategory(title, description, null);
 	}
-	
+
 	public void createCategory(String title, String description, Subject subject) {
 		Category category = new Category(title, description, subject);
 		addCategory(category);
 	}
-	
+
 	public void addCategory(Category category){
 
 		Session session = sessionFactory.openSession();
@@ -46,60 +46,48 @@ public class CategoryManagement {
 			session.close(); 
 		}
 	}
-	
+
 	public List<Category> listAllCategories(){
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		List<Category> categories = null;
-		try{
-			tx = session.beginTransaction();
-			categories = session.createQuery("FROM models.Category").list(); 
-			for (Iterator<Category> iterator = categories.iterator(); iterator.hasNext();){
-				Category category = (Category) iterator.next(); 
-				System.out.println("This has been pulled from the database:");
-				System.out.println("Category: " + category.getTitle());
-				System.out.println("Description: " + category.getDescription());
-				if(category.getSubjectList().isEmpty()){
-					System.out.println("Subject list is empty.");
-				} else {
-					List<Subject> pulledSubjectList = category.getSubjectList();
-					for(Iterator<Subject> itS = pulledSubjectList.iterator(); itS.hasNext();){
-						System.out.println("Subject in list: " + itS.next().getTitle());
-					}
-				}
-			}
-			tx.commit();
-		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace(); 
-		}finally {
-			session.close(); 
-		}
+		String queryString = ("FROM models.Category"); 
+		List<Category> results = fetch(queryString);
 		
-		return categories;
-	}
-	
-	public List<Category> getByTitle(String title){
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		List<Category> categories = new ArrayList<Category>();
-		try{
-			tx = session.beginTransaction();
-			//Query query = session.createSQLQuery("SELECT s.title FROM SUBJECT s, CATEGORY c WHERE s.title = 'Java 3D' AND c.title = 'Java'");
-			Query query = session.createQuery("FROM models.Category where title = :title");
-			query.setString("title", title);
-			categories = query.list();			
-			tx.commit();
-		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace(); 
-		}finally {
-			session.close(); 
+		for (Iterator<Category> iterator = results.iterator(); iterator.hasNext();){
+			Category category = (Category) iterator.next(); 
+			System.out.println("This has been pulled from the database:");
+			System.out.println("Category: " + category.getTitle());
+			System.out.println("Description: " + category.getDescription());
+			if(category.getSubjectList().isEmpty()){
+				System.out.println("Subject list is empty.");
+			} else {
+				List<Subject> pulledSubjectList = category.getSubjectList();
+				for(Iterator<Subject> itS = pulledSubjectList.iterator(); itS.hasNext();)
+					System.out.println("Subject in list: " + itS.next().getTitle());
+			}
 		}
-		return categories;
+		return results;
 	}
 
-	public void getCategoryByID(){
+	public List<Category> getByTitle(String title){
+		//Query query = session.createSQLQuery("SELECT s.title FROM SUBJECT s, CATEGORY c WHERE s.title = 'Java 3D' AND c.title = 'Java'");
+		String queryString = "FROM models.Category where title = :title";
+		String queryVariable = "title";
+		return fetch(queryString, queryVariable, title);
+	}
+
+	public List<Category> getByID(int id){
+		String queryString = "FROM models.Category WHERE id = :id";
+		String queryVariable = "id";
+		return fetch(queryString, queryVariable, new Integer(id));
+	}
+
+	public void updateTitle(Category category, String newTitle){
+		String queryString = "update models.Category set title = :newTitle where title = :oldTitle and id = :id";
+		String newQueryVariable = "newTitle";
+		String oldQueryVariable = "oldTitle";
+		updateSingle(queryString, oldQueryVariable, newQueryVariable, category.getTitle(), newTitle, category.getCategoryID());
+	}
+
+	public void updateDescription(){
 		//TODO placeholder
 	}
 	
@@ -107,20 +95,11 @@ public class CategoryManagement {
 		String queryString = "FROM models.Subject where category = :categoryID";
 		String queryVariable = "categoryID";
 		Integer categoryInt = new Integer(category.getCategoryID());
-		List <Subject> subjectList = HibernateUtil.fetch(queryString, queryVariable, categoryInt);
-		return subjectList;
+		return fetch(queryString, queryVariable, categoryInt);
 	}
-	
-	public void updateTitle(String title){
-		//TODO placeholder
-	}
-	
-	public void updateDescription(){
-		//TODO placeholder
-	}
-	
+
 	//TODO Are categories to be removed from DB or just marked as "obsolete" or "unused"? Using "drop table" in SQL for testing.
 	public void CategoryRemove(){
-		
+
 	}
 }
