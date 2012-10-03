@@ -1,6 +1,12 @@
 package models;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.List;
+import java.util.Set;
+
+>>>>>>> origin/Hibernate
 import javax.persistence.*;
 
 
@@ -11,6 +17,7 @@ public class User {
 	@Id @GeneratedValue
 	@Column(name = "user_id")
 	private int userID;
+<<<<<<< HEAD
 	
 	@Id @GeneratedValue
 	@Column(name = "identifier")
@@ -18,6 +25,11 @@ public class User {
 	
 	@Column(name = "username")
 	private String username;
+=======
+		
+	@Column(name = "identifier_openID")
+	private String identifierOpenID;
+>>>>>>> origin/Hibernate
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -32,40 +44,57 @@ public class User {
 	private String location;
 	
 	//TODO should these be ordered or indexed?
-//	@ManyToMany
-//	@OrderBy("title")
-	private ArrayList<Subject> mentorList;
+	@ManyToMany(targetEntity = models.Subject.class,
+			cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
+	@OrderBy("title")
+	private List<Subject> mentorList;
 	
 	//TODO should these be ordered or indexed?
-//	@ManyToMany
-//	@OrderBy("title")
-	private ArrayList<Subject> traineeList;
+	@ManyToMany(targetEntity = models.Subject.class,
+			cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
+	@OrderBy("title")
+	private List<Subject> traineeList;
 	
-	//TODO Needs normalization
-//	@OneToOne
-//	private Connection connection;
+	@OneToOne(mappedBy = "mentor")
+	private Connection connectionMentor;
+	
+	@OneToOne(mappedBy = "trainee")
+	private Connection connectionTrainee;
+	
+	@OneToMany(mappedBy = "author")
+	private List<Comment>  commentList;
 	
 	public User() {}
 	
 	//TODO Business methods pass empty variables if fields are to be left empty
+<<<<<<< HEAD
 	public User(String identifier, String firstName, String lastName, String email, String location) {
 		this.identifier = identifier;
+=======
+	public User(String firstName, String lastName, String email, String location) {
+>>>>>>> origin/Hibernate
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.location = location;
 
 		
-		this.mentorList = new ArrayList<Subject>();
-		this.traineeList = new ArrayList<Subject>();
+		mentorList = new ArrayList<Subject>();
+		traineeList = new ArrayList<Subject>();
+		commentList = new ArrayList<Comment>();
+		
 	}
 
-	public String getUsername() {
-		return username;
+	public String getIdentifierOpenID() {
+		return identifierOpenID;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setIdentifierOpenID(String identifierOpenID) {
+		this.identifierOpenID = identifierOpenID;
 	}
 
 	public void setFirstName(String firstName) {
@@ -117,7 +146,7 @@ public class User {
 		this.location = location;
 	}
 
-	public ArrayList<Subject> getMentorList() {
+	public List<Subject> getMentorList() {
 		return mentorList;
 	}
 
@@ -125,12 +154,36 @@ public class User {
 		this.mentorList = mentorList;
 	}
 
-	public ArrayList<Subject> getTraineeList() {
+	public List<Subject> getTraineeList() {
 		return traineeList;
 	}
 
 	public void setTraineeList(ArrayList<Subject> traineeList) {
 		this.traineeList = traineeList;
+	}
+
+	public Connection getConnectionMentor() {
+		return connectionMentor;
+	}
+
+	public void setConnectionMentor(Connection connectionMentor) {
+		this.connectionMentor = connectionMentor;
+	}
+
+	public Connection getConnectionTrainee() {
+		return connectionTrainee;
+	}
+
+	public void setConnectionTrainee(Connection connectionTrainee) {
+		this.connectionTrainee = connectionTrainee;
+	}
+
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(ArrayList<Comment> commentList) {
+		this.commentList = commentList;
 	}
 	
 	

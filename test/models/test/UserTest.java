@@ -49,8 +49,8 @@ public class UserTest {
 	@Test
 	public void testIdentifier() {
 		String identifier = "sapodkasodk";
-		user.setIdentifier(identifier);
-		assertEquals(identifier, user.getIdentifier());
+		user.setIdentifierOpenID(identifier);
+		assertEquals(identifier, user.getIdentifierOpenID());
 	}
 	
 	public void testEmail() {

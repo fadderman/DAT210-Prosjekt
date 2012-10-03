@@ -10,15 +10,21 @@ import javax.persistence.*;
 @Table(name = "COMMENT")
 public class Comment {
 
-	@Column
+	@Id @GeneratedValue
+	@Column(name = "comment_id")
+	private int commentID;
+	
+	@ManyToOne
+	@JoinColumn(name = "connection_fk")
 	private Connection connection;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_fk")
 	private User author;
 	
 	@Column(name = "comment")
 	private String comment;
 	
-	
-	//TODO sjer her? 
 	@Column(name = "timestamp")
 	private Date timestamp;
 	

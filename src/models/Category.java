@@ -1,6 +1,11 @@
 package models;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.List;
+
+>>>>>>> origin/Hibernate
 import javax.persistence.*;
 
 
@@ -8,21 +13,39 @@ import javax.persistence.*;
 @Table(name = "CATEGORY")
 public class Category {
 	
+	@Id @GeneratedValue
+	@Column(name = "category_id")
+	private int categoryID;
+	
 	@Column(name = "title")
 	private String title;
 	
 	@Column(name = "description")
 	private String description;
 	
-	
-	//TODO ManyToMany or ManyToOne?
-	@ManyToOne
+	@OneToMany(mappedBy = "category")
 	@OrderBy("title")
-	private ArrayList<Subject> subjectList;
+	private List<Subject> subjectList;
+	
+	//TODO do we need this?
+	//rivate List<Category> subcategories;
 	
 	
 	public Category(){
 		
+	}
+	
+	public Category(String title, String description){
+		this.title = title;
+		this.description = description;
+		subjectList = new ArrayList<Subject>();		
+	}
+	
+	public Category(String title, String description, Subject subject){
+		this.title = title;
+		this.description = description;
+		subjectList = new ArrayList<Subject>();
+		subjectList.add(subject);
 	}
 	
 	public Category(String title, String description, ArrayList<Subject> subjectList) {
@@ -31,6 +54,14 @@ public class Category {
 		this.subjectList = subjectList;
 	}
 	
+	public int getCategoryID() {
+		return categoryID;
+	}
+
+	public void setCategoryID(int categoryID) {
+		this.categoryID = categoryID;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -46,8 +77,12 @@ public class Category {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public void addSubject(Subject subject){
+		subjectList.add(subject);
+	}
 
-	public ArrayList<Subject> getSubjectList() {
+	public List<Subject> getSubjectList() {
 		return subjectList;
 	}
 

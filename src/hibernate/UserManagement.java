@@ -13,31 +13,17 @@ import models.User;
 public class UserManagement {
 	
 	private static SessionFactory sessionFactory;
-
-	private User user;
 	
 	public UserManagement() {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
 
-	public void UserCreate(String username, String firstName, String lastName, String email, String location){
-		user = new User(username, firstName, lastName, email, location);
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try{
-			tx = session.beginTransaction();
-			session.save(user); 
-			tx.commit();
-		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace(); 
-		}finally {
-			session.close(); 
-		}
+	public void createUser(String firstName, String lastName, String email, String location){
+		User user = new User(firstName, lastName, email, location);
+		addUser(user);
 	}
 	
-	public void UserAdd(User user){
-		this.user = user;
+	public void addUser(User user){
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{
@@ -51,7 +37,7 @@ public class UserManagement {
 			session.close(); 
 		}
 	}
-	//TODO Are users to be removed from DB or just marked as "obsolete" or "unused"?
+	//TODO Are users to be removed from DB or just marked as "obsolete" or "unused"? Using "drop table" in SQL for testing.
 	public void UserRemove(){
 		
 	}
@@ -64,13 +50,12 @@ public class UserManagement {
 			tx = session.beginTransaction();
 			
 			//TODO fix errors!
-			List users = session.createQuery("FROM USER").list(); 
-			for (Iterator iterator = 
+			List<User> users = session.createQuery("FROM models.User").list(); 
+			for (Iterator<User> iterator = 
 					users.iterator(); iterator.hasNext();){
 				User user = (User) iterator.next(); 
 				System.out.print("First Name: " + user.getFirstName()); 
-				System.out.print("  Last Name: " + user.getLastName()); 
-				System.out.println("  Username: " + user.getUsername()); 
+				System.out.println("  Last Name: " + user.getLastName()); 
 				System.out.println("  email: " + user.getEmail());
 				System.out.println("  Location: " + user.getLocation());
 			}

@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -9,38 +10,39 @@ import javax.persistence.*;
 @Table(name = "CONNECTION")
 public class Connection {
 
-	@Column(name = "mentor")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "connectionMentor_fk")
 	private User mentor;
 	
-	@Column(name = "trainee")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "connectionTrainee_fk")
 	private User trainee;
 	
-	@Column(name = "subject")
+	@ManyToOne
+	@JoinColumn(name = "subject_fk")
 	private Subject subject;
 	
 	@Id @GeneratedValue
-	@Column(name = "connection_ID")
+	@Column(name = "connection_id")
 	private int connectionID;
 	
-
-
 	@Column(name = "difficultyLevel")
 	private int difficultyLevel;
 	
-	//TODO relasjon?
-	private ArrayList<Comment> comments;
+	@OneToMany(mappedBy = "connection")
+	@OrderBy("timestamp")
+	private List<Comment> comments;
 	
 	public Connection(){
 		
 	}
 	
-	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel, ArrayList<Comment> comments, int connectionID) {
+	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel) {
 		this.mentor = mentor;
 		this.trainee = trainee;
 		this.subject = subject;
 		this.difficultyLevel = difficultyLevel;
-		this.comments = comments;
-		this.connectionID = connectionID;
+		comments = new ArrayList<Comment>();
 	}
 	
 	public User getMentor() {
@@ -75,7 +77,7 @@ public class Connection {
 		this.difficultyLevel = difficultyLevel;
 	}
 
-	public ArrayList<Comment> getComments() {
+	public List<Comment> getComments() {
 		return comments;
 	}
 
