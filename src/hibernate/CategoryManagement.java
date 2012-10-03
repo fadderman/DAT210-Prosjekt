@@ -6,14 +6,7 @@ import java.util.List;
 import models.Category;
 import models.Subject;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
 public class CategoryManagement extends HibernateUtil{
-
-	private static SessionFactory sessionFactory;
 
 	public CategoryManagement() {
 		sessionFactory = HibernateUtil.getSessionFactory();
@@ -33,12 +26,19 @@ public class CategoryManagement extends HibernateUtil{
 	}
 
 	public List<Category> getAllCategories(){
-		String queryString = ("FROM models.Category where active = true"); 
+		String queryString = ("from models.Category where active = true"); 
 		List<Category> results = fetch(queryString);
 		toString(results); //TODO primarily for testing, prints to console
 		return results;
 	}
 
+	public List<Category> getAllInactiveCategories(){
+		String queryString = ("from models.Category where active = false"); 
+		List<Category> results = fetch(queryString);
+		toString(results); //TODO primarily for testing, prints to console
+		return results;
+	}
+	
 	public List<Category> getByTitle(String title){
 		String queryString = "from models.Category where title = :title";
 		String queryVariable = "title";
