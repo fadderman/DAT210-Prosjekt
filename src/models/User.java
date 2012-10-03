@@ -29,7 +29,7 @@ public class User {
 	@Column(name = "location")
 	private String location;
 	
-	//TODO should these be ordered or indexed?
+	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Subject.class,
 			cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
@@ -37,7 +37,7 @@ public class User {
 	@OrderBy("title")
 	private List<Subject> mentorList;
 	
-	//TODO should these be ordered or indexed?
+	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Subject.class,
 			cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
@@ -57,11 +57,12 @@ public class User {
 	public User() {}
 	
 	//TODO Business methods pass empty variables if fields are to be left empty
-	public User(String firstName, String lastName, String email, String location) {
+	public User(String firstName, String lastName, String email, String location, String identifierOpenID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.location = location;
+		this.identifierOpenID = identifierOpenID;
 		
 		mentorList = new ArrayList<Subject>();
 		traineeList = new ArrayList<Subject>();

@@ -29,23 +29,22 @@ public class CategoryDBTest {
 		sm.addSubject(subJava2D);
 		sm.addSubject(subCSh1);
 		
-		cm.listAllCategories();
+		//cm.listAllCategories();
 		
-		/*
+		
 		List<Category> pulledCats = cm.getByTitle(catJava.getTitle());
 		for(Iterator<Category> iterator = pulledCats.iterator(); iterator.hasNext();){
 			Category current = iterator.next();
 			System.out.println("Pulled Category title: " + current.getTitle());
 			System.out.println("Pulled Category description: " + current.getDescription());
-			if(current.getSubjectList().isEmpty()){
+			if(cm.fetchSubjectList(current).isEmpty()){
 				System.out.println("Subject list is empty.");
 			} else {
-				List<Subject> currentSubjectList = sm.getSubjectByTitle(current.getSubjectList().get(1)); //TODO something's wrong here..
-				System.out.println("First subject in list: " + currentSubjectList.get(1).getTitle()); 
+				List<Subject> pulledSubjectList = cm.fetchSubjectList(current);
+				for(Iterator<Subject> itS = pulledSubjectList.iterator(); itS.hasNext();){
+					System.out.println("Subject in list: " + itS.next().getTitle());
+				}
 			}
 		}
-		*/
-
 	}
-
 }

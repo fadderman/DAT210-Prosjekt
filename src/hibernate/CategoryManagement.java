@@ -99,11 +99,19 @@ public class CategoryManagement {
 		return categories;
 	}
 
-	public void getCategorByID(){
+	public void getCategoryByID(){
 		//TODO placeholder
 	}
 	
-	public void updateTitle(){
+	public List<Subject> fetchSubjectList(Category category){
+		String queryString = "FROM models.Subject where category = :categoryID";
+		String queryVariable = "categoryID";
+		Integer categoryInt = new Integer(category.getCategoryID());
+		List <Subject> subjectList = HibernateUtil.fetch(queryString, queryVariable, categoryInt);
+		return subjectList;
+	}
+	
+	public void updateTitle(String title){
 		//TODO placeholder
 	}
 	
