@@ -1,11 +1,9 @@
 package models;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
 import java.util.List;
 
->>>>>>> origin/Hibernate
+
 import javax.persistence.*;
 
 

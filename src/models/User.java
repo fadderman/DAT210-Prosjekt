@@ -1,12 +1,9 @@
 package models;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
 import java.util.List;
 import java.util.Set;
 
->>>>>>> origin/Hibernate
 import javax.persistence.*;
 
 
@@ -17,7 +14,6 @@ public class User {
 	@Id @GeneratedValue
 	@Column(name = "user_id")
 	private int userID;
-<<<<<<< HEAD
 	
 	@Id @GeneratedValue
 	@Column(name = "identifier")
@@ -25,11 +21,9 @@ public class User {
 	
 	@Column(name = "username")
 	private String username;
-=======
 		
 	@Column(name = "identifier_openID")
 	private String identifierOpenID;
->>>>>>> origin/Hibernate
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -71,12 +65,8 @@ public class User {
 	public User() {}
 	
 	//TODO Business methods pass empty variables if fields are to be left empty
-<<<<<<< HEAD
 	public User(String identifier, String firstName, String lastName, String email, String location) {
 		this.identifier = identifier;
-=======
-	public User(String firstName, String lastName, String email, String location) {
->>>>>>> origin/Hibernate
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
