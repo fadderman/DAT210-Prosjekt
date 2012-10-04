@@ -1,39 +1,75 @@
 package hibernate;
 
+import java.util.*;
+
 import models.*;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
-public class CommentManagement {
-	
-	private static SessionFactory sessionFactory;
+public class CommentManagement extends HibernateUtil{
 	
 	public CommentManagement() {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
-	
-	public void createCoomment(Connection connection, User author, String content){
-		Comment comment = new Comment(connection, author, content);
+
+	public void createComment(Connection connection, User author, String text){
+		Comment comment = new Comment(connection, author, text);
 		addComment(comment);
 	}
-
-	private void addComment(Comment comment) {
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try{
-			tx = session.beginTransaction();
-			session.save(comment); 
-			tx.commit();
-		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace(); 
-		}finally {
-			session.close(); 
-		}
-		
+	
+	public void addComment(Comment comment){
+		addToDatabase(comment);
+	}
+	
+	public List<Comment> getAllComments(){
+		String queryString = ("from models.Comment where active = true"); 
+		List<Comment> results = fetch(queryString);
+		toString(results); //TODO primarily for testing, prints to console
+		return results;
 	}
 
+	public List<Comment> getAllInactiveComments(){
+		String queryString = ("from models.Comment where active = false"); 
+		return fetch(queryString);
+	}
+	
+	public List<Comment> getCommentByAuthor(User author){
+		String queryString = "from models.Comment where author = :author";
+		String queryVariable = "author";
+		return fetch(queryString, queryVariable, author);
+	}
+	
+	public List<Comment> getCommentByTimestamp(User author, Date fromTime, Date toTime){
+		List<Comment> results =	getCommentByAuthor(author);
+		
+		Calendar wrappedDate = Calendar.getInstance();
+		Calendar wrappedFrom = Calendar.getInstance();
+		Calendar wrappedTo = Calendar.getInstance();
+		wrappedFrom.setTime(fromTime);
+		wrappedTo.setTime(toTime);
+		
+		for(Iterator<Comment> iterator = results.iterator(); iterator.hasNext();){
+			Comment current = iterator.next();
+			wrappedDate.setTime(current.getTimestamp());
+			if(wrappedDate.get(Calendar.HOUR_OF_DAY) < wrappedFrom.get(Calendar.HOUR_OF_DAY) &&
+					wrappedDate.get(Calendar.HOUR_OF_DAY) > wrappedTo.get(Calendar.HOUR_OF_DAY));
+				iterator.remove();
+		}
+		return results;
+	}
+	
+	public void updateCommentText(Comment comment, String newText){
+		String queryString = "update models.Comment set text = :newText where id = :id";
+		String queryVariable = "newText";
+		updateSingle(queryString, queryVariable, newText, comment.getCommentID());
+	}
+	
+	public void changeStatus(Comment comment, boolean status){
+		String queryString = "update models.Comment set active = :active where id = :id";
+		String queryVariable = "active";
+		updateSingle(queryString, queryVariable, status, comment.getCommentID());
+	}
+	
+	private void toString(List<Comment> results) {
+		// TODO Auto-generated method stub
+		
+	}
 }

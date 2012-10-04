@@ -9,11 +9,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CONNECTION")
 public class Connection {
-
+	
+	//oneToMany
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "connectionMentor_fk")
 	private User mentor;
 	
+	//oneToMany
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "connectionTrainee_fk")
 	private User trainee;
@@ -37,14 +39,18 @@ public class Connection {
 		
 	}
 	
-	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel) {
+	public Connection(User mentor, User trainee, Subject subject) {
 		this.mentor = mentor;
 		this.trainee = trainee;
 		this.subject = subject;
-		this.difficultyLevel = difficultyLevel;
 		comments = new ArrayList<Comment>();
 	}
 	
+	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel) {
+		this(mentor, trainee, subject);
+		this.difficultyLevel = difficultyLevel;
+	}
+
 	public User getMentor() {
 		return mentor;
 	}

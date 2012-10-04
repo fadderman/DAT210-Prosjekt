@@ -35,7 +35,6 @@ public class CategoryManagement extends HibernateUtil{
 	public List<Category> getAllInactiveCategories(){
 		String queryString = ("from models.Category where active = false"); 
 		List<Category> results = fetch(queryString);
-		toString(results); //TODO primarily for testing, prints to console
 		return results;
 	}
 	
@@ -58,14 +57,14 @@ public class CategoryManagement extends HibernateUtil{
 
 	public void updateTitle(Category category, String newTitle){
 		String queryString = "update models.Category set title = :newTitle where id = :id";
-		String newQueryVariable = "newTitle";
-		updateSingle(queryString, newQueryVariable, newTitle, category.getCategoryID());
+		String queryVariable = "newTitle";
+		updateSingle(queryString, queryVariable, newTitle, category.getCategoryID());
 	}
 
 	public void updateDescription(Category category, String newDescription){
 		String queryString = "update models.Category set description = :newDescription where id = :id";
-		String newQueryVariable = "newDescription";
-		updateSingle(queryString, newQueryVariable, newDescription, category.getCategoryID());
+		String queryVariable = "newDescription";
+		updateSingle(queryString, queryVariable, newDescription, category.getCategoryID());
 	}
 	
 	public List<Subject> fetchSubjectList(Category category){

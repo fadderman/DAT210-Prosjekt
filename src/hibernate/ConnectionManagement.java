@@ -2,17 +2,15 @@ package hibernate;
 
 import models.*;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
-public class ConnectionManagement {
-
-	private static SessionFactory sessionFactory;
+public class ConnectionManagement extends HibernateUtil{
 	
 	public ConnectionManagement() {
 		sessionFactory = HibernateUtil.getSessionFactory();
+	}
+	
+	public void createConnection(User mentor, User trainee, Subject subject){
+		Connection connection = new Connection(mentor, trainee, subject);
+		addConnection(connection);
 	}
 	
 	public void createConnection(User mentor, User trainee, Subject subject, int difficultyLevel){
@@ -21,17 +19,28 @@ public class ConnectionManagement {
 	}
 
 	private void addConnection(Connection connection) {
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try{
-			tx = session.beginTransaction();
-			session.save(connection); 
-			tx.commit();
-		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace(); 
-		}finally {
-			session.close(); 
-		}		
+		addToDatabase(connection);
 	}
+	
+	private void getByMentor(){
+		//TODO
+	}
+	
+	private void getByTrainee(){
+		//TODO
+	}
+	
+	private void getByID(){
+		//TODO
+	}
+	
+	private void setDifficultyLevel(){
+		//TODO
+	}
+	
+	private void updateDifficultyLevel(){
+		//TODO
+	}
+	
+	
 }

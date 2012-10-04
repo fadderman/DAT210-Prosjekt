@@ -33,7 +33,7 @@ public class HibernateUtil {
 		return sessionFactory;
 	}
 	
-	public void addToDatabase(Object toBeAdded){
+	protected void addToDatabase(Object toBeAdded){
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{
@@ -44,15 +44,15 @@ public class HibernateUtil {
 			if (tx!=null) tx.rollback();
 			e.printStackTrace(); 
 		}finally {
-			session.close(); 
+			session.close();
 		}
 	}
 	
-	public <T> List<T> fetch(String queryString){
+	protected <T> List<T> fetch(String queryString){
 		return fetch(queryString, null, null);
 	}
 
-	public <T> List<T> fetch(String queryString, String queryVariable, Object criteria){
+	protected <T> List<T> fetch(String queryString, String queryVariable, Object criteria){
 		List<T> results = null;
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -82,7 +82,7 @@ public class HibernateUtil {
 		return results;
 	}
 
-	public Object fetchSingle(String queryString, String queryVariable, Object criteria){
+	protected Object fetchSingle(String queryString, String queryVariable, Object criteria){
 		Object result = null;
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -112,7 +112,7 @@ public class HibernateUtil {
 		return result;
 	}
 
-	public int updateSingle(String queryString, String newQueryVariable, Object newValue, int id){
+	protected int updateSingle(String queryString, String queryVariable, Object newValue, int id){
 		int updateCounter = -1;
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -121,14 +121,14 @@ public class HibernateUtil {
 			Query query = session.createQuery(queryString);
 			query.setInteger("id", id);
 			if(newValue.getClass() == String.class){
-				query.setString(newQueryVariable, (String) newValue);
+				query.setString(queryVariable, (String) newValue);
 			}
 			if(newValue.getClass() == Integer.class){
 				Integer newInt = (Integer) newValue;
-				query.setInteger(newQueryVariable, newInt.intValue());
+				query.setInteger(queryVariable, newInt.intValue());
 			}
 			if(newValue.getClass() == Date.class){
-				query.setDate(newQueryVariable, (Date) newValue);
+				query.setDate(queryVariable, (Date) newValue);
 			}
 			updateCounter = query.executeUpdate();
 			if(updateCounter < 1)
