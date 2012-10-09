@@ -8,7 +8,7 @@ import models.User;
 
 public class UserHandler {
 	
-	private static ArrayList<User> userList= new ArrayList<User>();;
+	private static ArrayList<User> userList= new ArrayList<User>();
 	private static UserManagement userManager;		//access to the database
 	
 	public UserHandler(){
@@ -31,6 +31,14 @@ public class UserHandler {
 			}
 		}
 		return null;
+	}
+	
+	public User getUserByIndex(int index){
+		return userList.get(index);
+	}
+	
+	public int getUserListSize(){
+		return userList.size();
 	}
 	
 	

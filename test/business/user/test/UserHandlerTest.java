@@ -6,6 +6,7 @@ import models.User;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import business.user.UserHandler;
@@ -14,6 +15,7 @@ public class UserHandlerTest {
 
 	private UserHandler userHandler;
 	private User user1, user2, user3;
+	
 	
 	@Before
 	public void setUp() throws Exception {
