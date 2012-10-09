@@ -1,117 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="DAT210-Prosjekt">
-    <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../../../eclipse"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.7"/>
-    <property name="source" value="1.7"/>
-    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/annotations-api.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/catalina-ant.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/catalina-ha.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/catalina-tribes.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/catalina.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/ecj-3.7.2.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/el-api.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/jasper-el.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/jasper.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/jsp-api.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/servlet-api.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/tomcat-api.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/tomcat-coyote.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/tomcat-dbcp.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/tomcat-i18n-es.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/tomcat-i18n-fr.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/tomcat-i18n-ja.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/tomcat-jdbc.jar"/>
-        <pathelement location="../../../../../WebApps/TomcatServer/apache-tomcat-7.0.29/lib/tomcat-util.jar"/>
-    </path>
-    <path id="Web App Libraries.libraryclasspath"/>
-    <path id="EAR Libraries.libraryclasspath"/>
-    <path id="DAT210-Prosjekt.classpath">
-        <pathelement location="build/classes"/>
-        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
-        <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="EAR Libraries.libraryclasspath"/>
-        <pathelement location="lib/OpenID/commons-codec-1.3.jar"/>
-        <pathelement location="lib/OpenID/commons-logging-1.03.jar"/>
-        <pathelement location="lib/OpenID/guice-2.0.jar"/>
-        <pathelement location="lib/OpenID/httpclient-4.0.jar"/>
-        <pathelement location="lib/OpenID/httpcore-4.0.1.jar"/>
-        <pathelement location="lib/OpenID/nekohtml-1.9.14.jar"/>
-        <pathelement location="lib/OpenID/openid4java-0.9.6.jar"/>
-        <pathelement location="lib/OpenID/xercesImpl-2.8.1.jar"/>
-        <pathelement location="lib/Hibernate/antlr-2.7.7.jar"/>
-        <pathelement location="lib/Hibernate/dom4j-1.6.1.jar"/>
-        <pathelement location="lib/Hibernate/hibernate-commons-annotations-4.0.1.Final.jar"/>
-        <pathelement location="lib/Hibernate/hibernate-core-4.1.6.Final.jar"/>
-        <pathelement location="lib/Hibernate/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
-        <pathelement location="lib/Hibernate/javassist-3.15.0-GA.jar"/>
-        <pathelement location="lib/Hibernate/jboss-logging-3.1.0.GA.jar"/>
-        <pathelement location="lib/Hibernate/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
-        <pathelement location="lib/Hibernate/mysql-connector-java-5.1.22-bin.jar"/>
-    </path>
-    <target name="init">
-        <mkdir dir="build/classes"/>
-        <copy includeemptydirs="false" todir="build/classes">
-            <fileset dir="src">
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="clean">
-        <delete dir="build/classes"/>
-    </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
-            <src path="src"/>
-            <classpath refid="DAT210-Prosjekt.classpath"/>
-        </javac>
-    </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
-    </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
-	<target name="unit-test-1" >
+<project name="travis playground" default="dist" basedir=".">
+    <description>
+        travis stuff
+    </description>
+ 
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+  <property name="test"  location="test"/>
+  <property name="lib" location="lib"/>
+ 
+  <path id="classpath.test">
+    <pathelement location="${lib}" />
+    <pathelement location="${test}" />
+  	<pathelement location="${src}"/>
+    <pathelement location="${build}/main"/>
+    <pathelement location="${build}/test"/>
+  </path>
+ 
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>
+    <mkdir dir="${build}/test"/>
+    <mkdir dir="${build}/main"/>
+  </target>
+ 
+  <target name="compile" depends="init" description="compile">
+    <javac srcdir="${src}" destdir="${build}/main"/>
+    <javac srcdir="${test}" destdir="${build}/test">
+      <classpath>
+      	<path refid="classpath.test"/>
+        <pathelement location="${lib}"/>
+      	<fileset dir="${lib}">
+      		<include name="**/*.jar" />
+      	</fileset>
+      	<pathelement location="${src}"/>
+      	<fileset dir="${src}">
+      		<include name="**/*.java" />
+      		<exclude name="**/*Test*.java"/>
+      	</fileset>
+      </classpath>
+    </javac>
+  </target>
+ 
+  <target name="dist" depends="compile">
+    <mkdir dir="${dist}/lib"/>
+    <jar jarfile="${dist}/lib/travis-playground-${DSTAMP}.jar" basedir="${build}"/>
+  </target>
+ 
+  <target name="test" depends="compile">
+    <junit fork="yes" haltonfailure="true">
+		<classpath>
+			<path refid="classpath.test"/>
+			<fileset dir="${lib}">
+				<include name="**/*.jar" />
+			</fileset>
+		</classpath>
 
-	    <mkdir dir="${reports.tests}"/>
-
-	    <junit printsummary="yes" haltonfailure="yes">
-	      <classpath>
-	        <pathelement location="${project.class.path}"/>
-	        <pathelement location="${build.tests}"/>
-	        <pathelement path="${java.class.path}"/>
-	      </classpath>
-
-	      <formatter type="plain"/>
-	      <formatter type="xml"/>
-
-	      <batchtest fork="yes" todir="${reports.tests}">
-	        <fileset dir="${test}">
-	          <include name="**/*Test*.java"/>
-	        </fileset>
-	      </batchtest>
-
-	    </junit>
-
-	</target>
+      <batchtest fork="yes" todir="tres">
+        <formatter type="brief" usefile="false"/>
+        <fileset dir="${test}">
+          <include name="**/*Test*.java"/>
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
+ 
+  <target name="clean" description="clean up" >
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
 </project>
