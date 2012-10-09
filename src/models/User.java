@@ -14,13 +14,6 @@ public class User {
 	@Id @GeneratedValue
 	@Column(name = "user_id")
 	private int userID;
-	
-	@Id @GeneratedValue
-	@Column(name = "identifier")
-	private String identifier;
-	
-	@Column(name = "username")
-	private String username;
 		
 	@Column(name = "identifier_openID")
 	private String identifierOpenID;
@@ -65,8 +58,8 @@ public class User {
 	public User() {}
 	
 	//TODO Business methods pass empty variables if fields are to be left empty
-	public User(String identifier, String firstName, String lastName, String email, String location) {
-		this.identifier = identifier;
+	public User(String identifier_openID, String firstName, String lastName, String email, String location) {
+		this.identifierOpenID = identifier_openID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -101,15 +94,6 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-
-	public String getIdentifier() {
-		return identifier;
-	}
-
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
 	}
 
 	public int getUserID() {

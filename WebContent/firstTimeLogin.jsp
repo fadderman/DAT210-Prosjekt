@@ -73,7 +73,7 @@
 							</td>
 							<td><input name="city" type="text" value=""></td>
 						</tr>
-						<input type="hidden" name="identifier" value="<%=user.getIdentifier()%>">
+						<input type="hidden" name="identifier" value="<%=user.getIdentifierOpenID()%>">
 					</tbody>
 				</table>
 			</div>

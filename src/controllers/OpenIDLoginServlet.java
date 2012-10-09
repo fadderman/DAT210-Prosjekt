@@ -55,16 +55,6 @@ public class OpenIDLoginServlet extends HttpServlet{
 		}
 	}
 
-	//	@Override
-	//	public void init(ServletConfig config) throws ServletException {
-	//		try {
-	//			userLogin = new UserLogin(getServletContext());
-	//		} catch (ConsumerException e) {
-	//			e.printStackTrace();
-	//		}
-	//		super.init(config);
-	//	}
-
 	@Override
 	public void init() throws ServletException {
 
@@ -87,22 +77,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 
 	private void processReturn(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
 		System.out.println("processing return!");
-//		Identifier identifier = 
-		verifyResponse(req, resp);		//userLogin here!!!
-
-//		if (identifier == null) {
-//			this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);		//User not logged in
-//		} else {
-//			req.setAttribute("identifier", identifier.getIdentifier());
-//			System.out.println("User logged in, identifier: " + identifier.getIdentifier());
-//			User user = userHandler.getUserByIdentifier(identifier.getIdentifier());
-//			if(user!=null){
-//				this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);	//User Logged in
-//			}
-//			else{		 //forward to page where user must enter additional information.
-//				this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp); //change!
-//			}
-//		}
+		verifyResponse(req, resp);
 	}
 
 
@@ -115,17 +90,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 		{
 			// configure the return_to URL where your application will receive
 			// the authentication responses from the OpenID provider
-			// Look up!
-
-			//userSuppliedString seems to be the URL to the OpenID provider...
-
 			String returnToUrl = httpReq.getRequestURL().toString() + "?is_return=true";
-
-			// --- Forward proxy setup (only if needed) ---
-			// ProxyProperties proxyProps = new ProxyProperties();
-			// proxyProps.setProxyName("proxy.example.com");
-			// proxyProps.setProxyPort(8080);
-			// HttpClientFactory.setProxyProperties(proxyProps);
 
 			// perform discovery on the user-supplied identifier
 			List discoveries = manager.discover(userSuppliedString);
@@ -155,29 +120,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 			authReq.addExtension(fetch);
 			authReq.getOPEndpoint();
 
-			//			if (! discovered.isVersion2() )			//check this!!!!
-			//			{
-			// Option 1: GET HTTP-redirect to the OpenID Provider endpoint
-			// The only method supported in OpenID 1.x
-			// redirect-URL usually limited ~2048 bytes
 			httpResp.sendRedirect(authReq.getDestinationUrl(true));
-			//				return null;
-			//			}
-			//			else
-			//			{
-			//				// Option 2: HTML FORM Redirection (Allows payloads >2048 bytes)
-			//				
-			//				RequestDispatcher dispatcher =
-			//						getServletContext().getRequestDispatcher("/formRedirection.jsp");
-			//				httpReq.setAttribute("parameterMap", authReq.getParameterMap());
-			//				httpReq.setAttribute("destinationUrl", authReq.getDestinationUrl(false));
-			////				httpReq.setAttribute("authReq", authReq);
-			//				try {
-			//					dispatcher.forward(httpReq, httpResp);
-			//				} catch (ServletException e) {
-			//					e.printStackTrace();
-			//				}
-			//			}
 		}
 		catch (OpenIDException e)
 		{
@@ -186,7 +129,6 @@ public class OpenIDLoginServlet extends HttpServlet{
 		return null;
 					}
 
-	// --- processing the authentication response ---
 	public void verifyResponse(HttpServletRequest httpReq, HttpServletResponse httpResp) throws ServletException, IOException
 	{
 		try
