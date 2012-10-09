@@ -7,7 +7,7 @@ import models.*;
 public class CommentManagement extends HibernateUtil{
 	
 	public CommentManagement() {
-		sessionFactory = HibernateUtil.getSessionFactory();
+		sessionFactory = getSessionFactory();
 	}
 
 	public void createComment(Connection connection, User author, String text){

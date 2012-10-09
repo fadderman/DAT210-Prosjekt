@@ -9,7 +9,6 @@ public class UserDBTest {
 		um.createUser("Jane", "Doe", "sexyjane@anonymous.xxx", "Also Undisclosed", "");
 		um.createUser("George", "Baptista", "awesomepriest@church.chr", "On his way to heaven", "");
 		
-		um.listAllUsers();
 	}
 
 }

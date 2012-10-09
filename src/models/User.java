@@ -34,7 +34,7 @@ public class User {
 			cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
 			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
-	@OrderBy("title")
+	@OrderBy("lastName")
 	private List<Subject> mentorList;
 	
 	//TODO setup indexing
@@ -42,13 +42,15 @@ public class User {
 			cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
 			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
-	@OrderBy("title")
+	@OrderBy("lastName")
 	private List<Subject> traineeList;
 	
-	@OneToOne(mappedBy = "mentor")
+	@ManyToOne
+	@JoinColumn(name = "connection_mentor_fk")
 	private Connection connectionMentor;
 	
-	@OneToOne(mappedBy = "trainee")
+	@ManyToOne
+	@JoinColumn(name = "connection_trainee_fk")
 	private Connection connectionTrainee;
 	
 	@OneToMany(mappedBy = "author")

@@ -2,6 +2,8 @@ package hibernate;
 
 import java.util.*;
 
+import models.Connection;
+
 import org.hibernate.*;
 import org.hibernate.cfg.*;
 import org.hibernate.service.ServiceRegistry;
@@ -81,6 +83,43 @@ public class HibernateUtil {
 		}
 		return results;
 	}
+	
+	protected <T> List<T> multiFetch(String queryString, String queryVariable1, String queryVariable2, Object criteria1, Object criteria2) {
+		List<T> results = null;
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{
+			tx = session.beginTransaction();
+			Query query = session.createQuery(queryString);
+			if(criteria1.getClass() == String.class){
+				query.setString(queryVariable1, (String) criteria1);
+			}
+			else if(criteria1.getClass() == Integer.class){
+				Integer critInt = (Integer) criteria1;
+				query.setInteger(queryVariable1, critInt.intValue());
+			}
+			else if(criteria1.getClass() == Date.class)
+				query.setDate(queryVariable1, (Date)criteria1);
+			if(criteria2.getClass() == String.class){
+				query.setString(queryVariable2, (String) criteria1);
+			}
+			else if(criteria2.getClass() == Integer.class){
+				Integer critInt = (Integer) criteria1;
+				query.setInteger(queryVariable2, critInt.intValue());
+			}
+			else if(criteria2.getClass() == Date.class)
+				query.setDate(queryVariable2, (Date)criteria1);
+			results = query.list();
+			tx.commit();
+		}catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		}finally {
+			session.close(); 
+		}
+		return results;
+	}
+
 
 	protected Object fetchSingle(String queryString, String queryVariable, Object criteria){
 		Object result = null;

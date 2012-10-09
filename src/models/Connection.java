@@ -10,14 +10,10 @@ import javax.persistence.*;
 @Table(name = "CONNECTION")
 public class Connection {
 	
-	//oneToMany
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "connectionMentor_fk")
+	@OneToMany(mappedBy = "connectionMentor")
 	private User mentor;
-	
-	//oneToMany
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "connectionTrainee_fk")
+
+	@OneToMany(mappedBy = "connectionTrainee")
 	private User trainee;
 	
 	@ManyToOne
@@ -28,7 +24,10 @@ public class Connection {
 	@Column(name = "connection_id")
 	private int connectionID;
 	
-	@Column(name = "difficultyLevel")
+	@Column(name = "active")
+	private boolean active;
+	
+	@Column(name = "difficulty_level")
 	private int difficultyLevel;
 	
 	@OneToMany(mappedBy = "connection")
@@ -96,5 +95,13 @@ public class Connection {
 
 	public void setConnectionID(int connectionID) {
 		this.connectionID = connectionID;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 }

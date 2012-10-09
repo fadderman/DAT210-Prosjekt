@@ -1,11 +1,13 @@
 package hibernate;
 
+import java.util.List;
+
 import models.*;
 
 public class ConnectionManagement extends HibernateUtil{
 	
 	public ConnectionManagement() {
-		sessionFactory = HibernateUtil.getSessionFactory();
+		sessionFactory = getSessionFactory();
 	}
 	
 	public void createConnection(User mentor, User trainee, Subject subject){
@@ -18,28 +20,30 @@ public class ConnectionManagement extends HibernateUtil{
 		addConnection(connection);
 	}
 
-	private void addConnection(Connection connection) {
+	public void addConnection(Connection connection) {
 		addToDatabase(connection);
 	}
 	
-	private void getByMentor(){
-		//TODO
+	public List<Connection> getByID(int id){
+		String queryString = "from models.Connection where id = :id";
+		String queryVariable = "id";
+		return fetch(queryString, queryVariable, id);
 	}
 	
-	private void getByTrainee(){
-		//TODO
+	public void updateDifficultyLevel(Connection connection, int difficultyLevel){
+		String queryString = "update models.Connection set difficultyLevel = :difficultyLevel where id = :id";
+		String queryVariable = "difficultyLevel";
+		updateSingle(queryString, queryVariable, difficultyLevel, connection.getConnectionID());
 	}
 	
-	private void getByID(){
-		//TODO
+	public void setDifficultyLevel(Connection connection, int difficultyLevel){
+		updateDifficultyLevel(connection, difficultyLevel);
 	}
 	
-	private void setDifficultyLevel(){
-		//TODO
-	}
-	
-	private void updateDifficultyLevel(){
-		//TODO
+	public void changeStatus(Connection	connection, boolean active){
+		String queryString = "update models.Connection set active = :active where id = :id";
+		String queryVariable = "active";
+		updateSingle(queryString, queryVariable, active, connection.getConnectionID());
 	}
 	
 	

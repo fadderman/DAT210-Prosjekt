@@ -4,12 +4,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import models.Category;
+import models.Connection;
 import models.Subject;
 
 public class CategoryManagement extends HibernateUtil{
 
 	public CategoryManagement() {
-		sessionFactory = HibernateUtil.getSessionFactory();
+		sessionFactory = getSessionFactory();
 	}
 
 	public void createCategory(String title, String description){
@@ -65,6 +66,12 @@ public class CategoryManagement extends HibernateUtil{
 		String queryString = "update models.Category set description = :newDescription where id = :id";
 		String queryVariable = "newDescription";
 		updateSingle(queryString, queryVariable, newDescription, category.getCategoryID());
+	}
+	
+	public void changeStatus(Category category, boolean active){
+		String queryString = "update models.Category set active = :active where id = :id";
+		String queryVariable = "active";
+		updateSingle(queryString, queryVariable, active, category.getCategoryID());
 	}
 	
 	public List<Subject> fetchSubjectList(Category category){

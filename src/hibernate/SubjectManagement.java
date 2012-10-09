@@ -13,7 +13,7 @@ public class SubjectManagement extends HibernateUtil{
 	
 
 	public SubjectManagement() {
-		sessionFactory = HibernateUtil.getSessionFactory();
+		sessionFactory = getSessionFactory();
 	}
 
 	public void createSubject(String title, String description, Category category){
@@ -24,9 +24,7 @@ public class SubjectManagement extends HibernateUtil{
 	public void addSubject(Subject subject){
 		addToDatabase(subject);
 	}
-
-
-	//TODO only for a quick test. Will be removed/moved to a unit test later.
+	
 	public List<Subject> getAllSubjects(){
 		String queryString = ("from models.Subject where active = true"); 
 		return fetch(queryString);
@@ -71,10 +69,4 @@ public class SubjectManagement extends HibernateUtil{
 		String queryVariable = "categoryID";
 		return fetch(queryString, queryVariable,  new Integer(subject.getSubjectID()));
 	}
-
-
-
-
-
-	//TODO ModifySubject and lookupSubject methods on desired fields.
 }
