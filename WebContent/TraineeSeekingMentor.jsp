@@ -7,6 +7,14 @@
 <title>Trainee Seeking Mentor</title>
 </head>
 <body>
-    <h1 id="ListofMentor">List of Mentor</h1>
+	<h1 id="ListofMentor">List of Mentor</h1>
+	<table border="1">
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Join</th>
+		</tr>
+	</table>
 </body>
 </html>
