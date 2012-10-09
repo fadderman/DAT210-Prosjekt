@@ -1,72 +1,66 @@
 package hibernate;
 
-import java.util.Iterator;
 import java.util.List;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
+import models.Connection;
+import models.Subject;
 import models.User;
 
-public class UserManagement {
-	
-	private static SessionFactory sessionFactory;
+public class UserManagement extends HibernateUtil{
 	
 	public UserManagement() {
-		sessionFactory = HibernateUtil.getSessionFactory();
+		sessionFactory = getSessionFactory();
 	}
 
+	public void createUser(String firstName, String lastName, String email, String location, String identifierOpenID){
+		addUser(new User(firstName, lastName, email, location, identifierOpenID));
+	}
+
+<<<<<<< HEAD
 	public void createUser(String identifier, String firstName, String lastName, String email, String location){
 		User user = new User(identifier, firstName, lastName, email, location);
 		addUser(user);
+=======
+	public void addUser(User user) {
+		addToDatabase(user);
+>>>>>>> origin/Hibernate
 	}
 	
-	public void addUser(User user){
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try{
-			tx = session.beginTransaction();
-			session.save(user); 
-			tx.commit();
-		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace(); 
-		}finally {
-			session.close(); 
-		}
+	public List<User> listAllUsers(){
+		String queryString = ("from model.User where active = true");
+		return fetch(queryString);
 	}
-	//TODO Are users to be removed from DB or just marked as "obsolete" or "unused"? Using "drop table" in SQL for testing.
-	public void UserRemove(){
+	
+	public List<User> getByName(String firstName, String lastName){
+		String queryString = "from models.User where firstName = :firstName and lastName = :lastName and active = true";
+		String queryVariable1 = "firstName";
+		String queryVariable2 = "lastName";
+		return multiFetch(queryString, queryVariable1, queryVariable2, firstName, lastName);
+	}
+	
+	public List<User> getByEmail(String email){
+		String queryString = "from models.User where email = :email and active  = true";
+		String queryVariable = "email";
+		return fetch(queryString, queryVariable, email);
+	}
+	
+	public List<User> getByLocation(String location){
+		String queryString = "from models.User where location = :location and active = true";
+		String queryVariable = "location";
+		return fetch(queryString, queryVariable, location);
+	}
+	
+	public List<User> getByOpenId(String identifierOpenID){
+		String queryString = "from models.User where identifierOpenID = :identifierOpenID and active = true";
+		String queryVariable = "identifierOpenID";
+		return fetch(queryString, queryVariable, identifierOpenID);
+	}
+	
+	public void getByMentorConnection(Connection connection){
+		String queryString = "from models.User where ";
+	}
+	
+	public void getByTraineeConnection(Connection connection){
 		
 	}
-	
-	//TODO only for a quick test. Will be removed/moved to a unit test later.
-	public void listAllUsers( ){
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try{
-			tx = session.beginTransaction();
-			
-			//TODO fix errors!
-			List<User> users = session.createQuery("FROM models.User").list(); 
-			for (Iterator<User> iterator = 
-					users.iterator(); iterator.hasNext();){
-				User user = (User) iterator.next(); 
-				System.out.print("First Name: " + user.getFirstName()); 
-				System.out.println("  Last Name: " + user.getLastName()); 
-				System.out.println("  email: " + user.getEmail());
-				System.out.println("  Location: " + user.getLocation());
-			}
-			tx.commit();
-		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace(); 
-		}finally {
-			session.close(); 
-		}
-	}
-	
-	//TODO UserModify methods on desired fields.
 }

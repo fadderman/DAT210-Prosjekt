@@ -2,7 +2,6 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -30,27 +29,29 @@ public class User {
 	@Column(name = "location")
 	private String location;
 	
-	//TODO should these be ordered or indexed?
+	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL)
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
 			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
-	@OrderBy("title")
+	@OrderBy("lastName")
 	private List<Subject> mentorList;
 	
-	//TODO should these be ordered or indexed?
+	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL)
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
 			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
-	@OrderBy("title")
+	@OrderBy("lastName")
 	private List<Subject> traineeList;
 	
-	@OneToOne(mappedBy = "mentor")
-	private Connection connectionMentor;
+	@OneToMany(mappedBy = "mentor")
+	private List<Connection> connectionMentor;
 	
-	@OneToOne(mappedBy = "trainee")
-	private Connection connectionTrainee;
+	@OneToMany(mappedBy = "trainee")
+	private List<Connection> connectionTrainee;
 	
 	@OneToMany(mappedBy = "author")
 	private List<Comment>  commentList;
@@ -58,13 +59,21 @@ public class User {
 	public User() {}
 	
 	//TODO Business methods pass empty variables if fields are to be left empty
+<<<<<<< HEAD
 	public User(String identifier_openID, String firstName, String lastName, String email, String location) {
 		this.identifierOpenID = identifier_openID;
+=======
+	public User(String firstName, String lastName, String email, String location, String identifierOpenID) {
+>>>>>>> origin/Hibernate
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.location = location;
+<<<<<<< HEAD
 
+=======
+		this.identifierOpenID = identifierOpenID;
+>>>>>>> origin/Hibernate
 		
 		mentorList = new ArrayList<Subject>();
 		traineeList = new ArrayList<Subject>();
@@ -136,19 +145,19 @@ public class User {
 		this.traineeList = traineeList;
 	}
 
-	public Connection getConnectionMentor() {
+	public List<Connection> getConnectionMentor() {
 		return connectionMentor;
 	}
 
-	public void setConnectionMentor(Connection connectionMentor) {
+	public void setConnectionMentor(List<Connection> connectionMentor) {
 		this.connectionMentor = connectionMentor;
 	}
 
-	public Connection getConnectionTrainee() {
+	public List<Connection> getConnectionTrainee() {
 		return connectionTrainee;
 	}
 
-	public void setConnectionTrainee(Connection connectionTrainee) {
+	public void setConnectionTrainee(List<Connection> connectionTrainee) {
 		this.connectionTrainee = connectionTrainee;
 	}
 

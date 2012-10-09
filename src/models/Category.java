@@ -15,19 +15,20 @@ public class Category {
 	@Column(name = "category_id")
 	private int categoryID;
 	
+	@Column(name = "active")
+	private boolean active;
+	
 	@Column(name = "title")
 	private String title;
 	
 	@Column(name = "description")
 	private String description;
 	
-	@OneToMany(mappedBy = "category")
+	@OneToMany(
+			mappedBy = "category", 
+			fetch=FetchType.EAGER)
 	@OrderBy("title")
 	private List<Subject> subjectList;
-	
-	//TODO do we need this?
-	//rivate List<Category> subcategories;
-	
 	
 	public Category(){
 		
@@ -36,6 +37,7 @@ public class Category {
 	public Category(String title, String description){
 		this.title = title;
 		this.description = description;
+		active = true;
 		subjectList = new ArrayList<Subject>();		
 	}
 	
@@ -58,6 +60,14 @@ public class Category {
 
 	public void setCategoryID(int categoryID) {
 		this.categoryID = categoryID;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public String getTitle() {

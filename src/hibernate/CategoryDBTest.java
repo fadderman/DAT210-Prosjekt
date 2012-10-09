@@ -16,36 +16,38 @@ public class CategoryDBTest {
 		SubjectManagement sm = new SubjectManagement();
 		Category catJava = new Category("Java", "THIS IS JAVAAAAA");
 		Category catCsharp = new Category("C#", "Kinda like Java but not really");
+		Category catCplus = new Category("C++", "Cplusplus");
 		
 		cm.addCategory(catJava);
 		cm.addCategory(catCsharp);
+		cm.addCategory(catCplus);
 		
 		Subject subJava3D = new Subject("Java 3D", "Old 3D graphics API for n00bs", cm.getByTitle("Java").get(0));
 		Subject subJava2D = new Subject("Java 2D", "2D Java graphics API", cm.getByTitle("Java").get(0));
 		
 		Subject subCSh1 = new Subject("C# subject 1", "C# for everybody", cm.getByTitle("C#").get(0));
+		Subject subCSh2 = new Subject("C#", "C# for extreme", cm.getByTitle("C#").get(0));
+		Subject subCSh3 = new Subject("C#","C# General",cm.getByTitle("C#").get(0));
 
+		Subject subCpluss = new Subject("C++","C++ General",cm.getByTitle("C++").get(0));
+		
 		sm.addSubject(subJava3D);
 		sm.addSubject(subJava2D);
 		sm.addSubject(subCSh1);
+		sm.addSubject(subCSh2);
+		sm.addSubject(subCSh3);
+		sm.addSubject(subCpluss);
 		
-		cm.listAllCategories();
+		cm.getAllCategories();
 		
-		/*
-		List<Category> pulledCats = cm.getByTitle(catJava.getTitle());
-		for(Iterator<Category> iterator = pulledCats.iterator(); iterator.hasNext();){
-			Category current = iterator.next();
-			System.out.println("Pulled Category title: " + current.getTitle());
-			System.out.println("Pulled Category description: " + current.getDescription());
-			if(current.getSubjectList().isEmpty()){
-				System.out.println("Subject list is empty.");
-			} else {
-				List<Subject> currentSubjectList = sm.getSubjectByTitle(current.getSubjectList().get(1)); //TODO something's wrong here..
-				System.out.println("First subject in list: " + currentSubjectList.get(1).getTitle()); 
-			}
-		}
-		*/
-
+		cm.updateTitle(cm.getSingleByTitle("C#"), "C sharp");
+		cm.updateDescription(cm.getSingleByTitle("C sharp"), "Cminusminus");
+		
+		System.out.println("-----------------------------------------------");
+		
+		cm.getAllCategories();
+		
+		System.out.println("-----------------------------------------------");
+		System.out.println(sm.getSingleByTitle("Java").getCategory().getTitle());
 	}
-
 }

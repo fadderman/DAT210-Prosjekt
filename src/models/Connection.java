@@ -9,13 +9,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CONNECTION")
 public class Connection {
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "connectionMentor_fk")
-	private User mentor;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "connectionTrainee_fk")
+	@ManyToOne
+	@JoinColumn(name = "connection_mentor_fk")
+	private User mentor;
+
+	@ManyToOne
+	@JoinColumn(name = "connection_trainee_fk")
 	private User trainee;
 	
 	@ManyToOne
@@ -26,7 +26,10 @@ public class Connection {
 	@Column(name = "connection_id")
 	private int connectionID;
 	
-	@Column(name = "difficultyLevel")
+	@Column(name = "active")
+	private boolean active;
+	
+	@Column(name = "difficulty_level")
 	private int difficultyLevel;
 	
 	@OneToMany(mappedBy = "connection")
@@ -37,14 +40,18 @@ public class Connection {
 		
 	}
 	
-	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel) {
+	public Connection(User mentor, User trainee, Subject subject) {
 		this.mentor = mentor;
 		this.trainee = trainee;
 		this.subject = subject;
-		this.difficultyLevel = difficultyLevel;
 		comments = new ArrayList<Comment>();
 	}
 	
+	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel) {
+		this(mentor, trainee, subject);
+		this.difficultyLevel = difficultyLevel;
+	}
+
 	public User getMentor() {
 		return mentor;
 	}
@@ -93,4 +100,14 @@ public class Connection {
 		this.connectionID = connectionID;
 	}
 
+<<<<<<< HEAD
+=======
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+>>>>>>> origin/Hibernate
 }
