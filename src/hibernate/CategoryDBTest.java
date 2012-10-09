@@ -46,5 +46,8 @@ public class CategoryDBTest {
 		System.out.println("-----------------------------------------------");
 		
 		cm.getAllCategories();
+		
+		System.out.println("-----------------------------------------------");
+		System.out.println(sm.getSingleByTitle("Java").getCategory().getTitle());
 	}
 }

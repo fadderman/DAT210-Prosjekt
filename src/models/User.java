@@ -2,7 +2,6 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -31,7 +30,8 @@ public class User {
 	
 	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL)
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
 			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
 	@OrderBy("lastName")
@@ -39,19 +39,18 @@ public class User {
 	
 	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL)
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
 			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
 	@OrderBy("lastName")
 	private List<Subject> traineeList;
 	
-	@ManyToOne
-	@JoinColumn(name = "connection_mentor_fk")
-	private Connection connectionMentor;
+	@OneToMany(mappedBy = "mentor")
+	private List<Connection> connectionMentor;
 	
-	@ManyToOne
-	@JoinColumn(name = "connection_trainee_fk")
-	private Connection connectionTrainee;
+	@OneToMany(mappedBy = "trainee")
+	private List<Connection> connectionTrainee;
 	
 	@OneToMany(mappedBy = "author")
 	private List<Comment>  commentList;
@@ -136,19 +135,19 @@ public class User {
 		this.traineeList = traineeList;
 	}
 
-	public Connection getConnectionMentor() {
+	public List<Connection> getConnectionMentor() {
 		return connectionMentor;
 	}
 
-	public void setConnectionMentor(Connection connectionMentor) {
+	public void setConnectionMentor(List<Connection> connectionMentor) {
 		this.connectionMentor = connectionMentor;
 	}
 
-	public Connection getConnectionTrainee() {
+	public List<Connection> getConnectionTrainee() {
 		return connectionTrainee;
 	}
 
-	public void setConnectionTrainee(Connection connectionTrainee) {
+	public void setConnectionTrainee(List<Connection> connectionTrainee) {
 		this.connectionTrainee = connectionTrainee;
 	}
 

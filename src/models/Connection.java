@@ -10,10 +10,12 @@ import javax.persistence.*;
 @Table(name = "CONNECTION")
 public class Connection {
 	
-	@OneToMany(mappedBy = "connectionMentor")
+	@ManyToOne
+	@JoinColumn(name = "connection_mentor_fk")
 	private User mentor;
 
-	@OneToMany(mappedBy = "connectionTrainee")
+	@ManyToOne
+	@JoinColumn(name = "connection_trainee_fk")
 	private User trainee;
 	
 	@ManyToOne
