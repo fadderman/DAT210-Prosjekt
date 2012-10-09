@@ -29,6 +29,10 @@ public class SearchEngineTest {
 		userHandler.addUser(new User("openID", "Morten", "Salte", "email", "location"));
 		userHandler.addUser(new User("openID", "Morten", "Bla", "email", "location"));
 		userHandler.addUser(new User("openID", "Mango", "Bli", "email", "location"));
+//		for(int i=0;i<500000;i++){
+//			userHandler.addUser(new User("identifier_openID" + i, "firstName" + i, "lastName" + i,
+//					"email" + i, "location" + i));
+//		}
 	}
 	
 	
@@ -64,11 +68,14 @@ public class SearchEngineTest {
 	
 	@Test
 	public void searchForHinnaAndExpectFirstnameThomas() {
+//		System.out.println("starting timedtest");
+//		long startTime = System.currentTimeMillis();
 		SearchResult result = searchEngine.search("Hinna");
 		ArrayList<UserResult> userRes = result.getUserResults();
 		for(int i=0;i<userRes.size();i++){
 			assertEquals("Thomas", userRes.get(i).getFirstname());
 		}
+//		System.out.println("time used: " + (System.currentTimeMillis()-startTime));
 	}
 
 }
