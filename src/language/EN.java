@@ -21,6 +21,66 @@ public class EN extends Lang{
 	}
 	
 	// ============== FirstTimeLogIn Strings ===================
+	private String firsttime_label_personal = "Personal";
+	private String firsttime_label_fName = "First name:";
+	private String firsttime_label_lName = "Last name:";
+	private String firsttime_label_email = "Email:";
+	private String firsttime_label_country = "Country:";
+	private String firsttime_label_city = "City:";
+	private String firsttime_label_connections = "Connections";
+	private String firsttime_label_subject = "Subject:";
+	private String firsttime_label_field = "Field:";
+	private String firsttime_radio_mentor = "Mentor";
+	private String firsttime_radio_trainee = "Trainee";
+	private String firsttime_label_addInfo = "Additional info:";
+	private String firsttime_label_experience = "Experience:";
+	private String firsttime_btn_add = "Add";
+	private String firsttime_btn_submit = "Submit";
 	
+	public String getFirsttime_label_personal() {
+		return firsttime_label_personal;
+	}
+	public String getFirsttime_label_fName() {
+		return firsttime_label_fName;
+	}
+	public String getFirsttime_label_lName() {
+		return firsttime_label_lName;
+	}
+	public String getFirsttime_label_email() {
+		return firsttime_label_email;
+	}
+	public String getFirsttime_label_country() {
+		return firsttime_label_country;
+	}
+	public String getFirsttime_label_city() {
+		return firsttime_label_city;
+	}
+	public String getFirsttime_label_connections() {
+		return firsttime_label_connections;
+	}
+	public String getFirsttime_label_subject() {
+		return firsttime_label_subject;
+	}
+	public String getFirsttime_label_field() {
+		return firsttime_label_field;
+	}
+	public String getFirsttime_radio_mentor() {
+		return firsttime_radio_mentor;
+	}
+	public String getFirsttime_radio_trainee() {
+		return firsttime_radio_trainee;
+	}
+	public String getFirsttime_label_addInfo() {
+		return firsttime_label_addInfo;
+	}
+	public String getFirsttime_label_experience() {
+		return firsttime_label_experience;
+	}
+	public String getFirsttime_btn_add() {
+		return firsttime_btn_add;
+	}
+	public String getFirsttime_btn_submit() {
+		return firsttime_btn_submit;
+	}
 	
 }
