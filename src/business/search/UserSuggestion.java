@@ -1,11 +1,11 @@
 package business.search;
 
-public class UserResult {
+public class UserSuggestion {
 	
 	private int userID;
 	private String firstname, lastname;
 	
-	public UserResult(int userID, String firstname, String lastname) {
+	public UserSuggestion(int userID, String firstname, String lastname) {
 		super();
 		this.userID = userID;
 		this.firstname = firstname;

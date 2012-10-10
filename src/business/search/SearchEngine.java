@@ -31,10 +31,10 @@ public class SearchEngine {
 		}
 	}
 
-	public SearchResult search(String query){
+	public SearchSuggestions search(String query){
 		query = query.toLowerCase();
 		query = query.trim();
-		SearchResult result = new SearchResult();
+		SearchSuggestions result = new SearchSuggestions();
 
 		result.setUserResults(searchForUsers(query));
 
@@ -44,8 +44,8 @@ public class SearchEngine {
 		return result;
 	}
 
-	public ArrayList<UserResult> searchForUsers(String query){
-		ArrayList<UserResult> userResults=searchForUsersUsingString(query);
+	public ArrayList<UserSuggestion> searchForUsers(String query){
+		ArrayList<UserSuggestion> userResults=searchForUsersUsingString(query);
 
 		if(!userResults.isEmpty())return userResults;
 
@@ -60,29 +60,29 @@ public class SearchEngine {
 
 	}
 
-	private ArrayList<UserResult> searchForUsersUsingString(String query){
-		ArrayList<UserResult> userResults = new ArrayList<UserResult>();
+	private ArrayList<UserSuggestion> searchForUsersUsingString(String query){
+		ArrayList<UserSuggestion> userResults = new ArrayList<UserSuggestion>();
 		User tmpUser;
 		for(int i=0;i<userHandler.getUserListSize();i++){
 			tmpUser=userHandler.getUserByIndex(i);
 			if(tmpUser.getFirstName().toLowerCase().startsWith(query)){
-				userResults.add(new UserResult(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+				userResults.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
 			}else if(tmpUser.getLastName().toLowerCase().startsWith(query)){
-				userResults.add(new UserResult(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+				userResults.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
 			}
 		}
 		return userResults;
 	}
 
-	private ArrayList<UserResult> searchForUsersUsingDottedString(String query){
-		ArrayList<UserResult> userResults = new ArrayList<UserResult>();
+	private ArrayList<UserSuggestion> searchForUsersUsingDottedString(String query){
+		ArrayList<UserSuggestion> userResults = new ArrayList<UserSuggestion>();
 		User tmpUser;
 		for(int i=0;i<userHandler.getUserListSize();i++){
 			tmpUser=userHandler.getUserByIndex(i);
 			if(tmpUser.getFirstName().toLowerCase().matches(query)){
-				userResults.add(new UserResult(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+				userResults.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
 			}else if(tmpUser.getLastName().toLowerCase().matches(query)){
-				userResults.add(new UserResult(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+				userResults.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
 			}
 		}
 		return userResults;

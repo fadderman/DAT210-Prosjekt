@@ -4,6 +4,10 @@ import hibernate.UserManagement;
 
 import java.util.ArrayList;
 
+import org.apache.http.client.UserTokenHandler;
+
+import business.search.UserSuggestion;
+
 import models.User;
 
 public class UserHandler {
@@ -41,6 +45,18 @@ public class UserHandler {
 		return userList.size();
 	}
 	
+	public ArrayList<User> getUsersByID(ArrayList<UserSuggestion> usersToGet){
+		ArrayList<User> usersToReturn = new ArrayList<User>();
+		for(int i=0;i<userList.size();i++){
+			for(int j=0;j<usersToGet.size();j++){
+				if(usersToGet.get(j).getUserID() == userList.get(i).getUserID()){
+					usersToReturn.add(userList.get(i));
+					usersToGet.remove(j);
+				}
+			}			
+		}
+		return usersToReturn;
+	}
 	
 	
 }
