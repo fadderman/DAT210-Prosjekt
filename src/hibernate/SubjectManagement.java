@@ -1,6 +1,8 @@
 package hibernate;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import models.*;
@@ -66,7 +68,40 @@ public class SubjectManagement extends HibernateUtil{
 	
 	public List<Connection> fetchConnectionList(Subject subject){
 		String queryString = "from models.Connection where subject = :subjectID";
-		String queryVariable = "categoryID";
-		return fetch(queryString, queryVariable,  new Integer(subject.getSubjectID()));
+		String queryVariable = "subjectID";
+		return fetch(queryString, queryVariable, new Integer(subject.getSubjectID()));
 	}
+	
+	public List<User> getByMentorConnection(Subject subject){
+		String queryString = "from models.Connection where subject.subjectID = :subjectID";
+		String queryVariable = "subjectID";
+		List<Connection> fetchedConnections = fetch(queryString, queryVariable, subject.getSubjectID());
+		List<User> mentorList = new ArrayList();
+		queryString = "from models.User user where :connectionID in elements(user.connectionMentor)";
+		queryVariable = "connectionID";
+		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
+			Connection current = iterator.next();
+			mentorList.add((User) fetchSingle(queryString, queryVariable, current.getConnectionID()));
+		}
+		return mentorList;
+	}
+	
+	public List<Connection> connectionGetTest(Subject subject){
+		String queryString = "from models.Connection where subject.subjectID = :subjectID";
+		String queryVariable = "subjectID";
+		return fetch(queryString, queryVariable, new Integer(subject.getSubjectID()));
+	}
+	/*
+	//TODO Broken many to many query.
+	public List<User> fetchMentorList(Subject subject){
+		//String queryString = "from models.User u, models.Subject s where s.subjectID = :subjectID and s.subjectID in elements(u.mentorList)";
+		String queryString = "from models.User as us, models.Subject as sub join us.sub where sub.id = :subjectID and sub.subjectID in elements(us.mentorList)";
+		String queryVariable = "subjectID";
+		return fetch(queryString, queryVariable, subject.getSubjectID());
+	}
+	
+	public List<User> fetchTraineeList(Subject subject){
+		return null;
+	}
+	*/
 }

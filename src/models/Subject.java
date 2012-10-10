@@ -26,15 +26,13 @@ public class Subject {
 	@ManyToMany(
 			targetEntity = models.User.class,
 			cascade = {CascadeType.ALL},
-			mappedBy = "mentorList",
-			fetch = FetchType.EAGER)
+			mappedBy = "mentorList")
 	private List<User> mentorUserList;
 	
 	@ManyToMany(
 			targetEntity = models.User.class,
 			cascade = {CascadeType.ALL},
-			mappedBy = "traineeList",
-			fetch = FetchType.EAGER)
+			mappedBy = "traineeList")
 	private List<User> traineeUserList;
 	
 	//TODO Ordered or indexed?

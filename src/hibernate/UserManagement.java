@@ -1,5 +1,7 @@
 package hibernate;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import models.Connection;
@@ -50,9 +52,8 @@ public class UserManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, identifierOpenID);
 	}
 	
-	public void getByMentorConnection(Connection connection){
-		String queryString = "from models.User where ";
-	}
+	//---------------------------------------------------------------------------
+
 	
 	public void getByTraineeConnection(Connection connection){
 		

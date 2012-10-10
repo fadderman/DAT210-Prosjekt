@@ -40,10 +40,16 @@ public class Connection {
 		
 	}
 	
+	public Connection(Subject subject){
+		this.subject = subject;
+		active = true;
+	}
+	
 	public Connection(User mentor, User trainee, Subject subject) {
 		this.mentor = mentor;
 		this.trainee = trainee;
 		this.subject = subject;
+		active = true;
 		comments = new ArrayList<Comment>();
 	}
 	

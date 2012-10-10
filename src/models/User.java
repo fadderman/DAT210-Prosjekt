@@ -30,8 +30,7 @@ public class User {
 	
 	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL,
-			fetch = FetchType.EAGER)
+			cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
 			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
 	@OrderBy("lastName")
@@ -39,8 +38,7 @@ public class User {
 	
 	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL,
-			fetch = FetchType.EAGER)
+			cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
 			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
 	@OrderBy("lastName")
@@ -118,6 +116,9 @@ public class User {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	public void addMentorSubject(Subject subject){
+		mentorList.add(subject);
+	}
 
 	public List<Subject> getMentorList() {
 		return mentorList;
@@ -125,6 +126,10 @@ public class User {
 
 	public void setMentorList(ArrayList<Subject> mentorList) {
 		this.mentorList = mentorList;
+	}
+	
+	public void addTraineeSubject(Subject subject){
+		traineeList.add(subject);
 	}
 
 	public List<Subject> getTraineeList() {

@@ -73,6 +73,8 @@ public class HibernateUtil {
 			}
 			else if(criteria.getClass() == Date.class)
 				query.setDate(queryVariable, (Date)criteria);
+			else if(criteria.getClass() == Collection.class)
+				query.setParameterList(queryVariable, (Collection) criteria);
 			results = query.list();
 			tx.commit();
 		}catch (HibernateException e) {

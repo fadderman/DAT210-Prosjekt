@@ -10,6 +10,18 @@ public class ConnectionManagement extends HibernateUtil{
 		sessionFactory = getSessionFactory();
 	}
 	
+	public void createOpenMentor(User mentor, Subject subject){
+		Connection connection = new Connection(subject);
+		connection.setMentor(mentor);
+		addConnection(connection);
+	}
+	
+	public void createOpenTrainee(User trainee, Subject subject){
+		Connection connection = new Connection(subject);
+		connection.setTrainee(trainee);
+		addConnection(connection);
+	}
+	
 	public void createConnection(User mentor, User trainee, Subject subject){
 		Connection connection = new Connection(mentor, trainee, subject);
 		addConnection(connection);
