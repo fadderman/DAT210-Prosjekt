@@ -17,6 +17,9 @@ public class CategoryDBTest {
 		Category catJava = new Category("Java", "THIS IS JAVAAAAA");
 		Category catCsharp = new Category("C#", "Kinda like Java but not really");
 		Category catCplus = new Category("C++", "Cplusplus");
+		Category catJavaScript = new Category("JavaScript", "Programming language for adding dynamic elements in websites");
+		Category catPython = new Category("Python", "Programming language, often used as scripting language");
+		Category catPerl = new Category("Perl", "Programming language");
 		
 		cm.addCategory(catJava);
 		cm.addCategory(catCsharp);
@@ -28,7 +31,6 @@ public class CategoryDBTest {
 		Subject subCSh1 = new Subject("C# subject 1", "C# for everybody", cm.getByTitle("C#").get(0));
 		Subject subCSh2 = new Subject("C#", "C# for extreme", cm.getByTitle("C#").get(0));
 		Subject subCSh3 = new Subject("C#","C# General",cm.getByTitle("C#").get(0));
-
 		Subject subCpluss = new Subject("C++","C++ General",cm.getByTitle("C++").get(0));
 		
 		sm.addSubject(subJava3D);
