@@ -85,6 +85,8 @@ public class SearchEngine {
 	}
 	
 	public SearchResults search(String query){
+		query = query.toLowerCase();
+		query = query.trim();
 		SearchResults results = new SearchResults();
 		results.setUserResults(searchForUsers(query));
 		

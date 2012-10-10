@@ -16,8 +16,8 @@
 <p />
 	<div class="container well">
 		<div class="row-fluid">
-		<form action="<%= response.encodeURL("searchresults.jsp") %>" method="post">
-			<div class="span5"><input type="text" name="search" id="search" class="span12 input-medium search-query" placeholder="Search.."/></div>
+		<form action="search" method="get">
+			<div class="span5"><input type="text" name="query" id="search" class="span12 input-medium search-query" placeholder="Search.."/></div>
 			<div class="span7"><button class="btn btn-primary" type="submit">Search</button></div>
 			<script>
 		        $("#search").autocomplete("getsearch.jsp");
