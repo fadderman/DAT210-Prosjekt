@@ -59,21 +59,18 @@ public class User {
 	public User() {}
 	
 	//TODO Business methods pass empty variables if fields are to be left empty
-<<<<<<< HEAD
-	public User(String identifier_openID, String firstName, String lastName, String email, String location) {
-		this.identifierOpenID = identifier_openID;
-=======
-	public User(String firstName, String lastName, String email, String location, String identifierOpenID) {
->>>>>>> origin/Hibernate
+
+//	public User(String identifier_openID, String firstName, String lastName, String email, String location) {
+//		this.identifierOpenID = identifier_openID;
+//	}
+	
+	public User( String identifierOpenID, String firstName, String lastName, String email, String location) {
+
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.location = location;
-<<<<<<< HEAD
-
-=======
 		this.identifierOpenID = identifierOpenID;
->>>>>>> origin/Hibernate
 		
 		mentorList = new ArrayList<Subject>();
 		traineeList = new ArrayList<Subject>();
