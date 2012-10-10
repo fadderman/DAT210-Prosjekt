@@ -14,6 +14,7 @@
     for(int i=0;i<userResults.size();i++) {
     	String userResult = userResults.get(i);
     	out.println(userResult);
+    	//out.println(userResult + " (User)");
     	//out.println("<i class='icon-user'></i> " + userResult);
     }
     
@@ -22,6 +23,7 @@
     for(int i=0;i<subjectResults.size();i++) {
     	String subjectResult = subjectResults.get(i);
     	out.println(subjectResult);
+    	//out.println(subjectResult + " (Subject)");
     	//out.println("<i class='icon-book'></i> " + subjectResult);
     }
 %>
