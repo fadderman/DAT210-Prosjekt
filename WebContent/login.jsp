@@ -69,7 +69,7 @@
 				<a class="brand" href="#"><img alt="" src="img/logo_mini.png" ></a>
 				<div class="btn-group pull-right">
 					<a class="btn dropdown-toggle btn-inverse btn-large" data-toggle="dropdown"
-						href="#"><small> Language </small><span class="caret"></span>
+						href="#"><small> <%=language.getLogin_btn_lang() %> </small><span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
 						<!-- dropdown menu links -->
