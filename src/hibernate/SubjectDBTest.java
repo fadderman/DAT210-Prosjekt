@@ -3,31 +3,31 @@ package hibernate;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import models.Category;
+import models.Subject;
 import models.Connection;
 import models.Field;
 import models.User;
 
-public class CategoryDBTest {
+public class SubjectDBTest {
 
 
 	public static void main(String[] args) {
 		
-		CategoryManagement cm = new CategoryManagement();
+		SubjectManagement cm = new SubjectManagement();
 		FieldManagement sm = new FieldManagement();
 		UserManagement um = new UserManagement();
 		ConnectionManagement xm = new ConnectionManagement();
 		
-		Category catJava = new Category("Java", "THIS IS JAVAAAAA");
-		Category catCsharp = new Category("C#", "Kinda like Java but not really");
-		Category catCplus = new Category("C++", "Cplusplus");
-		Category catJavaScript = new Category("JavaScript", "Programming language for adding dynamic elements in websites");
-		Category catPython = new Category("Python", "Programming language, often used as scripting language");
-		Category catPerl = new Category("Perl", "Programming language");
+		Subject catJava = new Subject("Java", "THIS IS JAVAAAAA");
+		Subject catCsharp = new Subject("C#", "Kinda like Java but not really");
+		Subject catCplus = new Subject("C++", "Cplusplus");
+		Subject catJavaScript = new Subject("JavaScript", "Programming language for adding dynamic elements in websites");
+		Subject catPython = new Subject("Python", "Programming language, often used as scripting language");
+		Subject catPerl = new Subject("Perl", "Programming language");
 		
-		cm.addCategory(catJava);
-		cm.addCategory(catCsharp);
-		cm.addCategory(catCplus);
+		cm.addSubject(catJava);
+		cm.addSubject(catCsharp);
+		cm.addSubject(catCplus);
 		
 		Field subJava3D = new Field("Java 3D", "Old 3D graphics API for n00bs", cm.getByTitle("Java").get(0));
 		Field subJava2D = new Field("Java 2D", "2D Java graphics API", cm.getByTitle("Java").get(0));
@@ -80,17 +80,17 @@ public class CategoryDBTest {
 
 		
 		
-		cm.getAllCategories();
+		cm.getAllSubjects();
 		
 		cm.updateTitle(cm.getSingleByTitle("C#"), "C sharp");
 		cm.updateDescription(cm.getSingleByTitle("C sharp"), "Cminusminus");
 		
 		System.out.println("-----------------------------------------------");
 		
-		cm.getAllCategories();
+		cm.getAllSubjects();
 		
 		System.out.println("-----------------------------------------------");
-		System.out.println(sm.getSingleByTitle("Java 3D").getCategory().getTitle());
+		System.out.println(sm.getSingleByTitle("Java 3D").getSubject().getTitle());
 		
 		System.out.println("-----------------------------------------------");
 		

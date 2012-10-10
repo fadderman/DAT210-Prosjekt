@@ -7,12 +7,12 @@ import javax.persistence.*;
 
 //TODO refactor to Field
 @Entity
-@Table(name = "CATEGORY")
-public class Category {
+@Table(name = "SUBJECT")
+public class Subject {
 	
 	@Id @GeneratedValue
-	@Column(name = "category_id")
-	private int categoryID;
+	@Column(name = "subject_id")
+	private int subjectID;
 	
 	@Column(name = "active")
 	private boolean active;
@@ -24,41 +24,41 @@ public class Category {
 	private String description;
 	
 	@OneToMany(
-			mappedBy = "category", 
+			mappedBy = "subject", 
 			fetch=FetchType.EAGER)
 	@OrderBy("title")
 	private List<Field> fieldList;
 	
-	public Category(){
+	public Subject(){
 		
 	}
 	
-	public Category(String title, String description){
+	public Subject(String title, String description){
 		this.title = title;
 		this.description = description;
 		active = true;
 		fieldList = new ArrayList<Field>();		
 	}
 	
-	public Category(String title, String description, Field field){
+	public Subject(String title, String description, Field field){
 		this.title = title;
 		this.description = description;
 		fieldList = new ArrayList<Field>();
 		fieldList.add(field);
 	}
 	
-	public Category(String title, String description, ArrayList<Field> fieldList) {
+	public Subject(String title, String description, ArrayList<Field> fieldList) {
 		this.title = title;
 		this.description = description;
 		this.fieldList = fieldList;
 	}
 	
-	public int getCategoryID() {
-		return categoryID;
+	public int getSubjectID() {
+		return subjectID;
 	}
 
-	public void setCategoryID(int categoryID) {
-		this.categoryID = categoryID;
+	public void setSubjectID(int subjectID) {
+		this.subjectID = subjectID;
 	}
 
 	public boolean isActive() {

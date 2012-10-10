@@ -18,8 +18,8 @@ public class FieldManagement extends HibernateUtil{
 		sessionFactory = getSessionFactory();
 	}
 
-	public void createField(String title, String description, Category category){
-		Field field = new Field(title, description, category);
+	public void createField(String title, String description, Subject subject){
+		Field field = new Field(title, description, subject);
 		addField(field);
 	}
 

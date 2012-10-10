@@ -2,7 +2,7 @@ package models.test;
 
 import static org.junit.Assert.*;
 
-import models.Category;
+import models.Subject;
 import models.Field;
 
 import org.junit.After;
@@ -39,9 +39,9 @@ public class FieldTest {
 	
 	@Test
 	public void testCategory() {
-		Category category = new Category();
-		field.setCategory(category);
-		assertEquals(category, field.getCategory());
+		Subject subject = new Subject();
+		field.setSubject(subject);
+		assertEquals(subject, field.getSubject());
 	}
 
 }

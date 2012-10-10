@@ -31,7 +31,7 @@ public class UserManagement extends HibernateUtil{
 	}
 	
 	public User getByID(int id){
-		String queryString = "from models.User where categoryID = :id";
+		String queryString = "from models.User where subjectID = :id";
 		String queryVariable = "id";
 		return (User) fetchSingle(queryString, queryVariable, new Integer(id));
 	}

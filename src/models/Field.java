@@ -24,8 +24,8 @@ public class Field {
 	private String description;
 	
 	@ManyToOne
-	@JoinColumn(name = "category_fk")
-	private Category category;
+	@JoinColumn(name = "subject_fk")
+	private Subject subject;
 		
 	//TODO Ordered or indexed?
 	@OneToMany(mappedBy = "field")
@@ -36,10 +36,10 @@ public class Field {
 		
 	}
 	
-	public Field(String title, String description, Category category) {
+	public Field(String title, String description, Subject subject) {
 		this.title = title;
 		this.description = description;
-		this.category = category;
+		this.subject = subject;
 	}
 	
 	public int getFieldID() {
@@ -74,12 +74,12 @@ public class Field {
 		this.description = description;
 	}
 	
-	public Category getCategory() {
-		return category;
+	public Subject getSubject() {
+		return subject;
 	}
 	
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 
