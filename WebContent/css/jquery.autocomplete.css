@@ -3,6 +3,7 @@
 	border: 1px solid WindowFrame;
 	background-color: Window;
 	overflow: hidden;
+	margin-left: 9px; /* added by Morten Salte */
 }
 
 .ac_results ul {

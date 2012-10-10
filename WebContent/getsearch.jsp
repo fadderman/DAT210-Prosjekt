@@ -1,29 +1,25 @@
+<%@page import="business.search.SearchEngine,business.search.UserResult,java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="business.search.DummyDB"%>
+<%@page import="business.search.SearchResult"%>
 <%
-	DummyDB db = new DummyDB();
- 
-    String query = request.getParameter("q");
-     
-    List<String> userResults;
-    List<String> subjectResults;
+ 	SearchEngine engine = new SearchEngine();
+	engine.createDummyData();
+	
+    String query = (String) request.getParameter("q");
+    //System.out.println(query);
     
-    userResults = db.getUsers(query);
+    SearchResult result = engine.search(query);
+    ArrayList<UserResult> userResults = result.getUserResults();
  
     for(int i=0;i<userResults.size();i++) {
-    	String userResult = userResults.get(i);
+    	String userResult = "";
+    	
+    	userResult += userResults.get(i).getFirstname();
+    	userResult += " ";
+    	userResult += userResults.get(i).getLastname();
     	out.println(userResult);
     	//out.println(userResult + " (User)");
     	//out.println("<i class='icon-user'></i> " + userResult);
-    }
-    
-    subjectResults = db.getSubjects(query);
-    
-    for(int i=0;i<subjectResults.size();i++) {
-    	String subjectResult = subjectResults.get(i);
-    	out.println(subjectResult);
-    	//out.println(subjectResult + " (Subject)");
-    	//out.println("<i class='icon-book'></i> " + subjectResult);
     }
 %>
