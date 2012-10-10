@@ -73,8 +73,8 @@
 					</a>
 					<ul class="dropdown-menu">
 						<!-- dropdown menu links -->
-						<li><a href="#">English</a></li>
-						<li><a href="#">Norsk</a></li>
+						<li><a href="<%=response.encodeURL("chosenLanguage?language=english")%>">English</a></li>
+						<li><a href="<%=response.encodeURL("chosenLanguage?language=norsk")%>">Norsk</a></li>
 					</ul>
 				</div>
 			</div>
