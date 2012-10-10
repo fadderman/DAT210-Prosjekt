@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="language.*" %>
 <!DOCTYPE html>
 <html>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
@@ -41,7 +42,25 @@
 }
 </style>
 <body class="fullBG">
+<%
 
+	Language language = new Language();
+    Cookie[] co = request.getCookies();
+    if(co == null){
+    	Cookie chosenLanguageCookie = new Cookie("chosenLanguage", "english");
+		chosenLanguageCookie.setMaxAge(60*60*24*365*2); //set its age to 2 years
+		chosenLanguageCookie.setPath("/"); //allow the entire application to access it
+		response.addCookie(chosenLanguageCookie);
+    }
+    if(session.getAttribute("lang") != null)
+    	language = (Language)session.getAttribute("lang");
+    //String chosenLanguage = CookieUtil.getCookieValue(co, "chosenLanguage");
+  
+	
+   // System.out.println("web: " + chosenLanguage);
+    //language.setLanguage(chosenLanguage);
+    
+%>
 <!-- top menu -->
 	<div class="navbar navbar-fixed-top navbar-inverse">
 		<div class="navbar">

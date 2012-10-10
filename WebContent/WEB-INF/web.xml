@@ -30,4 +30,16 @@
     <url-pattern>/createNewUser</url-pattern>
   </servlet-mapping>
   
+     <servlet>
+    <description></description>
+    <display-name>LanguageServlet</display-name>
+    <servlet-name>LanguageServlet</servlet-name>
+    <servlet-class>language.CreateNewLanguageServlet</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping>
+    <servlet-name>LanguageServlet</servlet-name>
+    <url-pattern>/chosenLanguage</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
