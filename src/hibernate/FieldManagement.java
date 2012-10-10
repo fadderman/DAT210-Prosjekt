@@ -81,7 +81,7 @@ public class FieldManagement extends HibernateUtil{
 	public List<User> getMentors(Field field){
 		List<Connection> fetchedConnections = fetchConnectionList(field);
 		List<User> mentorList = new ArrayList<User>();
-		String queryString = "from models.User user where :connectionID in elements(user.connectionMentor)";
+		String queryString = "from models.User user where :connectionID in elements(user.mentorConnection)";
 		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();
@@ -95,7 +95,7 @@ public class FieldManagement extends HibernateUtil{
 	public List<User> getTrainees(Field field){
 		List<Connection> fetchedConnections = fetchConnectionList(field);
 		List<User> traineeList = new ArrayList<User>();
-		String queryString = "from models.User user where :connectionID in elements(user.connectionTrainee)";
+		String queryString = "from models.User user where :connectionID in elements(user.traineeConnection)";
 		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();

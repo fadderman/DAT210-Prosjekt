@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import models.Subject;
-import models.Connection;
 import models.Field;
 import models.User;
 

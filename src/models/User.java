@@ -12,10 +12,10 @@ public class User {
 	@Id @GeneratedValue
 	@Column(name = "user_id")
 	private int userID;
-	
+
 	@Column(name = "active")
 	private boolean active;
-		
+
 	@Column(name = "identifier_openID")
 	private String identifierOpenID;
 	
@@ -62,7 +62,7 @@ public class User {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
-
+	
 	public boolean isActive() {
 		return active;
 	}
@@ -70,7 +70,7 @@ public class User {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-
+	
 	public String getIdentifierOpenID() {
 		return identifierOpenID;
 	}
