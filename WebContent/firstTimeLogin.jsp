@@ -127,27 +127,7 @@
 						<th></th>
 					</thead>
 					<tbody>
-						<tr>
-							<td>C#</td>
-							<td>All</td>
-							<td>Yes</td>
-							<td>No</td>
-							<td><button class="btn btn-danger btn-small">Remove</button></td>
-						</tr>
-						<tr>
-							<td>Javascript</td>
-							<td>Animations</td>
-							<td>No</td>
-							<td>Yes</td>
-							<td><button class="btn btn-danger btn-small">Remove</button></td>
-						</tr>
-						<tr>
-							<td>Java</td>
-							<td>Basic</td>
-							<td>Yes</td>
-							<td>Yes</td>
-							<td><button class="btn btn-danger btn-small">Remove</button></td>
-						</tr>
+						
 					</tbody>
 				</table>
 			</div>
