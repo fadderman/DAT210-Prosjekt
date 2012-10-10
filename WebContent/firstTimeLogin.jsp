@@ -77,8 +77,7 @@
 					<tbody>
 						<tr>
 							<td><label class="pull-right">Subject:</label></td>
-							<!--<td><input id="category" type="text" value="Java"></td>-->
-							<td><select name="category">
+							<td><select name="category" id="category">
 									<option value="java">Java</option>
 									<option value="cSharp">C#</option>
 									<option value="cplusplus">C++</option>
@@ -86,8 +85,7 @@
 
 							</select></td>
 							<td><label class="pull-right">Field:</label></td>
-							<!--<td><input id="field" type="text" value="GUI"></td> -->
-							<td><select name="field">
+							<td><select name="field" id="field">
 									<option value="gui">GUI</option>
 									<option value="simulation">Simulation</option>
 									<option value="threading">Threading</option>
@@ -95,15 +93,14 @@
 									<option value="other">Other</option>
 							</select></td>
 							<td><label class="radio inline"><input type="radio"
-									name="optionsRadios" id="radioMentor" value="option1">Mentor</label></td>
+									name="optionsRadios" id="radioMentor" value="Mentor">Mentor</label></td>
 							<td><label class="radio inline"><input type="radio"
-									name="optionsRadios" id="radioTrainee" value="option2">Trainee</label></td>
+									name="optionsRadios" id="radioTrainee" value="Trainee">Trainee</label></td>
 						</tr>
 						<tr>
 							<td><label class="pull-right">Additional Info:</label></td>
-							<td><textarea id="category"></textarea></td>
+							<td><textarea id="addInfo"></textarea></td>
 							<td><label class="pull-right">Experience:</label></td>
-							<!-- <td><input id="field" type="text" value="Beginner"></td>  -->
 							<td>
 								<select name="experience">
 									<option value="noob"> Newbie </option>
@@ -115,13 +112,13 @@
 								</select>
 							</td>
 							<td>
-								<button class="btn btn-info">Add</button>
+								<input type="button" class="btn btn-info" onclick="addCourse();" value="Add" />
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				<br />
-				<table class="table table-hover">
+				<table class="table table-hover" id="tblCourse">
 					<thead>
 						<th>Course</th>
 						<th>Subject</th>
@@ -172,14 +169,53 @@
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
-<script>
+<script type="text/javascript">
 	$('.dropdown-toggle').dropdown();
 	function showValues() {
 		var str = $("form").serialize();
 		$("#results").text(str);
 	}
 	$("select").change(showValues);
-	showValues();	
+	showValues();
+	
+	// Funksjon for å legge til
+	function addCourse() {
+		// ny tabellrad
+		oTr = $('<tr>');
+
+		// legger til en TD til TR med data fra kategoriselecten
+		oTr.append(
+			$('<td>').append($('<input>', { name: "category", type: 'hidden', value: $('#category :selected').val() }))
+					.append($('<span>').append($('#category :selected').text())));
+
+		// legger til en TD til TR med data fra fieldselecten
+		oTr.append(
+			$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field :selected').val() }))
+					.append($('<span>').append($('#field :selected').text())));
+		
+		// Henter inn valgte option for trainee / mentor
+	    var trMen = $("input[name=optionsRadios]:checked");
+		
+		// Legger til tekst og verdi i input fra radiobuttonen
+		oTr.append(
+			$('<td>').append($('<input>', { name: "mentor", type: 'hidden', value: (trMen.val() == 'Mentor'?'Yes':'No') }))
+					.append($('<span>').append((trMen.val() == 'Mentor')?'Yes':'No')));
+			
+		oTr.append(
+			$('<td>').append($('<input>', { name: "trainee", type: 'hidden', value: (trMen.val() == 'Trainee'?'Yes':'No') }))
+					.append($('<span>').append((trMen.val() == 'Trainee')?'Yes':'No'))
+					.append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() })));
+
+		// fjerner valgt info
+		$('#addInfo').val("");
+		trMen.attr('checked',false);
+
+		// legger til removebutton med slettefunskjon
+		oTr.append($('<td>').append($('<input>', {type: 'button', value: 'Remove'}).addClass("btn btn-danger btn-small").click(function() { $(this).parent().parent().remove() })));
+		
+		// legger til selve tabellen
+		$('#tblCourse').append(oTr);
+	}
 </script>
 
 </html>
