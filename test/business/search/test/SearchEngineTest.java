@@ -100,5 +100,15 @@ public class SearchEngineTest {
 			assertEquals("Thomas", userRes.get(i).getFirstname());
 		}
 	}
+	
+	@Test
+	public void searchForThomasHinnaAndExpectFirstnameThomas() {
+		SearchSuggestions result = searchEngine.suggest("Thomas Hinna");
+		ArrayList<UserSuggestion> userRes = result.getUserResults();
+		assertTrue(!userRes.isEmpty());
+		for(int i=0;i<userRes.size();i++){
+			assertEquals("Thomas", userRes.get(i).getFirstname());
+		}
+	}
 
 }

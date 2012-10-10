@@ -65,6 +65,8 @@ public class SearchEngine {
 				userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
 			}else if(tmpUser.getLastName().toLowerCase().startsWith(query)){
 				userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+			}else if((tmpUser.getFirstName().toLowerCase() +" " + tmpUser.getLastName().toLowerCase()).startsWith(query)){
+				userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
 			}
 		}
 		return userSuggestions;
@@ -79,7 +81,9 @@ public class SearchEngine {
 				userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
 			}else if(tmpUser.getLastName().toLowerCase().matches(query)){
 				userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
-			}
+			}else if((tmpUser.getFirstName().toLowerCase() +" " +  tmpUser.getLastName().toLowerCase()).startsWith(query)){
+			userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+		}
 		}
 		return userSuggestions;
 	}
@@ -118,6 +122,8 @@ public class SearchEngine {
 				userResults.add(userHandler.getUserByIndex(i));
 			}else if(tmpUser.getLastName().toLowerCase().startsWith(query)){
 				userResults.add(userHandler.getUserByIndex(i));
+			}else if((tmpUser.getFirstName().toLowerCase() +" " +  tmpUser.getLastName().toLowerCase()).startsWith(query)){
+				userResults.add(userHandler.getUserByIndex(i));
 			}
 		}
 		return userResults;
@@ -131,6 +137,8 @@ public class SearchEngine {
 			if(tmpUser.getFirstName().toLowerCase().matches(query)){
 				userResults.add(userHandler.getUserByIndex(i));
 			}else if(tmpUser.getLastName().toLowerCase().matches(query)){
+				userResults.add(userHandler.getUserByIndex(i));
+			}else if((tmpUser.getFirstName().toLowerCase() +" " +  tmpUser.getLastName().toLowerCase()).startsWith(query)){
 				userResults.add(userHandler.getUserByIndex(i));
 			}
 		}
