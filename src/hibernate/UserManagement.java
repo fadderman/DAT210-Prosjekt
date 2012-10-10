@@ -103,17 +103,31 @@ public class UserManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
 	}
 
-	public List<User> getMentors(Subject subject){
-		List<Connection> fetchedConnections = fetchConnectionList(subject);
-		List<User> mentorList = new ArrayList<User>();
-		String queryString = "from models.User user where :connectionID in elements(user.connectionMentor)";
+	public List<User> getMentorSubjects(User user){
+		List<Connection> fetchedConnections = fetchMentorConnection(user);
+		List<User> mentorSubjectList = new ArrayList<User>();
+		String queryString = "from models.Subject subject where :connectionID in elements(subject.connectionList)";
 		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();
 			User listElement = (User) fetchSingle(queryString, queryVariable, current.getConnectionID());
 			if(listElement != null)
-				mentorList.add(listElement);
+				mentorSubjectList.add(listElement);
 		}
-		return mentorList;
+		return mentorSubjectList;
+	}
+	
+	public List<User> getTraineeSubjects(User user){
+		List<Connection> fetchedConnections = fetchTraineeConnection(user);
+		List<User> traineeSubjectList = new ArrayList<User>();
+		String queryString = "from models.Subject subject where :connectionID in elements(subject.connectionList)";
+		String queryVariable = "connectionID";
+		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
+			Connection current = iterator.next();
+			User listElement = (User) fetchSingle(queryString, queryVariable, current.getConnectionID());
+			if(listElement != null)
+				traineeSubjectList.add(listElement);
+		}
+		return traineeSubjectList;
 	}
 }
