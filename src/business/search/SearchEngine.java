@@ -31,21 +31,68 @@ public class SearchEngine {
 		}
 	}
 
-	public SearchSuggestions search(String query){
+	public SearchSuggestions suggest(String query){
 		query = query.toLowerCase();
 		query = query.trim();
 		SearchSuggestions result = new SearchSuggestions();
 
-		result.setUserResults(searchForUsers(query));
-
-
-
-
+		result.setUserResults(suggestUsers(query));
 		return result;
 	}
 
-	public ArrayList<UserSuggestion> searchForUsers(String query){
-		ArrayList<UserSuggestion> userResults=searchForUsersUsingString(query);
+	public ArrayList<UserSuggestion> suggestUsers(String query){
+		ArrayList<UserSuggestion> userSuggestions=suggestUsersUsingString(query);
+
+		if(!userSuggestions.isEmpty())return userSuggestions;
+
+		int dottedStringLength = query.length()-2;
+		String dottedString = "";
+		for (int i=0;i<dottedStringLength;i++){
+			dottedString +=".";
+		}
+		query = query.charAt(0) + dottedString + query.charAt(query.length()-1);
+		userSuggestions = suggestUsersUsingDottedString(query);		
+		return userSuggestions;
+
+	}
+
+	private ArrayList<UserSuggestion> suggestUsersUsingString(String query){
+		ArrayList<UserSuggestion> userSuggestions = new ArrayList<UserSuggestion>();
+		User tmpUser;
+		for(int i=0;i<userHandler.getUserListSize();i++){
+			tmpUser=userHandler.getUserByIndex(i);
+			if(tmpUser.getFirstName().toLowerCase().startsWith(query)){
+				userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+			}else if(tmpUser.getLastName().toLowerCase().startsWith(query)){
+				userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+			}
+		}
+		return userSuggestions;
+	}
+
+	private ArrayList<UserSuggestion> suggestUsersUsingDottedString(String query){
+		ArrayList<UserSuggestion> userSuggestions = new ArrayList<UserSuggestion>();
+		User tmpUser;
+		for(int i=0;i<userHandler.getUserListSize();i++){
+			tmpUser=userHandler.getUserByIndex(i);
+			if(tmpUser.getFirstName().toLowerCase().matches(query)){
+				userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+			}else if(tmpUser.getLastName().toLowerCase().matches(query)){
+				userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+			}
+		}
+		return userSuggestions;
+	}
+	
+	public SearchResults search(String query){
+		SearchResults results = new SearchResults();
+		results.setUserResults(searchForUsers(query));
+		
+		return results;
+	}
+	
+	private ArrayList<User> searchForUsers(String query){
+		ArrayList<User> userResults = searchForUsersUsingString(query);
 
 		if(!userResults.isEmpty())return userResults;
 
@@ -55,36 +102,37 @@ public class SearchEngine {
 			dottedString +=".";
 		}
 		query = query.charAt(0) + dottedString + query.charAt(query.length()-1);
-		userResults = searchForUsersUsingDottedString(query);		
+		userResults = searchForUsersUsingDottedString(query);
+		
 		return userResults;
-
 	}
-
-	private ArrayList<UserSuggestion> searchForUsersUsingString(String query){
-		ArrayList<UserSuggestion> userResults = new ArrayList<UserSuggestion>();
+	
+	private ArrayList<User> searchForUsersUsingString(String query) {
+		ArrayList<User> userResults = new ArrayList<User>();
 		User tmpUser;
 		for(int i=0;i<userHandler.getUserListSize();i++){
 			tmpUser=userHandler.getUserByIndex(i);
 			if(tmpUser.getFirstName().toLowerCase().startsWith(query)){
-				userResults.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+				userResults.add(userHandler.getUserByIndex(i));
 			}else if(tmpUser.getLastName().toLowerCase().startsWith(query)){
-				userResults.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+				userResults.add(userHandler.getUserByIndex(i));
 			}
 		}
 		return userResults;
 	}
-
-	private ArrayList<UserSuggestion> searchForUsersUsingDottedString(String query){
-		ArrayList<UserSuggestion> userResults = new ArrayList<UserSuggestion>();
+	
+	private ArrayList<User> searchForUsersUsingDottedString(String query) {
+		ArrayList<User> userResults = new ArrayList<User>();
 		User tmpUser;
 		for(int i=0;i<userHandler.getUserListSize();i++){
 			tmpUser=userHandler.getUserByIndex(i);
 			if(tmpUser.getFirstName().toLowerCase().matches(query)){
-				userResults.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+				userResults.add(userHandler.getUserByIndex(i));
 			}else if(tmpUser.getLastName().toLowerCase().matches(query)){
-				userResults.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+				userResults.add(userHandler.getUserByIndex(i));
 			}
 		}
 		return userResults;
 	}
+	
 }

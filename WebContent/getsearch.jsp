@@ -3,13 +3,13 @@
 <%@page import="java.util.List"%>
 <%@page import="business.search.SearchSuggestions"%>
 <%
- 	SearchEngine engine = new SearchEngine();
+	SearchEngine engine = new SearchEngine();
 	engine.createDummyData();
 	
     String query = (String) request.getParameter("q");
     //System.out.println(query);
     
-    SearchSuggestions suggestions = engine.search(query);
+    SearchSuggestions suggestions = engine.suggest(query);
     ArrayList<UserSuggestion> userSuggestions = suggestions.getUserResults();
  
     for(int i=0;i<userSuggestions.size();i++) {
