@@ -30,10 +30,10 @@ public class UserManagement extends HibernateUtil{
 		return fetch(queryString);
 	}
 	
-	public List<User> getByID(int id){
+	public User getByID(int id){
 		String queryString = "from models.User where categoryID = :id";
 		String queryVariable = "id";
-		return fetch(queryString, queryVariable, new Integer(id));
+		return (User) fetchSingle(queryString, queryVariable, new Integer(id));
 	}
 	
 	public List<User> getByName(String firstName, String lastName){
@@ -82,7 +82,7 @@ public class UserManagement extends HibernateUtil{
 	public void changeStatus(User user, boolean active){
 		String queryString = "update models.User set active = :active where UserID = :id";
 		String queryVariable = "active";
-		updateSingle(queryString, queryVariable, active, new Integer(user.getUserID()));
+		updateSingle(queryString, queryVariable, active, user.getUserID());
 	}
 	
 	public List<Connection> fetchMentorConnection(User user){
@@ -110,7 +110,7 @@ public class UserManagement extends HibernateUtil{
 		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();
-			User listElement = (User) fetchSingle(queryString, queryVariable, current.getConnectionID());
+			User listElement = (User) fetchSingle(queryString, queryVariable, new Integer(current.getConnectionID()));
 			if(listElement != null)
 				mentorSubjectList.add(listElement);
 		}
@@ -124,7 +124,7 @@ public class UserManagement extends HibernateUtil{
 		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();
-			User listElement = (User) fetchSingle(queryString, queryVariable, current.getConnectionID());
+			User listElement = (User) fetchSingle(queryString, queryVariable, new Integer(current.getConnectionID()));
 			if(listElement != null)
 				traineeSubjectList.add(listElement);
 		}

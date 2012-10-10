@@ -9,6 +9,7 @@ import models.*;
  * 
  * @author Bart Wasilewski
  */
+@SuppressWarnings("rawtypes")
 public class ClassToDatabase {
 
 	private List<Class> classToDatabase;

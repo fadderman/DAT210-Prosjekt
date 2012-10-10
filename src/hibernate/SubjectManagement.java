@@ -36,10 +36,10 @@ public class SubjectManagement extends HibernateUtil{
 		return fetch(queryString);
 	}
 	
-	public List<Subject> getByID(int id){
+	public Subject getByID(int id){
 		String queryString = "from models.Subject WHERE id = :id";
 		String queryVariable = "id";
-		return fetch(queryString, queryVariable, new Integer(id));
+		return (Subject) fetchSingle(queryString, queryVariable, new Integer(id));
 	}
 	
 	public List<Subject> getByTitle(String title){
@@ -85,7 +85,7 @@ public class SubjectManagement extends HibernateUtil{
 		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();
-			User listElement = (User) fetchSingle(queryString, queryVariable, current.getConnectionID());
+			User listElement = (User) fetchSingle(queryString, queryVariable, new Integer(current.getConnectionID()));
 			if(listElement != null)
 				mentorList.add(listElement);
 		}
@@ -99,7 +99,7 @@ public class SubjectManagement extends HibernateUtil{
 		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();
-			User listElement = (User) fetchSingle(queryString, queryVariable, current.getConnectionID());
+			User listElement = (User) fetchSingle(queryString, queryVariable, new Integer(current.getConnectionID()));
 			if(listElement != null)
 				traineeList.add(listElement);
 		}

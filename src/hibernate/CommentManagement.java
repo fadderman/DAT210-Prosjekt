@@ -22,7 +22,6 @@ public class CommentManagement extends HibernateUtil{
 	public List<Comment> getAllComments(){
 		String queryString = ("from models.Comment where active = true"); 
 		List<Comment> results = fetch(queryString);
-		toString(results); //TODO primarily for testing, prints to console
 		return results;
 	}
 
@@ -31,10 +30,10 @@ public class CommentManagement extends HibernateUtil{
 		return fetch(queryString);
 	}
 	
-	public List<Comment> getByID(int id){
+	public Comment getByID(int id){
 		String queryString = "from models.Comment where commentID = :id";
 		String queryVariable = "id";
-		return fetch(queryString, queryVariable, new Integer(id));
+		return (Comment) fetchSingle(queryString, queryVariable, new Integer(id));
 	}
 	
 	public List<Comment> getByConnection(Connection connection){
@@ -78,10 +77,5 @@ public class CommentManagement extends HibernateUtil{
 		String queryString = "update models.Comment set active = :active where id = :id";
 		String queryVariable = "active";
 		updateSingle(queryString, queryVariable, status, comment.getCommentID());
-	}
-	
-	private void toString(List<Comment> results) {
-		// TODO Auto-generated method stub
-		
 	}
 }

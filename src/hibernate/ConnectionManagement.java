@@ -45,10 +45,10 @@ public class ConnectionManagement extends HibernateUtil{
 		return fetch(queryString);
 	}
 	
-	public List<Connection> getByID(int id){
+	public Connection getByID(int id){
 		String queryString = "from models.Connection where connectionID = :id";
 		String queryVariable = "connectionID";
-		return fetch(queryString, queryVariable, new Integer(id));
+		return (Connection) fetchSingle(queryString, queryVariable, new Integer(id));
 	}
 	
 	public List<Connection> getByMentor(User user){

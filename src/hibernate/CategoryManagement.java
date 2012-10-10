@@ -1,10 +1,8 @@
 package hibernate;
 
-import java.util.Iterator;
 import java.util.List;
 
 import models.Category;
-import models.Connection;
 import models.Subject;
 
 public class CategoryManagement extends HibernateUtil{
@@ -29,7 +27,6 @@ public class CategoryManagement extends HibernateUtil{
 	public List<Category> getAllCategories(){
 		String queryString = ("from models.Category where active = true"); 
 		List<Category> results = fetch(queryString);
-		toString(results); //TODO primarily for testing, prints to console
 		return results;
 	}
 
@@ -37,6 +34,12 @@ public class CategoryManagement extends HibernateUtil{
 		String queryString = ("from models.Category where active = false"); 
 		List<Category> results = fetch(queryString);
 		return results;
+	}
+	
+	public Category getByID(int id){
+		String queryString = "from models.Category where categoryID = :id";
+		String queryVariable = "id";
+		return (Category) fetchSingle(queryString, queryVariable, new Integer(id));
 	}
 	
 	public List<Category> getByTitle(String title){
@@ -49,12 +52,6 @@ public class CategoryManagement extends HibernateUtil{
 		String queryString = "from models.Category where title = :title";
 		String queryVariable = "title";
 		return (Category) fetchSingle(queryString, queryVariable, title);
-	}
-
-	public List<Category> getByID(int id){
-		String queryString = "from models.Category where categoryID = :id";
-		String queryVariable = "id";
-		return fetch(queryString, queryVariable, new Integer(id));
 	}
 
 	public void updateTitle(Category category, String newTitle){
@@ -78,10 +75,10 @@ public class CategoryManagement extends HibernateUtil{
 	public List<Subject> fetchSubjectList(Category category){
 		String queryString = "from models.Subject where category = :categoryID";
 		String queryVariable = "categoryID";
-		Integer categoryInt = new Integer(category.getCategoryID());
-		return fetch(queryString, queryVariable, categoryInt);
+		return fetch(queryString, queryVariable, new Integer(category.getCategoryID()));
 	}
 	
+	/* TODO for testing
 	public void toString(List<Category> categories){
 		for (Iterator<Category> iterator = categories.iterator(); iterator.hasNext();){
 			Category category = (Category) iterator.next(); 
@@ -96,5 +93,5 @@ public class CategoryManagement extends HibernateUtil{
 					System.out.println("Subject in list: " + itS.next().getTitle());
 			}
 		}
-	}
+	}*/
 }
