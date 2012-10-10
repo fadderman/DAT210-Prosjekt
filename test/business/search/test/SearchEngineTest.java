@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import business.search.SearchEngine;
+import business.search.SearchResults;
 import business.search.SearchSuggestions;
 import business.search.UserSuggestion;
 import business.user.UserHandler;
@@ -48,7 +49,7 @@ public class SearchEngineTest {
 
 
 	@Test
-	public void searchForThomasAndExpectThomas() {
+	public void searchForThomasAndExpectThomasAsSuggested() {
 		String searchFor = "Thomas";
 		SearchSuggestions result = searchEngine.suggest(searchFor);
 		ArrayList<UserSuggestion> userRes = result.getUserResults();
@@ -59,7 +60,18 @@ public class SearchEngineTest {
 	}
 	
 	@Test
-	public void searchForHinnaAndExpectHinna() {
+	public void searchForThomasAndExpectThomas() {
+		String searchFor = "Thomas";
+		SearchResults result = searchEngine.search(searchFor);
+		ArrayList<User> userRes = result.getUserResults();
+		assertTrue(!userRes.isEmpty());
+		for(int i=0;i<userRes.size();i++){
+			assertEquals(searchFor, userRes.get(i).getFirstName());
+		}
+	}
+	
+	@Test
+	public void searchForHinnaAndExpectHinnaAsSuggested() {
 		SearchSuggestions result = searchEngine.suggest("Hinna");
 		ArrayList<UserSuggestion> userRes = result.getUserResults();
 		assertTrue(!userRes.isEmpty());
@@ -67,9 +79,18 @@ public class SearchEngineTest {
 			assertEquals("Hinna", userRes.get(i).getLastname());
 		}
 	}
+	@Test
+	public void searchForHinnaAndExpectHinna() {
+		SearchResults result = searchEngine.search("Hinna");
+		ArrayList<User> userRes = result.getUserResults();
+		assertTrue(!userRes.isEmpty());
+		for(int i=0;i<userRes.size();i++){
+			assertEquals("Hinna", userRes.get(i).getLastName());
+		}
+	}
 	
 	@Test
-	public void searchForLastnameHinnaAndExpectFirstnameThomas() {
+	public void searchForLastnameHinnaAndExpectFirstnameThomasAsSuggested() {
 //		System.out.println("starting timedtest");
 //		long startTime = System.currentTimeMillis();
 		SearchSuggestions result = searchEngine.suggest("Hinna");
@@ -82,7 +103,20 @@ public class SearchEngineTest {
 	}
 	
 	@Test
-	public void searchForHehmaAndExpectHinna() {
+	public void searchForLastnameHinnaAndExpectFirstnameThomas() {
+//		System.out.println("starting timedtest");
+//		long startTime = System.currentTimeMillis();
+		SearchResults result = searchEngine.search("Hinna");
+		ArrayList<User> userRes = result.getUserResults();
+		assertTrue(!userRes.isEmpty());
+		for(int i=0;i<userRes.size();i++){
+			assertEquals("Thomas", userRes.get(i).getFirstName());
+		}
+//		System.out.println("time used: " + (System.currentTimeMillis()-startTime));
+	}
+	
+	@Test
+	public void searchForHehmaAndExpectHinnaAsSuggested() {
 		SearchSuggestions result = searchEngine.suggest("Hehma");
 		ArrayList<UserSuggestion> userRes = result.getUserResults();
 		assertTrue(!userRes.isEmpty());
@@ -92,7 +126,17 @@ public class SearchEngineTest {
 	}
 	
 	@Test
-	public void searchForT1234sAndExpectThomas() {
+	public void searchForHehmaAndExpectHinna() {
+		SearchResults result = searchEngine.search("Hehma");
+		ArrayList<User> userRes = result.getUserResults();
+		assertTrue(!userRes.isEmpty());
+		for(int i=0;i<userRes.size();i++){
+			assertEquals("Hinna", userRes.get(i).getLastName());
+		}
+	}
+	
+	@Test
+	public void searchForT1234sAndExpectThomasAsSuggested() {
 		SearchSuggestions result = searchEngine.suggest("t1234s");
 		ArrayList<UserSuggestion> userRes = result.getUserResults();
 		assertTrue(!userRes.isEmpty());
@@ -102,12 +146,32 @@ public class SearchEngineTest {
 	}
 	
 	@Test
-	public void searchForThomasHinnaAndExpectFirstnameThomas() {
+	public void searchForT1234sAndExpectThomas() {
+		SearchResults result = searchEngine.search("t1234s");
+		ArrayList<User> userRes = result.getUserResults();
+		assertTrue(!userRes.isEmpty());
+		for(int i=0;i<userRes.size();i++){
+			assertEquals("Thomas", userRes.get(i).getFirstName());
+		}
+	}
+	
+	@Test
+	public void searchForThomasHinnaAndExpectFirstnameThomasAsSuggested() {
 		SearchSuggestions result = searchEngine.suggest("Thomas Hinna");
 		ArrayList<UserSuggestion> userRes = result.getUserResults();
 		assertTrue(!userRes.isEmpty());
 		for(int i=0;i<userRes.size();i++){
 			assertEquals("Thomas", userRes.get(i).getFirstname());
+		}
+	}
+	
+	@Test
+	public void searchForThomasHinnaAndExpectFirstnameThomas() {
+		SearchResults result = searchEngine.search("Thomas Hinna");
+		ArrayList<User> userRes = result.getUserResults();
+		assertTrue(!userRes.isEmpty());
+		for(int i=0;i<userRes.size();i++){
+			assertEquals("Thomas", userRes.get(i).getFirstName());
 		}
 	}
 
