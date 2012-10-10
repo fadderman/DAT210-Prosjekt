@@ -3,45 +3,45 @@ package models.test;
 import static org.junit.Assert.*;
 
 import models.Category;
-import models.Subject;
+import models.Field;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SubjectTest {
+public class FieldTest {
 	
-	private Subject subject;
+	private Field field;
 
 	@Before
 	public void setUp() throws Exception {
-		subject = new Subject();
+		field = new Field();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		subject = null;
+		field = null;
 	}
 	
 	@Test
 	public void testTitle() {
 		String title = "Java";
-		subject.setTitle(title);
-		assertEquals(title, subject.getTitle());
+		field.setTitle(title);
+		assertEquals(title, field.getTitle());
 	}
 	
 	@Test
 	public void testDescription() {
 		String description = "Object Oriented Programming Language";
-		subject.setDescription(description);
-		assertEquals(description, subject.getDescription());
+		field.setDescription(description);
+		assertEquals(description, field.getDescription());
 	}
 	
 	@Test
 	public void testCategory() {
 		Category category = new Category();
-		subject.setCategory(category);
-		assertEquals(category, subject.getCategory());
+		field.setCategory(category);
+		assertEquals(category, field.getCategory());
 	}
 
 }

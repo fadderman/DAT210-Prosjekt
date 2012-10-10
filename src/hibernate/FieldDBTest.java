@@ -1,6 +1,6 @@
 package hibernate;
 
-public class SubjectDBTest {
+public class FieldDBTest {
 
 	public static void main(String[] args) {		
 		

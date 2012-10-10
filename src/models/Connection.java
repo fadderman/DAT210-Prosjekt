@@ -29,8 +29,8 @@ public class Connection {
 	private User trainee;
 	
 	@ManyToOne
-	@JoinColumn(name = "subject_fk")
-	private Subject subject;
+	@JoinColumn(name = "field_fk")
+	private Field field;
 	
 	@OneToMany(mappedBy = "connection")
 	@OrderBy("timestamp")
@@ -40,21 +40,21 @@ public class Connection {
 		
 	}
 	
-	public Connection(Subject subject){
-		this.subject = subject;
+	public Connection(Field field){
+		this.field = field;
 		active = true;
 	}
 	
-	public Connection(User mentor, User trainee, Subject subject) {
+	public Connection(User mentor, User trainee, Field field) {
 		this.mentor = mentor;
 		this.trainee = trainee;
-		this.subject = subject;
+		this.field = field;
 		active = true;
 		comments = new ArrayList<Comment>();
 	}
 	
-	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel) {
-		this(mentor, trainee, subject);
+	public Connection(User mentor, User trainee, Field field, int difficultyLevel) {
+		this(mentor, trainee, field);
 		this.difficultyLevel = difficultyLevel;
 	}
 
@@ -74,12 +74,12 @@ public class Connection {
 		this.trainee = trainee;
 	}
 
-	public Subject getSubject() {
-		return subject;
+	public Field getField() {
+		return field;
 	}
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public void setField(Field field) {
+		this.field = field;
 	}
 
 	public int getDifficultyLevel() {

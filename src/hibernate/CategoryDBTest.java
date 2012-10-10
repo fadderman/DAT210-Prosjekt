@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import models.Category;
 import models.Connection;
-import models.Subject;
+import models.Field;
 import models.User;
 
 public class CategoryDBTest {
@@ -14,7 +14,7 @@ public class CategoryDBTest {
 	public static void main(String[] args) {
 		
 		CategoryManagement cm = new CategoryManagement();
-		SubjectManagement sm = new SubjectManagement();
+		FieldManagement sm = new FieldManagement();
 		UserManagement um = new UserManagement();
 		ConnectionManagement xm = new ConnectionManagement();
 		
@@ -29,20 +29,20 @@ public class CategoryDBTest {
 		cm.addCategory(catCsharp);
 		cm.addCategory(catCplus);
 		
-		Subject subJava3D = new Subject("Java 3D", "Old 3D graphics API for n00bs", cm.getByTitle("Java").get(0));
-		Subject subJava2D = new Subject("Java 2D", "2D Java graphics API", cm.getByTitle("Java").get(0));
+		Field subJava3D = new Field("Java 3D", "Old 3D graphics API for n00bs", cm.getByTitle("Java").get(0));
+		Field subJava2D = new Field("Java 2D", "2D Java graphics API", cm.getByTitle("Java").get(0));
 		
-		Subject subCSh1 = new Subject("C# subject 1", "C# for everybody", cm.getByTitle("C#").get(0));
-		Subject subCSh2 = new Subject("C#", "C# for extreme", cm.getByTitle("C#").get(0));
-		Subject subCSh3 = new Subject("C#","C# General",cm.getByTitle("C#").get(0));
-		Subject subCpluss = new Subject("C++","C++ General",cm.getByTitle("C++").get(0));
+		Field subCSh1 = new Field("C# field 1", "C# for everybody", cm.getByTitle("C#").get(0));
+		Field subCSh2 = new Field("C#", "C# for extreme", cm.getByTitle("C#").get(0));
+		Field subCSh3 = new Field("C#","C# General",cm.getByTitle("C#").get(0));
+		Field subCpluss = new Field("C++","C++ General",cm.getByTitle("C++").get(0));
 		
-		sm.addSubject(subJava3D);
-		sm.addSubject(subJava2D);
-		sm.addSubject(subCSh1);
-		sm.addSubject(subCSh2);
-		sm.addSubject(subCSh3);
-		sm.addSubject(subCpluss);
+		sm.addField(subJava3D);
+		sm.addField(subJava2D);
+		sm.addField(subCSh1);
+		sm.addField(subCSh2);
+		sm.addField(subCSh3);
+		sm.addField(subCpluss);
 		
 		User user1 = new User("Bob", "Smith", "bob@smith.com", "here", "345678");
 		User user2 = new User("Glen", "Smiths", "basdfg@smith.com", "there", "2323");

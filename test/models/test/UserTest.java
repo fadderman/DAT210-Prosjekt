@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import models.Subject;
+import models.Field;
 import models.User;
 
 import org.junit.After;
@@ -60,13 +60,13 @@ public class UserTest {
 	}
 	
 	public void testMentorList() {
-		ArrayList<Subject> mentorList = new ArrayList<Subject>();
+		ArrayList<Field> mentorList = new ArrayList<Field>();
 		user.setMentorList(mentorList);
 		assertEquals(mentorList, user.getMentorList());
 	}
 
 	public void testTraineeList() {
-		ArrayList<Subject> traineeList = new ArrayList<Subject>();
+		ArrayList<Field> traineeList = new ArrayList<Field>();
 		user.setTraineeList(traineeList);
 		assertEquals(traineeList, user.getTraineeList());
 	}

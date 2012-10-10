@@ -103,31 +103,31 @@ public class UserManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
 	}
 
-	public List<User> getMentorSubjects(User user){
+	public List<User> getMentorFields(User user){
 		List<Connection> fetchedConnections = fetchMentorConnection(user);
-		List<User> mentorSubjectList = new ArrayList<User>();
-		String queryString = "from models.Subject subject where :connectionID in elements(subject.connectionList)";
+		List<User> mentorFieldList = new ArrayList<User>();
+		String queryString = "from models.Field field where :connectionID in elements(field.connectionList)";
 		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();
 			User listElement = (User) fetchSingle(queryString, queryVariable, new Integer(current.getConnectionID()));
 			if(listElement != null)
-				mentorSubjectList.add(listElement);
+				mentorFieldList.add(listElement);
 		}
-		return mentorSubjectList;
+		return mentorFieldList;
 	}
 	
-	public List<User> getTraineeSubjects(User user){
+	public List<User> getTraineeFields(User user){
 		List<Connection> fetchedConnections = fetchTraineeConnection(user);
-		List<User> traineeSubjectList = new ArrayList<User>();
-		String queryString = "from models.Subject subject where :connectionID in elements(subject.connectionList)";
+		List<User> traineeFieldList = new ArrayList<User>();
+		String queryString = "from models.Field field where :connectionID in elements(field.connectionList)";
 		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();
 			User listElement = (User) fetchSingle(queryString, queryVariable, new Integer(current.getConnectionID()));
 			if(listElement != null)
-				traineeSubjectList.add(listElement);
+				traineeFieldList.add(listElement);
 		}
-		return traineeSubjectList;
+		return traineeFieldList;
 	}
 }

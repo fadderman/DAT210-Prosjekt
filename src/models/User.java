@@ -137,43 +137,43 @@ public class User {
 	
 	/*//TODO broken may to many relationship
 	//TODO setup indexing
-	@ManyToMany(targetEntity = models.Subject.class,
+	@ManyToMany(targetEntity = models.Field.class,
 			cascade = CascadeType.ALL)
-	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
-			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
+	@JoinTable(name = "USER_FIELD_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "field_id")})
 	@OrderBy("lastName")
-	private List<Subject> mentorList;
+	private List<Field> mentorList;
 	
 	//TODO setup indexing
-	@ManyToMany(targetEntity = models.Subject.class,
+	@ManyToMany(targetEntity = models.Field.class,
 			cascade = CascadeType.ALL)
-	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
-			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
+	@JoinTable(name = "USER_FIELD_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "field_id")})
 	@OrderBy("lastName")
-	private List<Subject> traineeList;
+	private List<Field> traineeList;
 	*/
 	/*
-	public void addMentorSubject(Subject subject){
-		mentorList.add(subject);
+	public void addMentorField(Field field){
+		mentorList.add(field);
 	}
 
-	public List<Subject> getMentorList() {
+	public List<Field> getMentorList() {
 		return mentorList;
 	}
 
-	public void setMentorList(ArrayList<Subject> mentorList) {
+	public void setMentorList(ArrayList<Field> mentorList) {
 		this.mentorList = mentorList;
 	}
 	
-	public void addTraineeSubject(Subject subject){
-		traineeList.add(subject);
+	public void addTraineeField(Field field){
+		traineeList.add(field);
 	}
 
-	public List<Subject> getTraineeList() {
+	public List<Field> getTraineeList() {
 		return traineeList;
 	}
 
-	public void setTraineeList(ArrayList<Subject> traineeList) {
+	public void setTraineeList(ArrayList<Field> traineeList) {
 		this.traineeList = traineeList;
 	}
 	*/

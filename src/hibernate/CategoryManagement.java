@@ -3,7 +3,7 @@ package hibernate;
 import java.util.List;
 
 import models.Category;
-import models.Subject;
+import models.Field;
 
 public class CategoryManagement extends HibernateUtil{
 
@@ -15,8 +15,8 @@ public class CategoryManagement extends HibernateUtil{
 		createCategory(title, description, null);
 	}
 
-	public void createCategory(String title, String description, Subject subject) {
-		Category category = new Category(title, description, subject);
+	public void createCategory(String title, String description, Field field) {
+		Category category = new Category(title, description, field);
 		addCategory(category);
 	}
 
@@ -72,8 +72,8 @@ public class CategoryManagement extends HibernateUtil{
 		updateSingle(queryString, queryVariable, active, new Integer(category.getCategoryID()));
 	}
 	
-	public List<Subject> fetchSubjectList(Category category){
-		String queryString = "from models.Subject where category = :categoryID";
+	public List<Field> fetchFieldList(Category category){
+		String queryString = "from models.Field where category = :categoryID";
 		String queryVariable = "categoryID";
 		return fetch(queryString, queryVariable, new Integer(category.getCategoryID()));
 	}
@@ -85,12 +85,12 @@ public class CategoryManagement extends HibernateUtil{
 			System.out.println("This has been pulled from the database:");
 			System.out.println("Category: " + category.getTitle());
 			System.out.println("Description: " + category.getDescription());
-			if(category.getSubjectList().isEmpty()){
-				System.out.println("Subject list is empty.");
+			if(category.getFieldList().isEmpty()){
+				System.out.println("Field list is empty.");
 			} else {
-				List<Subject> pulledSubjectList = category.getSubjectList();
-				for(Iterator<Subject> itS = pulledSubjectList.iterator(); itS.hasNext();)
-					System.out.println("Subject in list: " + itS.next().getTitle());
+				List<Field> pulledFieldList = category.getFieldList();
+				for(Iterator<Field> itS = pulledFieldList.iterator(); itS.hasNext();)
+					System.out.println("Field in list: " + itS.next().getTitle());
 			}
 		}
 	}*/

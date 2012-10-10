@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-//TODO refactor to Subject
+//TODO refactor to Field
 @Entity
 @Table(name = "CATEGORY")
 public class Category {
@@ -27,7 +27,7 @@ public class Category {
 			mappedBy = "category", 
 			fetch=FetchType.EAGER)
 	@OrderBy("title")
-	private List<Subject> subjectList;
+	private List<Field> fieldList;
 	
 	public Category(){
 		
@@ -37,20 +37,20 @@ public class Category {
 		this.title = title;
 		this.description = description;
 		active = true;
-		subjectList = new ArrayList<Subject>();		
+		fieldList = new ArrayList<Field>();		
 	}
 	
-	public Category(String title, String description, Subject subject){
+	public Category(String title, String description, Field field){
 		this.title = title;
 		this.description = description;
-		subjectList = new ArrayList<Subject>();
-		subjectList.add(subject);
+		fieldList = new ArrayList<Field>();
+		fieldList.add(field);
 	}
 	
-	public Category(String title, String description, ArrayList<Subject> subjectList) {
+	public Category(String title, String description, ArrayList<Field> fieldList) {
 		this.title = title;
 		this.description = description;
-		this.subjectList = subjectList;
+		this.fieldList = fieldList;
 	}
 	
 	public int getCategoryID() {
@@ -85,16 +85,16 @@ public class Category {
 		this.description = description;
 	}
 	
-	public void addSubject(Subject subject){
-		subjectList.add(subject);
+	public void addField(Field field){
+		fieldList.add(field);
 	}
 
-	public List<Subject> getSubjectList() {
-		return subjectList;
+	public List<Field> getFieldList() {
+		return fieldList;
 	}
 
-	public void setSubjectList(ArrayList<Subject> subjectList) {
-		this.subjectList = subjectList;
+	public void setFieldList(ArrayList<Field> fieldList) {
+		this.fieldList = fieldList;
 	}
 	
 }
