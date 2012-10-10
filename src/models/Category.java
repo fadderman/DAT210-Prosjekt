@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
+//TODO refactor to Subject
 @Entity
 @Table(name = "CATEGORY")
 public class Category {

@@ -12,6 +12,9 @@ public class User {
 	@Id @GeneratedValue
 	@Column(name = "user_id")
 	private int userID;
+	
+	@Column(name = "active")
+	private boolean active;
 		
 	@Column(name = "identifier_openID")
 	private String identifierOpenID;
@@ -27,28 +30,12 @@ public class User {
 	
 	@Column(name = "location")
 	private String location;
-	
-	//TODO setup indexing
-	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL)
-	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
-			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
-	@OrderBy("lastName")
-	private List<Subject> mentorList;
-	
-	//TODO setup indexing
-	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL)
-	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
-			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
-	@OrderBy("lastName")
-	private List<Subject> traineeList;
-	
+
 	@OneToMany(mappedBy = "mentor")
-	private List<Connection> connectionMentor;
+	private List<Connection> mentorConnection;
 	
 	@OneToMany(mappedBy = "trainee")
-	private List<Connection> connectionTrainee;
+	private List<Connection> traineeConnection;
 	
 	@OneToMany(mappedBy = "author")
 	private List<Comment>  commentList;
@@ -62,11 +49,26 @@ public class User {
 		this.email = email;
 		this.location = location;
 		this.identifierOpenID = identifierOpenID;
-		
-		mentorList = new ArrayList<Subject>();
-		traineeList = new ArrayList<Subject>();
+		active = true;
+
 		commentList = new ArrayList<Comment>();
 		
+	}
+	
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public String getIdentifierOpenID() {
@@ -93,14 +95,6 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public int getUserID() {
-		return userID;
-	}
-
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -116,6 +110,49 @@ public class User {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
+	public List<Connection> getConnectionMentor() {
+		return mentorConnection;
+	}
+
+	public void setConnectionMentor(List<Connection> connectionMentor) {
+		this.mentorConnection = connectionMentor;
+	}
+
+	public List<Connection> getConnectionTrainee() {
+		return traineeConnection;
+	}
+
+	public void setConnectionTrainee(List<Connection> connectionTrainee) {
+		this.traineeConnection = connectionTrainee;
+	}
+
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(ArrayList<Comment> commentList) {
+		this.commentList = commentList;
+	}
+	
+	/*//TODO broken may to many relationship
+	//TODO setup indexing
+	@ManyToMany(targetEntity = models.Subject.class,
+			cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
+	@OrderBy("lastName")
+	private List<Subject> mentorList;
+	
+	//TODO setup indexing
+	@ManyToMany(targetEntity = models.Subject.class,
+			cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
+	@OrderBy("lastName")
+	private List<Subject> traineeList;
+	*/
+	/*
 	public void addMentorSubject(Subject subject){
 		mentorList.add(subject);
 	}
@@ -139,30 +176,7 @@ public class User {
 	public void setTraineeList(ArrayList<Subject> traineeList) {
 		this.traineeList = traineeList;
 	}
-
-	public List<Connection> getConnectionMentor() {
-		return connectionMentor;
-	}
-
-	public void setConnectionMentor(List<Connection> connectionMentor) {
-		this.connectionMentor = connectionMentor;
-	}
-
-	public List<Connection> getConnectionTrainee() {
-		return connectionTrainee;
-	}
-
-	public void setConnectionTrainee(List<Connection> connectionTrainee) {
-		this.connectionTrainee = connectionTrainee;
-	}
-
-	public List<Comment> getCommentList() {
-		return commentList;
-	}
-
-	public void setCommentList(ArrayList<Comment> commentList) {
-		this.commentList = commentList;
-	}
-	
+	*/
 	
 }
+

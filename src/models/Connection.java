@@ -10,18 +10,6 @@ import javax.persistence.*;
 @Table(name = "CONNECTION")
 public class Connection {
 	
-	@ManyToOne
-	@JoinColumn(name = "connection_mentor_fk")
-	private User mentor;
-
-	@ManyToOne
-	@JoinColumn(name = "connection_trainee_fk")
-	private User trainee;
-	
-	@ManyToOne
-	@JoinColumn(name = "subject_fk")
-	private Subject subject;
-	
 	@Id @GeneratedValue
 	@Column(name = "connection_id")
 	private int connectionID;
@@ -31,6 +19,18 @@ public class Connection {
 	
 	@Column(name = "difficulty_level")
 	private int difficultyLevel;
+	
+	@ManyToOne
+	@JoinColumn(name = "mentor_connection_fk")
+	private User mentor;
+
+	@ManyToOne
+	@JoinColumn(name = "trainee_connection_fk")
+	private User trainee;
+	
+	@ManyToOne
+	@JoinColumn(name = "subject_fk")
+	private Subject subject;
 	
 	@OneToMany(mappedBy = "connection")
 	@OrderBy("timestamp")

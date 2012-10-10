@@ -36,6 +36,12 @@ public class SubjectManagement extends HibernateUtil{
 		return fetch(queryString);
 	}
 	
+	public List<Subject> getByID(int id){
+		String queryString = "from models.Subject WHERE id = :id";
+		String queryVariable = "id";
+		return fetch(queryString, queryVariable, new Integer(id));
+	}
+	
 	public List<Subject> getByTitle(String title){
 		String queryString = "from models.Subject where title = :title";
 		String queryVariable = "title";
@@ -46,12 +52,6 @@ public class SubjectManagement extends HibernateUtil{
 		String queryString = "from models.Subject where title = :title";
 		String queryVariable = "title";
 		return (Subject) fetchSingle(queryString, queryVariable, title);
-	}
-	
-	public List<Subject> getByID(int id){
-		String queryString = "from models.Subject WHERE id = :id";
-		String queryVariable = "id";
-		return fetch(queryString, queryVariable, new Integer(id));
 	}
 	
 	public void updateTitle(Subject subject, String newTitle){
@@ -72,25 +72,40 @@ public class SubjectManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, new Integer(subject.getSubjectID()));
 	}
 	
-	public List<User> getByMentorConnection(Subject subject){
-		String queryString = "from models.Connection where subject.subjectID = :subjectID";
-		String queryVariable = "subjectID";
-		List<Connection> fetchedConnections = fetch(queryString, queryVariable, subject.getSubjectID());
-		List<User> mentorList = new ArrayList();
-		queryString = "from models.User user where :connectionID in elements(user.connectionMentor)";
-		queryVariable = "connectionID";
+	public void changeStatus(Subject subject, boolean active){
+		String queryString = "update models.Subject set active = :active where id = :id";
+		String queryVariable = "active";
+		updateSingle(queryString, queryVariable, active, new Integer(subject.getSubjectID()));
+	}
+	
+	public List<User> getMentors(Subject subject){
+		List<Connection> fetchedConnections = fetchConnectionList(subject);
+		List<User> mentorList = new ArrayList<User>();
+		String queryString = "from models.User user where :connectionID in elements(user.connectionMentor)";
+		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();
-			mentorList.add((User) fetchSingle(queryString, queryVariable, current.getConnectionID()));
+			User listElement = (User) fetchSingle(queryString, queryVariable, current.getConnectionID());
+			if(listElement != null)
+				mentorList.add(listElement);
 		}
 		return mentorList;
 	}
 	
-	public List<Connection> connectionGetTest(Subject subject){
-		String queryString = "from models.Connection where subject.subjectID = :subjectID";
-		String queryVariable = "subjectID";
-		return fetch(queryString, queryVariable, new Integer(subject.getSubjectID()));
+	public List<User> getTrainees(Subject subject){
+		List<Connection> fetchedConnections = fetchConnectionList(subject);
+		List<User> traineeList = new ArrayList<User>();
+		String queryString = "from models.User user where :connectionID in elements(user.connectionTrainee)";
+		String queryVariable = "connectionID";
+		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
+			Connection current = iterator.next();
+			User listElement = (User) fetchSingle(queryString, queryVariable, current.getConnectionID());
+			if(listElement != null)
+				traineeList.add(listElement);
+		}
+		return traineeList;
 	}
+	
 	/*
 	//TODO Broken many to many query.
 	public List<User> fetchMentorList(Subject subject){

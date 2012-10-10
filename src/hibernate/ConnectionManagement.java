@@ -36,10 +36,31 @@ public class ConnectionManagement extends HibernateUtil{
 		addToDatabase(connection);
 	}
 	
+	public List<Connection> getAllConnections(){
+		String queryString = ("from models.Connection where active = true"); 
+		return fetch(queryString);
+	}
+	public List<Connection> getAllInactiveConnections(){
+		String queryString = ("from models.Connection where active = false"); 
+		return fetch(queryString);
+	}
+	
 	public List<Connection> getByID(int id){
-		String queryString = "from models.Connection where id = :id";
-		String queryVariable = "id";
-		return fetch(queryString, queryVariable, id);
+		String queryString = "from models.Connection where connectionID = :id";
+		String queryVariable = "connectionID";
+		return fetch(queryString, queryVariable, new Integer(id));
+	}
+	
+	public List<Connection> getByMentor(User user){
+		String queryString = "from models.Connection where mentor = :userID";
+		String queryVariable = "userID";
+		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
+	}
+	
+	public List<Connection> getByTrainee(User user){
+		String queryString = "from models.Connection where trainee = :userID";
+		String queryVariable = "userID";
+		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
 	}
 	
 	public void updateDifficultyLevel(Connection connection, int difficultyLevel){
@@ -56,6 +77,12 @@ public class ConnectionManagement extends HibernateUtil{
 		String queryString = "update models.Connection set active = :active where id = :id";
 		String queryVariable = "active";
 		updateSingle(queryString, queryVariable, active, connection.getConnectionID());
+	}
+	
+	public List<Comment> fetchCommentList(Connection connection){
+		String queryString = "from models.Comment where connection = :connection";
+		String queryVariable = "connection";
+		return fetch(queryString, queryVariable, connection);
 	}
 	
 	

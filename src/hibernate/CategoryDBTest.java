@@ -59,8 +59,8 @@ public class CategoryDBTest {
 		
 		um.addUser(user2);
 		xm.createOpenMentor(user2, subCSh2);
-		xm.createOpenMentor(user2, subJava3D);
-		xm.createOpenMentor(user2, subJava3D);
+		xm.createOpenMentor(user2, subJava2D);
+		xm.createOpenTrainee(user2, subJava3D);
 		
 		um.addUser(user3);
 		xm.createOpenTrainee(user3, subCpluss);
@@ -94,16 +94,24 @@ public class CategoryDBTest {
 		
 		System.out.println("-----------------------------------------------");
 		
-		ArrayList<User> mentorTestList = (ArrayList<User>) sm.getByMentorConnection(subCpluss);
+		ArrayList<User> mentorTestList = (ArrayList<User>) sm.getMentors(subCpluss);
 		if(mentorTestList.isEmpty()){
 			System.out.println("EMPTY");
 		}
 		for(Iterator<User> iterator = mentorTestList.iterator(); iterator.hasNext();){
-
-
 			User current = iterator.next();
 			System.out.println(current.getFirstName() + " " + current.getLastName());
 		}
 		
+		System.out.println("-----------------------------------------------");
+		
+		ArrayList<User> traineeTestList = (ArrayList<User>) sm.getTrainees(subJava3D);
+		if(traineeTestList.isEmpty()){
+			System.out.println("EMPTY");
+		}
+		for(Iterator<User> iterator = traineeTestList.iterator(); iterator.hasNext();){
+			User current = iterator.next();
+			System.out.println(current.getFirstName() + " " + current.getLastName());
+		}
 	}
 }

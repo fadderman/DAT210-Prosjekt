@@ -31,6 +31,18 @@ public class CommentManagement extends HibernateUtil{
 		return fetch(queryString);
 	}
 	
+	public List<Comment> getByID(int id){
+		String queryString = "from models.Comment where commentID = :id";
+		String queryVariable = "id";
+		return fetch(queryString, queryVariable, new Integer(id));
+	}
+	
+	public List<Comment> getByConnection(Connection connection){
+		String queryString = "from models.Comment where connection = :connection";
+		String queryVariable = "connection";
+		return fetch(queryString, queryVariable, connection);
+	}
+	
 	public List<Comment> getCommentByAuthor(User author){
 		String queryString = "from models.Comment where author = :author";
 		String queryVariable = "author";

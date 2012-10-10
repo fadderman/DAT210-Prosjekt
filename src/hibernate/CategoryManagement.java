@@ -44,6 +44,7 @@ public class CategoryManagement extends HibernateUtil{
 		String queryVariable = "title";
 		return fetch(queryString, queryVariable, title);
 	}
+	
 	public Category getSingleByTitle(String title){
 		String queryString = "from models.Category where title = :title";
 		String queryVariable = "title";
@@ -51,7 +52,7 @@ public class CategoryManagement extends HibernateUtil{
 	}
 
 	public List<Category> getByID(int id){
-		String queryString = "from models.Category WHERE id = :id";
+		String queryString = "from models.Category where categoryID = :id";
 		String queryVariable = "id";
 		return fetch(queryString, queryVariable, new Integer(id));
 	}
@@ -71,7 +72,7 @@ public class CategoryManagement extends HibernateUtil{
 	public void changeStatus(Category category, boolean active){
 		String queryString = "update models.Category set active = :active where id = :id";
 		String queryVariable = "active";
-		updateSingle(queryString, queryVariable, active, category.getCategoryID());
+		updateSingle(queryString, queryVariable, active, new Integer(category.getCategoryID()));
 	}
 	
 	public List<Subject> fetchSubjectList(Category category){

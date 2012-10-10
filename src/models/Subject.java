@@ -1,10 +1,11 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
+
+//Refactor to Field
 @Entity
 @Table(name = "SUBJECT")
 public class Subject {
@@ -12,6 +13,9 @@ public class Subject {
 	@Id @GeneratedValue
 	@Column(name = "subject_id")
 	private int subjectID;
+	
+	@Column(name = "active")
+	private boolean active;
 	
 	@Column(name = "title")
 	private String title;
@@ -22,19 +26,7 @@ public class Subject {
 	@ManyToOne
 	@JoinColumn(name = "category_fk")
 	private Category category;
-	
-	@ManyToMany(
-			targetEntity = models.User.class,
-			cascade = {CascadeType.ALL},
-			mappedBy = "mentorList")
-	private List<User> mentorUserList;
-	
-	@ManyToMany(
-			targetEntity = models.User.class,
-			cascade = {CascadeType.ALL},
-			mappedBy = "traineeList")
-	private List<User> traineeUserList;
-	
+		
 	//TODO Ordered or indexed?
 	@OneToMany(mappedBy = "subject")
 	@OrderBy("title")
@@ -56,6 +48,14 @@ public class Subject {
 
 	public void setSubjectID(int subjectID) {
 		this.subjectID = subjectID;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public String getTitle() {
@@ -82,6 +82,30 @@ public class Subject {
 		this.category = category;
 	}
 
+
+	public List<Connection> getConnectionList() {
+		return connectionList;
+	}
+
+	public void setConnectionList(List<Connection> connectionList) {
+		this.connectionList = connectionList;
+	}
+	
+	/* TODO broken many to many, using query via connection
+	@ManyToMany(
+			targetEntity = models.User.class,
+			cascade = {CascadeType.ALL},
+			mappedBy = "mentorList")
+	private List<User> mentorUserList;
+	
+	@ManyToMany(
+			targetEntity = models.User.class,
+			cascade = {CascadeType.ALL},
+			mappedBy = "traineeList")
+	private List<User> traineeUserList;
+	*/
+	
+	/*
 	public List<User> getMentorUserList() {
 		return  mentorUserList;
 	}
@@ -97,14 +121,6 @@ public class Subject {
 	public void setTraineeUserList(ArrayList<User> traineeUserList) {
 		this.traineeUserList = traineeUserList;
 	}
-
-	public List<Connection> getConnectionList() {
-		return connectionList;
-	}
-
-	public void setConnectionList(List<Connection> connectionList) {
-		this.connectionList = connectionList;
-	}
-	
+	*/
 	
 }
