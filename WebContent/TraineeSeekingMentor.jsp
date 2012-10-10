@@ -27,8 +27,12 @@
 		<%for(Subject subject : mentorSubjects){
 			//legger til en sjekk etter
 			if(mentorSubjects.peek().getTitle() == ""){
-				//få data om hvilken bruker som har det faget det blir spurt etter
-				//må sikkert får inn noe info fra siden før
+				/*få data om hvilken bruker som har det faget det blir spurt etter
+				må sikkert får inn noe info fra siden før, lager en ny user
+				objekt ut fra dataen i mentorSubject men fåreløpig så tar jeg og bare
+				lage en tom user*/
+				User mentor = new User();
+				
 			%>
 		<tr>
 		<!-- legger til en masse EL table data -->
