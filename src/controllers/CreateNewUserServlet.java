@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import business.user.UserHandler;
-
 import models.User;
+import business.user.UserHandler;
 
 public class CreateNewUserServlet extends HttpServlet {
 

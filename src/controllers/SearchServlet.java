@@ -10,12 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.User;
 import business.search.SearchEngine;
 import business.search.SearchResults;
-import business.search.UserSuggestion;
-import business.user.UserHandler;
-
-import models.User;
 
 @WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet {
