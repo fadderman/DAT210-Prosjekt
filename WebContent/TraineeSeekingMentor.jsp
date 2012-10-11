@@ -14,7 +14,7 @@
 	<%
 		//har enda ikke forstått ossen jeg får data fra databasen så har jeg
 		//lagt til en tom dataliste
-		LinkedList<Subject> mentorSubjects = new LinkedList<Subject>();
+		LinkedList<User> mentors = new LinkedList<User>();
 	%>
 	<h1 id="Title">List of Mentor</h1>
 	<table id="ListofMentor" border="1">
@@ -24,9 +24,9 @@
 			<th>Email</th>
 			<th>Join</th>
 		</tr>
-		<%for(Subject subject : mentorSubjects){
+		<%for(User users : mentors){
 			//legger til en sjekk etter
-			if(mentorSubjects.peek().getTitle() == ""){
+			
 				/*få data om hvilken bruker som har det faget det blir spurt etter
 				må sikkert får inn noe info fra siden før, lager en ny user
 				objekt ut fra dataen i mentorSubject men fåreløpig så tar jeg og bare
@@ -37,8 +37,7 @@
 		<tr>
 		<!-- legger til en masse EL table data -->
 		</tr>
-		<%  }
-			}%>
+		<%  } %>
 	</table>
 </body>
 </html>
