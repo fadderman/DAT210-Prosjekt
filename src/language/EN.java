@@ -34,6 +34,10 @@ public class EN extends Lang{
 	private String firsttime_radio_trainee = "Trainee";
 	private String firsttime_label_addInfo = "Additional info:";
 	private String firsttime_label_experience = "Experience:";
+	private String firsttime_drop_novice = "Novice";
+	private String firsttime_drop_intermediate = "Intermediate";
+	private String firsttime_drop_expert = "Expert";
+	private String firsttime_drop_loreMaster = "Guru";
 	private String firsttime_btn_add = "Add";
 	private String firsttime_btn_submit = "Submit";
 	
@@ -81,6 +85,18 @@ public class EN extends Lang{
 	}
 	public String getFirsttime_btn_submit() {
 		return firsttime_btn_submit;
+	}
+	public String getFirsttime_drop_novice() {
+		return firsttime_drop_novice;
+	}
+	public String getFirsttime_drop_intermediate() {
+		return firsttime_drop_intermediate;
+	}
+	public String getFirsttime_drop_expert() {
+		return firsttime_drop_expert;
+	}
+	public String getFirsttime_drop_loreMaster() {
+		return firsttime_drop_loreMaster;
 	}
 	
 }

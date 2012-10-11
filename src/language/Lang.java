@@ -20,4 +20,8 @@ public abstract class Lang {
 	public abstract String getFirsttime_label_experience();
 	public abstract String getFirsttime_btn_add();
 	public abstract String getFirsttime_btn_submit();
+	public abstract String getFirsttime_drop_novice();
+	public abstract String getFirsttime_drop_intermediate();
+	public abstract String getFirsttime_drop_expert();
+	public abstract String getFirsttime_drop_loreMaster();
 }
