@@ -2,7 +2,6 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -14,7 +13,10 @@ public class User {
 	@Id @GeneratedValue
 	@Column(name = "user_id")
 	private int userID;
-		
+
+	@Column(name = "active")
+	private boolean active;
+
 	@Column(name = "identifier_openID")
 	private String identifierOpenID;
 	
@@ -27,30 +29,19 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "location")
-	private String location;
+	@Column(name = "location_city")
+	private String locationCity;
 	
-	//TODO should these be ordered or indexed?
-	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL)
-	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
-			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
-	@OrderBy("title")
-	private List<Subject> mentorList;
+	@Column(name = "location_country")
+	private String locationCountry;
 	
-	//TODO should these be ordered or indexed?
-	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL)
-	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
-			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
-	@OrderBy("title")
-	private List<Subject> traineeList;
+	//Location: city, country
+
+	@OneToMany(mappedBy = "mentor")
+	private List<Connection> mentorConnection;
 	
-	@OneToOne(mappedBy = "mentor")
-	private Connection connectionMentor;
-	
-	@OneToOne(mappedBy = "trainee")
-	private Connection connectionTrainee;
+	@OneToMany(mappedBy = "trainee")
+	private List<Connection> traineeConnection;
 	
 	@OneToMany(mappedBy = "author")
 	private List<Comment>  commentList;
@@ -58,6 +49,7 @@ public class User {
 	public User() {}
 	
 	//TODO Business methods pass empty variables if fields are to be left empty
+<<<<<<< HEAD
 	public User(String identifier_openID, String firstName, String lastName, String email, String location) {
 		this.identifierOpenID = identifier_openID;
 		this.firstName = firstName;
@@ -68,10 +60,37 @@ public class User {
 		
 		mentorList = new ArrayList<Subject>();
 		traineeList = new ArrayList<Subject>();
+=======
+	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.locationCity = locationCity;
+		this.locationCountry = locationCountry;
+		this.identifierOpenID = identifierOpenID;
+		active = true;
+
+>>>>>>> origin/Hibernate
 		commentList = new ArrayList<Comment>();
 		
 	}
+	
+	public int getUserID() {
+		return userID;
+	}
 
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
 	public String getIdentifierOpenID() {
 		return identifierOpenID;
 	}
@@ -95,13 +114,9 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	public int getUserID() {
-		return userID;
-	}
-
-	public void setUserID(int userID) {
-		this.userID = userID;
+	
+	public String getFullName(){
+		return this.firstName + " " + this.lastName;
 	}
 
 	public String getEmail() {
@@ -112,44 +127,36 @@ public class User {
 		this.email = email;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getLocationCity() {
+		return locationCity;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocationCity(String locationCity) {
+		this.locationCity = locationCity;
 	}
 
-	public List<Subject> getMentorList() {
-		return mentorList;
+	public String getLocationCountry() {
+		return locationCountry;
 	}
 
-	public void setMentorList(ArrayList<Subject> mentorList) {
-		this.mentorList = mentorList;
+	public void setLocationCountry(String locationCountry) {
+		this.locationCountry = locationCountry;
 	}
 
-	public List<Subject> getTraineeList() {
-		return traineeList;
+	public List<Connection> getConnectionMentor() {
+		return mentorConnection;
 	}
 
-	public void setTraineeList(ArrayList<Subject> traineeList) {
-		this.traineeList = traineeList;
+	public void setConnectionMentor(List<Connection> connectionMentor) {
+		this.mentorConnection = connectionMentor;
 	}
 
-	public Connection getConnectionMentor() {
-		return connectionMentor;
+	public List<Connection> getConnectionTrainee() {
+		return traineeConnection;
 	}
 
-	public void setConnectionMentor(Connection connectionMentor) {
-		this.connectionMentor = connectionMentor;
-	}
-
-	public Connection getConnectionTrainee() {
-		return connectionTrainee;
-	}
-
-	public void setConnectionTrainee(Connection connectionTrainee) {
-		this.connectionTrainee = connectionTrainee;
+	public void setConnectionTrainee(List<Connection> connectionTrainee) {
+		this.traineeConnection = connectionTrainee;
 	}
 
 	public List<Comment> getCommentList() {
@@ -160,5 +167,48 @@ public class User {
 		this.commentList = commentList;
 	}
 	
+	/*//TODO broken may to many relationship
+	//TODO setup indexing
+	@ManyToMany(targetEntity = models.Field.class,
+			cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_FIELD_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "field_id")})
+	@OrderBy("lastName")
+	private List<Field> mentorList;
+	
+	//TODO setup indexing
+	@ManyToMany(targetEntity = models.Field.class,
+			cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_FIELD_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "field_id")})
+	@OrderBy("lastName")
+	private List<Field> traineeList;
+	*/
+	/*
+	public void addMentorField(Field field){
+		mentorList.add(field);
+	}
+
+	public List<Field> getMentorList() {
+		return mentorList;
+	}
+
+	public void setMentorList(ArrayList<Field> mentorList) {
+		this.mentorList = mentorList;
+	}
+	
+	public void addTraineeField(Field field){
+		traineeList.add(field);
+	}
+
+	public List<Field> getTraineeList() {
+		return traineeList;
+	}
+
+	public void setTraineeList(ArrayList<Field> traineeList) {
+		this.traineeList = traineeList;
+	}
+	*/
 	
 }
+

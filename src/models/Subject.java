@@ -5,13 +5,17 @@ import java.util.List;
 
 import javax.persistence.*;
 
+//TODO refactor to Field
 @Entity
 @Table(name = "SUBJECT")
 public class Subject {
-
+	
 	@Id @GeneratedValue
 	@Column(name = "subject_id")
 	private int subjectID;
+	
+	@Column(name = "active")
+	private boolean active;
 	
 	@Column(name = "title")
 	private String title;
@@ -19,35 +23,34 @@ public class Subject {
 	@Column(name = "description")
 	private String description;
 	
-	@ManyToOne
-	@JoinColumn(name = "category_fk")
-	private Category category;
-	
-	@ManyToMany(
-			targetEntity = models.User.class,
-			cascade = {CascadeType.ALL},
-			mappedBy = "mentorList")
-	private List<User> mentorUserList;
-	
-	@ManyToMany(
-			targetEntity = models.User.class,
-			cascade = {CascadeType.ALL},
-			mappedBy = "traineeList")
-	private List<User> traineeUserList;
-	
-	//TODO Ordered or indexed?
-	@OneToMany(mappedBy = "subject")
+	@OneToMany(
+			mappedBy = "subject", 
+			fetch=FetchType.EAGER)
 	@OrderBy("title")
-	private List<Connection> connectionList;
+	private List<Field> fieldList;
 	
 	public Subject(){
 		
 	}
 	
-	public Subject(String title, String description, Category category) {
+	public Subject(String title, String description){
 		this.title = title;
 		this.description = description;
-		this.category = category;
+		active = true;
+		fieldList = new ArrayList<Field>();		
+	}
+	
+	public Subject(String title, String description, Field field){
+		this.title = title;
+		this.description = description;
+		fieldList = new ArrayList<Field>();
+		fieldList.add(field);
+	}
+	
+	public Subject(String title, String description, ArrayList<Field> fieldList) {
+		this.title = title;
+		this.description = description;
+		this.fieldList = fieldList;
 	}
 	
 	public int getSubjectID() {
@@ -56,6 +59,14 @@ public class Subject {
 
 	public void setSubjectID(int subjectID) {
 		this.subjectID = subjectID;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public String getTitle() {
@@ -74,37 +85,16 @@ public class Subject {
 		this.description = description;
 	}
 	
-	public Category getCategory() {
-		return category;
-	}
-	
-	public void setCategory(Category category) {
-		this.category = category;
+	public void addField(Field field){
+		fieldList.add(field);
 	}
 
-	public List<User> getMentorUserList() {
-		return  mentorUserList;
+	public List<Field> getFieldList() {
+		return fieldList;
 	}
 
-	public void setMentorUserList(ArrayList<User> mentorUserList) {
-		this.mentorUserList = mentorUserList;
+	public void setFieldList(ArrayList<Field> fieldList) {
+		this.fieldList = fieldList;
 	}
-
-	public List<User> getTraineeUserList() {
-		return traineeUserList;
-	}
-
-	public void setTraineeUserList(ArrayList<User> traineeUserList) {
-		this.traineeUserList = traineeUserList;
-	}
-
-	public List<Connection> getConnectionList() {
-		return connectionList;
-	}
-
-	public void setConnectionList(List<Connection> connectionList) {
-		this.connectionList = connectionList;
-	}
-	
 	
 }

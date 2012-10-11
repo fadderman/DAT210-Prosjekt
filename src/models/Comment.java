@@ -14,6 +14,9 @@ public class Comment {
 	@Column(name = "comment_id")
 	private int commentID;
 	
+	@Column(name = "active")
+	private boolean active;
+	
 	@ManyToOne
 	@JoinColumn(name = "connection_fk")
 	private Connection connection;
@@ -22,28 +25,38 @@ public class Comment {
 	@JoinColumn(name = "user_fk")
 	private User author;
 	
-	@Column(name = "comment")
-	private String comment;
+	@Column(name = "text")
+	private String text;
 	
+	//TODO separate timestamp @ edit?
 	@Column(name = "timestamp")
 	private Date timestamp;
 	
+	
 	public Comment(){
-		
 	}
 	
-	public Comment(Connection connection, User author, String comment) {
+	public Comment(Connection connection, User author, String text) {
 		this.connection = connection;
 		this.author = author;
-		this.comment = comment;
-	}
-	
-	public Date getTimestamp() {
-		return timestamp;
+		this.text = text;
+		active = true;
 	}
 
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
+	public int getCommentID() {
+		return commentID;
+	}
+
+	public void setCommentID(int commentID) {
+		this.commentID = commentID;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public Connection getConnection() {
@@ -63,11 +76,18 @@ public class Comment {
 	}
 
 	public String getComment() {
-		return comment;
+		return text;
 	}
 
 	public void setComment(String comment) {
-		this.comment = comment;
+		this.text = comment;
 	}
-	
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
 }

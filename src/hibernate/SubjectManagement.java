@@ -1,90 +1,97 @@
 package hibernate;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import models.Category;
 import models.Subject;
-import models.User;
+import models.Field;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+public class SubjectManagement extends HibernateUtil{
 
-public class SubjectManagement {
-
-	private static SessionFactory sessionFactory;
-	
 	public SubjectManagement() {
-		sessionFactory = HibernateUtil.getSessionFactory();
+		sessionFactory = getSessionFactory();
 	}
-	
-	public void createSubject(String title, String description, Category category){
-		Subject subject = new Subject(title, description, category);
+
+	public void createSubject(String title, String description){
+		createSubject(title, description, null);
+	}
+
+	public void createSubject(String title, String description, Field field) {
+		Subject subject = new Subject(title, description, field);
 		addSubject(subject);
 	}
-	
+
 	public void addSubject(Subject subject){
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try{
-			tx = session.beginTransaction();
-			session.save(subject); 
-			tx.commit();
-		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace(); 
-		}finally {
-			session.close(); 
-		}
+		addToDatabase(subject);
+	}
+
+	public List<Subject> getAllSubjects(){
+		String queryString = ("from models.Subject where active = true"); 
+		List<Subject> results = fetch(queryString);
+		return results;
+	}
+
+	public List<Subject> getAllInactiveSubjects(){
+		String queryString = ("from models.Subject where active = false"); 
+		List<Subject> results = fetch(queryString);
+		return results;
 	}
 	
-	//TODO only for a quick test. Will be removed/moved to a unit test later.
-		public void listAllSubjects( ){
-			Session session = sessionFactory.openSession();
-			Transaction tx = null;
-			try{
-				tx = session.beginTransaction();
-				
-				//TODO fix errors!
-				List<Subject> subjects = session.createQuery("FROM models.Subject").list(); 
-				for (Iterator<Subject> iterator = 
-						subjects.iterator(); iterator.hasNext();){
-					Subject subject = (Subject) iterator.next(); 
-					System.out.print("Title: " + subject.getTitle()); 
-					System.out.print("  Description: " + subject.getDescription()); 
-					System.out.println("  Category: " + subject.getCategory()); 
-				}
-				tx.commit();
-			}catch (HibernateException e) {
-				if (tx!=null) tx.rollback();
-				e.printStackTrace(); 
-			}finally {
-				session.close(); 
-			}
-		}
-		
-		public List<Subject> getSubjectByTitle(Subject subject){
-			Session session = sessionFactory.openSession();
-			Transaction tx = null;
-			List<Subject> subjects = new ArrayList<Subject>();
-			try{
-				tx = session.beginTransaction();
-				Query query = session.createQuery("FROM models.Subject where title = :title");
-				query.setString("title", subject.getTitle());
-				subjects = query.list();			
-				tx.commit();
-			}catch (HibernateException e) {
-				if (tx!=null) tx.rollback();
-				e.printStackTrace(); 
-			}finally {
-				session.close(); 
-			}
-			return subjects;
-		}
+	public Subject getByID(int id){
+		String queryString = "from models.Subject where subjectID = :id";
+		String queryVariable = "id";
+		return (Subject) fetchSingle(queryString, queryVariable, new Integer(id));
+	}
+	
+	public List<Subject> getByTitle(String title){
+		String queryString = "from models.Subject where title = :title";
+		String queryVariable = "title";
+		return fetch(queryString, queryVariable, title);
+	}
+	
+	public Subject getSingleByTitle(String title){
+		String queryString = "from models.Subject where title = :title";
+		String queryVariable = "title";
+		return (Subject) fetchSingle(queryString, queryVariable, title);
+	}
 
-		//TODO ModifySubject and lookupSubject methods on desired fields.
+	public void updateTitle(Subject subject, String newTitle){
+		String queryString = "update models.Subject set title = :newTitle where id = :id";
+		String queryVariable = "newTitle";
+		updateSingle(queryString, queryVariable, newTitle, subject.getSubjectID());
+	}
+
+	public void updateDescription(Subject subject, String newDescription){
+		String queryString = "update models.Subject set description = :newDescription where id = :id";
+		String queryVariable = "newDescription";
+		updateSingle(queryString, queryVariable, newDescription, subject.getSubjectID());
+	}
+	
+	public void changeStatus(Subject subject, boolean active){
+		String queryString = "update models.Subject set active = :active where id = :id";
+		String queryVariable = "active";
+		updateSingle(queryString, queryVariable, active, new Integer(subject.getSubjectID()));
+	}
+	
+	public List<Field> fetchFieldList(Subject subject){
+		String queryString = "from models.Field where subject = :subjectID";
+		String queryVariable = "subjectID";
+		return fetch(queryString, queryVariable, new Integer(subject.getSubjectID()));
+	}
+	
+	/* TODO for testing
+	public void toString(List<Subject> categories){
+		for (Iterator<Subject> iterator = categories.iterator(); iterator.hasNext();){
+			Subject subject = (Subject) iterator.next(); 
+			System.out.println("This has been pulled from the database:");
+			System.out.println("Subject: " + subject.getTitle());
+			System.out.println("Description: " + subject.getDescription());
+			if(subject.getFieldList().isEmpty()){
+				System.out.println("Field list is empty.");
+			} else {
+				List<Field> pulledFieldList = subject.getFieldList();
+				for(Iterator<Field> itS = pulledFieldList.iterator(); itS.hasNext();)
+					System.out.println("Field in list: " + itS.next().getTitle());
+			}
+		}
+	}*/
 }

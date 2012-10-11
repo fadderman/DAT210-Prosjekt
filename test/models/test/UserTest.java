@@ -2,9 +2,6 @@ package models.test;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
-import models.Subject;
 import models.User;
 
 import org.junit.After;
@@ -57,17 +54,5 @@ public class UserTest {
 		String email = "msalte86@gmail.com";
 		user.setEmail(email);
 		assertEquals(email, user.getEmail());
-	}
-	
-	public void testMentorList() {
-		ArrayList<Subject> mentorList = new ArrayList<Subject>();
-		user.setMentorList(mentorList);
-		assertEquals(mentorList, user.getMentorList());
-	}
-
-	public void testTraineeList() {
-		ArrayList<Subject> traineeList = new ArrayList<Subject>();
-		user.setTraineeList(traineeList);
-		assertEquals(traineeList, user.getTraineeList());
 	}
 }

@@ -9,25 +9,28 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CONNECTION")
 public class Connection {
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "connectionMentor_fk")
-	private User mentor;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "connectionTrainee_fk")
-	private User trainee;
-	
-	@ManyToOne
-	@JoinColumn(name = "subject_fk")
-	private Subject subject;
 	
 	@Id @GeneratedValue
 	@Column(name = "connection_id")
 	private int connectionID;
 	
-	@Column(name = "difficultyLevel")
+	@Column(name = "active")
+	private boolean active;
+	
+	@Column(name = "difficulty_level")
 	private int difficultyLevel;
+	
+	@ManyToOne
+	@JoinColumn(name = "mentor_connection_fk")
+	private User mentor;
+
+	@ManyToOne
+	@JoinColumn(name = "trainee_connection_fk")
+	private User trainee;
+	
+	@ManyToOne
+	@JoinColumn(name = "field_fk")
+	private Field field;
 	
 	@OneToMany(mappedBy = "connection")
 	@OrderBy("timestamp")
@@ -37,14 +40,24 @@ public class Connection {
 		
 	}
 	
-	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel) {
+	public Connection(Field field){
+		this.field = field;
+		active = true;
+	}
+	
+	public Connection(User mentor, User trainee, Field field) {
 		this.mentor = mentor;
 		this.trainee = trainee;
-		this.subject = subject;
-		this.difficultyLevel = difficultyLevel;
+		this.field = field;
+		active = true;
 		comments = new ArrayList<Comment>();
 	}
 	
+	public Connection(User mentor, User trainee, Field field, int difficultyLevel) {
+		this(mentor, trainee, field);
+		this.difficultyLevel = difficultyLevel;
+	}
+
 	public User getMentor() {
 		return mentor;
 	}
@@ -61,12 +74,12 @@ public class Connection {
 		this.trainee = trainee;
 	}
 
-	public Subject getSubject() {
-		return subject;
+	public Field getField() {
+		return field;
 	}
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public void setField(Field field) {
+		this.field = field;
 	}
 
 	public int getDifficultyLevel() {
@@ -93,4 +106,14 @@ public class Connection {
 		this.connectionID = connectionID;
 	}
 
+<<<<<<< HEAD
+=======
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+>>>>>>> origin/Hibernate
 }
