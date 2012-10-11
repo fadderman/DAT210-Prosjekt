@@ -12,12 +12,12 @@ public class UserManagement extends HibernateUtil{
 		sessionFactory = getSessionFactory();
 	}
 
-	public void createUser(String firstName, String lastName, String email, String location, String identifierOpenID){
-		addUser(new User(firstName, lastName, email, location, identifierOpenID));
+	public void createUser(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID){
+		addUser(new User(firstName, lastName, email, locationCity, locationCountry, identifierOpenID));
 	}
 
-	public void addUser(User user) {
-		addToDatabase(user);
+	public boolean addUser(User user) {
+		return addToDatabase(user);
 	}
 	
 	public List<User> listAllUsers(){

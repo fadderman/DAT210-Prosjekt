@@ -43,12 +43,12 @@ public class SubjectDBTest {
 		sm.addField(subCSh3);
 		sm.addField(subCpluss);
 		
-		User user1 = new User("Bob", "Smith", "bob@smith.com", "here", "345678");
-		User user2 = new User("Glen", "Smiths", "basdfg@smith.com", "there", "2323");
-		User user3 = new User("Tom", "Smite", "bob@adrbafd.com", "over here", "7865425");
-		User user4 = new User("Alex", "Smile", "bob@6ytghj.com", "over there", "456412");
-		User user5 = new User("Dave", "Store", "bob@adfbafv.com", "here", "34898745");
-		User user6 = new User("John", "Robertson", "65tghj@smith.com", "here", "3893564");
+		User user1 = new User("Bob", "Smith", "bob@smith.com", "here", "", "345678");
+		User user2 = new User("Glen", "Smiths", "basdfg@smith.com", "there", "",  "2323");
+		User user3 = new User("Tom", "Smite", "bob@adrbafd.com", "over here", "", "7865425");
+		User user4 = new User("Alex", "Smile", "bob@6ytghj.com", "over there", "", "456412");
+		User user5 = new User("Dave", "Store", "bob@adfbafv.com", "here", "", "34898745");
+		User user6 = new User("John", "Robertson", "65tghj@smith.com", "here", "", "3893564");
 		
 		um.addUser(user1);
 		xm.createOpenMentor(user1, subCSh3);

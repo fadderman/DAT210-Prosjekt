@@ -35,12 +35,13 @@ public class HibernateUtil {
 		return sessionFactory;
 	}
 	
-	protected void addToDatabase(Object toBeAdded){
+	protected boolean addToDatabase(Object toBeAdded){
+		Object identifier = null;
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{
 			tx = session.beginTransaction();
-			session.save(toBeAdded); 
+			identifier = session.save(toBeAdded); 
 			tx.commit();
 		}catch (HibernateException e) {
 			if (tx!=null) tx.rollback();
@@ -48,6 +49,11 @@ public class HibernateUtil {
 		}finally {
 			session.close();
 		}
+		
+		if(identifier != null)
+			return true;
+		else
+			return false;
 	}
 	
 	protected <T> List<T> fetch(String queryString){

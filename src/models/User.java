@@ -28,8 +28,13 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "location")
-	private String location;
+	@Column(name = "location_city")
+	private String locationCity;
+	
+	@Column(name = "location_country")
+	private String locationCountry;
+	
+	//Location: city, country
 
 	@OneToMany(mappedBy = "mentor")
 	private List<Connection> mentorConnection;
@@ -43,11 +48,12 @@ public class User {
 	public User() {}
 	
 	//TODO Business methods pass empty variables if fields are to be left empty
-	public User(String firstName, String lastName, String email, String location, String identifierOpenID) {
+	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.location = location;
+		this.locationCity = locationCity;
+		this.locationCountry = locationCountry;
 		this.identifierOpenID = identifierOpenID;
 		active = true;
 
@@ -107,12 +113,20 @@ public class User {
 		this.email = email;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getLocationCity() {
+		return locationCity;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocationCity(String locationCity) {
+		this.locationCity = locationCity;
+	}
+
+	public String getLocationCountry() {
+		return locationCountry;
+	}
+
+	public void setLocationCountry(String locationCountry) {
+		this.locationCountry = locationCountry;
 	}
 
 	public List<Connection> getConnectionMentor() {
