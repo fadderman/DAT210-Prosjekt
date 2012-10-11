@@ -24,7 +24,7 @@ public class CreateNewUserServlet extends HttpServlet {
 		String city = request.getParameter("city");
 		String identifier = request.getParameter("identifier");
 		
-		User user = new User(identifier, firstName, lastName, email, city);
+		User user = new User(firstName, lastName, email, city,country, identifier);
 		UserHandler userHandler = new UserHandler();
 		userHandler.addUser(user);
 		

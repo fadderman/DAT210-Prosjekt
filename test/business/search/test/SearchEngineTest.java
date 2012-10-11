@@ -25,11 +25,11 @@ public class SearchEngineTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		userHandler = new UserHandler();
-		userHandler.addUser(new User("openID", "Thomas", "Hinna", "email", "location"));
-		userHandler.addUser(new User("openID", "Thomas", "Nilsen", "email", "location"));
-		userHandler.addUser(new User("openID", "Morten", "Salte", "email", "location"));
-		userHandler.addUser(new User("openID", "Morten", "Bla", "email", "location"));
-		userHandler.addUser(new User("openID", "Mango", "Bli", "email", "location"));
+		userHandler.addUser(new User("Thomas", "Hinna", "email", "city","country", "openID"));
+		userHandler.addUser(new User("Thomas", "Nilsen", "email",  "city","country", "openID"));
+		userHandler.addUser(new User("Morten", "Salte", "email",  "city","country","openID"));
+		userHandler.addUser(new User("Morten", "Bla", "email",  "city","country","openID"));
+		userHandler.addUser(new User("Mango", "Bli", "email",  "city","country", "openID"));
 //		for(int i=0;i<500000;i++){
 //			userHandler.addUser(new User("identifier_openID" + i, "firstName" + i, "lastName" + i,
 //					"email" + i, "location" + i));

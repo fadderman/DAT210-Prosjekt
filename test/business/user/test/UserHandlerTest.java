@@ -20,9 +20,9 @@ public class UserHandlerTest {
 	@Before
 	public void setUp() throws Exception {
 		userHandler = new UserHandler();
-		user1= new User("identifier1", "firstName1", "lastName1", "email1", "location1");
-		user2= new User("identifier2", "firstName2", "lastName2", "email2", "location2");
-		user3= new User("identifier3", "firstName3", "lastName3", "email3", "location3");
+		user1= new User("firstName1", "lastName1", "email1", "city1", "country1", "identifier1");
+		user2= new User("firstName2", "lastName2", "email2", "city2", "country2", "identifier2");
+		user3= new User("firstName3", "lastName3", "email3", "city3", "country3", "identifier3");
 	}
 	
 	@After

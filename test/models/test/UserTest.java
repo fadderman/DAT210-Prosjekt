@@ -39,8 +39,8 @@ public class UserTest {
 	@Test
 	public void testLocation() {
 		String location = "Stavanger";
-		user.setLocation(location);
-		assertEquals(location, user.getLocation());
+		user.setLocationCity(location);
+		assertEquals(location, user.getLocationCity());
 	}
 	
 	@Test

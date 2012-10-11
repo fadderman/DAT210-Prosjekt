@@ -47,20 +47,7 @@ public class User {
 	private List<Comment>  commentList;
 	
 	public User() {}
-	
-	//TODO Business methods pass empty variables if fields are to be left empty
-<<<<<<< HEAD
-	public User(String identifier_openID, String firstName, String lastName, String email, String location) {
-		this.identifierOpenID = identifier_openID;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.location = location;
 
-		
-		mentorList = new ArrayList<Subject>();
-		traineeList = new ArrayList<Subject>();
-=======
 	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -69,10 +56,7 @@ public class User {
 		this.locationCountry = locationCountry;
 		this.identifierOpenID = identifierOpenID;
 		active = true;
-
->>>>>>> origin/Hibernate
 		commentList = new ArrayList<Comment>();
-		
 	}
 	
 	public int getUserID() {

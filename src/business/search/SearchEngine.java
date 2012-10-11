@@ -17,16 +17,16 @@ public class SearchEngine {
 	private static boolean hasBeenRun = false;
 	public void createDummyData(){
 		if(!hasBeenRun){
-			userHandler.addUser(new User("openID", "Thomas", "Hinna", "email", "location"));
-			userHandler.addUser(new User("openID", "Thomas", "Nilsen", "email", "location"));
-			userHandler.addUser(new User("openID", "Morten", "Salte", "email", "location"));
-			userHandler.addUser(new User("openID", "Morten", "Bla", "email", "location"));
-			userHandler.addUser(new User("openID", "Mango", "Bli", "email", "location"));
-			userHandler.addUser(new User("openID", "Thomas", "MMM", "email", "location"));
-			userHandler.addUser(new User("openID", "Morten", "Nilsen", "email", "location"));
-			userHandler.addUser(new User("openID", "Petter", "Salte", "email", "location"));
-			userHandler.addUser(new User("openID", "Aleksander", "Bli", "email", "location"));
-			userHandler.addUser(new User("openID", "Bli", "Aleksandersen", "email", "location"));
+			userHandler.addUser(new User("Thomas", "Hinna", "email", "locationCity", "locationCountry", "identifierOpenID"));
+			userHandler.addUser(new User("Thomas", "Nilsen", "email", "locationCity", "locationCountry", "identifierOpenID"));
+			userHandler.addUser(new User("Morten", "Salte", "email", "locationCity", "locationCountry", "identifierOpenID"));
+			userHandler.addUser(new User("Morten", "Bla", "email", "locationCity", "locationCountry", "identifierOpenID"));
+			userHandler.addUser(new User("Mango", "Bli", "email", "locationCity", "locationCountry", "identifierOpenID"));
+			userHandler.addUser(new User("Thomas", "MMM", "email", "locationCity", "locationCountry", "identifierOpenID"));
+			userHandler.addUser(new User("Morten", "Nilsen", "email", "locationCity", "locationCountry", "identifierOpenID"));
+			userHandler.addUser(new User("Petter", "Salte", "email", "locationCity", "locationCountry", "identifierOpenID"));
+			userHandler.addUser(new User("Alexander", "Bli", "email", "locationCity", "locationCountry", "identifierOpenID"));
+			userHandler.addUser(new User("Bli", "Alexandersen", "email", "locationCity", "locationCountry", "identifierOpenID"));
 			hasBeenRun=true;
 		}
 	}

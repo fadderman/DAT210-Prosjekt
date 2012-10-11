@@ -106,8 +106,6 @@ public class Connection {
 		this.connectionID = connectionID;
 	}
 
-<<<<<<< HEAD
-=======
 	public boolean isActive() {
 		return active;
 	}
@@ -115,5 +113,4 @@ public class Connection {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
->>>>>>> origin/Hibernate
 }
