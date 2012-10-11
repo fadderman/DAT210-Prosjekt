@@ -1,5 +1,5 @@
 package models;
 
-public class FutureField {
+public class FutureCategory {
 	//TODO future category for expansion
 }

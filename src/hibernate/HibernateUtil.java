@@ -100,17 +100,19 @@ public class HibernateUtil {
 				Integer critInt = (Integer) criteria1;
 				query.setInteger(queryVariable1, critInt.intValue());
 			}
-			else if(criteria1.getClass() == Date.class)
+			else if(criteria1.getClass() == Date.class){
 				query.setDate(queryVariable1, (Date)criteria1);
+			}
 			if(criteria2.getClass() == String.class){
-				query.setString(queryVariable2, (String) criteria1);
+				query.setString(queryVariable2, (String) criteria2);
 			}
 			else if(criteria2.getClass() == Integer.class){
-				Integer critInt = (Integer) criteria1;
+				Integer critInt = (Integer) criteria2;
 				query.setInteger(queryVariable2, critInt.intValue());
 			}
-			else if(criteria2.getClass() == Date.class)
-				query.setDate(queryVariable2, (Date)criteria1);
+			else if(criteria2.getClass() == Date.class){
+				query.setDate(queryVariable2, (Date)criteria2);
+			}
 			results = query.list();
 			tx.commit();
 		}catch (HibernateException e) {

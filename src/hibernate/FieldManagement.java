@@ -37,7 +37,7 @@ public class FieldManagement extends HibernateUtil{
 	}
 	
 	public Field getByID(int id){
-		String queryString = "from models.Field WHERE id = :id";
+		String queryString = "from models.Field where id = :id";
 		String queryVariable = "id";
 		return (Field) fetchSingle(queryString, queryVariable, new Integer(id));
 	}
