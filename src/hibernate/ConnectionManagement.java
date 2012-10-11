@@ -10,13 +10,25 @@ public class ConnectionManagement extends HibernateUtil{
 		sessionFactory = getSessionFactory();
 	}
 	
-	public void createConnection(User mentor, User trainee, Subject subject){
-		Connection connection = new Connection(mentor, trainee, subject);
+	public void createOpenMentor(User mentor, Field field){
+		Connection connection = new Connection(field);
+		connection.setMentor(mentor);
 		addConnection(connection);
 	}
 	
-	public void createConnection(User mentor, User trainee, Subject subject, int difficultyLevel){
-		Connection connection = new Connection(mentor, trainee, subject, difficultyLevel);
+	public void createOpenTrainee(User trainee, Field field){
+		Connection connection = new Connection(field);
+		connection.setTrainee(trainee);
+		addConnection(connection);
+	}
+	
+	public void createConnection(User mentor, User trainee, Field field){
+		Connection connection = new Connection(mentor, trainee, field);
+		addConnection(connection);
+	}
+	
+	public void createConnection(User mentor, User trainee, Field field, int difficultyLevel){
+		Connection connection = new Connection(mentor, trainee, field, difficultyLevel);
 		addConnection(connection);
 	}
 
@@ -24,10 +36,31 @@ public class ConnectionManagement extends HibernateUtil{
 		addToDatabase(connection);
 	}
 	
-	public List<Connection> getByID(int id){
-		String queryString = "from models.Connection where id = :id";
-		String queryVariable = "id";
-		return fetch(queryString, queryVariable, id);
+	public List<Connection> getAllConnections(){
+		String queryString = ("from models.Connection where active = true"); 
+		return fetch(queryString);
+	}
+	public List<Connection> getAllInactiveConnections(){
+		String queryString = ("from models.Connection where active = false"); 
+		return fetch(queryString);
+	}
+	
+	public Connection getByID(int id){
+		String queryString = "from models.Connection where connectionID = :id";
+		String queryVariable = "connectionID";
+		return (Connection) fetchSingle(queryString, queryVariable, new Integer(id));
+	}
+	
+	public List<Connection> getByMentor(User user){
+		String queryString = "from models.Connection where mentor = :userID";
+		String queryVariable = "userID";
+		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
+	}
+	
+	public List<Connection> getByTrainee(User user){
+		String queryString = "from models.Connection where trainee = :userID";
+		String queryVariable = "userID";
+		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
 	}
 	
 	public void updateDifficultyLevel(Connection connection, int difficultyLevel){
@@ -44,6 +77,12 @@ public class ConnectionManagement extends HibernateUtil{
 		String queryString = "update models.Connection set active = :active where id = :id";
 		String queryVariable = "active";
 		updateSingle(queryString, queryVariable, active, connection.getConnectionID());
+	}
+	
+	public List<Comment> fetchCommentList(Connection connection){
+		String queryString = "from models.Comment where connection = :connection";
+		String queryVariable = "connection";
+		return fetch(queryString, queryVariable, connection);
 	}
 	
 	

@@ -10,18 +10,6 @@ import javax.persistence.*;
 @Table(name = "CONNECTION")
 public class Connection {
 	
-	@ManyToOne
-	@JoinColumn(name = "connection_mentor_fk")
-	private User mentor;
-
-	@ManyToOne
-	@JoinColumn(name = "connection_trainee_fk")
-	private User trainee;
-	
-	@ManyToOne
-	@JoinColumn(name = "subject_fk")
-	private Subject subject;
-	
 	@Id @GeneratedValue
 	@Column(name = "connection_id")
 	private int connectionID;
@@ -32,6 +20,18 @@ public class Connection {
 	@Column(name = "difficulty_level")
 	private int difficultyLevel;
 	
+	@ManyToOne
+	@JoinColumn(name = "mentor_connection_fk")
+	private User mentor;
+
+	@ManyToOne
+	@JoinColumn(name = "trainee_connection_fk")
+	private User trainee;
+	
+	@ManyToOne
+	@JoinColumn(name = "field_fk")
+	private Field field;
+	
 	@OneToMany(mappedBy = "connection")
 	@OrderBy("timestamp")
 	private List<Comment> comments;
@@ -40,15 +40,21 @@ public class Connection {
 		
 	}
 	
-	public Connection(User mentor, User trainee, Subject subject) {
+	public Connection(Field field){
+		this.field = field;
+		active = true;
+	}
+	
+	public Connection(User mentor, User trainee, Field field) {
 		this.mentor = mentor;
 		this.trainee = trainee;
-		this.subject = subject;
+		this.field = field;
+		active = true;
 		comments = new ArrayList<Comment>();
 	}
 	
-	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel) {
-		this(mentor, trainee, subject);
+	public Connection(User mentor, User trainee, Field field, int difficultyLevel) {
+		this(mentor, trainee, field);
 		this.difficultyLevel = difficultyLevel;
 	}
 
@@ -68,12 +74,12 @@ public class Connection {
 		this.trainee = trainee;
 	}
 
-	public Subject getSubject() {
-		return subject;
+	public Field getField() {
+		return field;
 	}
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public void setField(Field field) {
+		this.field = field;
 	}
 
 	public int getDifficultyLevel() {
