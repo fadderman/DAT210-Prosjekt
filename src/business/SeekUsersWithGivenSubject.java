@@ -2,6 +2,7 @@ package business;
 
 import hibernate.UserManagement;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import models.User;
@@ -21,7 +22,10 @@ public class SeekUsersWithGivenSubject {
 	}
 	
 	private LinkedList<User> findMentors(){
-		
+		LinkedList<User> tempFoundMentors = new LinkedList<User>();
+		for(User user : mentors){
+			
+		}
 		return mentors;
 	}
 }
