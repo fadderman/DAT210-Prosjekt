@@ -5,6 +5,7 @@ import hibernate.UserManagement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import models.Connection;
 import models.User;
 
 public class SeekUsersWithGivenSubject {
@@ -24,8 +25,15 @@ public class SeekUsersWithGivenSubject {
 	private LinkedList<User> findMentors(){
 		LinkedList<User> tempFoundMentors = new LinkedList<User>();
 		for(User user : mentors){
-			
+			ArrayList<Connection> con = (ArrayList<Connection>) user.getConnectionMentor();
+			if(con.isEmpty()){
+				System.out.println("This user is not a mentor");
+			}
+			else {
+				tempFoundMentors.add(user);
+			}
 		}
+		mentors = tempFoundMentors;
 		return mentors;
 	}
 }
