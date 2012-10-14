@@ -1,25 +1,27 @@
 package business;
 
+import hibernate.SubjectManagement;
 import hibernate.UserManagement;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 import models.Connection;
+import models.Subject;
 import models.User;
 
 public class SeekUsersWithGivenSubject {
 	
-	//skal bruken en metode fra Controlleren får å få inn i hvilket faget mentor bli søkt i
-	//tom for nå
-	private String subject;
-	//skal bruk en metode fra usermanagement for å få
+	//skal bruk en metode fra usermanagement for å få en liste med brukere
 	private LinkedList<User> mentors;
+	private LinkedList<Subject> subjects; 
 	
 	private UserManagement userM = new UserManagement();
+	private SubjectManagement subjectm = new SubjectManagement();
 	
-	public SeekUsersWithGivenSubject() {
+	public SeekUsersWithGivenSubject(String subject) {
 		mentors = (LinkedList<User>) userM.listAllUsers();
+		subjects = (LinkedList<Subject>) subjectm.getByTitle(subject);
 	}
 	
 	private LinkedList<User> findMentors(){
