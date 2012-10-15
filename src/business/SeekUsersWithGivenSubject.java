@@ -13,7 +13,7 @@ import models.User;
 public class SeekUsersWithGivenSubject {
 	
 	//skal bruk en metode fra usermanagement for å få en liste med brukere
-	private LinkedList<User> mentors;
+	private static LinkedList<User> mentors;
 	private LinkedList<Subject> subjects; 
 	
 	private UserManagement userM = new UserManagement();
@@ -24,7 +24,7 @@ public class SeekUsersWithGivenSubject {
 		subjects = (LinkedList<Subject>) subjectm.getByTitle(subject);
 	}
 	
-	private LinkedList<User> findMentors(){
+	private static LinkedList<User> findMentors(){
 		LinkedList<User> tempFoundMentors = new LinkedList<User>();
 		for(User user : mentors){
 			ArrayList<Connection> con = (ArrayList<Connection>) user.getConnectionMentor();
@@ -35,7 +35,15 @@ public class SeekUsersWithGivenSubject {
 				tempFoundMentors.add(user);
 			}
 		}
-		mentors = tempFoundMentors;
-		return mentors;
+		return tempFoundMentors;
+	}
+	
+	public LinkedList<User> getMentorsWithSbject() {
+		LinkedList<User> mentorsWithSubject = findMentors();
+		for (User user: mentors){
+			
+		}
+		return mentorsWithSubject;
+		
 	}
 }
