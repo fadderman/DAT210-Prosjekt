@@ -11,20 +11,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MentorsWithSubjectsTest {
-	private LinkedList<User> mentors;
+	private LinkedList<User> mentorswithsubject;
 
 	@Before
 	public void setUp() throws Exception {
-		mentors = new LinkedList<User>();
+		mentorswithsubject = new LinkedList<User>();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		mentors = null;
+		mentorswithsubject = null;
 	}
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void getMentorWithSubjectTest() {
+		assertNotNull(mentorswithsubject);
 	}
 
 }
