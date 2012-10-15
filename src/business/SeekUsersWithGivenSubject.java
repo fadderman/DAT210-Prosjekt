@@ -20,7 +20,7 @@ public class SeekUsersWithGivenSubject {
 	
 	
 	public SeekUsersWithGivenSubject(String subject) {
-		mentors = (LinkedList<User>)  (new UserManagement().listAllUsers());
+		mentors = findMentors();
 		this.subject = subject;
 	}
 	
