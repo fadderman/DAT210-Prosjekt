@@ -21,7 +21,6 @@ public class SeekUsersWithGivenSubject {
 	
 	public SeekUsersWithGivenSubject(String subject) {
 		mentors = (LinkedList<User>)  (new UserManagement().listAllUsers());
-		subjects = (LinkedList<Subject>) (new SubjectManagement().getByTitle(subject));
 		this.subject = subject;
 	}
 	
