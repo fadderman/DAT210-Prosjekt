@@ -179,6 +179,10 @@ public class HibernateUtil {
 			if(newValue.getClass() == Date.class){
 				query.setDate(queryVariable, (Date) newValue);
 			}
+			if(newValue.getClass() == Boolean.class){
+				Boolean newBool = (Boolean) newValue;
+				query.setBoolean(queryVariable, newBool.booleanValue());
+			}
 			updateCounter = query.executeUpdate();
 			if(updateCounter < 1)
 				System.out.println("No entities updated.");

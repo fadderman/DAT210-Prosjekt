@@ -12,8 +12,8 @@ public class UserManagement extends HibernateUtil{
 		sessionFactory = getSessionFactory();
 	}
 
-	public void createUser(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID){
-		addUser(new User(firstName, lastName, email, locationCity, locationCountry, identifierOpenID));
+	public boolean createUser(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID){
+		return addUser(new User(firstName, lastName, email, locationCity, locationCountry, identifierOpenID));
 	}
 
 	public boolean addUser(User user) {
@@ -21,17 +21,17 @@ public class UserManagement extends HibernateUtil{
 	}
 	
 	public List<User> listAllUsers(){
-		String queryString = ("from model.User where active = true");
+		String queryString = ("from models.User where active = true");
 		return fetch(queryString);
 	}
 	
 	public List<User> listAllInactiveUsers(){
-		String queryString = ("from model.User where active = false");
+		String queryString = ("from models.User where active = false");
 		return fetch(queryString);
 	}
 	
 	public User getByID(int id){
-		String queryString = "from models.User where subjectID = :id";
+		String queryString = "from models.User where userID = :id";
 		String queryVariable = "id";
 		return (User) fetchSingle(queryString, queryVariable, new Integer(id));
 	}
@@ -43,16 +43,29 @@ public class UserManagement extends HibernateUtil{
 		return multiFetch(queryString, queryVariable1, queryVariable2, firstName, lastName);
 	}
 	
-	public List<User> getByEmail(String email){
+	public User getByEmail(String email){
 		String queryString = "from models.User where email = :email and active  = true";
 		String queryVariable = "email";
-		return fetch(queryString, queryVariable, email);
+		return (User) fetchSingle(queryString, queryVariable, email);
 	}
 	
-	public List<User> getByLocation(String location){
-		String queryString = "from models.User where location = :location and active = true";
-		String queryVariable = "location";
-		return fetch(queryString, queryVariable, location);
+	public List<User> getByLocation(String city, String country){
+		String queryString = "from models.User where locationCity = :city and locationCountry = :country and active = true";
+		String queryVariable1 = "city";
+		String queryVariable2 = "country";
+		return multiFetch(queryString, queryVariable1, queryVariable2, city, country);
+	}
+	
+	public List<User> getByCity(String city){
+		String queryString = "from models.User where locationCity = :city and active = true";
+		String queryVariable = "city";
+		return fetch(queryString, queryVariable, city);
+	}
+	
+	public List<User> getByCountry(String country){
+		String queryString = "from models.User where locationCountry = :country and active = true";
+		String queryVariable = "country";
+		return fetch(queryString, queryVariable, country);
 	}
 	
 	public List<User> getByOpenId(String identifierOpenID){
@@ -73,16 +86,27 @@ public class UserManagement extends HibernateUtil{
 		updateSingle(queryString, queryVariable, newLastName, user.getUserID());
 	}
 	
-	public void updateLocation(String newLocation, User user){
-		String queryString = "update models.User set location = :newLocation where userID = :id";
-		String queryVariable = "newLocation";
-		updateSingle(queryString, queryVariable, newLocation, user.getUserID());
+	public void updateLocation(String newCity, String newCountry, User user){
+		updateCity(newCity, user);
+		updateCountry(newCountry, user);
+	}
+	
+	public void updateCity(String newCity, User user){
+		String queryString = "update models.User set locationCity = :newCity where userID = :id";
+		String queryVariable = "newCity";
+		updateSingle(queryString, queryVariable, newCity, user.getUserID());
+	}
+	
+	public void updateCountry(String newCountry, User user){
+		String queryString = "update models.User set locationCountry = :newCountry where userID = :id";
+		String queryVariable = "newCountry";
+		updateSingle(queryString, queryVariable, newCountry, user.getUserID());
 	}
 	
 	public void changeStatus(User user, boolean active){
-		String queryString = "update models.User set active = :active where UserID = :id";
+		String queryString = "update models.User set active = :active where userID = :id";
 		String queryVariable = "active";
-		updateSingle(queryString, queryVariable, active, user.getUserID());
+		updateSingle(queryString, queryVariable, new Boolean(active), user.getUserID());
 	}
 	
 	public List<Connection> fetchMentorConnection(User user){
@@ -91,7 +115,7 @@ public class UserManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
 	}
 	
-	public List<Connection> fetchTraineeConnection(User user){
+	public List<Connection> fetchTraineeConnections(User user){
 		String queryString = "from models.Connection where trainee = :userID"; 
 		String queryVariable = "userID";
 		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
@@ -118,7 +142,7 @@ public class UserManagement extends HibernateUtil{
 	}
 	
 	public List<User> getTraineeFields(User user){
-		List<Connection> fetchedConnections = fetchTraineeConnection(user);
+		List<Connection> fetchedConnections = fetchTraineeConnections(user);
 		List<User> traineeFieldList = new ArrayList<User>();
 		String queryString = "from models.Field field where :connectionID in elements(field.connectionList)";
 		String queryVariable = "connectionID";
