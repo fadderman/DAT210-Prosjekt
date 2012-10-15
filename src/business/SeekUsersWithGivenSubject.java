@@ -13,20 +13,22 @@ import models.User;
 public class SeekUsersWithGivenSubject {
 	
 	//skal bruk en metode fra usermanagement for å få en liste med brukere
-	private static LinkedList<User> mentors;
-	private LinkedList<Subject> subjects; 
+	private LinkedList<User> mentors;
+	private LinkedList<Subject> subjects;
 	
-	private UserManagement userM = new UserManagement();
-	private SubjectManagement subjectm = new SubjectManagement();
+	private String subject;
+	
 	
 	public SeekUsersWithGivenSubject(String subject) {
-		mentors = (LinkedList<User>) userM.listAllUsers();
-		subjects = (LinkedList<Subject>) subjectm.getByTitle(subject);
+		mentors = (LinkedList<User>)  (new UserManagement().listAllUsers());
+		subjects = (LinkedList<Subject>) (new SubjectManagement().getByTitle(subject));
+		this.subject = subject;
 	}
 	
 	private static LinkedList<User> findMentors(){
+		LinkedList<User> users = (LinkedList<User>)  (new UserManagement().listAllUsers());
 		LinkedList<User> tempFoundMentors = new LinkedList<User>();
-		for(User user : mentors){
+		for(User user : users){
 			ArrayList<Connection> con = (ArrayList<Connection>) user.getConnectionMentor();
 			if(con.isEmpty()){
 				System.out.println("This user is not a mentor");
@@ -39,11 +41,22 @@ public class SeekUsersWithGivenSubject {
 	}
 	
 	public LinkedList<User> getMentorsWithSbject() {
-		LinkedList<User> mentorsWithSubject = findMentors();
+		LinkedList<User> mentorsWithSubject = new LinkedList<User>();
 		for (User user: mentors){
+			ArrayList<Connection> con = (ArrayList<Connection>) user.getConnectionMentor();
+			for (Connection conn : con){
+				if(subject == conn.getField().getSubject().getTitle()){
+					mentorsWithSubject.add(user);
+				} 
+				if(subject == conn.getField().getTitle()) {
+					mentorsWithSubject.add(user);
+				}
+				else {
+					System.out.println("this mentor has not look for subject");
+				}
+			}
 			
 		}
 		return mentorsWithSubject;
-		
 	}
 }
