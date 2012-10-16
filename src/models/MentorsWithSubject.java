@@ -8,6 +8,10 @@ import business.SeekUsersWithGivenSubject;
 public class MentorsWithSubject {
 	private ArrayList<User> mentorsWithSubject;
 	
+	public MentorsWithSubject(){
+		
+	}
+	
 	public MentorsWithSubject(String subject){
 		mentorsWithSubject = new SeekUsersWithGivenSubject(subject).getMentorsWithSbject();
 	}
@@ -16,8 +20,8 @@ public class MentorsWithSubject {
 		return mentorsWithSubject;
 	}
 
-	public void setMentorsWithSubject(ArrayList<User> mentorsWithSubject) {
-		this.mentorsWithSubject = mentorsWithSubject;
+	public void setMentorsWithSubject(String subject) {
+		mentorsWithSubject = new SeekUsersWithGivenSubject(subject).getMentorsWithSbject();
 	}
 	
 }
