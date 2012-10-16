@@ -22,7 +22,7 @@
 
 		<!--left column -->
 		<h4 style="text-shadow: #000000 3px 3px 8px; color: white;"><%=language.getFirsttime_label_personal() %></h4>
-		<form action="createNewUser" method="post">
+		<form action="index.jsp" method="post">
 			<div class="well span11" style="box-shadow: 5px 5px 8px -1px #222;">
 				<table class="tableBorderless">
 					<tbody>

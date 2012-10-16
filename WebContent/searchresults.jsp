@@ -10,13 +10,23 @@
 
 <%
 	ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
-	String query = request.getParameter("query").trim();
+	if(users != null)
+		session.setAttribute("users", users);
+	else
+		users = (ArrayList<User>)session.getAttribute("users");
 	
+	String query = request.getParameter("query");//.trim();
+	if(query != null)
+		session.setAttribute("query", query);
+	else
+		query = (String)session.getAttribute("query");
+	query = query.trim();
 	pageContext.setAttribute("numResults", users.size());
 	pageContext.setAttribute("emptyQuery", query.isEmpty());
 	pageContext.setAttribute("query", query);
 %>
 <body>
+<%session.setAttribute("CurrentPage", "/index.jsp"); %>
 <p />
 <div class="container well" style="box-shadow: 5px 5px 8px -1px #222;">
 	<div class="row-fluid">
@@ -60,7 +70,7 @@
 	
 	
 		<div class="row-fluid">
-			<div class="container well span12">
+			<div class="container well span12" style="box-shadow: 1px 1px 8px -1px #222;" >
 				
 				<div class="span1">
 					<div class="row-fluid">

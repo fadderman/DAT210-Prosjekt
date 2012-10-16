@@ -19,64 +19,34 @@ public class User {
 
 	@Column(name = "identifier_openID")
 	private String identifierOpenID;
-	
+
 	@Column(name = "first_name")
 	private String firstName;
-	
+
 	@Column(name = "last_Name")
 	private String lastName;
-	
+
 	@Column(name = "email")
 	private String email;
-	
-<<<<<<< HEAD
+
 	@Column(name = "location_city")
 	private String locationCity;
-	
+
 	@Column(name = "location_country")
 	private String locationCountry;
-	
+
 	//Location: city, country
 
 	@OneToMany(mappedBy = "mentor")
 	private List<Connection> mentorConnection;
-	
+
 	@OneToMany(mappedBy = "trainee")
 	private List<Connection> traineeConnection;
-=======
-	@Column(name = "location")
-	private String location;
-	
-	//TODO setup indexing
-	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL,
-			fetch = FetchType.EAGER)
-	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
-			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
-	@OrderBy("lastName")
-	private List<Subject> mentorList;
-	
-	//TODO setup indexing
-	@ManyToMany(targetEntity = models.Subject.class,
-			cascade = CascadeType.ALL,
-			fetch = FetchType.EAGER)
-	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
-			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
-	@OrderBy("lastName")
-	private List<Subject> traineeList;
-	
-	@OneToMany(mappedBy = "mentor")
-	private List<Connection> connectionMentor;
-	
-	@OneToMany(mappedBy = "trainee")
-	private List<Connection> connectionTrainee;
->>>>>>> origin/lordAlek
-	
+
 	@OneToMany(mappedBy = "author")
 	private List<Comment>  commentList;
-	
+
 	public User() {}
-<<<<<<< HEAD
 
 	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
 		this.firstName = firstName;
@@ -86,28 +56,9 @@ public class User {
 		this.locationCountry = locationCountry;
 		this.identifierOpenID = identifierOpenID;
 		active = true;
-=======
-	
-	//TODO Business methods pass empty variables if fields are to be left empty
-
-//	public User(String identifier_openID, String firstName, String lastName, String email, String location) {
-//		this.identifierOpenID = identifier_openID;
-//	}
-	
-	public User( String identifierOpenID, String firstName, String lastName, String email, String location) {
-
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.location = location;
-		this.identifierOpenID = identifierOpenID;
-		
-		mentorList = new ArrayList<Subject>();
-		traineeList = new ArrayList<Subject>();
->>>>>>> origin/lordAlek
 		commentList = new ArrayList<Comment>();
 	}
-	
+
 	public int getUserID() {
 		return userID;
 	}
@@ -115,7 +66,7 @@ public class User {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
-	
+
 	public boolean isActive() {
 		return active;
 	}
@@ -123,7 +74,7 @@ public class User {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
+
 	public String getIdentifierOpenID() {
 		return identifierOpenID;
 	}
@@ -147,7 +98,7 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public String getFullName(){
 		return this.firstName + " " + this.lastName;
 	}
@@ -177,7 +128,6 @@ public class User {
 	}
 
 	public List<Connection> getConnectionMentor() {
-<<<<<<< HEAD
 		return mentorConnection;
 	}
 
@@ -191,21 +141,6 @@ public class User {
 
 	public void setConnectionTrainee(List<Connection> connectionTrainee) {
 		this.traineeConnection = connectionTrainee;
-=======
-		return connectionMentor;
-	}
-
-	public void setConnectionMentor(List<Connection> connectionMentor) {
-		this.connectionMentor = connectionMentor;
-	}
-
-	public List<Connection> getConnectionTrainee() {
-		return connectionTrainee;
-	}
-
-	public void setConnectionTrainee(List<Connection> connectionTrainee) {
-		this.connectionTrainee = connectionTrainee;
->>>>>>> origin/lordAlek
 	}
 
 	public List<Comment> getCommentList() {
@@ -215,7 +150,7 @@ public class User {
 	public void setCommentList(ArrayList<Comment> commentList) {
 		this.commentList = commentList;
 	}
-	
+
 	/*//TODO broken may to many relationship
 	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Field.class,
@@ -258,6 +193,5 @@ public class User {
 		this.traineeList = traineeList;
 	}
 	*/
-	
-}
 
+}
