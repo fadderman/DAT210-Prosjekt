@@ -11,6 +11,8 @@ import hibernate.UserManagement;
 
 
 
+import models.Subject;
+
 import org.junit.*;
 
 public class SubjectManagementTest {
@@ -52,10 +54,33 @@ public class SubjectManagementTest {
 	}
 	
 	@Test
-	public void testGetByID(){
+	public void testGetAllSubjects(){
 		
 	}
 	
+	@Test
+	public void testGetByTitle(){
+		Subject test = (Subject) sm.getByTitle("Java3D");
+		assertEquals(test.getTitle(), "Java3D");
+	}
+	
+	@Test
+	public void testGetBySingleTitle(){
+		
+	}
+	
+	@Test
+	public void testUpdateTitle(){
+		
+	}
+	
+	@Test
+	public void testUpdateDescription(){
+		
+	}
+	
+
+
 
 
 }
