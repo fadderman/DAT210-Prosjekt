@@ -52,7 +52,7 @@ public class SearchEngineTest {
 	public void searchForThomasAndExpectThomasAsSuggested() {
 		String searchFor = "Thomas";
 		SearchSuggestions result = searchEngine.suggest(searchFor);
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
+		ArrayList<UserSuggestion> userRes = result.getUserSuggestions();
 		assertTrue(!userRes.isEmpty());
 		for(int i=0;i<userRes.size();i++){
 			assertEquals(searchFor, userRes.get(i).getFirstname());
@@ -73,7 +73,7 @@ public class SearchEngineTest {
 	@Test
 	public void searchForHinnaAndExpectHinnaAsSuggested() {
 		SearchSuggestions result = searchEngine.suggest("Hinna");
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
+		ArrayList<UserSuggestion> userRes = result.getUserSuggestions();
 		assertTrue(!userRes.isEmpty());
 		for(int i=0;i<userRes.size();i++){
 			assertEquals("Hinna", userRes.get(i).getLastname());
@@ -94,7 +94,7 @@ public class SearchEngineTest {
 //		System.out.println("starting timedtest");
 //		long startTime = System.currentTimeMillis();
 		SearchSuggestions result = searchEngine.suggest("Hinna");
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
+		ArrayList<UserSuggestion> userRes = result.getUserSuggestions();
 		assertTrue(!userRes.isEmpty());
 		for(int i=0;i<userRes.size();i++){
 			assertEquals("Thomas", userRes.get(i).getFirstname());
@@ -118,7 +118,7 @@ public class SearchEngineTest {
 	@Test
 	public void searchForHehmaAndExpectHinnaAsSuggested() {
 		SearchSuggestions result = searchEngine.suggest("Hehma");
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
+		ArrayList<UserSuggestion> userRes = result.getUserSuggestions();
 		assertTrue(!userRes.isEmpty());
 		for(int i=0;i<userRes.size();i++){
 			assertEquals("Hinna", userRes.get(i).getLastname());
@@ -138,7 +138,7 @@ public class SearchEngineTest {
 	@Test
 	public void searchForT1234sAndExpectThomasAsSuggested() {
 		SearchSuggestions result = searchEngine.suggest("t1234s");
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
+		ArrayList<UserSuggestion> userRes = result.getUserSuggestions();
 		assertTrue(!userRes.isEmpty());
 		for(int i=0;i<userRes.size();i++){
 			assertEquals("Thomas", userRes.get(i).getFirstname());
@@ -158,7 +158,7 @@ public class SearchEngineTest {
 	@Test
 	public void searchForThomasHinnaAndExpectFirstnameThomasAsSuggested() {
 		SearchSuggestions result = searchEngine.suggest("Thomas Hinna");
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
+		ArrayList<UserSuggestion> userRes = result.getUserSuggestions();
 		assertTrue(!userRes.isEmpty());
 		for(int i=0;i<userRes.size();i++){
 			assertEquals("Thomas", userRes.get(i).getFirstname());

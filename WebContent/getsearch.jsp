@@ -17,7 +17,7 @@
     System.out.println(query);
     
     SearchSuggestions suggestions = engine.suggest(query);
-    ArrayList<UserSuggestion> userSuggestions = suggestions.getUserResults();
+    ArrayList<UserSuggestion> userSuggestions = suggestions.getUserSuggestions();
  
     for(int i=0;i<userSuggestions.size();i++) {
     	String suggestion = "";

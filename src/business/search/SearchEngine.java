@@ -1,18 +1,20 @@
 package business.search;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import models.Subject;
 import models.User;
-
+import business.subject.SubjectHandler;
 import business.user.UserHandler;
 
 public class SearchEngine {
 
 	private UserHandler userHandler;
+	private SubjectHandler subjectHandler;
 
 	public SearchEngine(){
 		userHandler = new UserHandler();
+		subjectHandler = new SubjectHandler();
 	}
 	private static boolean hasBeenRun = false;
 	public void createDummyData(){
@@ -40,7 +42,8 @@ public class SearchEngine {
 		
 		SearchSuggestions result = new SearchSuggestions();
 
-		result.setUserResults(suggestUsers(query));
+		result.setUserSuggestions(suggestUsers(query));
+		result.setSubjectSuggestions(suggestSubjects(query));
 		return result;
 	}
 
@@ -49,12 +52,14 @@ public class SearchEngine {
 
 		if(!userSuggestions.isEmpty())return userSuggestions;
 
-		int dottedStringLength = query.length()-2;
-		String dottedString = "";
-		for (int i=0;i<dottedStringLength;i++){
-			dottedString +=".";
-		}
-		query = query.charAt(0) + dottedString + query.charAt(query.length()-1);
+//		int dottedStringLength = query.length()-2;
+//		String dottedString = "";
+//		for (int i=0;i<dottedStringLength;i++){
+//			dottedString +=".";
+//		}
+//		query = query.charAt(0) + dottedString + query.charAt(query.length()-1);
+		
+		query = createDottedString(query);
 		userSuggestions = suggestUsersUsingDottedString(query);		
 		return userSuggestions;
 
@@ -86,37 +91,47 @@ public class SearchEngine {
 			}else if(tmpUser.getLastName().toLowerCase().matches(query)){
 				userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
 			}else if((tmpUser.getFirstName().toLowerCase() +" " +  tmpUser.getLastName().toLowerCase()).startsWith(query)){
-			userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
-		}
+				userSuggestions.add(new UserSuggestion(tmpUser.getUserID(), tmpUser.getFirstName(), tmpUser.getLastName()));
+			}
 		}
 		return userSuggestions;
 	}
 	
-	public SearchResults search(String query){
-		query = query.toLowerCase();
-		query = query.trim();
-		SearchResults results = new SearchResults();
-		results.setUserResults(searchForUsers(query));
-		
-		return results;
-	}
-	
-	private ArrayList<User> searchForUsers(String query){
-		ArrayList<User> userResults = searchForUsersUsingString(query);
-
-		if(!userResults.isEmpty())return userResults;
-
+	private String createDottedString(String query){
 		int dottedStringLength = query.length()-2;
 		String dottedString = "";
 		for (int i=0;i<dottedStringLength;i++){
 			dottedString +=".";
 		}
-		query = query.charAt(0) + dottedString + query.charAt(query.length()-1);
+		return query.charAt(0) + dottedString + query.charAt(query.length()-1);
+	}
+
+	public SearchResults search(String query){
+		query = query.toLowerCase();
+		query = query.trim();
+		SearchResults results = new SearchResults();
+		results.setUserResults(searchForUsers(query));
+
+		return results;
+	}
+
+	private ArrayList<User> searchForUsers(String query){
+		ArrayList<User> userResults = searchForUsersUsingString(query);
+
+		if(!userResults.isEmpty())return userResults;
+
+//		int dottedStringLength = query.length()-2;
+//		String dottedString = "";
+//		for (int i=0;i<dottedStringLength;i++){
+//			dottedString +=".";
+//		}
+//		query = query.charAt(0) + dottedString + query.charAt(query.length()-1);
+		query = createDottedString(query);
 		userResults = searchForUsersUsingDottedString(query);
-		
+
 		return userResults;
 	}
-	
+
 	private ArrayList<User> searchForUsersUsingString(String query) {
 		ArrayList<User> userResults = new ArrayList<User>();
 		User tmpUser;
@@ -132,7 +147,7 @@ public class SearchEngine {
 		}
 		return userResults;
 	}
-	
+
 	private ArrayList<User> searchForUsersUsingDottedString(String query) {
 		ArrayList<User> userResults = new ArrayList<User>();
 		User tmpUser;
@@ -149,4 +164,43 @@ public class SearchEngine {
 		return userResults;
 	}
 	
+	
+	private ArrayList<SubjectSuggestion> suggestSubjects(String query) {
+		ArrayList<SubjectSuggestion> subjectSuggestions=suggestSubjectUsingString(query);
+
+		if(!subjectSuggestions.isEmpty())return subjectSuggestions;
+		
+		query = createDottedString(query);
+		subjectSuggestions = suggestSubjectUsingDottedString(query);
+		
+		return subjectSuggestions;
+	}
+
+	private ArrayList<SubjectSuggestion> suggestSubjectUsingString(String query) {
+		ArrayList<SubjectSuggestion> subjectSuggestion = new ArrayList<SubjectSuggestion>();
+		Subject tmpSubject;
+		for(int i=0;i<subjectHandler.getSubjectListSize();i++){
+			tmpSubject=subjectHandler.getSubjectByIndex(i);
+			if(tmpSubject.getTitle().toLowerCase().startsWith(query)){
+				subjectSuggestion.add(new SubjectSuggestion(tmpSubject.getTitle()));
+			}
+		}
+		
+		return subjectSuggestion;
+	}
+	
+	private ArrayList<SubjectSuggestion> suggestSubjectUsingDottedString(String query) {
+		ArrayList<SubjectSuggestion> subjectSuggestion = new ArrayList<SubjectSuggestion>();
+		Subject tmpSubject;
+		for(int i=0;i<subjectHandler.getSubjectListSize();i++){
+			tmpSubject=subjectHandler.getSubjectByIndex(i);
+			if(tmpSubject.getTitle().toLowerCase().matches(query)){
+				subjectSuggestion.add(new SubjectSuggestion(tmpSubject.getTitle()));
+			}
+		}
+		
+		return subjectSuggestion;
+	}
+	
+
 }
