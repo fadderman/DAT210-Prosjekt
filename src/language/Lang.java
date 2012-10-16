@@ -24,4 +24,6 @@ public abstract class Lang {
 	public abstract String getFirsttime_drop_intermediate();
 	public abstract String getFirsttime_drop_expert();
 	public abstract String getFirsttime_drop_loreMaster();
+	public abstract String getFirsttime_table_course();
+	public abstract String getFirsttime_table_subject();
 }

@@ -21,31 +21,31 @@
 <%session.setAttribute("CurrentPage", "/firstTimeLogin.jsp");%>
 
 		<!--left column -->
-		<h4 style="text-shadow: #000000 3px 3px 8px; color: white;">Personal</h4>
+		<h4 style="text-shadow: #000000 3px 3px 8px; color: white;"><%=language.getFirsttime_label_personal() %></h4>
 		<form action="createNewUser" method="post">
 			<div class="well span11" style="box-shadow: 5px 5px 8px -1px #222;">
 				<table class="tableBorderless">
 					<tbody>
 						<tr>
-							<td><label class="pull-right">First name:</label></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_fName() %></label></td>
 							<td><input name="firstName" type="text"
 								value="<%=user.getFirstName()%>"></td>
-							<td><label class="pull-right">Last name:</label></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_lName() %></label></td>
 							<td><input name="lastName" type="text"
 								value="<%=user.getLastName()%>"></td>
 						</tr>
 						<tr>
-							<td><label class="pull-right">Email:</label></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_email() %></label></td>
 							<td><input name="email" type="text"
 								value="<%=user.getEmail()%>"></td>
 							<td></td>
 							<td></td>
 						</tr>
 						<tr>
-							<td><label class="pull-right">Country:</label></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_country() %></label></td>
 
 							<td><input name="country" type="text" value=""></td>
-							<td><label class="pull-right">City:</label></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_city() %></label></td>
 							<td><input name="city" type="text" value=""></td>
 						</tr>
 						<input type="hidden" name="identifier"
@@ -54,12 +54,12 @@
 				</table>
 			</div>
 			<br />
-			<h4 style="text-shadow: #000000 3px 3px 8px; color: white;">Connections</h4>
+			<h4 style="text-shadow: #000000 3px 3px 8px; color: white;"><%=language.getFirsttime_label_connections() %></h4>
 			<div class="well span11" style="box-shadow: 5px 5px 8px -1px #222;">
 				<table class="tableBorderless">
 					<tbody>
 						<tr>
-							<td><label class="pull-right">Subject:</label></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_subject() %></label></td>
 							<td><select name="category" id="category">
 									<option value="java">Java</option>
 									<option value="cSharp">C#</option>
@@ -67,7 +67,7 @@
 									<option value="obj-C">Objective C</option>
 
 							</select></td>
-							<td><label class="pull-right">Field:</label></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_field() %></label></td>
 							<td><select name="field" id="field">
 									<option value="gui">GUI</option>
 									<option value="simulation">Simulation</option>
@@ -76,22 +76,20 @@
 									<option value="other">Other</option>
 							</select></td>
 							<td><label class="radio inline"><input type="radio"
-									name="optionsRadios" id="radioMentor" value="Mentor">Mentor</label></td>
+									name="optionsRadios" id="radioMentor" value="Mentor"><%=language.getFirsttime_radio_mentor() %></label></td>
 							<td><label class="radio inline"><input type="radio"
-									name="optionsRadios" id="radioTrainee" value="Trainee">Trainee</label></td>
+									name="optionsRadios" id="radioTrainee" value="Trainee"><%=language.getFirsttime_radio_trainee() %></label></td>
 						</tr>
 						<tr>
-							<td><label class="pull-right">Additional Info:</label></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_addInfo() %></label></td>
 							<td><textarea id="addInfo"></textarea></td>
-							<td><label class="pull-right">Experience:</label></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_experience() %></label></td>
 							<td>
 								<select name="experience">
-									<option value="noob"> Newbie </option>
-									<option value="novice"> Novice </option>
-									<option value="intermediate"> Intermediate </option>
-									<option value="skilled"> Skilled </option>
-									<option value="expert"> Expert </option>
-									<option value="loreMaster"> Lore Master </option>
+									<option value="novice"> <%=language.getFirsttime_drop_novice() %> </option>
+									<option value="intermediate"> <%=language.getFirsttime_drop_intermediate() %> </option>
+									<option value="expert"> <%=language.getFirsttime_drop_expert() %> </option>
+									<option value="loreMaster"> <%=language.getFirsttime_drop_loreMaster() %> </option>
 								</select>
 							</td>
 							<td>
@@ -103,10 +101,10 @@
 				<br />
 				<table class="table table-hover" id="tblCourse">
 					<thead>
-						<th>Course</th>
-						<th>Subject</th>
-						<th>Mentor</th>
-						<th>Trainee</th>
+						<th><%=language.getFirsttime_table_course() %></th>
+						<th><%=language.getFirsttime_table_subject() %></th>
+						<th><%=language.getFirsttime_radio_mentor() %></th>
+						<th><%=language.getFirsttime_radio_trainee() %></th>
 						<th></th>
 					</thead>
 					<tbody>

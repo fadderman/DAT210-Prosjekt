@@ -40,7 +40,15 @@ public class EN extends Lang{
 	private String firsttime_drop_loreMaster = "Guru";
 	private String firsttime_btn_add = "Add";
 	private String firsttime_btn_submit = "Submit";
+	private String firsttime_table_course = "Subject";
+	private String firsttime_table_subject = "Field";
 	
+	public String getFirsttime_table_course() {
+		return firsttime_table_course;
+	}
+	public String getFirsttime_table_subject() {
+		return firsttime_table_subject;
+	}
 	public String getFirsttime_label_personal() {
 		return firsttime_label_personal;
 	}

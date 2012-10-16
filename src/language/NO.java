@@ -40,7 +40,15 @@ public class NO extends Lang{
 	private String firsttime_drop_loreMaster = "Guru";
 	private String firsttime_btn_add = "Legg til";
 	private String firsttime_btn_submit = "Send";
+	private String firsttime_table_course = "Emne";
+	private String firsttime_table_subject = "Felt";
 	
+	public String getFirsttime_table_course() {
+		return firsttime_table_course;
+	}
+	public String getFirsttime_table_subject() {
+		return firsttime_table_subject;
+	}
 	public String getFirsttime_label_personal() {
 		return firsttime_label_personal;
 	}
