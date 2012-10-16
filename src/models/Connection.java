@@ -9,11 +9,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CONNECTION")
 public class Connection {
-	
 	@Id @GeneratedValue
 	@Column(name = "connection_id")
 	private int connectionID;
-	
+
 	@Column(name = "active")
 	private boolean active;
 	
@@ -53,9 +52,10 @@ public class Connection {
 		comments = new ArrayList<Comment>();
 	}
 	
-	public Connection(User mentor, User trainee, Field field, int difficultyLevel) {
+	public Connection(User mentor, User trainee, Field field, int difficultyLevel, int connectionID) {
 		this(mentor, trainee, field);
 		this.difficultyLevel = difficultyLevel;
+		this.connectionID = connectionID;
 	}
 
 	public User getMentor() {

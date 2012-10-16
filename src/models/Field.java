@@ -36,6 +36,10 @@ public class Field {
 		
 	}
 	
+	public Field(String title){
+		this.title = title;
+	}
+	
 	public Field(String title, String description, Subject subject) {
 		this.title = title;
 		this.description = description;

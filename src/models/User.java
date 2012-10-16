@@ -19,53 +19,45 @@ public class User {
 
 	@Column(name = "identifier_openID")
 	private String identifierOpenID;
-	
+
 	@Column(name = "first_name")
 	private String firstName;
-	
+
 	@Column(name = "last_Name")
 	private String lastName;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "location_city")
 	private String locationCity;
-	
+
 	@Column(name = "location_country")
 	private String locationCountry;
 	
+	@Column(name = "mapURL")
+	private String mapURL;
+
 	//Location: city, country
+
+	public String getMapURL() {
+		return mapURL;
+	}
+
+	public void setMapURL(String mapURL) {
+		this.mapURL = mapURL;
+	}
 
 	@OneToMany(mappedBy = "mentor")
 	private List<Connection> mentorConnection;
-	
+
 	@OneToMany(mappedBy = "trainee")
 	private List<Connection> traineeConnection;
-	
+
 	@OneToMany(mappedBy = "author")
 	private List<Comment>  commentList;
-	
+
 	public User() {}
-<<<<<<< HEAD
-	
-	//TODO Business methods pass empty variables if fields are to be left empty
-
-//	public User(String identifier_openID, String firstName, String lastName, String email, String location) {
-//		this.identifierOpenID = identifier_openID;
-//	}
-	
-	public User( String identifierOpenID, String firstName, String lastName, String email, String location) {
-
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.location = location;
-		this.identifierOpenID = identifierOpenID;
-		
-		mentorList = new ArrayList<Subject>();
-		traineeList = new ArrayList<Subject>();
-=======
 
 	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
 		this.firstName = firstName;
@@ -75,10 +67,9 @@ public class User {
 		this.locationCountry = locationCountry;
 		this.identifierOpenID = identifierOpenID;
 		active = true;
->>>>>>> origin/david
 		commentList = new ArrayList<Comment>();
 	}
-	
+
 	public int getUserID() {
 		return userID;
 	}
@@ -86,7 +77,7 @@ public class User {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
-	
+
 	public boolean isActive() {
 		return active;
 	}
@@ -94,7 +85,7 @@ public class User {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
+
 	public String getIdentifierOpenID() {
 		return identifierOpenID;
 	}
@@ -118,7 +109,7 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public String getFullName(){
 		return this.firstName + " " + this.lastName;
 	}
@@ -170,7 +161,7 @@ public class User {
 	public void setCommentList(ArrayList<Comment> commentList) {
 		this.commentList = commentList;
 	}
-	
+
 	/*//TODO broken may to many relationship
 	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Field.class,
@@ -179,7 +170,7 @@ public class User {
 			inverseJoinColumns = { @JoinColumn(name = "field_id")})
 	@OrderBy("lastName")
 	private List<Field> mentorList;
-	
+
 	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Field.class,
 			cascade = CascadeType.ALL)
@@ -187,7 +178,7 @@ public class User {
 			inverseJoinColumns = { @JoinColumn(name = "field_id")})
 	@OrderBy("lastName")
 	private List<Field> traineeList;
-	*/
+	 */
 	/*
 	public void addMentorField(Field field){
 		mentorList.add(field);
@@ -200,7 +191,7 @@ public class User {
 	public void setMentorList(ArrayList<Field> mentorList) {
 		this.mentorList = mentorList;
 	}
-	
+
 	public void addTraineeField(Field field){
 		traineeList.add(field);
 	}
@@ -212,7 +203,7 @@ public class User {
 	public void setTraineeList(ArrayList<Field> traineeList) {
 		this.traineeList = traineeList;
 	}
-	*/
-	
+	 */
+
 }
 

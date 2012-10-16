@@ -13,7 +13,7 @@ public class ConnectionHandler {
 	public ConnectionHandler(){
 	}
 
-	public void addUser(Connection connection) {
+	public void addConnection(Connection connection) {
 		synchronized (connectionList) {
 			connectionList.add(connection);
 		}
