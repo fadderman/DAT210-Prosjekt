@@ -35,17 +35,20 @@
 							</ul></li>
 						<li><a href="#"><i class="icon-user"></i> Profile</a></li>
 						<li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+						<li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li>
 						<!-- SEARCH -->
-					<form action="search" method="get" class="navbar-form">
-						<div class="input-append">
-							<input type="text" name="query" id="search"
-								placeholder="Search.." />
-							<button class="btn" type="submit">Search</button>
-						</div>
-						<script>
-							$("#search").autocomplete("getsearch.jsp");
-						</script>
-					</form>
+						<li>
+							<form action="search" method="get" class="navbar-form form-search">
+								<div class="input-append">
+									<input class="search-query" type="text" name="query" id="search"
+										placeholder="Search.." />
+									<button class="btn" type="submit">Search</button>
+								</div>
+								<script>
+									$("#search").autocomplete("getsearch.jsp");
+								</script>
+							</form>
+						</li>
 					</ul>
 	
 					
