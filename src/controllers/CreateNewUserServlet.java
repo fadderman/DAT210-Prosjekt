@@ -24,14 +24,21 @@ public class CreateNewUserServlet extends HttpServlet {
 		String country = request.getParameter("country");
 		String city = request.getParameter("city");
 		String identifier = request.getParameter("identifier");
+		String[] category = request.getParameterValues("category");
+		String[] field = request.getParameterValues("field");
 		
 		User user = new User(identifier, firstName, lastName, email, city);
+		String location = new String("http://maps.googleapis.com/maps/api/staticmap?center=");
+		location += city + ",";
+		location += country + "&zoom=14&size=400x400&sensor=false";
+		user.setLocation(location);
 		UserHandler userHandler = new UserHandler();
 		userHandler.addUser(user);
+		request.setAttribute("user", user);
 		
 		System.out.println(lastName + " " + firstName + " " + email + " " + country);
-		
-		String url = "/login.jsp";
+		for(int i = 0; i < category.length; i++) System.out.println(category[i]);
+		String url = "/home.jsp";
 		
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(url);

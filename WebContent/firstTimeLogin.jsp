@@ -60,7 +60,6 @@
 						</tr>
 						<tr>
 							<td><label class="pull-right">Country:</label></td>
-
 							<td><input name="country" type="text" value=""></td>
 							<td><label class="pull-right">City:</label></td>
 							<td><input name="city" type="text" value=""></td>
@@ -69,7 +68,7 @@
 							value="<%=user.getIdentifierOpenID()%>">
 					</tbody>
 				</table>
-			</div>
+			</div>	
 			<br />
 			<h4 style="text-shadow: #000000 3px 3px 8px; color: white;">Connections</h4>
 			<div class="well span11" style="box-shadow: 5px 5px 8px -1px #222;">
@@ -94,7 +93,7 @@
 							</select></td>
 							<td><label class="radio inline"><input type="radio"
 									name="optionsRadios" id="radioMentor" value="Mentor">Mentor</label></td>
-							<td><label class="radio inline"><input type="radio"
+							<td><label class="radio inline"><input type="radio" checked
 									name="optionsRadios" id="radioTrainee" value="Trainee">Trainee</label></td>
 						</tr>
 						<tr>
