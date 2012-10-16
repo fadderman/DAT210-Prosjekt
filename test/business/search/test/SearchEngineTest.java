@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import models.Subject;
 import models.User;
 
 import org.junit.After;
@@ -15,12 +16,14 @@ import business.search.SearchEngine;
 import business.search.SearchResults;
 import business.search.SearchSuggestions;
 import business.search.UserSuggestion;
+import business.subject.SubjectHandler;
 import business.user.UserHandler;
 
 public class SearchEngineTest {
 
 	private SearchEngine searchEngine;
 	static UserHandler userHandler;
+	static SubjectHandler subjectHandler;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -34,6 +37,14 @@ public class SearchEngineTest {
 //			userHandler.addUser(new User("identifier_openID" + i, "firstName" + i, "lastName" + i,
 //					"email" + i, "location" + i));
 //		}
+		subjectHandler = new SubjectHandler();
+		subjectHandler.addSubject(new Subject("Java", "description"));
+		subjectHandler.addSubject(new Subject("C++", "description"));
+		subjectHandler.addSubject(new Subject("C#", "description"));
+		subjectHandler.addSubject(new Subject("Javascript", "description"));
+		subjectHandler.addSubject(new Subject("Go", "description"));
+		subjectHandler.addSubject(new Subject("Python", "description"));
+		subjectHandler.addSubject(new Subject("C", "description"));
 	}
 	
 	
@@ -172,6 +183,18 @@ public class SearchEngineTest {
 		assertTrue(!userRes.isEmpty());
 		for(int i=0;i<userRes.size();i++){
 			assertEquals("Thomas", userRes.get(i).getFirstName());
+		}
+	}
+	
+	@Test
+	public void searchForJavaAndExpectJava() {
+		String searchFor = "Java";
+		SearchResults result = searchEngine.search(searchFor);
+		ArrayList<Subject> subRes = result.getSubjectResults();
+		assertTrue(!subRes.isEmpty());
+		for(int i=0;i<subRes.size();i++){
+//			assertEquals(searchFor, subRes.get(i).getTitle());
+			assertTrue(subRes.get(i).getTitle().startsWith(searchFor));
 		}
 	}
 

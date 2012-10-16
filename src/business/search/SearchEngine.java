@@ -32,6 +32,13 @@ public class SearchEngine {
 			userHandler.addUser(new User("Ørjan", "Rørheim", "email", "Stavanger", "Norway", "identifierOpenID"));
 			userHandler.addUser(new User("Åge", "Håland", "email", "Ålesund", "Norway", "identifierOpenID"));
 			userHandler.addUser(new User("Tom", "Nærland", "email", "Nærbø", "Norway", "identifierOpenID"));
+			subjectHandler.addSubject(new Subject("Java", "description"));
+			subjectHandler.addSubject(new Subject("C++", "description"));
+			subjectHandler.addSubject(new Subject("C#", "description"));
+			subjectHandler.addSubject(new Subject("Javascript", "description"));
+			subjectHandler.addSubject(new Subject("Go", "description"));
+			subjectHandler.addSubject(new Subject("Python", "description"));
+			subjectHandler.addSubject(new Subject("C", "description"));
 			hasBeenRun=true;
 		}
 	}
@@ -111,7 +118,7 @@ public class SearchEngine {
 		query = query.trim();
 		SearchResults results = new SearchResults();
 		results.setUserResults(searchForUsers(query));
-
+		results.setSubjectResults(searchForSubjects(query));
 		return results;
 	}
 
@@ -201,6 +208,43 @@ public class SearchEngine {
 		
 		return subjectSuggestion;
 	}
+	
+	private ArrayList<Subject> searchForSubjects(String query) {
+		ArrayList<Subject> subjectResults=searchForSubjectUsingString(query);
+
+		if(!subjectResults.isEmpty())return subjectResults;
+		
+		query = createDottedString(query);
+		subjectResults = searchForSubjectUsingDottedString(query);
+		
+		return subjectResults;
+	}
+
+	
+	private ArrayList<Subject> searchForSubjectUsingString(String query) {
+		ArrayList<Subject> subjectResults = new ArrayList<Subject>();
+		Subject tmpSubject;
+		for(int i=0;i<subjectHandler.getSubjectListSize();i++){
+			tmpSubject=subjectHandler.getSubjectByIndex(i);
+			if(tmpSubject.getTitle().toLowerCase().startsWith(query)){
+				subjectResults.add(tmpSubject);
+			}
+		}
+		return subjectResults;
+	}
+	
+	private ArrayList<Subject> searchForSubjectUsingDottedString(String query) {
+		ArrayList<Subject> subjectResults = new ArrayList<Subject>();
+		Subject tmpSubject;
+		for(int i=0;i<subjectHandler.getSubjectListSize();i++){
+			tmpSubject=subjectHandler.getSubjectByIndex(i);
+			if(tmpSubject.getTitle().toLowerCase().matches(query)){
+				subjectResults.add(tmpSubject);
+			}
+		}
+		return subjectResults;
+	}
+
 	
 
 }

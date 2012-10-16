@@ -1,3 +1,4 @@
+<%@page import="business.search.SubjectSuggestion"%>
 <%@ page language="java" contentType="text/html"%>
 <%@page import="business.search.SearchEngine,business.search.UserSuggestion,java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
@@ -30,4 +31,10 @@
     	//out.println(userResult + " (User)");
     	//out.println("<i class='icon-user'></i> " + userResult);
     }
+    ArrayList<SubjectSuggestion> subjectSuggestions = suggestions.getSubjectSuggestions();
+    for(int i=0;i<subjectSuggestions.size();i++){
+    	out.println(subjectSuggestions.get(i).getTitle());
+    }
+    
+    
 %>
