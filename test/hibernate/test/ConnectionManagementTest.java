@@ -1,11 +1,7 @@
 package hibernate.test;
 
 import static org.junit.Assert.*;
-import hibernate.CommentManagement;
-import hibernate.ConnectionManagement;
-import hibernate.FieldManagement;
-import hibernate.SubjectManagement;
-import hibernate.UserManagement;
+import hibernate.*;
 
 import org.junit.Before;
 import org.junit.Test;
