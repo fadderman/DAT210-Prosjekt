@@ -23,9 +23,32 @@ public class Subject {
 	@Column(name = "description")
 	private String description;
 	
+<<<<<<< HEAD
 	@OneToMany(
 			mappedBy = "subject", 
 			fetch=FetchType.EAGER)
+=======
+	@ManyToOne
+	@JoinColumn(name = "category_fk")
+	private Category category;
+	
+	@ManyToMany(
+			targetEntity = models.User.class,
+			cascade = {CascadeType.ALL},
+			mappedBy = "mentorList",
+			fetch = FetchType.EAGER)
+	private List<User> mentorUserList;
+	
+	@ManyToMany(
+			targetEntity = models.User.class,
+			cascade = {CascadeType.ALL},
+			mappedBy = "traineeList",
+			fetch = FetchType.EAGER)
+	private List<User> traineeUserList;
+	
+	//TODO Ordered or indexed?
+	@OneToMany(mappedBy = "subject")
+>>>>>>> origin/lordAlek
 	@OrderBy("title")
 	private List<Field> fieldList;
 	

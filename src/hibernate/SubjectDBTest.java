@@ -65,6 +65,7 @@ public class SubjectDBTest {
 		xm.createOpenTrainee(user3, subCpluss);
 		xm.createOpenTrainee(user3, subJava2D);
 		
+<<<<<<< HEAD
 		um.addUser(user4);
 		xm.createOpenMentor(user4, subCpluss);
 		
@@ -112,5 +113,8 @@ public class SubjectDBTest {
 			User current = iterator.next();
 			System.out.println(current.getFirstName() + " " + current.getLastName());
 		}
+=======
+		
+>>>>>>> origin/lordAlek
 	}
 }

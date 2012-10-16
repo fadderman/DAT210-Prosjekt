@@ -10,6 +10,7 @@ public class ConnectionManagement extends HibernateUtil{
 		sessionFactory = getSessionFactory();
 	}
 	
+<<<<<<< HEAD
 	public void createOpenMentor(User mentor, Field field){
 		Connection connection = new Connection(field);
 		connection.setMentor(mentor);
@@ -24,6 +25,10 @@ public class ConnectionManagement extends HibernateUtil{
 	
 	public void createConnection(User mentor, User trainee, Field field){
 		Connection connection = new Connection(mentor, trainee, field);
+=======
+	public void createConnection(User mentor, User trainee, Subject subject){
+		Connection connection = new Connection(mentor, trainee, subject);
+>>>>>>> origin/lordAlek
 		addConnection(connection);
 	}
 	
@@ -34,6 +39,7 @@ public class ConnectionManagement extends HibernateUtil{
 
 	public void addConnection(Connection connection) {
 		addToDatabase(connection);
+<<<<<<< HEAD
 	}
 	
 	public List<Connection> getAllConnections(){
@@ -63,6 +69,16 @@ public class ConnectionManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
 	}
 	
+=======
+	}
+	
+	public List<Connection> getByID(int id){
+		String queryString = "from models.Connection where id = :id";
+		String queryVariable = "id";
+		return fetch(queryString, queryVariable, id);
+	}
+	
+>>>>>>> origin/lordAlek
 	public void updateDifficultyLevel(Connection connection, int difficultyLevel){
 		String queryString = "update models.Connection set difficultyLevel = :difficultyLevel where id = :id";
 		String queryVariable = "difficultyLevel";
@@ -79,11 +95,14 @@ public class ConnectionManagement extends HibernateUtil{
 		updateSingle(queryString, queryVariable, active, connection.getConnectionID());
 	}
 	
+<<<<<<< HEAD
 	public List<Comment> fetchCommentList(Connection connection){
 		String queryString = "from models.Comment where connection = :connection";
 		String queryVariable = "connection";
 		return fetch(queryString, queryVariable, connection);
 	}
 	
+=======
+>>>>>>> origin/lordAlek
 	
 }

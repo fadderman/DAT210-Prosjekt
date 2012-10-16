@@ -1,0 +1,38 @@
+Merge remote-tracking branch 'origin/Hibernate' into lordAlek
+
+Conflicts:
+	hibXml/hibernate.cfg.xml
+	src/hibernate/UserDBTest.java
+	src/hibernate/UserManagement.java
+	src/models/Connection.java
+	src/models/User.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch lordAlek
+# Changes to be committed:
+#
+#	modified:   hibXml/hibernate.cfg.xml
+#	modified:   src/hibernate/CategoryDBTest.java
+#	modified:   src/hibernate/CategoryManagement.java
+#	new file:   src/hibernate/CommentDBTest.java
+#	modified:   src/hibernate/CommentManagement.java
+#	modified:   src/hibernate/ConnectionManagement.java
+#	modified:   src/hibernate/HibernateUtil.java
+#	modified:   src/hibernate/SubjectDBTest.java
+#	modified:   src/hibernate/SubjectManagement.java
+#	modified:   src/hibernate/UserDBTest.java
+#	modified:   src/hibernate/UserManagement.java
+#	modified:   src/models/Category.java
+#	modified:   src/models/Comment.java
+#	modified:   src/models/Connection.java
+#	modified:   src/models/Subject.java
+#	modified:   src/models/User.java
+#
+

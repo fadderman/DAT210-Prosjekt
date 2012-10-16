@@ -35,13 +35,21 @@ public class HibernateUtil {
 		return sessionFactory;
 	}
 	
+<<<<<<< HEAD
 	protected boolean addToDatabase(Object toBeAdded){
 		Object identifier = null;
+=======
+	protected void addToDatabase(Object toBeAdded){
+>>>>>>> origin/lordAlek
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{
 			tx = session.beginTransaction();
+<<<<<<< HEAD
 			identifier = session.save(toBeAdded); 
+=======
+			session.save(toBeAdded); 
+>>>>>>> origin/lordAlek
 			tx.commit();
 		}catch (HibernateException e) {
 			if (tx!=null) tx.rollback();
@@ -49,11 +57,14 @@ public class HibernateUtil {
 		}finally {
 			session.close();
 		}
+<<<<<<< HEAD
 		
 		if(identifier != null)
 			return true;
 		else
 			return false;
+=======
+>>>>>>> origin/lordAlek
 	}
 	
 	protected <T> List<T> fetch(String queryString){
@@ -79,8 +90,11 @@ public class HibernateUtil {
 			}
 			else if(criteria.getClass() == Date.class)
 				query.setDate(queryVariable, (Date)criteria);
+<<<<<<< HEAD
 			else if(criteria.getClass() == Collection.class)
 				query.setParameterList(queryVariable, (Collection) criteria);
+=======
+>>>>>>> origin/lordAlek
 			results = query.list();
 			tx.commit();
 		}catch (HibernateException e) {
@@ -106,6 +120,7 @@ public class HibernateUtil {
 				Integer critInt = (Integer) criteria1;
 				query.setInteger(queryVariable1, critInt.intValue());
 			}
+<<<<<<< HEAD
 			else if(criteria1.getClass() == Date.class){
 				query.setDate(queryVariable1, (Date)criteria1);
 			}
@@ -119,6 +134,19 @@ public class HibernateUtil {
 			else if(criteria2.getClass() == Date.class){
 				query.setDate(queryVariable2, (Date)criteria2);
 			}
+=======
+			else if(criteria1.getClass() == Date.class)
+				query.setDate(queryVariable1, (Date)criteria1);
+			if(criteria2.getClass() == String.class){
+				query.setString(queryVariable2, (String) criteria1);
+			}
+			else if(criteria2.getClass() == Integer.class){
+				Integer critInt = (Integer) criteria1;
+				query.setInteger(queryVariable2, critInt.intValue());
+			}
+			else if(criteria2.getClass() == Date.class)
+				query.setDate(queryVariable2, (Date)criteria1);
+>>>>>>> origin/lordAlek
 			results = query.list();
 			tx.commit();
 		}catch (HibernateException e) {

@@ -29,6 +29,7 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
+<<<<<<< HEAD
 	@Column(name = "location_city")
 	private String locationCity;
 	
@@ -42,11 +43,40 @@ public class User {
 	
 	@OneToMany(mappedBy = "trainee")
 	private List<Connection> traineeConnection;
+=======
+	@Column(name = "location")
+	private String location;
+	
+	//TODO setup indexing
+	@ManyToMany(targetEntity = models.Subject.class,
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER)
+	@JoinTable(name = "USER_SUBJECT_MENTOR", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
+	@OrderBy("lastName")
+	private List<Subject> mentorList;
+	
+	//TODO setup indexing
+	@ManyToMany(targetEntity = models.Subject.class,
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER)
+	@JoinTable(name = "USER_SUBJECT_TRAINEE", joinColumns = { @JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "subject_id")})
+	@OrderBy("lastName")
+	private List<Subject> traineeList;
+	
+	@OneToMany(mappedBy = "mentor")
+	private List<Connection> connectionMentor;
+	
+	@OneToMany(mappedBy = "trainee")
+	private List<Connection> connectionTrainee;
+>>>>>>> origin/lordAlek
 	
 	@OneToMany(mappedBy = "author")
 	private List<Comment>  commentList;
 	
 	public User() {}
+<<<<<<< HEAD
 
 	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
 		this.firstName = firstName;
@@ -56,6 +86,25 @@ public class User {
 		this.locationCountry = locationCountry;
 		this.identifierOpenID = identifierOpenID;
 		active = true;
+=======
+	
+	//TODO Business methods pass empty variables if fields are to be left empty
+
+//	public User(String identifier_openID, String firstName, String lastName, String email, String location) {
+//		this.identifierOpenID = identifier_openID;
+//	}
+	
+	public User( String identifierOpenID, String firstName, String lastName, String email, String location) {
+
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.location = location;
+		this.identifierOpenID = identifierOpenID;
+		
+		mentorList = new ArrayList<Subject>();
+		traineeList = new ArrayList<Subject>();
+>>>>>>> origin/lordAlek
 		commentList = new ArrayList<Comment>();
 	}
 	
@@ -128,6 +177,7 @@ public class User {
 	}
 
 	public List<Connection> getConnectionMentor() {
+<<<<<<< HEAD
 		return mentorConnection;
 	}
 
@@ -141,6 +191,21 @@ public class User {
 
 	public void setConnectionTrainee(List<Connection> connectionTrainee) {
 		this.traineeConnection = connectionTrainee;
+=======
+		return connectionMentor;
+	}
+
+	public void setConnectionMentor(List<Connection> connectionMentor) {
+		this.connectionMentor = connectionMentor;
+	}
+
+	public List<Connection> getConnectionTrainee() {
+		return connectionTrainee;
+	}
+
+	public void setConnectionTrainee(List<Connection> connectionTrainee) {
+		this.connectionTrainee = connectionTrainee;
+>>>>>>> origin/lordAlek
 	}
 
 	public List<Comment> getCommentList() {

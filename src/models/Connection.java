@@ -9,6 +9,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CONNECTION")
 public class Connection {
+<<<<<<< HEAD
+=======
+	
+	@ManyToOne
+	@JoinColumn(name = "connection_mentor_fk")
+	private User mentor;
+
+	@ManyToOne
+	@JoinColumn(name = "connection_trainee_fk")
+	private User trainee;
+	
+	@ManyToOne
+	@JoinColumn(name = "subject_fk")
+	private Subject subject;
+>>>>>>> origin/lordAlek
 	
 	@Id @GeneratedValue
 	@Column(name = "connection_id")
@@ -40,6 +55,7 @@ public class Connection {
 		
 	}
 	
+<<<<<<< HEAD
 	public Connection(Field field){
 		this.field = field;
 		active = true;
@@ -55,6 +71,17 @@ public class Connection {
 	
 	public Connection(User mentor, User trainee, Field field, int difficultyLevel) {
 		this(mentor, trainee, field);
+=======
+	public Connection(User mentor, User trainee, Subject subject) {
+		this.mentor = mentor;
+		this.trainee = trainee;
+		this.subject = subject;
+		comments = new ArrayList<Comment>();
+	}
+	
+	public Connection(User mentor, User trainee, Subject subject, int difficultyLevel) {
+		this(mentor, trainee, subject);
+>>>>>>> origin/lordAlek
 		this.difficultyLevel = difficultyLevel;
 	}
 
