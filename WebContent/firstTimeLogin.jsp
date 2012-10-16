@@ -8,40 +8,17 @@
 <link rel="shortcut icon" href="img/favicon.ico"></link>
 <body class="contentBox">
 	<%@ page import="models.User"%>
-	<%User user = (User)request.getAttribute("user"); %>
+	<%User user = (User)request.getAttribute("user"); 
+	if(user != null)
+		session.setAttribute("user", user);
+	else
+		user = (User)session.getAttribute("user");
+	%>
 
 	<div class="container">
-<<<<<<< HEAD
 <!-- top menu -->
 <%@ include file="loginMenuBar.jsp" %>
 <%session.setAttribute("CurrentPage", "/firstTimeLogin.jsp");%>
-=======
-		<!-- top menu -->
-		<br />
-		<div class="navbar navbar-fixed-top navbar-inverse">
-			<div class="navbar">
-				<div class="navbar-inner">
-					<div class="container">
-						<a class="brand" href="#"><img alt="" src="img/logo_mini.png"></a>
-						<div class="btn-group pull-right">
-							<input type="button"
-								class="btn dropdown-toggle btn-inverse btn-large"
-								data-toggle="dropdown" value="language">
-							<ul class="dropdown-menu">
-								<!-- dropdown menu links -->
-								<li><a type="button" onclick="Validate(en);"
-									href="http://localhost:8080/webTest/Languages/loginEN.jsp">English</a></li>
-								<li><a type="button" onclick="validate(no);"
-									href="http://localhost:8080/webTest/Languages/loginNO.jsp">Norsk</a></li>
-
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="padding"></div>
->>>>>>> origin/lordAlek
 
 		<!--left column -->
 		<h4 style="text-shadow: #000000 3px 3px 8px; color: white;">Personal</h4>
