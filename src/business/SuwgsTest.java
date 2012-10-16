@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import models.User;
 
-public class SuwgsTeste {
+public class SuwgsTest {
 
 	/**
 	 * @param args
