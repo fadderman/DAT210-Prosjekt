@@ -186,7 +186,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 							firstname = fullname.substring(0, fullname.lastIndexOf(" "));
 							lastname = fullname.substring(fullname.lastIndexOf(" "));
 						}
-						user = new User(verified.getIdentifier(), firstname, lastname, email, ""); //create a new user based on info from OpenID
+						user = new User(firstname, lastname, email, "","", verified.getIdentifier()); //create a new user based on info from OpenID
 						System.out.println("firstname: " + firstname + ", lastname: " + lastname);
 					}
 					httpReq.setAttribute("user", user);

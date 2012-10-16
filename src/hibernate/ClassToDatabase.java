@@ -9,6 +9,7 @@ import models.*;
  * 
  * @author Bart Wasilewski
  */
+@SuppressWarnings("rawtypes")
 public class ClassToDatabase {
 
 	private List<Class> classToDatabase;
@@ -16,8 +17,8 @@ public class ClassToDatabase {
 		classToDatabase = new ArrayList<Class>();
 		classToDatabase.add(User.class);
 		classToDatabase.add(Connection.class);
+		classToDatabase.add(Field.class);
 		classToDatabase.add(Subject.class);
-		classToDatabase.add(Category.class);
 		classToDatabase.add(Comment.class);
 	}
 	/**

@@ -11,6 +11,7 @@
 	<%User user = (User)request.getAttribute("user"); %>
 
 	<div class="container">
+<<<<<<< HEAD
 		<!-- top menu -->
 		<br />
 		<div class="navbar navbar-fixed-top navbar-inverse">
@@ -36,6 +37,11 @@
 			</div>
 		</div>
 		<div class="padding"></div>
+=======
+<!-- top menu -->
+<%@ include file="loginMenuBar.jsp" %>
+<%session.setAttribute("CurrentPage", "/firstTimeLogin.jsp");%>
+>>>>>>> origin/david
 
 		<!--left column -->
 		<h4 style="text-shadow: #000000 3px 3px 8px; color: white;">Personal</h4>

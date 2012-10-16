@@ -28,6 +28,7 @@ public class Comment {
 	@Column(name = "text")
 	private String text;
 	
+	//TODO separate timestamp @ edit?
 	@Column(name = "timestamp")
 	private Date timestamp;
 	

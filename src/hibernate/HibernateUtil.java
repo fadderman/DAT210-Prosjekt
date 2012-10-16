@@ -35,12 +35,13 @@ public class HibernateUtil {
 		return sessionFactory;
 	}
 	
-	protected void addToDatabase(Object toBeAdded){
+	protected boolean addToDatabase(Object toBeAdded){
+		Object identifier = null;
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{
 			tx = session.beginTransaction();
-			session.save(toBeAdded); 
+			identifier = session.save(toBeAdded); 
 			tx.commit();
 		}catch (HibernateException e) {
 			if (tx!=null) tx.rollback();
@@ -48,6 +49,11 @@ public class HibernateUtil {
 		}finally {
 			session.close();
 		}
+		
+		if(identifier != null)
+			return true;
+		else
+			return false;
 	}
 	
 	protected <T> List<T> fetch(String queryString){
@@ -73,6 +79,8 @@ public class HibernateUtil {
 			}
 			else if(criteria.getClass() == Date.class)
 				query.setDate(queryVariable, (Date)criteria);
+			else if(criteria.getClass() == Collection.class)
+				query.setParameterList(queryVariable, (Collection) criteria);
 			results = query.list();
 			tx.commit();
 		}catch (HibernateException e) {
@@ -98,17 +106,19 @@ public class HibernateUtil {
 				Integer critInt = (Integer) criteria1;
 				query.setInteger(queryVariable1, critInt.intValue());
 			}
-			else if(criteria1.getClass() == Date.class)
+			else if(criteria1.getClass() == Date.class){
 				query.setDate(queryVariable1, (Date)criteria1);
+			}
 			if(criteria2.getClass() == String.class){
-				query.setString(queryVariable2, (String) criteria1);
+				query.setString(queryVariable2, (String) criteria2);
 			}
 			else if(criteria2.getClass() == Integer.class){
-				Integer critInt = (Integer) criteria1;
+				Integer critInt = (Integer) criteria2;
 				query.setInteger(queryVariable2, critInt.intValue());
 			}
-			else if(criteria2.getClass() == Date.class)
-				query.setDate(queryVariable2, (Date)criteria1);
+			else if(criteria2.getClass() == Date.class){
+				query.setDate(queryVariable2, (Date)criteria2);
+			}
 			results = query.list();
 			tx.commit();
 		}catch (HibernateException e) {
@@ -186,3 +196,5 @@ public class HibernateUtil {
 		return updateCounter;
 	}
 }
+
+//TODO database dump method needs to be added

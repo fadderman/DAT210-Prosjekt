@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import business.user.UserHandler;
-
 import models.User;
+import business.user.UserHandler;
 
 public class CreateNewUserServlet extends HttpServlet {
 
@@ -27,11 +26,15 @@ public class CreateNewUserServlet extends HttpServlet {
 		String[] category = request.getParameterValues("category");
 		String[] field = request.getParameterValues("field");
 		
+<<<<<<< HEAD
 		User user = new User(identifier, firstName, lastName, email, city);
 		String location = new String("http://maps.googleapis.com/maps/api/staticmap?center=");
 		location += city + ",";
 		location += country + "&zoom=14&size=400x400&sensor=false";
 		user.setLocation(location);
+=======
+		User user = new User(firstName, lastName, email, city,country, identifier);
+>>>>>>> origin/david
 		UserHandler userHandler = new UserHandler();
 		userHandler.addUser(user);
 		request.setAttribute("user", user);
