@@ -42,46 +42,9 @@
 }
 </style>
 <body class="fullBG">
-<%
 
-	Language language = new Language();
-    Cookie[] co = request.getCookies();
-    if(co == null){
-    	Cookie chosenLanguageCookie = new Cookie("chosenLanguage", "english");
-		chosenLanguageCookie.setMaxAge(60*60*24*365*2); //set its age to 2 years
-		chosenLanguageCookie.setPath("/"); //allow the entire application to access it
-		response.addCookie(chosenLanguageCookie);
-    }
-    if(session.getAttribute("lang") != null)
-    	language = (Language)session.getAttribute("lang");
-    //String chosenLanguage = CookieUtil.getCookieValue(co, "chosenLanguage");
-  
-	
-   // System.out.println("web: " + chosenLanguage);
-    //language.setLanguage(chosenLanguage);
-    
-%>
-<!-- top menu -->
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div class="navbar">
-			<div class="navbar-inner">
-			<div class="container">
-				<a class="brand" href="#"><img alt="" src="img/logo_mini.png" ></a>
-				<div class="btn-group pull-right">
-					<a class="btn dropdown-toggle btn-inverse btn-large" data-toggle="dropdown"
-						href="#"><small> <%=language.getLogin_btn_lang() %> </small><span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<!-- dropdown menu links -->
-						<li><a href="<%=response.encodeURL("chosenLanguage?language=english")%>">English</a></li>
-						<li><a href="<%=response.encodeURL("chosenLanguage?language=norsk")%>">Norsk</a></li>
-					</ul>
-				</div>
-			</div>
-			</div>
-		</div>
-	</div>
-	<div class="padding"></div>
+<%@ include file="loginMenuBar.jsp"%>
+<%session.setAttribute("CurrentPage", "/login.jsp"); %>
 	<div class="container">
 
 		<div class="row-fluid">

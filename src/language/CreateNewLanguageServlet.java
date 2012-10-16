@@ -32,7 +32,10 @@ public class CreateNewLanguageServlet extends HttpServlet {
 	
 //		System.out.println("servlet after cookie: " + language);
 		
-		String url = "/login.jsp";
+		String url = (String) session.getAttribute("CurrentPage");
+		if (url.equals(null)) {
+			url = "/login.jsp";
+		}
 		
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(url);
