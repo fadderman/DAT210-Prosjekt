@@ -1,18 +1,11 @@
 package hibernate.test;
 
 import static org.junit.Assert.*;
-import hibernate.CommentManagement;
-import hibernate.ConnectionManagement;
-import hibernate.FieldManagement;
-import hibernate.SubjectManagement;
-import hibernate.UserManagement;
 
-
-
-
-
-import models.Subject;
-
+import java.util.Iterator;
+import java.util.List;
+import hibernate.*;
+import models.*;
 import org.junit.*;
 
 public class SubjectManagementTest {
@@ -41,13 +34,22 @@ public class SubjectManagementTest {
 
 	@Test
 	public void testCreateSubject() {
-		sm.createSubject("Java3D", "Programming language");
-		sm.createSubject("C#", "Programming language");
-		sm.createSubject("Java", "Awsomeness programming language");
 		
-		assertEquals(sm.getByTitle("Java3D").get(0).getDescription(), "Programming language");
-		assertEquals(sm.getByTitle("C#").get(0).getDescription(), "Programming language");
-		assertEquals(sm.getByTitle("Java").get(0).getDescription(), "Awsomeness programming language");
+		Subject subject1 = new Subject("Java3D", "Programming language");
+		Subject subject2 = new Subject("C#", "Old programming language");
+		Subject subject3 = new Subject("Java", "Awsomeness programming language");
+		
+		
+
+		
+		
+		assertEquals(sm.createSubject("Java3D", "Programming language"), true);
+		assertEquals(sm.createSubject("C#", "Programming language"), true);
+		assertEquals(sm.createSubject("Java", "Awsomeness programming language"), true);
+//		
+//		assertEquals(sm.getByTitle("Java3D").get(0).getDescription(), "Programming language");
+//		assertEquals(sm.getByTitle("C#").get(0).getDescription(), "Programming language");
+//		assertEquals(sm.getByTitle("Java").get(0).getDescription(), "Awsomeness programming language");
 		
 		
 		
@@ -55,6 +57,12 @@ public class SubjectManagementTest {
 	
 	@Test
 	public void testGetAllSubjects(){
+		List<Subject> list = sm.getAllSubjects();
+		
+		for (Iterator<Subject> iterator = list.iterator(); iterator.hasNext();) {
+			Subject current = iterator.next();
+			assertEquals(current.getClass(), String.class);
+		}
 		
 	}
 	
@@ -64,20 +72,41 @@ public class SubjectManagementTest {
 		assertEquals(test.getTitle(), "Java3D");
 	}
 	
-	@Test
-	public void testGetBySingleTitle(){
-		
-	}
+
 	
 	@Test
 	public void testUpdateTitle(){
+		Subject test = (Subject) sm.getByTitle("Java3D");
+		sm.updateTitle(test, "Java4D");
+		assertEquals(sm.getByTitle("Java4D"), "Java3D");
 		
 	}
 	
 	@Test
 	public void testUpdateDescription(){
+		Subject test = (Subject) sm.getByTitle("Java3D");
+		sm.updateDescription(test, "3D design java language");
+		
 		
 	}
+	
+	@Test
+	public void testChangeStatus(){
+		Subject test = sm.getByID(3);
+		sm.changeStatus(test, false);
+		
+		List<Subject> list = sm.getAllInactiveSubjects();
+		
+		for(Iterator<Subject> iterator = list.iterator(); iterator.hasNext();){
+			Subject current = iterator.next();
+			System.out.println(current.getTitle());
+			assertEquals(current.isActive(), false);
+		}
+	}
+	
+	
+	//TODO List<Field> fetchFieldList
+	//TODO public void changeStatus
 	
 
 
