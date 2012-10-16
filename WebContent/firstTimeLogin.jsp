@@ -13,6 +13,7 @@
 	<div class="container">
 <!-- top menu -->
 <%@ include file="loginMenuBar.jsp" %>
+<%session.setAttribute("CurrentPage", "/firstTimeLogin.jsp");%>
 
 		<!--left column -->
 		<h4 style="text-shadow: #000000 3px 3px 8px; color: white;">Personal</h4>
