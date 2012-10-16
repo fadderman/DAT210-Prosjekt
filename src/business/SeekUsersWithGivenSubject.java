@@ -12,7 +12,7 @@ import models.User;
 public class SeekUsersWithGivenSubject {
 	
 	//skal bruk en metode fra usermanagement for å få en liste med brukere
-	private LinkedList<User> mentors;
+	private ArrayList<User> mentors;
 	private String subject;
 	
 	
@@ -21,9 +21,9 @@ public class SeekUsersWithGivenSubject {
 		this.subject = subject;
 	}
 	
-	private static LinkedList<User> findMentors(){
-		LinkedList<User> users = (LinkedList<User>)  (new UserManagement().listAllUsers());
-		LinkedList<User> tempFoundMentors = new LinkedList<User>();
+	private static ArrayList<User> findMentors(){
+		ArrayList<User> users = (ArrayList<User>)  (new UserManagement().listAllUsers());
+		ArrayList<User> tempFoundMentors = new ArrayList<User>();
 		for(User user : users){
 			ArrayList<Connection> con = (ArrayList<Connection>) user.getConnectionMentor();
 			if(con.isEmpty()){
@@ -36,8 +36,8 @@ public class SeekUsersWithGivenSubject {
 		return tempFoundMentors;
 	}
 	
-	public LinkedList<User> getMentorsWithSbject() {
-		LinkedList<User> mentorsWithSubject = new LinkedList<User>();
+	public ArrayList<User> getMentorsWithSbject() {
+		ArrayList<User> mentorsWithSubject = new ArrayList<User>();
 		for (User user: mentors){
 			ArrayList<Connection> con = (ArrayList<Connection>) user.getConnectionMentor();
 			for (Connection conn : con){
@@ -51,7 +51,6 @@ public class SeekUsersWithGivenSubject {
 					System.out.println("this mentor has not look for subject");
 				}
 			}
-			
 		}
 		return mentorsWithSubject;
 	}
