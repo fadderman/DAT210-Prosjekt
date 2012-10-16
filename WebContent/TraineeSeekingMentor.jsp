@@ -1,3 +1,5 @@
+<%@page import="org.apache.catalina.Session"%>
+<%@page import="models.MentorsWithSubject"%>
 <%@page import="models.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" pageEncoding="UTF-8" session="false"%>
@@ -12,7 +14,8 @@
 	<%
 		//har enda ikke forstått ossen jeg får data fra databasen så har jeg
 		//lagt til en tom dataliste
-		ArrayList<User> mentors = new ArrayList<User>();
+		MentorsWithSubject m = new MentorsWithSubject();
+		ArrayList<User> mentors = new MentorsWithSubject().getMentorsWithSubject();
 	%>
 	<h1 id="Title">List of Mentor</h1>
 	<table id="ListofMentor" border="1">
@@ -28,7 +31,7 @@
 		<td><%user.getFirstName(); %></td>
 		<td><%user.getLastName(); %></td>
 		<td><%user.getEmail(); %></td>
-		<td><%user.getFirstName(); %></td>
+		<td>empty</td>
 		<!-- legger til en masse EL table data -->
 		</tr>
 		<% } %>
