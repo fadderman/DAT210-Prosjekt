@@ -2,8 +2,12 @@ package models.test;
 
 import static org.junit.Assert.*;
 
+import hibernate.UserManagement;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 
+import models.MentorsWithSubject;
 import models.User;
 
 import org.junit.After;
@@ -11,11 +15,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MentorsWithSubjectsTest {
-	private LinkedList<User> mentorswithsubject;
+	private ArrayList<User> mentorswithsubject;
 
 	@Before
 	public void setUp() throws Exception {
-		mentorswithsubject = new LinkedList<User>();
+		mentorswithsubject =  new MentorsWithSubject().getMentorsWithSubject();
 	}
 
 	@After
@@ -24,7 +28,7 @@ public class MentorsWithSubjectsTest {
 	}
 	@Test
 	public void getMentorWithSubjectTest() {
-		assertNotNull(mentorswithsubject);
+		assertFalse(mentorswithsubject.isEmpty());
 	}
 
 }
