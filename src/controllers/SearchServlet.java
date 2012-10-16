@@ -44,7 +44,8 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("users", users);
 		}
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/searchresults.jsp");
+		request.setAttribute("include", "searchresults.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
 	}
 	
