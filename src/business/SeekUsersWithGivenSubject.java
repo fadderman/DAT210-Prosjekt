@@ -1,6 +1,5 @@
 package business;
 
-import hibernate.SubjectManagement;
 import hibernate.UserManagement;
 
 import java.util.ArrayList;
@@ -14,8 +13,6 @@ public class SeekUsersWithGivenSubject {
 	
 	//skal bruk en metode fra usermanagement for å få en liste med brukere
 	private LinkedList<User> mentors;
-	private LinkedList<Subject> subjects;
-	
 	private String subject;
 	
 	
