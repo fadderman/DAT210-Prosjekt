@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,8 +16,8 @@
 	<div class="container well">
 		<div class="row-fluid">
 		<form action="search" method="get">
-			<div class="span5"><input type="text" name="query" id="search" class="span12 input-medium search-query" placeholder="Search.."/></div>
-			<div class="span7"><button class="btn btn-primary" type="submit">Search</button></div>
+			<div class="span10" align="right"><input type="text" name="query" id="search" class="span6 input-medium search-query" placeholder="Search.."/></div>
+			<div class="span2" align="left"><button class="btn btn-primary" type="submit">Search</button></div>
 			<script>
 		        $("#search").autocomplete("getsearch.jsp");
 		    </script>
