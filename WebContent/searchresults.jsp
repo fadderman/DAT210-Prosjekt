@@ -89,7 +89,7 @@
 				</div>
 				<div class="span6">
 					<div class="span12">
-						<img src="http://maps.googleapis.com/maps/api/staticmap?center=${user.locationCity},${user.locationCountry}&zoom=12&size=500x150&sensor=false">
+						<img class="img-rounded" src="http://maps.googleapis.com/maps/api/staticmap?center=${user.locationCity},${user.locationCountry}&zoom=12&size=500x150&sensor=false">
 					</div>
 				</div>
 				

@@ -29,8 +29,8 @@
 								class="icon-chevron-down"></i></a>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="dlabel">
 								<!-- dropdown menu links -->
-								<li><a href="#"><i class="icon-search"></i> Mentor</a></li>
-								<li><a href="#"><i class="icon-search"></i> Trainee</a></li>
+								<li><a href="#"> Mentor</a></li>
+								<li><a href="#"> Trainee</a></li>
 
 							</ul></li>
 						<li><a href="#"><i class="icon-user"></i> Profile</a></li>
