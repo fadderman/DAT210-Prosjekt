@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import hibernate.*;
 import models.*;
+
 import org.junit.*;
 
 public class SubjectManagementTest {
@@ -70,26 +71,25 @@ public class SubjectManagementTest {
 	
 	@Test
 	public void testGetByTitle(){
-		Subject test = (Subject) sm.getByTitle("Java3D");
-		assertEquals(test.getTitle(), "Java3D");
+		List<Subject> list = sm.getByTitle("Java3D");
+		assertEquals(list.get(0).getDescription(), "Programming language");
 	}
 	
 
 	
 	@Test
 	public void testUpdateTitle(){
-		Subject test = (Subject) sm.getByTitle("Java3D");
-		sm.updateTitle(test, "Java4D");
-		assertEquals(sm.getByTitle("Java4D"), "Java3D");
+		List<Subject> test = sm.getByTitle("Java3D");
+		sm.updateTitle( test.get(0), "Java4D");
+		assertEquals(sm.getByTitle("Java4D").get(0).getTitle(), "Java4D");
 		
 	}
 	
 	@Test
 	public void testUpdateDescription(){
-		Subject test = (Subject) sm.getByTitle("Java3D");
-		sm.updateDescription(test, "3D design java language");
-		
-		
+		List<Subject> test =  sm.getByTitle("Java");
+		sm.updateDescription(test.get(0), "Programming language");
+		assertEquals(sm.getByTitle("Java").get(0).getDescription(), "Programming language");
 	}
 	
 	@Test
