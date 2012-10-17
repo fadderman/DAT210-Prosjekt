@@ -15,7 +15,7 @@
 		//har enda ikke forstått ossen jeg får data fra databasen så har jeg
 		//lagt til en tom dataliste
 		MentorsWithSubject m = new MentorsWithSubject();
-		ArrayList<User> mentors = new MentorsWithSubject().getMentorsWithSubject();
+		ArrayList<User> mentors = m.getMentorsWithSubject();
 	%>
 	<h1 id="Title">List of Mentor</h1>
 	<table id="ListofMentor" border="1">
