@@ -28,6 +28,8 @@ public class SubjectManagementTest {
 		fm = new FieldManagement();
 		um = new UserManagement();
 		
+		fm.createField("Java", "This is java", null);
+		
 	}
 	
 
