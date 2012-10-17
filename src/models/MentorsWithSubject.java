@@ -21,7 +21,8 @@ public class MentorsWithSubject {
 	}
 
 	public void setMentorsWithSubject(String subject) {
-		mentorsWithSubject = new SeekUsersWithGivenSubject(subject).getMentorsWithSbject();
+		SeekUsersWithGivenSubject sug = new SeekUsersWithGivenSubject(subject);
+		mentorsWithSubject = sug.getMentorsWithSbject();
 	}
 	
 }
