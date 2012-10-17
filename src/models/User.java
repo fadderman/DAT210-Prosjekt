@@ -33,8 +33,6 @@ public class User {
 	
 	@Column(name = "location_country")
 	private String locationCountry;
-	
-	//Location: city, country
 
 	@OneToMany(mappedBy = "mentor")
 	private List<Connection> mentorConnection;
@@ -127,6 +125,10 @@ public class User {
 
 	public void setLocationCountry(String locationCountry) {
 		this.locationCountry = locationCountry;
+	}
+	
+	public String getFullLocationString(){
+		return this.locationCity + ", " + this.locationCountry;
 	}
 
 	public List<Connection> getConnectionMentor() {

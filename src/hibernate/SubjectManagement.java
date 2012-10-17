@@ -20,8 +20,8 @@ public class SubjectManagement extends HibernateUtil{
 		addSubject(subject);
 	}
 
-	public void addSubject(Subject subject){
-		addToDatabase(subject);
+	public boolean addSubject(Subject subject){
+		return addToDatabase(subject);
 	}
 
 	public List<Subject> getAllSubjects(){

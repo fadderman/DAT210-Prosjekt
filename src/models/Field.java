@@ -40,6 +40,7 @@ public class Field {
 		this.title = title;
 		this.description = description;
 		this.subject = subject;
+		active = true;
 	}
 	
 	public int getFieldID() {
