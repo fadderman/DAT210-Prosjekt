@@ -70,17 +70,19 @@ public class HibernateUtil {
 			if(criteria == null){
 				//force a skip on null values, criteria not needed for SELECT *
 			}
-			else if(criteria.getClass() == String.class){
+			else if(criteria instanceof String){
 				query.setString(queryVariable, (String) criteria);
 			}
-			else if(criteria.getClass() == Integer.class){
+			else if(criteria instanceof Integer){
 				Integer critInt = (Integer) criteria;
 				query.setInteger(queryVariable, critInt.intValue());
 			}
-			else if(criteria.getClass() == Date.class)
+			else if(criteria instanceof Date){
 				query.setDate(queryVariable, (Date)criteria);
-			else if(criteria.getClass() == Collection.class)
+			}
+			else if(criteria instanceof Collection){
 				query.setParameterList(queryVariable, (Collection) criteria);
+			}			
 			results = query.list();
 			tx.commit();
 		}catch (HibernateException e) {
@@ -99,24 +101,24 @@ public class HibernateUtil {
 		try{
 			tx = session.beginTransaction();
 			Query query = session.createQuery(queryString);
-			if(criteria1.getClass() == String.class){
+			if(criteria1 instanceof String){
 				query.setString(queryVariable1, (String) criteria1);
 			}
-			else if(criteria1.getClass() == Integer.class){
+			else if(criteria1 instanceof Integer){
 				Integer critInt = (Integer) criteria1;
 				query.setInteger(queryVariable1, critInt.intValue());
 			}
-			else if(criteria1.getClass() == Date.class){
+			else if(criteria1 instanceof Date){
 				query.setDate(queryVariable1, (Date)criteria1);
 			}
-			if(criteria2.getClass() == String.class){
+			if(criteria2 instanceof String){
 				query.setString(queryVariable2, (String) criteria2);
 			}
-			else if(criteria2.getClass() == Integer.class){
+			else if(criteria2 instanceof Integer){
 				Integer critInt = (Integer) criteria2;
 				query.setInteger(queryVariable2, critInt.intValue());
 			}
-			else if(criteria2.getClass() == Date.class){
+			else if(criteria2 instanceof Date){
 				query.setDate(queryVariable2, (Date)criteria2);
 			}
 			results = query.list();
@@ -141,14 +143,14 @@ public class HibernateUtil {
 			if(criteria == null){
 				//force a skip on null values, criteria not needed for SELECT *
 			}
-			else if(criteria.getClass() == String.class){
+			else if(criteria instanceof String){
 				query.setString(queryVariable, (String) criteria);
 			}
-			else if(criteria.getClass() == Integer.class){
+			else if(criteria instanceof Integer){
 				Integer critInt = (Integer) criteria;
 				query.setInteger(queryVariable, critInt.intValue());
 			}
-			else if(criteria.getClass() == Date.class)
+			else if(criteria instanceof Date)
 				query.setDate(queryVariable, (Date)criteria);
 			result = query.uniqueResult();
 			tx.commit();
@@ -169,17 +171,17 @@ public class HibernateUtil {
 			tx = session.beginTransaction();
 			Query query = session.createQuery(queryString);
 			query.setInteger("id", id);
-			if(newValue.getClass() == String.class){
+			if(newValue instanceof String){
 				query.setString(queryVariable, (String) newValue);
 			}
-			if(newValue.getClass() == Integer.class){
+			if(newValue instanceof Integer){
 				Integer newInt = (Integer) newValue;
 				query.setInteger(queryVariable, newInt.intValue());
 			}
-			if(newValue.getClass() == Date.class){
+			if(newValue instanceof Date){
 				query.setDate(queryVariable, (Date) newValue);
 			}
-			if(newValue.getClass() == Boolean.class){
+			if(newValue instanceof Boolean){
 				Boolean newBool = (Boolean) newValue;
 				query.setBoolean(queryVariable, newBool.booleanValue());
 			}
