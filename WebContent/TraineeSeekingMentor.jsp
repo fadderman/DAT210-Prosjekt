@@ -14,7 +14,7 @@
 	<%
 		//har enda ikke forstått ossen jeg får data fra databasen så har jeg
 		//lagt til en tom dataliste
-		MentorsWithSubject m = new MentorsWithSubject();
+		MentorsWithSubject m = new MentorsWithSubject("Java 2D");
 		ArrayList<User> mentors = m.getMentorsWithSubject();
 	%>
 	<h1 id="Title">List of Mentor</h1>
@@ -25,16 +25,31 @@
 			<th>Email</th>
 			<th>Join</th>
 		</tr>
-		<%for(User user : mentors){						
-			%>
+		<%
+			for (User user : mentors) {
+		%>
 		<tr valign="top">
-		<td><%user.getFirstName(); %></td>
-		<td><%user.getLastName(); %></td>
-		<td><%user.getEmail(); %></td>
-		<td>empty</td>
-		<!-- legger til en masse EL table data -->
+			<td>
+				<%
+					user.getFirstName();
+				%>
+			</td>
+			<td>
+				<%
+					user.getLastName();
+				%>
+			</td>
+			<td>
+				<%
+					user.getEmail();
+				%>
+			</td>
+			<td>empty</td>
+			<!-- legger til en masse EL table data -->
 		</tr>
-		<% } %>
+		<%
+			}
+		%>
 	</table>
 </body>
 </html>

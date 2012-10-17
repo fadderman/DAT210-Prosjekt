@@ -8,6 +8,7 @@ import hibernate.UserManagement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+
 import models.Connection;
 import models.Field;
 import models.Subject;
@@ -18,15 +19,14 @@ public class SeekUsersWithGivenSubject {
 	//skal bruk en metode fra usermanagement for å få en liste med brukere
 	private ArrayList<User> mentors;
 	private String subject;
+	private Field foundsubject;
 	private static UserManagement userm;
 	
 	public SeekUsersWithGivenSubject(String subject) {
 		userm = new UserManagement();
 		populateDatabase();
-		mentors = findMentors();
-		this.subject = subject;
-		
-		
+		foundsubject = new FieldManagement().getSingleByTitle(subject);
+		mentors = (ArrayList<User>) new FieldManagement().getMentors(foundsubject);
 	}
 	
 	private static void populateDatabase(){
@@ -96,39 +96,7 @@ public class SeekUsersWithGivenSubject {
 		xm.createOpenTrainee(user6, subJava3D);
 	}
 	
-	private static ArrayList<User> findMentors(){
-		ArrayList<User> users = (ArrayList<User>) userm.listAllUsers();
-		ArrayList<User> tempFoundMentors = new ArrayList<User>();
-		for(User user : users){
-			ArrayList<Connection> con = (ArrayList<Connection>) user.getConnectionMentor();
-			if(con.isEmpty()){
-				System.out.println("This user is not a mentor");
-			}
-			else {
-				tempFoundMentors.add(user);
-			}
-		}
-		return tempFoundMentors;
-	}
-	
-	
-	
 	public ArrayList<User> getMentorsWithSbject() {
-		ArrayList<User> mentorsWithSubject = new ArrayList<User>();
-		for (User user: mentors){
-			ArrayList<Connection> con = (ArrayList<Connection>) user.getConnectionMentor();
-			for (Connection conn : con){
-				if(subject == conn.getField().getSubject().getTitle()){
-					mentorsWithSubject.add(user);
-				} 
-				if(subject == conn.getField().getTitle()) {
-					mentorsWithSubject.add(user);
-				}
-				else {
-					System.out.println("this mentor has not look for subject");
-				}
-			}
-		}
-		return mentorsWithSubject;
+		return mentors;
 	}
 }
