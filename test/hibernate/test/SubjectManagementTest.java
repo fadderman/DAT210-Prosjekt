@@ -30,6 +30,9 @@ public class SubjectManagementTest {
 		um = new UserManagement();
 		
 		fm.createField("Java", "This is java", null);
+		sm.createSubject("Programming", "Programming related");
+		sm.createSubject("Non-programming", "not programming related");
+
 		
 	}
 	
@@ -104,6 +107,11 @@ public class SubjectManagementTest {
 			System.out.println(current.getTitle());
 			assertEquals(current.isActive(), false);
 		}
+	}
+	
+	@Test
+	public void testFetchFieldList(){
+		
 	}
 	
 	

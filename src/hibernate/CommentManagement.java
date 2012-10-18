@@ -10,13 +10,13 @@ public class CommentManagement extends HibernateUtil{
 		sessionFactory = getSessionFactory();
 	}
 
-	public void createComment(Connection connection, User author, String text){
+	public boolean createComment(Connection connection, User author, String text){
 		Comment comment = new Comment(connection, author, text);
-		addComment(comment);
+		return addComment(comment);
 	}
 	
-	public void addComment(Comment comment){
-		addToDatabase(comment);
+	public boolean addComment(Comment comment){
+		return addToDatabase(comment);
 	}
 	
 	public List<Comment> getAllComments(){
