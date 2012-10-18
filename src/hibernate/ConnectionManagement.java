@@ -10,30 +10,37 @@ public class ConnectionManagement extends HibernateUtil{
 		sessionFactory = getSessionFactory();
 	}
 	
-	public void createOpenMentor(User mentor, Field field){
+	public boolean createOpenMentor(User mentor, Field field){
 		Connection connection = new Connection(field);
 		connection.setMentor(mentor);
-		addConnection(connection);
+		return addConnection(connection);
 	}
 	
-	public void createOpenTrainee(User trainee, Field field){
+	public boolean createOpenMentor(User mentor, Field field, int difficultyLevel){
+		Connection connection = new Connection(field);
+		connection.setMentor(mentor);
+		connection.setDifficultyLevel(difficultyLevel);
+		return addConnection(connection);
+	}
+	
+	public boolean createOpenTrainee(User trainee, Field field){
 		Connection connection = new Connection(field);
 		connection.setTrainee(trainee);
-		addConnection(connection);
+		return addConnection(connection);
 	}
 	
-	public void createConnection(User mentor, User trainee, Field field){
+	public boolean createConnection(User mentor, User trainee, Field field){
 		Connection connection = new Connection(mentor, trainee, field);
-		addConnection(connection);
+		return addConnection(connection);
 	}
 	
-	public void createConnection(User mentor, User trainee, Field field, int difficultyLevel){
+	public boolean createConnection(User mentor, User trainee, Field field, int difficultyLevel){
 		Connection connection = new Connection(mentor, trainee, field, difficultyLevel);
-		addConnection(connection);
+		return addConnection(connection);
 	}
 
-	public void addConnection(Connection connection) {
-		addToDatabase(connection);
+	public boolean addConnection(Connection connection) {
+		return addToDatabase(connection);
 	}
 	
 	public List<Connection> getAllConnections(){

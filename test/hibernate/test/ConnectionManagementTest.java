@@ -1,11 +1,16 @@
 package hibernate.test;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+import java.util.Iterator;
+
 import hibernate.*;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import models.Connection;
+import models.User;
+
+import org.junit.*;
 
 public class ConnectionManagementTest {
 
@@ -38,7 +43,6 @@ public class ConnectionManagementTest {
 		um.createUser("Bob", "Last", "phil@last.com", "Here", "It exits on Earth", "numero tres");
 		um.createUser("Some", "Guy", "someguy@somewhere.com", "Somewhere", "Place", "numero quatro");
 		
-		
 	}
 	
 	@Before
@@ -48,8 +52,54 @@ public class ConnectionManagementTest {
 
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testCreateOpenMentor() {
+		assertEquals(xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Java")), true);
+		assertEquals(xm.createOpenMentor(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Java")), true);
+		assertEquals(xm.createOpenMentor(um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Google tips")), true);
+	}
+	
+	@Test
+	public void testCreateOpenTrainee() {
+		assertEquals(xm.createOpenTrainee(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("C++")), true);
+		assertEquals(xm.createOpenTrainee(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Bathroom Wall")), true);
+		assertEquals(xm.createOpenTrainee(um.getByEmail("phil@last.com"), fm.getSingleByTitle("COBOL")), true);
+	}
+	
+	@Test
+	public void testCreateConnection(){
+		assertEquals(xm.createConnection(um.getByEmail("someguy@somewhere.com"), um.getByEmail("bob.secon@outlook.com"), fm.getSingleByTitle("COBOL")), true);
+		assertEquals(xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Google tips")), true);
+		assertEquals(xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Bathroom Wall")), true);
+	}
+	
+	@Test
+	public void testChangeStatus(){
+		List<Connection> list = xm.getByMentor(um.getByEmail("phil@last.com"));
+		for(Iterator<Connection> i = list.iterator(); i.hasNext();){
+			Connection current = i.next();
+			if(current.getField().getTitle() == "Bathroom Wall"){
+				xm.changeStatus(current, false);
+			}
+		}
+		
+		list = xm.getByMentor(um.getByEmail("phil@last.com"));
+		for(Iterator<Connection> i = list.iterator(); i.hasNext();){
+			Connection current = i.next();
+			if(current.getField().getTitle() == "Bathroom Wall"){
+				assertEquals(current.isActive(), false);
+			}
+		}
+		
+	}
+	
+	@Test
+	public void testGetAllConnections(){
+		List<Connection> list = xm.getAllConnections();
+		for(Iterator<Connection> i = list.iterator(); i.hasNext();){
+			Connection current = i.next();
+			assertEquals(current.getClass(), Connection.class);
+		}
+		assertEquals(list.size(), 7);
 	}
 
 }

@@ -131,6 +131,38 @@ public class HibernateUtil {
 		}
 		return results;
 	}
+	
+	protected <T> List<T> multiFetch(String queryString, List<String> queryVariables, List<Object> criterias){
+		List<T> results = null;
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{
+			tx = session.beginTransaction();
+			Query query = session.createQuery(queryString);
+			for(int index = 0; index < queryVariables.size(); index++){
+				String currentQueryVariable = queryVariables.get(index);
+				Object currentCriteria = criterias.get(index);
+				if(currentCriteria instanceof String){
+					query.setString(currentQueryVariable, (String) currentCriteria);
+				}
+				else if(currentCriteria instanceof Integer){
+					Integer critInt = (Integer) currentCriteria;
+					query.setInteger(currentQueryVariable, critInt.intValue());
+				}
+				else if(currentCriteria instanceof Date){
+					query.setDate(currentQueryVariable, (Date)currentCriteria);
+				}
+			}
+			results = query.list();
+			tx.commit();
+		}catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		}finally {
+			session.close(); 
+		}
+		return results;
+	}
 
 
 	protected Object fetchSingle(String queryString, String queryVariable, Object criteria){
