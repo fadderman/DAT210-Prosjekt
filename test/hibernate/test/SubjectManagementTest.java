@@ -107,8 +107,10 @@ public class SubjectManagementTest {
 	}
 	
 	
+	
+	
 	//TODO List<Field> fetchFieldList
-	//TODO public void changeStatus
+	
 	
 
 
