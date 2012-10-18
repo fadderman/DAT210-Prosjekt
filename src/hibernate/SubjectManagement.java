@@ -43,13 +43,13 @@ public class SubjectManagement extends HibernateUtil{
 	}
 	
 	public List<Subject> getByTitle(String title){
-		String queryString = "from models.Subject where title = :title";
+		String queryString = "from models.Subject where title = :title and active = true";
 		String queryVariable = "title";
 		return fetch(queryString, queryVariable, title);
 	}
 	
 	public Subject getSingleByTitle(String title){
-		String queryString = "from models.Subject where title = :title";
+		String queryString = "from models.Subject where title = :title and active = true";
 		String queryVariable = "title";
 		return (Subject) fetchSingle(queryString, queryVariable, title);
 	}

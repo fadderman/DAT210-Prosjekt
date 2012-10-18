@@ -36,20 +36,17 @@ public class Subject {
 	public Subject(String title, String description){
 		this.title = title;
 		this.description = description;
-		active = true;
+		this.active = true;
 		fieldList = new ArrayList<Field>();		
 	}
 	
 	public Subject(String title, String description, Field field){
-		this.title = title;
-		this.description = description;
-		fieldList = new ArrayList<Field>();
+		this(title, description);
 		fieldList.add(field);
 	}
 	
 	public Subject(String title, String description, ArrayList<Field> fieldList) {
-		this.title = title;
-		this.description = description;
+		this(title, description);
 		this.fieldList = fieldList;
 	}
 	

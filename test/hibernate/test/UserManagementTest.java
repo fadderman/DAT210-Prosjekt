@@ -49,7 +49,7 @@ public class UserManagementTest {
 		
 		for(Iterator<User> iterator = list.iterator(); iterator.hasNext();){
 			User current = iterator.next();
-			assertEquals(current.getIdentifierOpenID().getClass(), String.class);
+			assertEquals(current.getClass(), User.class);
 		}
 	}
 	@Test
