@@ -1,4 +1,3 @@
-<%@page import="org.apache.catalina.Session"%>
 <%@page import="models.MentorsWithSubject"%>
 <%@page import="models.User"%>
 <%@page import="java.util.ArrayList"%>
@@ -11,8 +10,8 @@
 <title>Trainee Seeking Mentor</title>
 </head>
 <body>
+<form action=""></form>
 	<%
-		//har enda ikke forstått ossen jeg får data fra databasen så har jeg
 		//lagt til en tom dataliste
 		MentorsWithSubject m = new MentorsWithSubject("Java 2D");
 		ArrayList<User> mentors = m.getMentorsWithSubject();
