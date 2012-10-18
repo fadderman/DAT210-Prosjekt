@@ -13,11 +13,21 @@
 <form action=""></form>
 	<%
 		//lagt til en tom dataliste
-		MentorsWithSubject m = new MentorsWithSubject("Java 2D");
-		ArrayList<User> mentors = m.getMentorsWithSubject();
+		//MentorsWithSubject m = new MentorsWithSubject("Java 2D");
+		ArrayList<User> mentors = new ArrayList<User>();
+
+		User user1 = new User("John", "First", "johnfirst@gmail.com", "Here", "It exits on Earth", "numero uno");
+		User user2 = new User("Bob", "Second", "bob.second@outlook.com", "Not far away", "Ground", "numero dos");
+		User user3 = new User("Bob", "Last", "phil@last.com", "Here", "It exits on Earth", "numero tres");
+		User user4 = new User("Some", "Guy", "someguy@somewhere.com", "Somewhere", "Place", "numero quatro");
+		mentors.add(user1);
+		mentors.add(user2);
+		mentors.add(user3);
+		mentors.add(user4);
+		
 	%>
 	<h1 id="Title">List of Mentor</h1>
-	<table id="ListofMentor" border="1">
+	<table id="ListofMentor" border="1" class="row-fluid">
 		<tr>
 			<th>First Name</th>
 			<th>Last Name</th>
@@ -29,18 +39,18 @@
 		%>
 		<tr valign="top">
 			<td>
-				<%
-					user.getFirstName();
+				<%=
+					user.getFirstName()
 				%>
 			</td>
 			<td>
-				<%
-					user.getLastName();
+				<%=
+					user.getLastName()
 				%>
 			</td>
 			<td>
-				<%
-					user.getEmail();
+				<%=
+					user.getEmail()
 				%>
 			</td>
 			<td>empty</td>
