@@ -97,6 +97,7 @@ public class Connection {
 	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
 	}
+
 	public int getConnectionID() {
 		return connectionID;
 	}
@@ -112,4 +113,5 @@ public class Connection {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
 }

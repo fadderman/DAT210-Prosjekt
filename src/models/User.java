@@ -3,7 +3,9 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "USER")
@@ -18,6 +20,13 @@ public class User {
 
 	@Column(name = "identifier_openID")
 	private String identifierOpenID;
+	
+	@Id @GeneratedValue
+	@Column(name = "identifier")
+	private String identifier;
+	
+	@Column(name = "username")
+	private String username;
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -46,7 +55,8 @@ public class User {
 	public User() {}
 	
 	//TODO Business methods pass empty variables if fields are to be left empty
-	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
+
+	public User(String identifier, String firstName, String lastName, String email, String location) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -56,7 +66,6 @@ public class User {
 		active = true;
 
 		commentList = new ArrayList<Comment>();
-		
 	}
 	
 	public int getUserID() {
@@ -98,9 +107,18 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	
 	public String getFullName(){
 		return this.firstName + " " + this.lastName;
+	}
+
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 
 	public String getEmail() {

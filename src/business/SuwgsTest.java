@@ -16,7 +16,7 @@ public class SuwgsTest {
 		ArrayList<User> seekedMentors = mws.getMentorsWithSubject();
 		for(User user : seekedMentors){
 			String str = user.getFirstName();
-			str += user.getLastName();
+			str += " " + user.getLastName();
 			System.out.println(str);
 			str = null;
 		}
