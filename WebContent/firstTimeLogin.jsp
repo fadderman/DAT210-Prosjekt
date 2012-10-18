@@ -78,39 +78,22 @@
 				<table class="tableBorderless">
 					<tbody>
 						<tr>
-							<td><label class="pull-right">Subject:</label></td>
-							<td><select name="category" id="category">
-									<option value="java">Java</option>
-									<option value="cSharp">C#</option>
-									<option value="cplusplus">C++</option>
-									<option value="obj-C">Objective C</option>
-
-							</select></td>
 							<td><label class="pull-right">Field:</label></td>
-							<td><select name="field" id="field">
-									<option value="gui">GUI</option>
-									<option value="simulation">Simulation</option>
-									<option value="threading">Threading</option>
-									<option value="basics">Basics</option>
-									<option value="other">Other</option>
-							</select></td>
+							<td><input name="field" type="text" placeholder="Keywords for your Connection" id="field">
 							<td><label class="radio inline"><input type="radio"
 									name="optionsRadios" id="radioMentor" value="Mentor">Mentor</label></td>
 							<td><label class="radio inline"><input type="radio" checked
-									name="optionsRadios" id="radioTrainee" value="Trainee">Trainee</label></td>
+									name="optionsRadios" id="radioTrainee" value="Trainee">Trainee</label></td>									
 						</tr>
 						<tr>
 							<td><label class="pull-right">Additional Info:</label></td>
 							<td><textarea id="addInfo" name="addInfo"></textarea></td>
 							<td><label class="pull-right">Experience:</label></td>
 							<td>
-								<select name="experience">
-									<option value="noob"> Newbie </option>
+								<select name="experience" id="experience">
 									<option value="novice"> Novice </option>
 									<option value="intermediate"> Intermediate </option>
-									<option value="skilled"> Skilled </option>
 									<option value="expert"> Expert </option>
-									<option value="loreMaster"> Lore Master </option>
 								</select>
 							</td>
 							<td>
@@ -122,11 +105,11 @@
 				<br />
 				<table class="table table-hover" id="tblCourse">
 					<thead>
-						<th>Course</th>
-						<th>Subject</th>
+						<th>Field</th>
+						<th>Additional Info</th>
 						<th>Mentor</th>
 						<th>Trainee</th>
-						<th></th>
+						<th>Experience</th>
 					</thead>
 					<tbody>
 						
@@ -166,14 +149,22 @@
 		oTr = $('<tr>');
 
 		// legger til en TD til TR med data fra kategoriselecten
+		// oTr.append( 
+		//	$('<td>').append($('<input>', { name: "category", type: 'hidden', value: $('#category :selected').val() }))
+		//			.append($('<span>').append($('#category :selected').text()))); 
+		
 		oTr.append(
-			$('<td>').append($('<input>', { name: "category", type: 'hidden', value: $('#category :selected').val() }))
-					.append($('<span>').append($('#category :selected').text())));
+				$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field').val() }))
+						.append($('<span>').append($('#field').val())));
+		
+		oTr.append(
+				$('<td>').append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() }))
+						.append($('<span>').append($('#addInfo').val())));
 
 		// legger til en TD til TR med data fra fieldselecten
-		oTr.append(
-			$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field :selected').val() }))
-					.append($('<span>').append($('#field :selected').text())));
+		//oTr.append(
+		//	$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field :selected').val() }))
+		//			.append($('<span>').append($('#field :selected').text())));
 		
 		// Henter inn valgte option for trainee / mentor
 	    var trMen = $("input[name=optionsRadios]:checked");
@@ -188,6 +179,10 @@
 					.append($('<span>').append((trMen.val() == 'Trainee')?'Yes':'No'))
 					.append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() })));
 
+		oTr.append(
+				$('<td>').append($('<input>', { name: "experience", type: 'hidden', value: $('#experience :selected').val() }))
+						.append($('<span>').append($('#experience :selected').text())));
+		
 		// fjerner valgt info
 		$('#addInfo').val("");
 		trMen.attr('checked',false);

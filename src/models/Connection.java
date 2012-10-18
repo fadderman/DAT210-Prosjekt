@@ -13,6 +13,9 @@ public class Connection {
 	@Column(name = "connection_id")
 	private int connectionID;
 
+	@Column(name ="description")
+	private String description;
+	
 	@Column(name = "active")
 	private boolean active;
 	
@@ -52,7 +55,7 @@ public class Connection {
 		comments = new ArrayList<Comment>();
 	}
 	
-	public Connection(User mentor, User trainee, Field field, int difficultyLevel, int connectionID) {
+	public Connection(User mentor, User trainee, Field field, String description, int difficultyLevel) {
 		this(mentor, trainee, field);
 		this.difficultyLevel = difficultyLevel;
 		this.connectionID = connectionID;

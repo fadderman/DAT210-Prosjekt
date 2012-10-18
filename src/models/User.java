@@ -26,6 +26,9 @@ public class User {
 	@Column(name = "last_Name")
 	private String lastName;
 
+	@Column(name = "empty_User")
+	private Boolean emptyUser;
+	
 	@Column(name = "email")
 	private String email;
 
@@ -58,6 +61,10 @@ public class User {
 	private List<Comment>  commentList;
 
 	public User() {}
+	
+	public User(String emptyUser){
+		if(emptyUser.equalsIgnoreCase("null")) this.emptyUser = true;
+	}
 
 	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
 		this.firstName = firstName;
