@@ -73,6 +73,11 @@ public class SubjectManagementTest {
 	}
 	
 	@Test
+	public void testGetSingleByTitle(){
+		
+	}
+	
+	@Test
 	public void testGetByTitle(){
 		List<Subject> list = sm.getByTitle("Java3D");
 		assertEquals(list.get(0).getDescription(), "Programming language");
@@ -111,8 +116,20 @@ public class SubjectManagementTest {
 	
 	@Test
 	public void testFetchFieldList(){
+		assertEquals(fm.createField("Java", "This is Java", sm.getSingleByTitle("Programming")), true);
+		assertEquals(fm.createField("C++", "C plus plus", sm.getSingleByTitle("Programming")), true);
+		assertEquals(fm.createField("Google tips", "Google like a pro", sm.getSingleByTitle("Non-programming")), true);
+		assertEquals(fm.createField("Bathroom Wall", "How to copy code from the interne", sm.getSingleByTitle("Non-programming")), true);
+		assertEquals(fm.createField("COBOL", "Old stuff for old ppl", sm.getSingleByTitle("Programming")), true);
+	
 		
-	}
+		List<Subject> list = sm.getAllSubjects();
+		for(Iterator<Subject> i = list.iterator(); i.hasNext();){
+			
+			
+			Subject current = i.next();
+			System.out.println(current.getTitle()); 
+		}	}
 	
 	
 	
