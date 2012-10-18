@@ -2,17 +2,17 @@ package business.search;
 
 import java.util.ArrayList;
 
-import models.Subject;
+import models.Field;
 import models.User;
 
 public class SearchResults {
 
 	private ArrayList<User> userResults;
-	private ArrayList<Subject> subjectResults;
+	private ArrayList<Field> fieldResults;
 	
 	public SearchResults(){
 		userResults = new ArrayList<>();
-		subjectResults = new ArrayList<Subject>();
+		fieldResults = new ArrayList<Field>();
 	}
 
 	public ArrayList<User> getUserResults() {
@@ -23,12 +23,12 @@ public class SearchResults {
 		this.userResults = userResults;
 	}
 
-	public ArrayList<Subject> getSubjectResults() {
-		return subjectResults;
+	public ArrayList<Field> getFieldResults() {
+		return fieldResults;
 	}
 
-	public void setSubjectResults(ArrayList<Subject> subjectResults) {
-		this.subjectResults = subjectResults;
+	public void setFieldResults(ArrayList<Field> fieldResults) {
+		this.fieldResults = fieldResults;
 	}
 	
 }

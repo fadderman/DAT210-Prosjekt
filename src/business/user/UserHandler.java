@@ -4,10 +4,6 @@ import hibernate.UserManagement;
 
 import java.util.ArrayList;
 
-import org.apache.http.client.UserTokenHandler;
-
-import business.search.UserSuggestion;
-
 import models.User;
 
 public class UserHandler {
@@ -20,13 +16,13 @@ public class UserHandler {
 //		userManager = new UserManagement();
 	}
 
-	public void addUser(User user) {
+	public static void addUser(User user) {
 		synchronized (userList) {
 			userList.add(user);
 		}
 	}
 
-	public User getUserByIdentifier(String identifier) {
+	public static User getUserByIdentifier(String identifier) {
 		if(identifier.isEmpty())return null;
 		
 		for(int i=0; i<userList.size();i++){
@@ -37,26 +33,26 @@ public class UserHandler {
 		return null;
 	}
 	
-	public User getUserByIndex(int index){
+	public static User getUserByIndex(int index){
 		return userList.get(index);
 	}
 	
-	public int getUserListSize(){
+	public static int getUserListSize(){
 		return userList.size();
 	}
 	
-	public ArrayList<User> getUsersByID(ArrayList<UserSuggestion> usersToGet){
-		ArrayList<User> usersToReturn = new ArrayList<User>();
-		for(int i=0;i<userList.size();i++){
-			for(int j=0;j<usersToGet.size();j++){
-				if(usersToGet.get(j).getUserID() == userList.get(i).getUserID()){
-					usersToReturn.add(userList.get(i));
-					usersToGet.remove(j);
-				}
-			}			
-		}
-		return usersToReturn;
-	}
+//	public static ArrayList<User> getUsersByID(ArrayList<UserSuggestion> usersToGet){
+//		ArrayList<User> usersToReturn = new ArrayList<User>();
+//		for(int i=0;i<userList.size();i++){
+//			for(int j=0;j<usersToGet.size();j++){
+//				if(usersToGet.get(j).getUserID() == userList.get(i).getUserID()){
+//					usersToReturn.add(userList.get(i));
+//					usersToGet.remove(j);
+//				}
+//			}			
+//		}
+//		return usersToReturn;
+//	}
 	
 	
 }

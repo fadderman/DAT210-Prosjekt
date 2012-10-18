@@ -11,13 +11,16 @@
 		com.mysql.jdbc.Driver
     </property>
     <property name="hibernate.connection.url">
-		jdbc:mysql://localhost/Hibernate
+		jdbc:mysql://localhost/mentorfind
     </property>
     <property name="hibernate.connection.username">
 		root
     </property>
+    <property name="hibernate.connection.password">
+		passord
+    </property>
     <property name="hibernate.show_sql">
-		true
+		false
 	</property>
 	<property name="hibernate.format_sql">
 		true

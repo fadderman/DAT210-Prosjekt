@@ -25,12 +25,11 @@ public class CreateNewUserServlet extends HttpServlet {
 		String identifier = request.getParameter("identifier");
 		
 		User user = new User(firstName, lastName, email, city,country, identifier);
-		UserHandler userHandler = new UserHandler();
-		userHandler.addUser(user);
+		UserHandler.addUser(user);
 		
 		System.out.println(lastName + " " + firstName + " " + email + " " + country);
 		
-		String url = "/login.jsp";
+		String url = "/index.jsp";
 		
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(url);
