@@ -16,10 +16,11 @@
 		//MentorsWithSubject m = new MentorsWithSubject("Java 2D");
 		ArrayList<User> mentors = new ArrayList<User>();
 
-		User user1 = new User("John", "First", "johnfirst@gmail.com", "Here", "It exits on Earth", "numero uno");
-		User user2 = new User("Bob", "Second", "bob.second@outlook.com", "Not far away", "Ground", "numero dos");
-		User user3 = new User("Bob", "Last", "phil@last.com", "Here", "It exits on Earth", "numero tres");
-		User user4 = new User("Some", "Guy", "someguy@somewhere.com", "Somewhere", "Place", "numero quatro");
+		User user1 = new User();
+		User user5 = new User();
+		User user2 = new User();
+		User user3 = new User();
+		User user4 = new User();
 		mentors.add(user1);
 		mentors.add(user2);
 		mentors.add(user3);
@@ -53,7 +54,7 @@
 					user.getEmail()
 				%>
 			</td>
-			<td>empty</td>
+			<td><form action=""></form></td>
 			<!-- legger til en masse EL table data -->
 		</tr>
 		<%
