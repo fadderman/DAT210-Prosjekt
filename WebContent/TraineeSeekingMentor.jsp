@@ -10,7 +10,6 @@
 <title>Trainee Seeking Mentor</title>
 </head>
 <body>
-<form action=""></form>
 	<%
 		//lagt til en tom dataliste
 		//MentorsWithSubject m = new MentorsWithSubject("Java 2D");
@@ -27,8 +26,8 @@
 		mentors.add(user4);
 		
 	%>
-	<h1 id="Title">List of Mentor</h1>
-	<table id="ListofMentor" border="1" class="row-fluid">
+	<h1 id="Title" style="text-align: center;" class="page-header" >List of Mentor</h1>
+	<table id="ListofMentor" border="1" class="table">
 		<tr>
 			<th>First Name</th>
 			<th>Last Name</th>
@@ -38,23 +37,19 @@
 		<%
 			for (User user : mentors) {
 		%>
-		<tr valign="top">
-			<td>
-				<%=
+		<tr>
+			<td><%=
 					user.getFirstName()
-				%>
-			</td>
-			<td>
-				<%=
+				%></td>
+			<td><%=
 					user.getLastName()
-				%>
-			</td>
-			<td>
-				<%=
+				%></td>
+			<td><%=
 					user.getEmail()
-				%>
-			</td>
-			<td><form action=""></form></td>
+				%></td>
+			<td><form action="" name="send_user" method="post">
+					<input type="button" value="connect"class="btn">
+				</form></td>
 			<!-- legger til en masse EL table data -->
 		</tr>
 		<%
