@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import models.Comment;
 import models.Connection;
-import models.Subject;
+import models.Field;
 import models.User;
 
 import org.junit.After;
@@ -42,10 +42,10 @@ public class ConnectionTest {
 	}
 	
 	@Test
-	public void testSubject() {
-		Subject subject = new Subject();
-		connection.setSubject(subject);
-		assertEquals(subject, connection.getSubject());
+	public void testField() {
+		Field field = new Field();
+		connection.setField(field);
+		assertEquals(field, connection.getField());
 	}
 	
 	@Test

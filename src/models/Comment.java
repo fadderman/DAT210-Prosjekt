@@ -2,25 +2,60 @@ package models;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "COMMENT")
 public class Comment {
 
+	@Id @GeneratedValue
+	@Column(name = "comment_id")
+	private int commentID;
+	
+	@Column(name = "active")
+	private boolean active;
+	
+	@ManyToOne
+	@JoinColumn(name = "connection_fk")
 	private Connection connection;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_fk")
 	private User author;
-	private String comment;
+	
+	@Column(name = "text")
+	private String text;
+	
+	//TODO separate timestamp @ edit?
+	@Column(name = "timestamp")
 	private Date timestamp;
 	
-	public Comment() {
-		this.connection = null;
-		this.author = null;
-		this.comment = "";
+	
+	public Comment(){
 	}
 	
-	public Date getTimestamp() {
-		return timestamp;
+	public Comment(Connection connection, User author, String text) {
+		this.connection = connection;
+		this.author = author;
+		this.text = text;
+		active = true;
 	}
 
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
+	public int getCommentID() {
+		return commentID;
+	}
+
+	public void setCommentID(int commentID) {
+		this.commentID = commentID;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public Connection getConnection() {
@@ -40,11 +75,18 @@ public class Comment {
 	}
 
 	public String getComment() {
-		return comment;
+		return text;
 	}
 
 	public void setComment(String comment) {
-		this.comment = comment;
+		this.text = comment;
 	}
-	
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
 }

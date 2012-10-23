@@ -1,22 +1,63 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "CONNECTION")
 public class Connection {
-	private User mentor;
-	private User trainee;
-	private Subject subject;
-	private int difficultyLevel;
-	private ArrayList<Comment> comments;
 	
-	public Connection() {
-		this.mentor = null;
-		this.trainee = null;
-		this.subject = null;
-		this.difficultyLevel = 0;
-		this.comments = null;
+	@Id @GeneratedValue
+	@Column(name = "connection_id")
+	private int connectionID;
+	
+	@Column(name = "active")
+	private boolean active;
+	
+	@Column(name = "difficulty_level")
+	private int difficultyLevel;
+	
+	@ManyToOne
+	@JoinColumn(name = "mentor_connection_fk")
+	private User mentor;
+
+	@ManyToOne
+	@JoinColumn(name = "trainee_connection_fk")
+	private User trainee;
+	
+	@ManyToOne
+	@JoinColumn(name = "field_fk")
+	private Field field;
+	
+	@OneToMany(mappedBy = "connection")
+	@OrderBy("timestamp")
+	private List<Comment> comments;
+	
+	public Connection(){
+		
 	}
 	
+	public Connection(Field field){
+		this.field = field;
+		active = true;
+	}
+	
+	public Connection(User mentor, User trainee, Field field) {
+		this.mentor = mentor;
+		this.trainee = trainee;
+		this.field = field;
+		active = true;
+		comments = new ArrayList<Comment>();
+	}
+	
+	public Connection(User mentor, User trainee, Field field, int difficultyLevel) {
+		this(mentor, trainee, field);
+		this.difficultyLevel = difficultyLevel;
+	}
+
 	public User getMentor() {
 		return mentor;
 	}
@@ -33,12 +74,12 @@ public class Connection {
 		this.trainee = trainee;
 	}
 
-	public Subject getSubject() {
-		return subject;
+	public Field getField() {
+		return field;
 	}
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public void setField(Field field) {
+		this.field = field;
 	}
 
 	public int getDifficultyLevel() {
@@ -49,11 +90,26 @@ public class Connection {
 		this.difficultyLevel = difficultyLevel;
 	}
 
-	public ArrayList<Comment> getComments() {
+	public List<Comment> getComments() {
 		return comments;
 	}
 
 	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
+	}
+	public int getConnectionID() {
+		return connectionID;
+	}
+
+	public void setConnectionID(int connectionID) {
+		this.connectionID = connectionID;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 }

@@ -2,7 +2,7 @@ package models.test;
 
 import static org.junit.Assert.*;
 
-import models.Category;
+import models.Subject;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,30 +10,30 @@ import org.junit.Test;
 
 public class CategoryTest {
 
-	private Category category;
+	private Subject subject;
 	
 	@Before
 	public void setUp() throws Exception {
-		category = new Category();
+		subject = new Subject();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		category = null;
+		subject = null;
 	}
 
 	@Test
 	public void testTitle() {
 		String title = "Programming Language";
-		category.setTitle(title);
-		assertEquals(title, category.getTitle());
+		subject.setTitle(title);
+		assertEquals(title, subject.getTitle());
 	}
 	
 	@Test
 	public void testDescription() {
-		String description = "Category for all existing programming languages";
-		category.setDescription(description);
-		assertEquals(description, category.getDescription());
+		String description = "Subject for all existing programming languages";
+		subject.setDescription(description);
+		assertEquals(description, subject.getDescription());
 	}
 
 }
