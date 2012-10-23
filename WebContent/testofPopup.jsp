@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
 <script>
 	//Popup window code
 	function newWindow(url) {
@@ -25,7 +24,11 @@
 		}
 	}
 </script>
+<body>
+<button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>
+
 <button onClick="JavaScript:newWindow('TraineeSeekingMentor.jsp')">Open Popup Window</button>
 <button onClick="JavaScript:closeWindow();">Close Popup Window</button>
 </body>
+
 </html>
