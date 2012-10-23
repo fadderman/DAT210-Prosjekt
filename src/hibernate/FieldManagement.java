@@ -1,18 +1,10 @@
 package hibernate;
 
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
+import java.util.*;
 import models.*;
 
-
-
-
 public class FieldManagement extends HibernateUtil{
-
-	
 
 	public FieldManagement() {
 		sessionFactory = getSessionFactory();
@@ -53,8 +45,8 @@ public class FieldManagement extends HibernateUtil{
 		return (Field) fetchSingle(queryString, queryVariable, title);
 	}
 	
-	public List<Field> getFieldsByParent(Field parent){
-		String queryString = "from models.Field where parent = :parentID and active = true";
+	public List<Field> getByParent(Field parent){
+		String queryString = "from models.Field where parent = :parent and active = true";
 		String queryVariable = "parent";
 		return fetch(queryString, queryVariable, new Integer(parent.getFieldID()));
 	}
@@ -72,7 +64,7 @@ public class FieldManagement extends HibernateUtil{
 	}
 	
 	public void setParentField(Field field, Field newParent){
-		updateParentField(field, newParent);
+		injectRelation(field.getFieldID(), newParent);
 	}
 	
 	public void updateParentField(Field field, Field newParent){
