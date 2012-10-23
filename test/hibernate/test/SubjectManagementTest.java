@@ -41,16 +41,16 @@ public class SubjectManagementTest {
 	@Test
 	public void testCreateSubject() {
 		
-		Subject subject1 = new Subject("Java3D", "Programming language");
-		Subject subject2 = new Subject("C#", "Old programming language");
-		Subject subject3 = new Subject("Java", "Awsomeness programming language");
+//		Subject subject1 = new Subject("Java3D", "Programming language");
+//		Subject subject2 = new Subject("C#", "Old programming language");
+//		Subject subject3 = new Subject("Java", "Awsomeness programming language");
 		
 		
 
 		
 		
 		assertEquals(sm.createSubject("Java3D", "Programming language"), true);
-		assertEquals(sm.createSubject("C#", "Programming language"), true);
+		assertEquals(sm.createSubject("C#", "Old Programming language"), true);
 		assertEquals(sm.createSubject("Java", "Awsomeness programming language"), true);
 //		
 //		assertEquals(sm.getByTitle("Java3D").get(0).getDescription(), "Programming language");
@@ -66,21 +66,29 @@ public class SubjectManagementTest {
 		List<Subject> list = sm.getAllSubjects();
 		
 		for (Iterator<Subject> iterator = list.iterator(); iterator.hasNext();) {
-			Subject current = iterator.next();
-			assertEquals(current.getClass(), String.class);
+//			Subject current = iterator.next();
+			assertEquals(iterator.next().getClass(), Subject.class);
 		}
 		
 	}
 	
 	@Test
-	public void testGetSingleByTitle(){
-		
+	public void testGetByID(){
+		assertEquals(sm.getByID(1).getTitle(), "Programming");
 	}
+	
+
 	
 	@Test
 	public void testGetByTitle(){
 		List<Subject> list = sm.getByTitle("Java3D");
 		assertEquals(list.get(0).getDescription(), "Programming language");
+	}
+	
+	@Test
+	public void testGetSingleByTitle(){
+		Subject s = sm.getSingleByTitle("Java3D");
+		assertEquals(s.getTitle(), "Java3D");
 	}
 	
 
@@ -95,9 +103,9 @@ public class SubjectManagementTest {
 	
 	@Test
 	public void testUpdateDescription(){
-		List<Subject> test =  sm.getByTitle("Java");
-		sm.updateDescription(test.get(0), "Programming language");
-		assertEquals(sm.getByTitle("Java").get(0).getDescription(), "Programming language");
+		List<Subject> test =  sm.getByTitle("Java3D");
+		sm.updateDescription(test.get(0), "Programming language for pros");
+		assertEquals(sm.getSingleByTitle("Java3D"), "Programming language");
 	}
 	
 	@Test
