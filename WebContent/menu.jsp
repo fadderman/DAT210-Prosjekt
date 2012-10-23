@@ -3,14 +3,14 @@
 		<div class="navbar-inner shadow">
 			<div class="row-fluid">
 				<div class="span8">
-				<a class="brand" href="index.jsp">MentorFind</a>
+				<a class="brand" href="home">MentorFind</a>
 					<!-- NAVIGATION -->
 					<ul class="nav">
-						<li class="active"><a href="#"><i class="icon-home"></i> Home</a></li>
+						<li class="active"><a href="home"><i class="icon-home"></i> Home</a></li>
 						<li><a href="#"><i class="icon-search"></i> Find Mentor</a></li>
 						<li><a href="#"><i class="icon-search"></i> Find Trainee</a></li>
-						<li><a href="#"><i class="icon-user"></i> Profile</a></li>
-						<li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+						<li><a href="profile"><i class="icon-user"></i> Profile</a></li>
+						<li><a href="settings"><i class="icon-cog"></i> Settings</a></li>
 					</ul>
 				</div>
 				<div class="span3">

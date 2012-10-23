@@ -5,6 +5,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>MentorFind</title>
+	<link rel="shortcut icon"  href="img/favicon.ico" ></link>
+	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery.catcomplete.css" />

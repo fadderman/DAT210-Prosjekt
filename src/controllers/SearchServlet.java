@@ -33,13 +33,17 @@ public class SearchServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String query = request.getParameter("query");
-		
-		if(!query.trim().equals("")) {
-			searchResults = querySearchEngine(query);
+	
+		if(query != null) {
+			if(!query.trim().equals("")) {
+				searchResults = querySearchEngine(query);
+			} else {
+				searchResults = new SearchResults();
+			}
 		} else {
 			searchResults = new SearchResults();
 		}
-		
+
 		ArrayList<User> users = searchResults.getUserResults();
 		if(users != null) {
 			request.setAttribute("users", users);
