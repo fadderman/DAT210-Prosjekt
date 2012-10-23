@@ -33,23 +33,21 @@ public class FieldManagementTest {
 		um.createUser("Bob", "Second", "bob.second@outlook.com", "Not far away", "Ground", "numero dos");
 		um.createUser("Bob", "Last", "phil@last.com", "Here", "It exits on Earth", "numero tres");
 		um.createUser("Some", "Guy", "someguy@somewhere.com", "Somewhere", "Place", "numero quatro");
-	}
-	
-	@Before
-	public void setUp(){
 		
-	}
-
-	@Test
-	public void testCreateField() {
-		assertEquals(fm.createField("Java", "This is Java", sm.getSingleByTitle("Programming")), true);
-		assertEquals(fm.createField("C++", "C plus plus", sm.getSingleByTitle("Programming")), true);
-		assertEquals(fm.createField("Google tips", "Google like a pro", sm.getSingleByTitle("Non-programming")), true);
-		assertEquals(fm.createField("Bathroom Wall", "How to copy code from the internet", sm.getSingleByTitle("Non-programming")), true);
-		assertEquals(fm.createField("COBOL", "Old stuff for old ppl", sm.getSingleByTitle("Programming")), true);
+		fm.createField("Java", "This is Java", sm.getSingleByTitle("Programming"));
+		fm.createField("C++", "C plus plus", sm.getSingleByTitle("Programming"));
+		fm.createField("Google tips", "Google like a pro", sm.getSingleByTitle("Non-programming"));
+		fm.createField("Bathroom Wall", "How to copy code from the internet", sm.getSingleByTitle("Non-programming"));
+		fm.createField("COBOL", "Old stuff for old ppl", sm.getSingleByTitle("Programming"));
 		
-		assertEquals(fm.createField("Programming", "Parent field for programming related fields", sm.getSingleByTitle("Programming")), true);
-		assertEquals(fm.createField("Non-programming", "parent subject for fields not related to programming directly", sm.getSingleByTitle("Non-programming")), true);
+		fm.createField("Programming", "Parent field for programming related fields", sm.getSingleByTitle("Programming"));
+		fm.createField("Non-programming", "parent subject for fields not related to programming directly", sm.getSingleByTitle("Non-programming"));
+		
+		fm.setParentField(fm.getSingleByTitle("Java"), fm.getSingleByTitle("Programming"));
+		fm.setParentField(fm.getSingleByTitle("C++"), fm.getSingleByTitle("Programming"));
+		fm.setParentField(fm.getSingleByTitle("COBOL"), fm.getSingleByTitle("Programming"));
+		fm.setParentField(fm.getSingleByTitle("Google tips"), fm.getSingleByTitle("Non-programming"));
+		fm.setParentField(fm.getSingleByTitle("Bathroom Wall"), fm.getSingleByTitle("Non-programming"));
 		
 		xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Java"));
 		xm.createOpenMentor(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Java"));
@@ -60,6 +58,11 @@ public class FieldManagementTest {
 		xm.createConnection(um.getByEmail("someguy@somewhere.com"), um.getByEmail("bob.secon@outlook.com"), fm.getSingleByTitle("COBOL"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Google tips"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Bathroom Wall"));
+	}
+	
+	@Before
+	public void setUp(){
+		
 	}
 	
 	@Test
@@ -118,10 +121,13 @@ public class FieldManagementTest {
 	}
 	
 	@Test
-	public void testSetParentField(){
-		fm.setParentField(fm.getSingleByTitle("Java"), fm.getSingleByTitle("Programming"));
-		fm.setParentField(fm.getSingleByTitle("C--"), fm.getSingleByTitle("Programming"));
-		fm.setParentField(fm.getSingleByTitle("Google tips"), fm.getSingleByTitle("Non-programming"));
+	public void testGetFieldByParent(){
+		List<Field> list = fm.getByParent(fm.getSingleByTitle("Programming"));
+		for(Iterator<Field> i = list.iterator(); i.hasNext();){
+			Field current = i.next();
+			assertEquals(current.getClass(), Field.class);
+		}
+		assertEquals(list.size(), 4);
 	}
 	
 	@Test

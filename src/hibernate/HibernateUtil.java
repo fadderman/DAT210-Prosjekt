@@ -248,6 +248,23 @@ public class HibernateUtil {
 			session.close();
 		}
 	}
+	
+	//testing session.load()
+	protected void injectRelation(Integer idOfInjectee, Object toInject){
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{
+			tx = session.beginTransaction();
+			session.load(toInject, idOfInjectee); 
+			tx.commit();
+		}catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		}finally {
+			session.close();
+		}
+	}
+	
 }
 
 //TODO database dump method needs to be added
