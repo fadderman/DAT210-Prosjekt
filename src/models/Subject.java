@@ -22,11 +22,7 @@ public class Subject {
 
 	@Column(name = "description")
 	private String description;
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> origin/david
 	@OneToMany(
 			mappedBy = "subject", 
 			fetch=FetchType.EAGER)

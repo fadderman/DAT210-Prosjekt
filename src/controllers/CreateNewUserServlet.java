@@ -1,5 +1,9 @@
 package controllers;
 
+import hibernate.ConnectionManagement;
+import hibernate.FieldManagement;
+import hibernate.UserManagement;
+
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -38,72 +42,17 @@ public class CreateNewUserServlet extends HttpServlet {
 			System.out.println(names.nextElement());
 		}
 
-
-		User user = createNewUser(firstName, lastName, email, city, country, identifier);
-		UserHandler userHandler = new UserHandler();
-		userHandler.addUser(user);
+		ConnectionHandler handler = new ConnectionHandler(firstName, lastName, email, city, country, identifier, field, description, experience, traineeRadioButton, mentorRadioButton);
+		
+		User user = handler.createNewUser(firstName, lastName, email, city, country, identifier);
 		request.setAttribute("user", user);
-
-		ConnectionHandler connectionHandler = new ConnectionHandler();
-		Connection connection;
-		for(int i = 1; i < field.length; i++){
-			connection = createConnection(user, field[i], description[i], experience[i], traineeRadioButton[i], mentorRadioButton[i]);
-			connectionHandler.addConnection(connection);
-		}
-
-		String url = "/home.jsp";
+		
+		String url = "/index.jsp";
 
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}
 
-	public User createNewUser(String firstName, String lastName, String email, String city, String country, String identifier){
-		User user = new User(firstName, lastName, email, city, country, identifier);
-		String mapURL = new String("http://maps.googleapis.com/maps/api/staticmap?center=");
-		mapURL += city + ",";
-		mapURL += country + "&zoom=12&size=500x150&sensor=false";
-		user.setMapURL(mapURL);
-		return user;
-	}
-
-	public Connection createConnection(User user, String field, String description, String experience, String traineeRadioButton, String mentorRadioButton){
-		Connection connection = null;
-		if(traineeRadioButton.equals("Yes")){
-			if(experience.equalsIgnoreCase("expert")){
-				connection = new Connection(new User("null"), user, new Field(field), description, 2);
-			}
-			else if(experience.equalsIgnoreCase("intermediate")){
-				connection = new Connection(new User("null"), user, new Field(field), description, 1);
-			}
-			else if(experience.equalsIgnoreCase("novice")){
-				connection = new Connection(new User("null"), user, new Field(field), description, 0);
-			}
-		}
-		if(mentorRadioButton.equals("Yes")){
-			if(experience.equalsIgnoreCase("expert")){
-				connection = new Connection(user, new User("null") , new Field(field), description, 2);
-			}
-			else if(experience.equalsIgnoreCase("intermediate")){
-				connection = new Connection(user, new User("null"), new Field(field), description, 1);
-			}
-			else if(experience.equalsIgnoreCase("novice")){
-				connection = new Connection(user, new User("null"), new Field(field), description, 0);
-			}
-		}
-		if((traineeRadioButton.equals("Yes") && mentorRadioButton.equals("Yes")) || (traineeRadioButton.equals("No") && mentorRadioButton.equals("No") )){
-			if(experience.equalsIgnoreCase("expert")){
-				connection = new Connection(new User("null"), user, new Field(field), description, 2);
-			}
-			else if(experience.equalsIgnoreCase("intermediate")){
-				connection = new Connection(new User("null"), user, new Field(field), description, 1);
-
-			}
-			else if(experience.equalsIgnoreCase("novice")){
-				connection = new Connection(new User("null"), user, new Field(field), description, 0);
-
-			}
-		}
-		return connection;
-	}
+	
 }

@@ -40,10 +40,9 @@ public class Field {
 		this.title = title;
 	}
 	
-	public Field(String title, String description, Subject subject) {
+	public Field(String title, String description) {
 		this.title = title;
 		this.description = description;
-		this.subject = subject;
 	}
 	
 	public int getFieldID() {

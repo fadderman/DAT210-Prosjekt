@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,41 +15,13 @@
 	%>
 
 	<div class="container">
-<<<<<<< HEAD
-		<!-- top menu -->
-		<br />
-		<div class="navbar navbar-fixed-top navbar-inverse">
-			<div class="navbar">
-				<div class="navbar-inner">
-					<div class="container">
-						<a class="brand" href="#"><img alt="" src="img/logo_mini.png"></a>
-						<div class="btn-group pull-right">
-							<input type="button"
-								class="btn dropdown-toggle btn-inverse btn-large"
-								data-toggle="dropdown" value="language">
-							<ul class="dropdown-menu">
-								<!-- dropdown menu links -->
-								<li><a type="button" onclick="Validate(en);"
-									href="http://localhost:8080/webTest/Languages/loginEN.jsp">English</a></li>
-								<li><a type="button" onclick="validate(no);"
-									href="http://localhost:8080/webTest/Languages/loginNO.jsp">Norsk</a></li>
-
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="padding"></div>
-=======
->>>>>>> origin/david
 <!-- top menu -->
 <%@ include file="loginMenuBar.jsp" %>
 <%session.setAttribute("CurrentPage", "/firstTimeLogin.jsp");%>
 
 		<!--left column -->
 		<h4 style="text-shadow: #000000 3px 3px 8px; color: white;"><%=language.getFirsttime_label_personal() %></h4>
-		<form action="index.jsp" method="post">
+		<form action="createNewUser" method="POST" id="register">
 			<div class="well span11" style="box-shadow: 5px 5px 8px -1px #222;">
 				<table class="tableBorderless">
 					<tbody>
@@ -70,12 +41,8 @@
 							<td></td>
 						</tr>
 						<tr>
-<<<<<<< HEAD
-							<td><label class="pull-right">Country:</label></td>
-=======
 							<td><label class="pull-right"><%=language.getFirsttime_label_country() %></label></td>
 
->>>>>>> origin/david
 							<td><input name="country" type="text" value=""></td>
 							<td><label class="pull-right"><%=language.getFirsttime_label_city() %></label></td>
 							<td><input name="city" type="text" value=""></td>
@@ -84,31 +51,13 @@
 							value="<%=user.getIdentifierOpenID()%>">
 					</tbody>
 				</table>
-			</div>	
+			</div>
 			<br />
 			<h4 style="text-shadow: #000000 3px 3px 8px; color: white;"><%=language.getFirsttime_label_connections() %></h4>
 			<div class="well span11" style="box-shadow: 5px 5px 8px -1px #222;">
 				<table class="tableBorderless">
 					<tbody>
 						<tr>
-<<<<<<< HEAD
-							<td><label class="pull-right">Field:</label></td>
-							<td><input name="field" type="text" placeholder="Keywords for your Connection" id="field">
-							<td><label class="radio inline"><input type="radio"
-									name="optionsRadios" id="radioMentor" value="Mentor">Mentor</label></td>
-							<td><label class="radio inline"><input type="radio" checked
-									name="optionsRadios" id="radioTrainee" value="Trainee">Trainee</label></td>									
-						</tr>
-						<tr>
-							<td><label class="pull-right">Additional Info:</label></td>
-							<td><textarea id="addInfo" name="addInfo"></textarea></td>
-							<td><label class="pull-right">Experience:</label></td>
-							<td>
-								<select name="experience" id="experience">
-									<option value="novice"> Novice </option>
-									<option value="intermediate"> Intermediate </option>
-									<option value="expert"> Expert </option>
-=======
 							<td><label class="pull-right"><%=language.getFirsttime_label_field()%></label></td>
 							<td><input name="field" type="text" id="field">
 							<td><label class="radio inline"><input type="radio"
@@ -125,7 +74,6 @@
 									<option value="novice"> <%=language.getFirsttime_drop_novice()%> </option>
 									<option value="intermediate"> <%=language.getFirsttime_drop_intermediate()%> </option>
 									<option value="expert"> <%=language.getFirsttime_drop_expert()%> </option>
->>>>>>> origin/david
 								</select>
 							</td>
 							<td>
@@ -137,22 +85,14 @@
 				<br />
 				<table class="table table-hover" id="tblCourse">
 					<thead>
-<<<<<<< HEAD
-						<th>Field</th>
-						<th>Additional Info</th>
-						<th>Mentor</th>
-						<th>Trainee</th>
-						<th>Experience</th>
-=======
 						<th><%=language.getFirsttime_label_field()%></th>
 						<th><%=language.getFirsttime_label_addInfo()%></th>
 						<th><%=language.getFirsttime_radio_mentor() %></th>
 						<th><%=language.getFirsttime_radio_trainee() %></th>
 						<th><%=language.getFirsttime_label_experience() %></th>
->>>>>>> origin/david
 					</thead>
 					<tbody>
-						
+
 					</tbody>
 				</table>
 			</div>
@@ -170,7 +110,7 @@
 	</div>
 
 
-	
+
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
@@ -192,17 +132,6 @@
 		// oTr.append( 
 		//	$('<td>').append($('<input>', { name: "category", type: 'hidden', value: $('#category :selected').val() }))
 		//			.append($('<span>').append($('#category :selected').text()))); 
-<<<<<<< HEAD
-		
-		oTr.append(
-				$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field').val() }))
-						.append($('<span>').append($('#field').val())));
-		
-		oTr.append(
-				$('<td>').append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() }))
-						.append($('<span>').append($('#addInfo').val())));
-
-=======
 
 		oTr.append(
 				$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field').val() }))
@@ -212,16 +141,11 @@
 				$('<td>').append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() }))
 						.append($('<span>').append($('#addInfo').val())));
 
->>>>>>> origin/david
 		// legger til en TD til TR med data fra fieldselecten
 		//oTr.append(
 		//	$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field :selected').val() }))
 		//			.append($('<span>').append($('#field :selected').text())));
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> origin/david
 		// Henter inn valgte option for trainee / mentor
 	    var trMen = $("input[name=optionsRadios]:checked");
 
@@ -238,11 +162,7 @@
 		oTr.append(
 				$('<td>').append($('<input>', { name: "experience", type: 'hidden', value: $('#experience :selected').val() }))
 						.append($('<span>').append($('#experience :selected').text())));
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> origin/david
 		// fjerner valgt info
 		$('#addInfo').val("");
 		trMen.attr('checked',false);

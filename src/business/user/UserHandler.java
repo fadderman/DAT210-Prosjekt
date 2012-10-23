@@ -11,7 +11,11 @@ import business.search.UserSuggestion;
 import models.User;
 
 public class UserHandler {
-	
+	/**
+	 * 
+	 * Deprecated
+	 * 
+	 */
 	private static ArrayList<User> userList= new ArrayList<User>();
 	private static UserManagement userManager;		//access to the database
 	

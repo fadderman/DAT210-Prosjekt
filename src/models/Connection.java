@@ -9,20 +9,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CONNECTION")
 public class Connection {
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/david
 	@Id @GeneratedValue
 	@Column(name = "connection_id")
 	private int connectionID;
 
-<<<<<<< HEAD
 	@Column(name ="description")
 	private String description;
-	
-=======
->>>>>>> origin/david
+
 	@Column(name = "active")
 	private boolean active;
 
@@ -45,16 +39,9 @@ public class Connection {
 	@OrderBy("timestamp")
 	private List<Comment> comments;
 
-	public Connection(){
-<<<<<<< HEAD
-		
-	}
-	
-=======
-
+	public Connection(){		
 	}
 
->>>>>>> origin/david
 	public Connection(Field field){
 		this.field = field;
 		active = true;
@@ -67,13 +54,16 @@ public class Connection {
 		active = true;
 		comments = new ArrayList<Comment>();
 	}
-<<<<<<< HEAD
-	
+
 	public Connection(User mentor, User trainee, Field field, String description, int difficultyLevel) {
-=======
+		this.mentor = mentor;
+		this.trainee = trainee;
+		this.field = field;
+		this.description = description;
+		this.difficultyLevel = difficultyLevel;
+	}
 
 	public Connection(User mentor, User trainee, Field field, int difficultyLevel) {
->>>>>>> origin/david
 		this(mentor, trainee, field);
 		this.difficultyLevel = difficultyLevel;
 		this.connectionID = connectionID;

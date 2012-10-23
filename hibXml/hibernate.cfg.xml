@@ -11,21 +11,13 @@
 		com.mysql.jdbc.Driver
     </property>
     <property name="hibernate.connection.url">
-<<<<<<< HEAD
-		jdbc:mysql://localhost/MentorFind
-=======
-<<<<<<< HEAD
-=======
-		jdbc:mysql://localhost/MentorFind
->>>>>>> origin/lordAlek
->>>>>>> origin/david
 		jdbc:mysql://localhost/Hibernate
     </property>
     <property name="hibernate.connection.username">
 		root
     </property>
 	<property name="hibernate.connection.password">
-		passord
+		abc123
 	</property>
     <property name="hibernate.show_sql">
 		true
