@@ -157,7 +157,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 
 				httpReq.setAttribute("identifier", verified.getIdentifier());
 
-				User user = userManager.getByOpenId(verified.getIdentifier());			//check if the user already exists
+				User user = (User) userManager.getByOpenId(verified.getIdentifier());			//check if the user already exists
 				if(user!=null){	//forward to main page
 <<<<<<< HEAD
 					System.out.println("User exists!");
