@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "USER")
 public class User {
@@ -44,8 +45,7 @@ public class User {
 	private List<Comment>  commentList;
 	
 	public User() {}
-	
-	//TODO Business methods pass empty variables if fields are to be left empty
+
 	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -54,9 +54,7 @@ public class User {
 		this.locationCountry = locationCountry;
 		this.identifierOpenID = identifierOpenID;
 		active = true;
-
 		commentList = new ArrayList<Comment>();
-		
 	}
 	
 	public int getUserID() {

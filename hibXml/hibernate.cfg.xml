@@ -11,10 +11,13 @@
 		com.mysql.jdbc.Driver
     </property>
     <property name="hibernate.connection.url">
-		jdbc:mysql://localhost/Hibernate
+		jdbc:mysql://localhost/mentorfind
     </property>
     <property name="hibernate.connection.username">
-		root
+		test
+    </property>
+     <property name="hibernate.connection.password">
+		test
     </property>
     <property name="hibernate.show_sql">
 		false
@@ -26,7 +29,7 @@
 		create-drop
 	</property>
 	<!--Using annotated mapping in persistent classes -->
-	
+
 	<!--
 	<mapping class="models.Category">
 	</mapping>

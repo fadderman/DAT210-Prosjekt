@@ -37,16 +37,10 @@ public class UserTest {
 	}
 	
 	@Test
-	public void testLocationCity() {
+	public void testLocation() {
 		String location = "Stavanger";
 		user.setLocationCity(location);
 		assertEquals(location, user.getLocationCity());
-	}
-	@Test
-	public void testLocationCountry() {
-		String location = "Norway";
-		user.setLocationCountry(location);
-		assertEquals(location, user.getLocationCountry());
 	}
 	
 	@Test
