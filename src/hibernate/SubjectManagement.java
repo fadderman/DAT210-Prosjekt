@@ -11,13 +11,13 @@ public class SubjectManagement extends HibernateUtil{
 		sessionFactory = getSessionFactory();
 	}
 
-	public void createSubject(String title, String description){
-		createSubject(title, description, null);
+	public boolean createSubject(String title, String description){
+		return createSubject(title, description, null);
 	}
 
-	public void createSubject(String title, String description, Field field) {
+	public boolean createSubject(String title, String description, Field field) {
 		Subject subject = new Subject(title, description, field);
-		addSubject(subject);
+		return addSubject(subject);
 	}
 
 	public boolean addSubject(Subject subject){
@@ -43,13 +43,13 @@ public class SubjectManagement extends HibernateUtil{
 	}
 	
 	public List<Subject> getByTitle(String title){
-		String queryString = "from models.Subject where title = :title";
+		String queryString = "from models.Subject where title = :title and active = true";
 		String queryVariable = "title";
 		return fetch(queryString, queryVariable, title);
 	}
 	
 	public Subject getSingleByTitle(String title){
-		String queryString = "from models.Subject where title = :title";
+		String queryString = "from models.Subject where title = :title and active = true";
 		String queryVariable = "title";
 		return (Subject) fetchSingle(queryString, queryVariable, title);
 	}

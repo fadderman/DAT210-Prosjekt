@@ -42,13 +42,13 @@ public class FieldManagement extends HibernateUtil{
 	}
 	
 	public List<Field> getByTitle(String title){
-		String queryString = "from models.Field where title = :title";
+		String queryString = "from models.Field where title = :title and active = true";
 		String queryVariable = "title";
 		return fetch(queryString, queryVariable, title);
 	}
 	
 	public Field getSingleByTitle(String title){
-		String queryString = "from models.Field where title = :title";
+		String queryString = "from models.Field where title = :title and active = true";
 		String queryVariable = "title";
 		return (Field) fetchSingle(queryString, queryVariable, title);
 	}

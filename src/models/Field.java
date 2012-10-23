@@ -26,7 +26,7 @@ public class Field {
 	@ManyToOne
 	@JoinColumn(name = "subject_fk")
 	private Subject subject;
-		
+	
 	//TODO Ordered or indexed?
 	@OneToMany(mappedBy = "field")
 	@OrderBy("title")
