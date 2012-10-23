@@ -67,10 +67,6 @@ public class OpenIDLoginServlet extends HttpServlet{
 	}
 
 	private void processReturn(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
-<<<<<<< HEAD
-		System.out.println("processing return!");
-=======
->>>>>>> taking some old files with errors and getting completed ones
 		verifyResponse(req, resp);
 	}
 
@@ -159,10 +155,6 @@ public class OpenIDLoginServlet extends HttpServlet{
 
 				User user = (User) userManager.getByOpenId(verified.getIdentifier());			//check if the user already exists
 				if(user!=null){	//forward to main page
-<<<<<<< HEAD
-					System.out.println("User exists!");
-=======
->>>>>>> taking some old files with errors and getting completed ones
 					this.getServletContext().getRequestDispatcher("/index.jsp").forward(httpReq, httpResp);	//User Logged in
 				}
 				else{		 //forward to page where user must enter additional information.
@@ -180,12 +172,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 							firstname = fullname.substring(0, fullname.lastIndexOf(" "));
 							lastname = fullname.substring(fullname.lastIndexOf(" "));
 						}
-<<<<<<< HEAD
-						user = new User(firstname, lastname, email, "","", verified.getIdentifier()); //create a new user based on info from OpenID
-						System.out.println("firstname: " + firstname + ", lastname: " + lastname);
-=======
 						user = new User(firstname, lastname, email, "","", verified.getIdentifier());
->>>>>>> taking some old files with errors and getting completed ones
 					}
 					httpReq.setAttribute("user", user);
 					this.getServletContext().getRequestDispatcher("/firstTimeLogin.jsp").forward(httpReq, httpResp);
