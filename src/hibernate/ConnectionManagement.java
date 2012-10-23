@@ -27,8 +27,8 @@ public class ConnectionManagement extends HibernateUtil{
 		addConnection(connection);
 	}
 	
-	public void createConnection(User mentor, User trainee, Field field, int difficultyLevel){
-		Connection connection = new Connection(mentor, trainee, field, difficultyLevel);
+	public void createConnection(User mentor, User trainee, Field field, String description, int difficultyLevel){
+		Connection connection = new Connection(mentor, trainee, field, description, difficultyLevel);
 		addConnection(connection);
 	}
 
