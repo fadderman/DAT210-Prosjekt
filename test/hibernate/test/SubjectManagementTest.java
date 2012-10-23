@@ -105,7 +105,7 @@ public class SubjectManagementTest {
 	public void testUpdateDescription(){
 		List<Subject> test =  sm.getByTitle("Java3D");
 		sm.updateDescription(test.get(0), "Programming language for pros");
-		assertEquals(sm.getSingleByTitle("Java3D"), "Programming language");
+		assertEquals(sm.getSingleByTitle("Java3D"), "Programming language for pros");
 	}
 	
 	@Test
@@ -124,20 +124,30 @@ public class SubjectManagementTest {
 	
 	@Test
 	public void testFetchFieldList(){
-		assertEquals(fm.createField("Java", "This is Java", sm.getSingleByTitle("Programming")), true);
-		assertEquals(fm.createField("C++", "C plus plus", sm.getSingleByTitle("Programming")), true);
-		assertEquals(fm.createField("Google tips", "Google like a pro", sm.getSingleByTitle("Non-programming")), true);
-		assertEquals(fm.createField("Bathroom Wall", "How to copy code from the interne", sm.getSingleByTitle("Non-programming")), true);
-		assertEquals(fm.createField("COBOL", "Old stuff for old ppl", sm.getSingleByTitle("Programming")), true);
-	
+		List<Field> list = sm.fetchFieldList(sm.getSingleByTitle("Java"));
+		for(Iterator<Field> i = list.iterator(); i.hasNext();){
+			Field current = i.next();
+			assertEquals(current.getClass(), Field.class);
+		}
+		assertEquals(list.size(), 0);
+	}
 		
-		List<Subject> list = sm.getAllSubjects();
-		for(Iterator<Subject> i = list.iterator(); i.hasNext();){
-			
-			
-			Subject current = i.next();
-			System.out.println(current.getTitle()); 
-		}	}
+		
+	}
+//		assertEquals(fm.createField("Java", "This is Java", sm.getSingleByTitle("Programming")), true);
+//		assertEquals(fm.createField("C++", "C plus plus", sm.getSingleByTitle("Programming")), true);
+//		assertEquals(fm.createField("Google tips", "Google like a pro", sm.getSingleByTitle("Non-programming")), true);
+//		assertEquals(fm.createField("Bathroom Wall", "How to copy code from the interne", sm.getSingleByTitle("Non-programming")), true);
+//		assertEquals(fm.createField("COBOL", "Old stuff for old ppl", sm.getSingleByTitle("Programming")), true);
+//	
+//		
+//		List<Subject> list = sm.getAllSubjects();
+//		for(Iterator<Subject> i = list.iterator(); i.hasNext();){
+//			
+//			
+//			Subject current = i.next();
+//			System.out.println(current.getTitle()); 
+//		}	}
 	
 	
 	
@@ -149,4 +159,4 @@ public class SubjectManagementTest {
 
 
 
-}
+
