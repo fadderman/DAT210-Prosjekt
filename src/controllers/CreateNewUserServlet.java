@@ -1,5 +1,7 @@
 package controllers;
 
+import hibernate.UserManagement;
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -24,10 +26,9 @@ public class CreateNewUserServlet extends HttpServlet {
 		String city = request.getParameter("city");
 		String identifier = request.getParameter("identifier");
 		
+		UserManagement userMan = new UserManagement();
 		User user = new User(firstName, lastName, email, city,country, identifier);
-		UserHandler.addUser(user);
-		
-		System.out.println(lastName + " " + firstName + " " + email + " " + country);
+		userMan.addUser(user);
 		
 		String url = "/index.jsp";
 		
