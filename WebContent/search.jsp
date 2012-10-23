@@ -34,8 +34,8 @@
 <script type="text/javascript">
 	$(function() {
 	    $( "#search" ).catcomplete({
-	        delay: 0,
-	        minLength: 3,
+	        delay: 500,
+	        minLength: 0,
 	        source: 'getsearchjson.jsp'
 	    });
 	});

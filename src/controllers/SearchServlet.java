@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Field;
 import models.User;
 import business.search.SearchEngine;
 import business.search.SearchResults;
@@ -42,6 +43,11 @@ public class SearchServlet extends HttpServlet {
 		ArrayList<User> users = searchResults.getUserResults();
 		if(users != null) {
 			request.setAttribute("users", users);
+		}
+		
+		ArrayList<Field> fields = searchResults.getFieldResults();
+		if(fields != null) {
+			request.setAttribute("fields", fields);
 		}
 		
 		request.setAttribute("include", "searchresults.jsp");
