@@ -21,8 +21,30 @@
 							<button class="btn" type="submit">Search</button>
 						</div>
 						<script>
-					        $("#search").autocomplete("getsearch.jsp");
-					    </script>
+							$.widget( "custom.catcomplete", $.ui.autocomplete, {
+							    _renderMenu: function( ul, items ) {
+							        var that = this,
+							            currentCategory = "";
+							        $.each( items, function( index, item ) {
+							            if ( item.category != currentCategory ) {
+							                ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+							                currentCategory = item.category;
+							            }
+							            that._renderItemData( ul, item );
+							        });
+							    }
+							});
+						</script>
+						
+						<script type="text/javascript">
+							$(function() {
+							    $( "#search" ).catcomplete({
+							        delay: 500,
+							        minLength: 1,
+							        source: 'getsearchjson.jsp'
+							    });
+							});
+						</script>
 					</form>
 				</div>
 				<div class="span1">
