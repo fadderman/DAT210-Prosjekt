@@ -59,37 +59,22 @@
 				<table class="tableBorderless">
 					<tbody>
 						<tr>
-							<td><label class="pull-right"><%=language.getFirsttime_label_subject() %></label></td>
-							<td><select name="category" id="category">
-									<option value="java">Java</option>
-									<option value="cSharp">C#</option>
-									<option value="cplusplus">C++</option>
-									<option value="obj-C">Objective C</option>
-
-							</select></td>
-							<td><label class="pull-right"><%=language.getFirsttime_label_field() %></label></td>
-							<td><select name="field" id="field">
-									<option value="gui">GUI</option>
-									<option value="simulation">Simulation</option>
-									<option value="threading">Threading</option>
-									<option value="basics">Basics</option>
-									<option value="other">Other</option>
-							</select></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_field()%></label></td>
+							<td><input name="field" type="text" id="field">
 							<td><label class="radio inline"><input type="radio"
-									name="optionsRadios" id="radioMentor" value="Mentor"><%=language.getFirsttime_radio_mentor() %></label></td>
-							<td><label class="radio inline"><input type="radio"
-									name="optionsRadios" id="radioTrainee" value="Trainee"><%=language.getFirsttime_radio_trainee() %></label></td>
+									name="optionsRadios" id="radioMentor" value="Mentor"><%=language.getFirsttime_radio_mentor()%></label></td>
+							<td><label class="radio inline"><input type="radio" checked
+									name="optionsRadios" id="radioTrainee" value="Trainee"><%=language.getFirsttime_radio_trainee()%></label></td>									
 						</tr>
 						<tr>
-							<td><label class="pull-right"><%=language.getFirsttime_label_addInfo() %></label></td>
-							<td><textarea id="addInfo"></textarea></td>
-							<td><label class="pull-right"><%=language.getFirsttime_label_experience() %></label></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_addInfo()%></label></td>
+							<td><textarea id="addInfo" name="addInfo"></textarea></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_experience()%></label></td>
 							<td>
-								<select name="experience">
-									<option value="novice"> <%=language.getFirsttime_drop_novice() %> </option>
-									<option value="intermediate"> <%=language.getFirsttime_drop_intermediate() %> </option>
-									<option value="expert"> <%=language.getFirsttime_drop_expert() %> </option>
-									<option value="loreMaster"> <%=language.getFirsttime_drop_loreMaster() %> </option>
+								<select name="experience" id="experience">
+									<option value="novice"> <%=language.getFirsttime_drop_novice()%> </option>
+									<option value="intermediate"> <%=language.getFirsttime_drop_intermediate()%> </option>
+									<option value="expert"> <%=language.getFirsttime_drop_expert()%> </option>
 								</select>
 							</td>
 							<td>
@@ -101,11 +86,11 @@
 				<br />
 				<table class="table table-hover" id="tblCourse">
 					<thead>
-						<th><%=language.getFirsttime_table_course() %></th>
-						<th><%=language.getFirsttime_table_subject() %></th>
+						<th><%=language.getFirsttime_label_field()%></th>
+						<th><%=language.getFirsttime_label_addInfo()%></th>
 						<th><%=language.getFirsttime_radio_mentor() %></th>
 						<th><%=language.getFirsttime_radio_trainee() %></th>
-						<th></th>
+						<th><%=language.getFirsttime_label_experience() %></th>
 					</thead>
 					<tbody>
 						
@@ -138,34 +123,46 @@
 	}
 	$("select").change(showValues);
 	showValues();
-	
+
 	// Funksjon for å legge til
 	function addCourse() {
 		// ny tabellrad
 		oTr = $('<tr>');
 
 		// legger til en TD til TR med data fra kategoriselecten
+		// oTr.append( 
+		//	$('<td>').append($('<input>', { name: "category", type: 'hidden', value: $('#category :selected').val() }))
+		//			.append($('<span>').append($('#category :selected').text()))); 
+
 		oTr.append(
-			$('<td>').append($('<input>', { name: "category", type: 'hidden', value: $('#category :selected').val() }))
-					.append($('<span>').append($('#category :selected').text())));
+				$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field').val() }))
+						.append($('<span>').append($('#field').val())));
+
+		oTr.append(
+				$('<td>').append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() }))
+						.append($('<span>').append($('#addInfo').val())));
 
 		// legger til en TD til TR med data fra fieldselecten
-		oTr.append(
-			$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field :selected').val() }))
-					.append($('<span>').append($('#field :selected').text())));
-		
+		//oTr.append(
+		//	$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field :selected').val() }))
+		//			.append($('<span>').append($('#field :selected').text())));
+
 		// Henter inn valgte option for trainee / mentor
 	    var trMen = $("input[name=optionsRadios]:checked");
-		
+
 		// Legger til tekst og verdi i input fra radiobuttonen
 		oTr.append(
 			$('<td>').append($('<input>', { name: "mentor", type: 'hidden', value: (trMen.val() == 'Mentor'?'Yes':'No') }))
 					.append($('<span>').append((trMen.val() == 'Mentor')?'Yes':'No')));
-			
+
 		oTr.append(
 			$('<td>').append($('<input>', { name: "trainee", type: 'hidden', value: (trMen.val() == 'Trainee'?'Yes':'No') }))
 					.append($('<span>').append((trMen.val() == 'Trainee')?'Yes':'No'))
 					.append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() })));
+
+		oTr.append(
+				$('<td>').append($('<input>', { name: "experience", type: 'hidden', value: $('#experience :selected').val() }))
+						.append($('<span>').append($('#experience :selected').text())));
 
 		// fjerner valgt info
 		$('#addInfo').val("");
@@ -173,10 +170,11 @@
 
 		// legger til removebutton med slettefunskjon
 		oTr.append($('<td>').append($('<input>', {type: 'button', value: 'Remove'}).addClass("btn btn-danger btn-small").click(function() { $(this).parent().parent().remove() })));
-		
+
 		// legger til selve tabellen
 		$('#tblCourse').append(oTr);
 	}
 </script>
+
 
 </html>

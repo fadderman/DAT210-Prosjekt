@@ -19,7 +19,6 @@ public class CreateNewLanguageServlet extends HttpServlet {
 		Language lang = new Language();
 		String language = request.getParameter("language");
 		lang.setLanguage(language);
-		System.out.println("servlet before cookie: " + language);
 		
 		HttpSession session = request.getSession();
         session.setAttribute("lang", lang);

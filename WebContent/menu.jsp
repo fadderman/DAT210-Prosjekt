@@ -2,20 +2,18 @@
 
 <%
 	Language language = new Language();
-	Cookie[] co = request.getCookies();
-	if (co == null) {
+	
+	if(CookieUtil.getCookieValue(request.getCookies(), "chosenLanguage").equals("")){
 		Cookie chosenLanguageCookie = new Cookie("chosenLanguage",
 				"english");
 		chosenLanguageCookie.setMaxAge(60 * 60 * 24 * 365 * 2); //set its age to 2 years
 		chosenLanguageCookie.setPath("/"); //allow the entire application to access it
 		response.addCookie(chosenLanguageCookie);
 	}
+	else
+		language.setLanguage(CookieUtil.getCookieValue(request.getCookies(), "chosenLanguage"));
 	if (session.getAttribute("lang") != null)
 		language = (Language) session.getAttribute("lang");
-	//String chosenLanguage = CookieUtil.getCookieValue(co, "chosenLanguage");
-
-	// System.out.println("web: " + chosenLanguage);
-	//language.setLanguage(chosenLanguage);
 %>
 <div class="container">
 	<div class="navbar navbar-fixed-top">

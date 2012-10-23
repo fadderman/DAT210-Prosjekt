@@ -22,33 +22,25 @@ public class NO extends Lang{
 	
 	// ============== FirstTimeLogIn Strings ===================
 	private String firsttime_label_personal = "Personal";
-	private String firsttime_label_fName = "Fornavn:";
-	private String firsttime_label_lName = "Etternavn:";
-	private String firsttime_label_email = "Epost:";
-	private String firsttime_label_country = "Land:";
-	private String firsttime_label_city = "By:";
+	private String firsttime_label_fName = "Fornavn";
+	private String firsttime_label_lName = "Etternavn";
+	private String firsttime_label_email = "Epost";
+	private String firsttime_label_country = "Land";
+	private String firsttime_label_city = "By";
 	private String firsttime_label_connections = "Koblinger";
-	private String firsttime_label_subject = "Emne:";
-	private String firsttime_label_field = "Felt:";
+	private String firsttime_label_subject = "Emne";
+	private String firsttime_label_field = "Felt";
 	private String firsttime_radio_mentor = "Mentor";
 	private String firsttime_radio_trainee = "Trainee";
-	private String firsttime_label_addInfo = "ekstra info:";
-	private String firsttime_label_experience = "erfaring:";
+	private String firsttime_label_addInfo = "Ekstra info";
+	private String firsttime_label_experience = "Erfaring";
 	private String firsttime_drop_novice = "Nybegynner";
 	private String firsttime_drop_intermediate = "Mellomnivå";
 	private String firsttime_drop_expert = "Ekspert";
 	private String firsttime_drop_loreMaster = "Guru";
 	private String firsttime_btn_add = "Legg til";
 	private String firsttime_btn_submit = "Send";
-	private String firsttime_table_course = "Emne";
-	private String firsttime_table_subject = "Felt";
 	
-	public String getFirsttime_table_course() {
-		return firsttime_table_course;
-	}
-	public String getFirsttime_table_subject() {
-		return firsttime_table_subject;
-	}
 	public String getFirsttime_label_personal() {
 		return firsttime_label_personal;
 	}

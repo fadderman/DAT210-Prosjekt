@@ -15,7 +15,6 @@ public class Language {
 		}
 		else {
 			chosenLanguage = new EN();//languages.en;
-
 		}
 	}
 	
@@ -93,13 +92,6 @@ public class Language {
 	}
 	public String getFirsttime_drop_loreMaster() {
 		return chosenLanguage.getFirsttime_drop_loreMaster();
-	}
-	
-	public String getFirsttime_table_course() {
-		return chosenLanguage.getFirsttime_table_course();
-	}
-	public String getFirsttime_table_subject() {
-		return chosenLanguage.getFirsttime_table_subject();
 	}
 	
 }
