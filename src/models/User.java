@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "USER")
 public class User {
@@ -19,7 +18,11 @@ public class User {
 
 	@Column(name = "identifier_openID")
 	private String identifierOpenID;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> fixed a bad merge
 	@Column(name = "first_name")
 	private String firstName;
 
@@ -48,7 +51,12 @@ public class User {
 	private List<Comment>  commentList;
 
 	public User() {}
+<<<<<<< HEAD
 
+=======
+	
+	//TODO Business methods pass empty variables if fields are to be left empty
+>>>>>>> fixed a bad merge
 	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -58,6 +66,7 @@ public class User {
 		this.identifierOpenID = identifierOpenID;
 		active = true;
 		commentList = new ArrayList<Comment>();
+		
 	}
 
 	public int getUserID() {
@@ -99,7 +108,11 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> fixed a bad merge
 	public String getFullName(){
 		return this.firstName + " " + this.lastName;
 	}
