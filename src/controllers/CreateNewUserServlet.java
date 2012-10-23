@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import business.user.UserHandler;
-
 import models.User;
+import business.user.UserHandler;
 
 public class CreateNewUserServlet extends HttpServlet {
 
@@ -25,13 +24,12 @@ public class CreateNewUserServlet extends HttpServlet {
 		String city = request.getParameter("city");
 		String identifier = request.getParameter("identifier");
 		
-		User user = new User(identifier, firstName, lastName, email, city);
-		UserHandler userHandler = new UserHandler();
-		userHandler.addUser(user);
+		User user = new User(firstName, lastName, email, city,country, identifier);
+		UserHandler.addUser(user);
 		
 		System.out.println(lastName + " " + firstName + " " + email + " " + country);
 		
-		String url = "/login.jsp";
+		String url = "/index.jsp";
 		
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(url);
