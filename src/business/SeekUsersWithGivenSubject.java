@@ -58,12 +58,12 @@ public class SeekUsersWithGivenSubject {
 		fm.addField(subCSh3);
 		fm.addField(subCpluss);
 		
-		User user1 = new User("1","glenn","falnes","jj@gmail.com","norway");
-		User user2 = new User("2","ørjand","frodstad","øf@gmail.com","norway");
-		User user3 = new User("3","flo","fjære","ff@gmail.com","norway");
-		User user4 = new User("4","frjæ","kylling","fk@gmail.com","norway");
-		User user5 = new User("5","f","ff","gmail","norway");
-		User user6 = new User("6","j","jeg","g","norway");
+		User user1 = new User("Bob", "Smith", "bob@smith.com", "here", "", "345678");
+		User user2 = new User("Glen", "Smiths", "basdfg@smith.com", "there", "",  "2323");
+		User user3 = new User("Tom", "Smite", "bob@adrbafd.com", "over here", "", "7865425");
+		User user4 = new User("Alex", "Smile", "bob@6ytghj.com", "over there", "", "456412");
+		User user5 = new User("Dave", "Store", "bob@adfbafv.com", "here", "", "34898745");
+		User user6 = new User("John", "Robertson", "65tghj@smith.com", "here", "", "3893564");
 		
 		um.addUser(user1);
 		xm.createOpenMentor(user1, subCSh3);
