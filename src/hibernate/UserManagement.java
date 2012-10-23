@@ -109,7 +109,7 @@ public class UserManagement extends HibernateUtil{
 		updateSingle(queryString, queryVariable, new Boolean(active), user.getUserID());
 	}
 	
-	public List<Connection> fetchMentorConnection(User user){
+	public List<Connection> fetchMentorConnections(User user){
 		String queryString = "from models.Connection where mentor = :userID"; 
 		String queryVariable = "userID";
 		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
@@ -127,28 +127,28 @@ public class UserManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
 	}
 
-	public List<User> getMentorFields(User user){
-		List<Connection> fetchedConnections = fetchMentorConnection(user);
-		List<User> mentorFieldList = new ArrayList<User>();
+	public List<Field> getMentorFields(User user){
+		List<Connection> fetchedConnections = fetchMentorConnections(user);
+		List<Field> mentorFieldList = new ArrayList<Field>();
 		String queryString = "from models.Field field where :connectionID in elements(field.connectionList)";
 		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();
-			User listElement = (User) fetchSingle(queryString, queryVariable, new Integer(current.getConnectionID()));
+			Field listElement = (Field) fetchSingle(queryString, queryVariable, new Integer(current.getConnectionID()));
 			if(listElement != null)
 				mentorFieldList.add(listElement);
 		}
 		return mentorFieldList;
 	}
 	
-	public List<User> getTraineeFields(User user){
+	public List<Field> getTraineeFields(User user){
 		List<Connection> fetchedConnections = fetchTraineeConnections(user);
-		List<User> traineeFieldList = new ArrayList<User>();
+		List<Field> traineeFieldList = new ArrayList<Field>();
 		String queryString = "from models.Field field where :connectionID in elements(field.connectionList)";
 		String queryVariable = "connectionID";
 		for(Iterator<Connection> iterator = fetchedConnections.iterator(); iterator.hasNext();){
 			Connection current = iterator.next();
-			User listElement = (User) fetchSingle(queryString, queryVariable, new Integer(current.getConnectionID()));
+			Field listElement = (Field) fetchSingle(queryString, queryVariable, new Integer(current.getConnectionID()));
 			if(listElement != null)
 				traineeFieldList.add(listElement);
 		}

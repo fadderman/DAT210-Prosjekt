@@ -53,7 +53,7 @@ public class ConnectionManagement extends HibernateUtil{
 	}
 	
 	public Connection getByID(int id){
-		String queryString = "from models.Connection where connectionID = :id";
+		String queryString = "from models.Connection where connectionID = :connectionID";
 		String queryVariable = "connectionID";
 		return (Connection) fetchSingle(queryString, queryVariable, new Integer(id));
 	}
@@ -62,6 +62,12 @@ public class ConnectionManagement extends HibernateUtil{
 		String queryString = "from models.Connection where mentor = :userID";
 		String queryVariable = "userID";
 		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
+	}
+	
+	public List<Connection> getByField(Field field){
+		String queryString = "from models.Connection where field = :fieldID";
+		String queryVariable = "fieldID";
+		return fetch(queryString, queryVariable, new Integer(field.getFieldID()));
 	}
 	
 	public List<Connection> getByTrainee(User user){
@@ -87,8 +93,8 @@ public class ConnectionManagement extends HibernateUtil{
 	}
 	
 	public List<Comment> fetchCommentList(Connection connection){
-		String queryString = "from models.Comment where connection = :connection";
-		String queryVariable = "connection";
+		String queryString = "from models.Comment where connection = :connectionID";
+		String queryVariable = "connectionID";
 		return fetch(queryString, queryVariable, connection);
 	}
 	

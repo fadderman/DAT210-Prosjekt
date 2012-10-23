@@ -74,14 +74,11 @@ public class ConnectionManagementTest {
 	
 	@Test
 	public void testChangeStatus(){
-		List<Connection> list = xm.getByMentor(um.getByEmail("phil@last.com"));
+		List<Connection> list = xm.getByField(fm.getSingleByTitle("Bathroom Wall"));
 		for(Iterator<Connection> i = list.iterator(); i.hasNext();){
 			Connection current = i.next();
-			if(current.getField().getTitle() == "Bathroom Wall"){
-				xm.changeStatus(current, false);
-			}
+			xm.changeStatus(current, false);
 		}
-		
 		list = xm.getByMentor(um.getByEmail("phil@last.com"));
 		for(Iterator<Connection> i = list.iterator(); i.hasNext();){
 			Connection current = i.next();
@@ -101,5 +98,75 @@ public class ConnectionManagementTest {
 		}
 		assertEquals(list.size(), 7);
 	}
+	
+	@Test
+	public void testGetAllInactiveConnections(){
+		List<Connection> list = xm.getByField(fm.getSingleByTitle("Bathroom Wall"));
+		for(Iterator<Connection> i = list.iterator(); i.hasNext();){
+			Connection current = i.next();
+			xm.changeStatus(current, false);
+		}
+		
+		list = xm.getAllInactiveConnections();
+		for(Iterator<Connection> i = list.iterator(); i.hasNext();){
+			Connection current = i.next();
+			assertEquals(current.getClass(), Connection.class);
+		}
+		if(list.size() == 2)
+			assertEquals(list.size(), 2);
+		else if(list.size() == 3)
+			assertEquals(list.size(), 3);
+		else if(list.size() == 4)
+			assertEquals(list.size(), 4);
+		else
+			fail("List was neither 2 nor 3. Amount of inactive connections not concurrent with tested amounts. Size of list is: " + list.size());
+	}
 
+	@Test
+	public void testGetByID(){
+		assertEquals(xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Bathroom Wall")), true);
+		assertEquals(xm.createOpenMentor(um.getByEmail("phil@last.com"), fm.getSingleByTitle("Bathroom Wall")), true);
+		assertEquals(xm.getByID(1).getMentor().getFullName(), "John First");
+	}
+	
+	@Test
+	public void testGetByMentor(){
+		List<Connection> list = xm.getByMentor(um.getByEmail("someguy@somewhere.com"));
+		for(Iterator<Connection> i = list.iterator(); i.hasNext();){
+			Connection current = i.next();
+			assertEquals(current.getClass(), Connection.class);
+		}
+		assertEquals(list.size(), 2);
+	}
+	
+	@Test
+	public void testGetByTrainee(){
+		List<Connection> list = xm.getByTrainee(um.getByEmail("johnfirst@gmail.com"));
+		for(Iterator<Connection> i = list.iterator(); i.hasNext();){
+			Connection current = i.next();
+			assertEquals(current.getClass(), Connection.class);
+		}
+		assertEquals(list.size(), 2);
+	}
+	
+	@Test
+	public void testGetByField(){
+		List<Connection> list = xm.getByField(fm.getSingleByTitle("Google tips"));
+		for(Iterator<Connection> i = list.iterator(); i.hasNext();){
+			Connection current = i.next();
+			assertEquals(current.getClass(), Connection.class);
+		}
+		assertEquals(list.size(), 2);
+	}
+	
+	@Test
+	public void testSetDifficultyLevel(){
+		Connection connection = xm.getByMentor(um.getByEmail("bob.second@outlook.com")).get(0);
+		xm.setDifficultyLevel(connection, 2);
+		
+		connection = xm.getByField(fm.getSingleByTitle("Google Tips")).get(0);
+		assertEquals(connection.getDifficultyLevel(), 2);
+	}
+	
+	//TODO testGetCommentList
 }
