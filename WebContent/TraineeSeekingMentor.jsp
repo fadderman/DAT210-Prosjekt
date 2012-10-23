@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
-<script type="text/javascript" ></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 <head>
 <meta charset="utf-8">
 <title>Trainee Seeking Mentor</title>
@@ -38,19 +38,20 @@
 			</tr>
 			<form action="" name="send_user" method="post">
 				<%
-				for (User user : mentors) {
-			%>
-			
-			<tr>
-				<td><%=user.getFirstName()%></td>
-				<td><%=user.getLastName()%></td>
-				<td><%=user.getEmail()%></td>
-				<td><input type="button" value="connect" class="btn"></td>
-				<!-- legger til en masse EL table data -->
-			</tr>
-			<%
-				}
-			%>
+					for (User user : mentors) {
+				%>
+
+				<tr>
+					<td><%=user.getFirstName()%></td>
+					<td><%=user.getLastName()%></td>
+					<td><%=user.getEmail()%></td>
+					<td><input type="button" value="connect" class="btn"
+						onclick="self.close();"></td>
+					<!-- legger til en masse EL table data -->
+				</tr>
+				<%
+					}
+				%>
 			</form>
 		</table>
 	</div>
