@@ -22,18 +22,18 @@ public class EN extends Lang{
 	
 	// ============== FirstTimeLogIn Strings ===================
 	private String firsttime_label_personal = "Personal";
-	private String firsttime_label_fName = "First name:";
-	private String firsttime_label_lName = "Last name:";
-	private String firsttime_label_email = "Email:";
-	private String firsttime_label_country = "Country:";
-	private String firsttime_label_city = "City:";
+	private String firsttime_label_fName = "First name";
+	private String firsttime_label_lName = "Last name";
+	private String firsttime_label_email = "Email";
+	private String firsttime_label_country = "Country";
+	private String firsttime_label_city = "City";
 	private String firsttime_label_connections = "Connections";
-	private String firsttime_label_subject = "Subject:";
-	private String firsttime_label_field = "Field:";
+	private String firsttime_label_subject = "Subject";
+	private String firsttime_label_field = "Field";
 	private String firsttime_radio_mentor = "Mentor";
 	private String firsttime_radio_trainee = "Trainee";
-	private String firsttime_label_addInfo = "Additional info:";
-	private String firsttime_label_experience = "Experience:";
+	private String firsttime_label_addInfo = "Additional info";
+	private String firsttime_label_experience = "Experience";
 	private String firsttime_drop_novice = "Novice";
 	private String firsttime_drop_intermediate = "Intermediate";
 	private String firsttime_drop_expert = "Expert";

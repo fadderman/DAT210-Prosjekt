@@ -26,9 +26,12 @@ public class User {
 	@Column(name = "last_Name")
 	private String lastName;
 
+<<<<<<< HEAD
 	@Column(name = "empty_User")
 	private Boolean emptyUser;
 	
+=======
+>>>>>>> origin/david
 	@Column(name = "email")
 	private String email;
 
@@ -37,9 +40,12 @@ public class User {
 
 	@Column(name = "location_country")
 	private String locationCountry;
+<<<<<<< HEAD
 	
 	@Column(name = "mapURL")
 	private String mapURL;
+=======
+>>>>>>> origin/david
 
 	//Location: city, country
 
@@ -61,10 +67,13 @@ public class User {
 	private List<Comment>  commentList;
 
 	public User() {}
+<<<<<<< HEAD
 	
 	public User(String emptyUser){
 		if(emptyUser.equalsIgnoreCase("null")) this.emptyUser = true;
 	}
+=======
+>>>>>>> origin/david
 
 	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
 		this.firstName = firstName;
@@ -210,7 +219,12 @@ public class User {
 	public void setTraineeList(ArrayList<Field> traineeList) {
 		this.traineeList = traineeList;
 	}
+<<<<<<< HEAD
 	 */
 
 }
+=======
+	*/
+>>>>>>> origin/david
 
+}

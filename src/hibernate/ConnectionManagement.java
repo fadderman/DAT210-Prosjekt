@@ -10,6 +10,10 @@ public class ConnectionManagement extends HibernateUtil{
 		sessionFactory = getSessionFactory();
 	}
 	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/david
 	public void createOpenMentor(User mentor, Field field){
 		Connection connection = new Connection(field);
 		connection.setMentor(mentor);
@@ -24,6 +28,13 @@ public class ConnectionManagement extends HibernateUtil{
 	
 	public void createConnection(User mentor, User trainee, Field field){
 		Connection connection = new Connection(mentor, trainee, field);
+<<<<<<< HEAD
+=======
+=======
+	public void createConnection(User mentor, User trainee, Subject subject){
+		Connection connection = new Connection(mentor, trainee, subject);
+>>>>>>> origin/lordAlek
+>>>>>>> origin/david
 		addConnection(connection);
 	}
 	
@@ -34,6 +45,10 @@ public class ConnectionManagement extends HibernateUtil{
 
 	public void addConnection(Connection connection) {
 		addToDatabase(connection);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/david
 	}
 	
 	public List<Connection> getAllConnections(){
@@ -63,6 +78,19 @@ public class ConnectionManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
 	}
 	
+<<<<<<< HEAD
+=======
+=======
+	}
+	
+	public List<Connection> getByID(int id){
+		String queryString = "from models.Connection where id = :id";
+		String queryVariable = "id";
+		return fetch(queryString, queryVariable, id);
+	}
+	
+>>>>>>> origin/lordAlek
+>>>>>>> origin/david
 	public void updateDifficultyLevel(Connection connection, int difficultyLevel){
 		String queryString = "update models.Connection set difficultyLevel = :difficultyLevel where id = :id";
 		String queryVariable = "difficultyLevel";
@@ -79,11 +107,20 @@ public class ConnectionManagement extends HibernateUtil{
 		updateSingle(queryString, queryVariable, active, connection.getConnectionID());
 	}
 	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/david
 	public List<Comment> fetchCommentList(Connection connection){
 		String queryString = "from models.Comment where connection = :connection";
 		String queryVariable = "connection";
 		return fetch(queryString, queryVariable, connection);
 	}
 	
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/lordAlek
+>>>>>>> origin/david
 	
 }

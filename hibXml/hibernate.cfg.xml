@@ -11,7 +11,14 @@
 		com.mysql.jdbc.Driver
     </property>
     <property name="hibernate.connection.url">
+<<<<<<< HEAD
 		jdbc:mysql://localhost/MentorFind
+=======
+<<<<<<< HEAD
+=======
+		jdbc:mysql://localhost/MentorFind
+>>>>>>> origin/lordAlek
+>>>>>>> origin/david
 		jdbc:mysql://localhost/Hibernate
     </property>
     <property name="hibernate.connection.username">

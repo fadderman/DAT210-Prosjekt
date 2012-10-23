@@ -166,7 +166,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 				User user = userHandler.getUserByIdentifier(verified.getIdentifier());			//check if the user already exists
 				if(user!=null){	//forward to main page
 					System.out.println("User exists!");
-					this.getServletContext().getRequestDispatcher("/login.jsp").forward(httpReq, httpResp);	//User Logged in
+					this.getServletContext().getRequestDispatcher("/index.jsp").forward(httpReq, httpResp);	//User Logged in
 				}
 				else{		 //forward to page where user must enter additional information.
 					if (authSuccess.hasExtension(AxMessage.OPENID_NS_AX))

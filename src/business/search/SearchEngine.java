@@ -17,16 +17,19 @@ public class SearchEngine {
 	private static boolean hasBeenRun = false;
 	public void createDummyData(){
 		if(!hasBeenRun){
-			userHandler.addUser(new User("Thomas", "Hinna", "email", "locationCity", "locationCountry", "identifierOpenID"));
-			userHandler.addUser(new User("Thomas", "Nilsen", "email", "locationCity", "locationCountry", "identifierOpenID"));
-			userHandler.addUser(new User("Morten", "Salte", "email", "locationCity", "locationCountry", "identifierOpenID"));
-			userHandler.addUser(new User("Morten", "Bla", "email", "locationCity", "locationCountry", "identifierOpenID"));
-			userHandler.addUser(new User("Mango", "Bli", "email", "locationCity", "locationCountry", "identifierOpenID"));
-			userHandler.addUser(new User("Thomas", "MMM", "email", "locationCity", "locationCountry", "identifierOpenID"));
-			userHandler.addUser(new User("Morten", "Nilsen", "email", "locationCity", "locationCountry", "identifierOpenID"));
-			userHandler.addUser(new User("Petter", "Salte", "email", "locationCity", "locationCountry", "identifierOpenID"));
-			userHandler.addUser(new User("Alexander", "Bli", "email", "locationCity", "locationCountry", "identifierOpenID"));
-			userHandler.addUser(new User("Bli", "Alexandersen", "email", "locationCity", "locationCountry", "identifierOpenID"));
+			userHandler.addUser(new User("Thomas", "Hinna", "email", "Sandnes", "Norway", "identifierOpenID"));
+			userHandler.addUser(new User("Thomas", "Nilsen", "email", "Liverpool", "United Kingdom", "identifierOpenID"));
+			userHandler.addUser(new User("Morten", "Salte", "email", "Lyefjell", "Norway", "identifierOpenID"));
+			userHandler.addUser(new User("Morten", "Bla", "email", "Sola", "Norway", "identifierOpenID"));
+			userHandler.addUser(new User("Mango", "Bli", "email", "Bergen", "Norway", "identifierOpenID"));
+			userHandler.addUser(new User("Thomas", "MMM", "email", "Oslo", "Norway", "identifierOpenID"));
+			userHandler.addUser(new User("Morten", "Nilsen", "email", "Oslo", "Norway", "identifierOpenID"));
+			userHandler.addUser(new User("Petter", "Salte", "email", "Stockholm", "Sweden", "identifierOpenID"));
+			userHandler.addUser(new User("Alexander", "Bli", "email", "Oslo", "Norway", "identifierOpenID"));
+			userHandler.addUser(new User("Bli", "Alexandersen", "email", "Stavanger", "Norway", "identifierOpenID"));
+			userHandler.addUser(new User("Ørjan", "Rørheim", "email", "Stavanger", "Norway", "identifierOpenID"));
+			userHandler.addUser(new User("Åge", "Håland", "email", "Ålesund", "Norway", "identifierOpenID"));
+			userHandler.addUser(new User("Tom", "Nærland", "email", "Nærbø", "Norway", "identifierOpenID"));
 			hasBeenRun=true;
 		}
 	}
@@ -34,6 +37,7 @@ public class SearchEngine {
 	public SearchSuggestions suggest(String query){
 		query = query.toLowerCase();
 		query = query.trim();
+		
 		SearchSuggestions result = new SearchSuggestions();
 
 		result.setUserResults(suggestUsers(query));
