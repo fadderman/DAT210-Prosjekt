@@ -14,10 +14,10 @@
 		jdbc:mysql://localhost/mentorfind
     </property>
     <property name="hibernate.connection.username">
-		morten
+		root
     </property>
     <property name="hibernate.connection.password">
-		morten
+		passord
     </property>
     <property name="hibernate.show_sql">
 		false
