@@ -19,31 +19,34 @@ public class User {
 
 	@Column(name = "identifier_openID")
 	private String identifierOpenID;
-	
+
 	@Column(name = "first_name")
 	private String firstName;
-	
+
 	@Column(name = "last_Name")
 	private String lastName;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "location_city")
 	private String locationCity;
-	
+
 	@Column(name = "location_country")
 	private String locationCountry;
 
+	//Location: city, country
+
+
 	@OneToMany(mappedBy = "mentor")
 	private List<Connection> mentorConnection;
-	
+
 	@OneToMany(mappedBy = "trainee")
 	private List<Connection> traineeConnection;
-	
+
 	@OneToMany(mappedBy = "author")
 	private List<Comment>  commentList;
-	
+
 	public User() {}
 
 	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
@@ -56,7 +59,7 @@ public class User {
 		active = true;
 		commentList = new ArrayList<Comment>();
 	}
-	
+
 	public int getUserID() {
 		return userID;
 	}
@@ -64,7 +67,7 @@ public class User {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
-	
+
 	public boolean isActive() {
 		return active;
 	}
@@ -72,7 +75,7 @@ public class User {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
+
 	public String getIdentifierOpenID() {
 		return identifierOpenID;
 	}
@@ -96,7 +99,7 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public String getFullName(){
 		return this.firstName + " " + this.lastName;
 	}
@@ -152,7 +155,7 @@ public class User {
 	public void setCommentList(ArrayList<Comment> commentList) {
 		this.commentList = commentList;
 	}
-	
+
 	/*//TODO broken may to many relationship
 	//TODO setup indexing
 	@ManyToMany(targetEntity = models.Field.class,
@@ -195,6 +198,5 @@ public class User {
 		this.traineeList = traineeList;
 	}
 	*/
-	
-}
 
+}
