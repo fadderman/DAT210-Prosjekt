@@ -3,8 +3,13 @@ package business.search.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import hibernate.FieldManagement;
+import hibernate.SubjectManagement;
+import hibernate.UserManagement;
+
 import java.util.ArrayList;
 
+import models.Field;
 import models.Subject;
 import models.User;
 
@@ -21,12 +26,12 @@ import business.user.UserHandler;
 public class SearchEngineTest {
 
 	private SearchEngine searchEngine;
-	static UserHandler userHandler;
-	static SubjectHandler subjectHandler;
+	static FieldManagement fieldHandler;
+	static UserManagement userHandler;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		userHandler = new UserHandler();
+		userHandler = new UserManagement();
 		userHandler.addUser(new User("Thomas", "Hinna", "email", "city","country", "openID"));
 		userHandler.addUser(new User("Thomas", "Nilsen", "email",  "city","country", "openID"));
 		userHandler.addUser(new User("Morten", "Salte", "email",  "city","country","openID"));
@@ -36,14 +41,17 @@ public class SearchEngineTest {
 //			userHandler.addUser(new User("identifier_openID" + i, "firstName" + i, "lastName" + i,
 //					"email" + i, "location" + i));
 //		}
-		subjectHandler = new SubjectHandler();
-		subjectHandler.addSubject(new Subject("Java", "description"));
-		subjectHandler.addSubject(new Subject("C++", "description"));
-		subjectHandler.addSubject(new Subject("C#", "description"));
-		subjectHandler.addSubject(new Subject("Javascript", "description"));
-		subjectHandler.addSubject(new Subject("Go", "description"));
-		subjectHandler.addSubject(new Subject("Python", "description"));
-		subjectHandler.addSubject(new Subject("C", "description"));
+		fieldHandler = new FieldManagement();
+		Subject sub = new Subject("title", "description");
+		SubjectManagement subMan = new SubjectManagement();
+		subMan.addSubject(sub);
+		fieldHandler.addField(new Field("Java", "description", sub));
+		fieldHandler.addField(new Field("C++", "description", sub));
+		fieldHandler.addField(new Field("Javascript", "description", sub));
+		fieldHandler.addField(new Field("C#", "description", sub));
+		fieldHandler.addField(new Field("Python", "description", sub));
+		fieldHandler.addField(new Field("Go", "description", sub));
+		fieldHandler.addField(new Field("Ruby", "description", sub));
 	}
 	
 	
@@ -91,27 +99,6 @@ public class SearchEngineTest {
 //		System.out.println("time used: " + (System.currentTimeMillis()-startTime));
 	}
 	
-	@Test
-	public void searchForHehmaAndExpectHinna() {
-		SearchResults result = searchEngine.search("Hehma");
-		ArrayList<User> userRes = result.getUserResults();
-		assertTrue(!userRes.isEmpty());
-		for(int i=0;i<userRes.size();i++){
-			assertEquals("Hinna", userRes.get(i).getLastName());
-		}
-	}
-
-	
-	@Test
-	public void searchForT1234sAndExpectThomas() {
-		SearchResults result = searchEngine.search("t1234s");
-		ArrayList<User> userRes = result.getUserResults();
-		assertTrue(!userRes.isEmpty());
-		for(int i=0;i<userRes.size();i++){
-			assertEquals("Thomas", userRes.get(i).getFirstName());
-		}
-	}
-	
 	
 	@Test
 	public void searchForThomasHinnaAndExpectFirstnameThomas() {
@@ -123,16 +110,15 @@ public class SearchEngineTest {
 		}
 	}
 	
-//	@Test
-//	public void searchForJavaAndExpectJava() {
-//		String searchFor = "Java";
-//		SearchResults result = searchEngine.search(searchFor);
-//		ArrayList<Subject> subRes = result.getSubjectResults();
-//		assertTrue(!subRes.isEmpty());
-//		for(int i=0;i<subRes.size();i++){
-//			assertEquals(searchFor, subRes.get(i).getTitle());
-//			assertTrue(subRes.get(i).getTitle().startsWith(searchFor));
-//		}
-//	}
+	@Test
+	public void searchForJavaAndExpectJava() {
+		String searchFor = "Java";
+		SearchResults result = searchEngine.search(searchFor);
+		ArrayList<Field> fieldRes = result.getFieldResults();
+		assertTrue(!fieldRes.isEmpty());
+		for(int i=0;i<fieldRes.size();i++){
+			assertTrue(fieldRes.get(i).getTitle().contains(searchFor));
+		}
+	}
 
 }

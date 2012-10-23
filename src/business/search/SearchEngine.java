@@ -40,13 +40,7 @@ public class SearchEngine extends HibernateUtil{
 			userManager.addUser(new User("Ørjan", "Rørheim", "email", "Stavanger", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Åge", "Håland", "email", "Ålesund", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Tom", "Nærland", "email", "Nærbø", "Norway", "identifierOpenID"));
-//			subjectHandler.addSubject(new Subject("Java", "description"));
-//			subjectHandler.addSubject(new Subject("C++", "description"));
-//			subjectHandler.addSubject(new Subject("C#", "description"));
-//			subjectHandler.addSubject(new Subject("Javascript", "description"));
-//			subjectHandler.addSubject(new Subject("Go", "description"));
-//			subjectHandler.addSubject(new Subject("Python", "description"));
-//			subjectHandler.addSubject(new Subject("C", "description"));
+
 			Subject sub = new Subject("titleeee", "descpritionnnn");
 			subMang.addSubject(sub);
 			fieldManagment.addField(new Field("java", "description", sub));
@@ -61,15 +55,6 @@ public class SearchEngine extends HibernateUtil{
 		}
 	}
 
-//	private String createDottedString(String query){
-//		int dottedStringLength = query.length()-2;
-//		String dottedString = "";
-//		for (int i=0;i<dottedStringLength;i++){
-//			dottedString +=".";
-//		}
-//		return query.charAt(0) + dottedString + query.charAt(query.length()-1);
-//	}
-
 	public SearchResults search(String query){
 		query = query.toLowerCase();
 		query = query.trim();
@@ -81,18 +66,6 @@ public class SearchEngine extends HibernateUtil{
 
 	private ArrayList<User> searchForUsers(String query){
 		ArrayList<User> userResults = searchForUsersUsingString(query);
-
-		if(!userResults.isEmpty())return userResults;
-
-//		int dottedStringLength = query.length()-2;
-//		String dottedString = "";
-//		for (int i=0;i<dottedStringLength;i++){
-//			dottedString +=".";
-//		}
-//		query = query.charAt(0) + dottedString + query.charAt(query.length()-1);
-//		query = createDottedString(query);
-//		userResults = searchForUsersUsingDottedString(query);
-
 		return userResults;
 	}
 	
@@ -138,12 +111,6 @@ public class SearchEngine extends HibernateUtil{
 	
 	private ArrayList<Field> searchForFields(String query) {
 		ArrayList<Field> fieldtResults=searchForFieldUsingString(query);
-
-		if(!fieldtResults.isEmpty())return fieldtResults;
-		
-//		query = createDottedString(query);
-//		subjectResults = searchForSubjectUsingDottedString(query);
-		
 		return fieldtResults;
 	}
 
