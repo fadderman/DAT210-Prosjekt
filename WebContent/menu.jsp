@@ -19,73 +19,58 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner shadow">
 			<div class="container">
-					<a class="brand" href="index.jsp">MentorFind</a>
-					<!-- NAVIGATION -->
-					<ul class="nav">
-						<li><a class="dropdown-toggle" data-toggle="dropdown"
-							href="#"><i class="icon-search"></i> Find <i
-								class="icon-chevron-down"></i></a>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="dlabel">
-								<!-- dropdown menu links -->
-								<li><a href="#"> Mentor</a></li>
-								<li><a href="#"> Trainee</a></li>
 
-							</ul></li>
-						<li><a href="#"><i class="icon-user"></i> Profile</a></li>
-						<li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-						<li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li>
+				<a class="brand" href="home">MentorFind</a>
+				<!-- NAVIGATION -->
+				<ul class="nav">
+					<li class="active"><a href="home"><i class="icon-home"></i>
+							Home</a></li>
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-search"></i> Find <i class="icon-chevron-down"></i>
+								</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dlabel">
+							<!-- dropdown menu links -->
+							<li><a href="#"> Mentor</a></li>
+							<li><a href="#"> Trainee</a></li>
+						</ul>
+				</li>
+					<li><a href="profile"><i class="icon-user"></i> Profile</a></li>
+					<li><a href="settings"><i class="icon-cog"></i> Settings</a></li>
+					<li>
 						<!-- SEARCH -->
-						<li>
-							<form action="search" method="get" class="navbar-form form-search">
-								<div class="input-append">
-									<input class="search-query" type="text" name="query" id="search"
-										placeholder="Search.." />
-									<button class="btn" type="submit">Search</button>
-								</div>
-								<script>
-									$("#search").autocomplete("getsearch.jsp");
+						<form action="search" method="get" class="navbar-form form-search">
+							<div class="input-append">
+								<input class="search-query" type="text" name="query" id="search" placeholder="Search.." />
+								<button class="btn" type="submit">Search</button>
+							</div>
+							<script>
+									$.widget( "custom.catcomplete", $.ui.autocomplete, {
+									    _renderMenu: function( ul, items ) {
+									        var that = this,
+									            currentCategory = "";
+									        $.each( items, function( index, item ) {
+									            if ( item.category != currentCategory ) {
+									                ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+									                currentCategory = item.category;
+									            }
+									            that._renderItemData( ul, item );
+									        });
+									    }
+									});
 								</script>
-							</form>
-						</li>
-					</ul>
-
-				</div>
-				<div class="span3">
-				<!-- SEARCH -->
-					<form action="search" method="get" class="navbar-form pull-right">
-						<div class="input-append">
-							<input type="text" name="query" id="search" placeholder="Search.."/>
-							<button class="btn" type="submit">Search</button>
-						</div>
-						<script>
-							$.widget( "custom.catcomplete", $.ui.autocomplete, {
-							    _renderMenu: function( ul, items ) {
-							        var that = this,
-							            currentCategory = "";
-							        $.each( items, function( index, item ) {
-							            if ( item.category != currentCategory ) {
-							                ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
-							                currentCategory = item.category;
-							            }
-							            that._renderItemData( ul, item );
-							        });
-							    }
-							});
-						</script>
-						
-						<script type="text/javascript">
-							$(function() {
-							    $( "#search" ).catcomplete({
-							        delay: 500,
-							        minLength: 1,
-							        source: 'getsearchjson.jsp'
-							    });
-							});
-						</script>
-					</form>
-				</div>
-				<div class="span1">
-					<!-- LANGUAGE -->
+		
+							<script type="text/javascript">
+									$(function() {
+									    $( "#search" ).catcomplete({
+									        delay: 500,
+									        minLength: 1,
+									        source: 'getsearchjson.jsp'
+									    });
+									});
+								</script>
+						</form>
+					</li>
+				</ul>
+				<!-- LANGUAGE -->
 				
 				<div class="btn-group pull-right">
 						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><small>
@@ -98,11 +83,11 @@
 							<li><a
 								href="<%=response.encodeURL("chosenLanguage?language=norsk")%>">Norsk</a></li>
 						</ul>
-					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	</div>
+</div>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/bootstrap.js"></script>

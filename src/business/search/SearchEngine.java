@@ -30,27 +30,27 @@ public class SearchEngine extends HibernateUtil{
 			userManager.addUser(new User("Thomas", "Hinna", "email", "Sandnes", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Thomas", "Nilsen", "email", "Liverpool", "United Kingdom", "identifierOpenID"));
 			userManager.addUser(new User("Morten", "Salte", "email", "Lyefjell", "Norway", "identifierOpenID"));
-			userManager.addUser(new User("Morten", "Bla", "email", "Sola", "Norway", "identifierOpenID"));
-			userManager.addUser(new User("Mango", "Bli", "email", "Bergen", "Norway", "identifierOpenID"));
-			userManager.addUser(new User("Thomas", "MMM", "email", "Oslo", "Norway", "identifierOpenID"));
+			userManager.addUser(new User("Steve", "Jobs", "email", "Silicon Valley", "USA", "identifierOpenID"));
+			userManager.addUser(new User("Anders", "Mikkelsen", "email", "Bergen", "Norway", "identifierOpenID"));
+			userManager.addUser(new User("Bill", "Gates", "email", "Silicon Valley", "USA", "identifierOpenID"));
 			userManager.addUser(new User("Morten", "Nilsen", "email", "Oslo", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Petter", "Salte", "email", "Stockholm", "Sweden", "identifierOpenID"));
-			userManager.addUser(new User("Alexander", "Bli", "email", "Oslo", "Norway", "identifierOpenID"));
-			userManager.addUser(new User("Bli", "Alexandersen", "email", "Stavanger", "Norway", "identifierOpenID"));
+			userManager.addUser(new User("Alexander", "Rybak", "email", "Oslo", "Norway", "identifierOpenID"));
+			userManager.addUser(new User("Åge", "Alexandersen", "email", "Stavanger", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Ørjan", "Rørheim", "email", "Stavanger", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Åge", "Håland", "email", "Ålesund", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Tom", "Nærland", "email", "Nærbø", "Norway", "identifierOpenID"));
 
 			Subject sub = new Subject("titleeee", "descpritionnnn");
 			subMang.addSubject(sub);
-			fieldManagment.addField(new Field("java", "description", sub));
-			fieldManagment.addField(new Field("javascript", "description", sub));
+			fieldManagment.addField(new Field("Java", "description", sub));
+			fieldManagment.addField(new Field("JavaScript", "description", sub));
 			fieldManagment.addField(new Field("C++", "description", sub));
 			fieldManagment.addField(new Field("C#", "description", sub));
 			fieldManagment.addField(new Field("Python", "description", sub));
 			fieldManagment.addField(new Field("Go", "description", sub));
 			fieldManagment.addField(new Field("C", "description", sub));
-			fieldManagment.addField(new Field("MongoDB", "description", sub));
+			fieldManagment.addField(new Field("MySQL", "description", sub));
 			hasBeenRun=true;
 		}
 	}
