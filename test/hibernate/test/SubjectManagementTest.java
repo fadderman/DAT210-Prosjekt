@@ -32,6 +32,7 @@ public class SubjectManagementTest {
 		fm.createField("Java", "This is java", null);
 		sm.createSubject("Programming", "Programming related");
 		sm.createSubject("Non-programming", "not programming related");
+		
 
 		
 	}
@@ -103,10 +104,10 @@ public class SubjectManagementTest {
 	
 	@Test
 	public void testUpdateDescription(){
-		List<Subject> test =  sm.getByTitle("Java3D");
-		sm.updateDescription(test.get(0), "Programming language for pros");
-		assertEquals(sm.getSingleByTitle("Java3D"), "Programming language for pros");
-	}
+		List<Subject> test = sm.getByTitle("Programming");
+		sm.updateDescription(test.get(0), "Programming for pros!!!!");
+		assertEquals(sm.getByTitle("Programming").get(0).getDescription(), "Programming for pros!!!!");
+}
 	
 	@Test
 	public void testChangeStatus(){

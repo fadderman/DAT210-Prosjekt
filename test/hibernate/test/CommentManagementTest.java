@@ -43,34 +43,30 @@ public class CommentManagementTest {
 		um.createUser("Bob", "Second", "bob.second@outlook.com", "Not far away", "Ground", "numero dos");
 		um.createUser("Bob", "Last", "phil@last.com", "Here", "It exits on Earth", "numero tres");
 		um.createUser("Some", "Guy", "someguy@somewhere.com", "Somewhere", "Place", "numero quatro");
+		
+		cm.createComment(xm.getByID(0), um.getByName("John", "First").get(0), "This is a text");
+		cm.createComment(xm.getByID(1), um.getByEmail("johnfirst@gmail.com"), "This is some text");
+		cm.createComment(xm.getByID(3), um.getByEmail("bob.second@outlook.com"), "Some random text");
+		cm.createComment(xm.getByID(2), um.getByEmail("someguy@somewhere.com"), "Comment about programming");
+		
+		xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Java"));
+		xm.createOpenMentor(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Java"));
+		xm.createOpenMentor(um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Google tips"));
+		xm.createOpenTrainee(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("C++"));
+		xm.createOpenTrainee(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Bathroom Wall"));
+		xm.createOpenTrainee(um.getByEmail("phil@last.com"), fm.getSingleByTitle("COBOL"));
+		xm.createConnection(um.getByEmail("someguy@somewhere.com"), um.getByEmail("bob.secon@outlook.com"), fm.getSingleByTitle("COBOL"));
+		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Google tips"));
+		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Bathroom Wall"));
+		
 
 
 
-		//		xm.createConnection(mentor, trainee, field, difficultyLevel)
-		//		xm.createConnection(um.getByName("", ""), um.getByName("", ""), fm.getByTitle(""), 1);
-		//		cm.createComment(connection, author, text)
-		//		
 	}
 
 	@Before
 	public void setUp(){
 
-	}
-
-
-
-	//	@Test
-	//	public void test() {
-	//		fail("Not yet implemented");
-	//	}
-
-	@Test
-	public void testCreateComment(){
-		assertEquals(cm.createComment(xm.getByID(0), um.getByName("John", "First").get(0), "This is a text"), true);
-		assertEquals(cm.createComment(xm.getByID(1), um.getByEmail("johnfirst@gmail.com"), "This is some text"), true);
-		assertEquals(cm.createComment(xm.getByID(3), um.getByEmail("bob.second@outlook.com"), "Some random text"), true);
-		assertEquals(cm.createComment(xm.getByID(2), um.getByEmail("someguy@somewhere.com"), "Comment about programming"), true);
-	
 	}
 
 	@Test
@@ -88,7 +84,7 @@ public class CommentManagementTest {
 
 	@Test
 	public void testGetCommentByAuthor(){
-		List<Comment> list = cm.getCommentByAuthor(um.getByEmail("johnfirst@gmail.com"));
+		List<Comment> list = cm.getCommentByAuthor(null);
 	
 		for(Iterator<Comment> i = list.iterator(); i.hasNext(); ){
 			Comment current = i.next();
@@ -100,6 +96,7 @@ public class CommentManagementTest {
 
 	@Test
 	public void testGetCommentByTimestamp(){
+//		Comment comment = cm.getCommentByTimestamp(um.getByEmail("johnfirst@gmail.com"), , toTime)
 
 
 
@@ -107,8 +104,9 @@ public class CommentManagementTest {
 	}
 	
 	@Test
-	public void testGetCommentByConnection(){
-	
+	public void testGetByConnection(){
+	List<Comment> list = cm.getByConnection(xm.getByID(1));
+	assertEquals(list.get(0), "");
 	}
 //
 //	@Test
@@ -119,16 +117,7 @@ public class CommentManagementTest {
 //
 //	}
 
-	@Test
-	public void testChangeStatus(){
-		cm.changeStatus(cm.getByID(1), false);
-		cm.changeStatus(cm.getByID(2), false);
-		
-		List<Field> list = fm.getAllInactiveFields();
-		
-		assertEquals(list.get(0).getDescription(), "Programming related");
-		assertEquals(list.get(1).getDescription(), "not programming related");	
-	}
+
 	
 	
 //	@Test
@@ -149,6 +138,18 @@ public class CommentManagementTest {
 		assertEquals(cm.createComment(xm.getByID(3), um.getByEmail("bob.second@outlook.com"), "Some random text"), true);
 		assertEquals(cm.createComment(xm.getByID(2), um.getByEmail("someguy@somewhere.com"), "Comment about programming"), true);
 		assertEquals(cm.getByID(1).getAuthor().getEmail(), "johnfirst@gmail.com");
+	}
+	
+	@Test
+	public void testChangeStatus(){
+		cm.changeStatus(cm.getByID(1), false);
+		cm.changeStatus(cm.getByID(2), false);
+		
+		List<Comment> list = cm.getAllInactiveComments();
+		
+		assertEquals(list.get(0).getComment(), "This is a text");
+		assertEquals(list.get(1).getComment(), "This is some text");
+
 	}
 	
 	@Test
