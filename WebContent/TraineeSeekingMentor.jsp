@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <title>Trainee Seeking Mentor</title>
 </head>
-<body>
+<body class="container">
 	<%
 		//lagt til en tom dataliste
 		//MentorsWithSubject m = new MentorsWithSubject("Java 2D");
@@ -24,37 +24,34 @@
 		mentors.add(user2);
 		mentors.add(user3);
 		mentors.add(user4);
-		
 	%>
-	<h1 id="Title" style="text-align: center;" class="page-header" >List of Mentor</h1>
-	<table id="ListofMentor" border="1" class="table">
-		<tr>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Email</th>
-			<th>Join</th>
-		</tr>
-		<%
-			for (User user : mentors) {
-		%>
-		<tr>
-			<td><%=
-					user.getFirstName()
-				%></td>
-			<td><%=
-					user.getLastName()
-				%></td>
-			<td><%=
-					user.getEmail()
-				%></td>
-			<td><form action="" name="send_user" method="post">
-					<input type="button" value="connect"class="btn">
-				</form></td>
-			<!-- legger til en masse EL table data -->
-		</tr>
-		<%
-			}
-		%>
-	</table>
+	<h1 id="Title" style="text-align: center;" class="page-header">List
+		of Mentor</h1>
+	<div class="well">
+		<table id="ListofMentor" class="table table-hover table-condensed">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Join</th>
+			</tr>
+			<form action="" name="send_user" method="post">
+				<%
+				for (User user : mentors) {
+			%>
+			
+			<tr>
+				<td><%=user.getFirstName()%></td>
+				<td><%=user.getLastName()%></td>
+				<td><%=user.getEmail()%></td>
+				<td><input type="button" value="connect" class="btn"></td>
+				<!-- legger til en masse EL table data -->
+			</tr>
+			<%
+				}
+			%>
+			</form>
+		</table>
+	</div>
 </body>
 </html>
