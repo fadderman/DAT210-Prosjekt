@@ -19,19 +19,16 @@ public class SeekUsersWithGivenSubject {
 	//skal bruk en metode fra usermanagement for å få en liste med brukere
 	private ArrayList<User> mentors;
 	private String subject;
-	private Field foundsubject;
-	private static UserManagement userm;
+	private static FieldManagement fm = new FieldManagement();
 	
 	public SeekUsersWithGivenSubject(String subject) {
-		userm = new UserManagement();
 		populateDatabase();
-		foundsubject = new FieldManagement().getSingleByTitle(subject);
-		mentors = (ArrayList<User>) new FieldManagement().getMentors(foundsubject);
+		Field foundsubject = fm.getSingleByTitle(subject);
+		mentors = (ArrayList<User>) fm.getMentors(foundsubject);
 	}
 	
 	private static void populateDatabase(){
 		SubjectManagement cm = new SubjectManagement();
-		FieldManagement sm = new FieldManagement();
 		UserManagement um = new UserManagement();
 		ConnectionManagement xm = new ConnectionManagement();
 		
@@ -54,19 +51,19 @@ public class SeekUsersWithGivenSubject {
 		Field subCSh3 = new Field("C#","C# General",cm.getByTitle("C#").get(0));
 		Field subCpluss = new Field("C++","C++ General",cm.getByTitle("C++").get(0));
 		
-		sm.addField(subJava3D);
-		sm.addField(subJava2D);
-		sm.addField(subCSh1);
-		sm.addField(subCSh2);
-		sm.addField(subCSh3);
-		sm.addField(subCpluss);
+		fm.addField(subJava3D);
+		fm.addField(subJava2D);
+		fm.addField(subCSh1);
+		fm.addField(subCSh2);
+		fm.addField(subCSh3);
+		fm.addField(subCpluss);
 		
-		User user1 = new User();
-		User user2 = new User();
-		User user3 = new User();
-		User user4 = new User();
-		User user5 = new User();
-		User user6 = new User();
+		User user1 = new User("1","glenn","falnes","jj@gmail.com","norway");
+		User user2 = new User("2","ørjand","frodstad","øf@gmail.com","norway");
+		User user3 = new User("3","flo","fjære","ff@gmail.com","norway");
+		User user4 = new User("4","frjæ","kylling","fk@gmail.com","norway");
+		User user5 = new User("5","f","ff","gmail","norway");
+		User user6 = new User("6","j","jeg","g","norway");
 		
 		um.addUser(user1);
 		xm.createOpenMentor(user1, subCSh3);

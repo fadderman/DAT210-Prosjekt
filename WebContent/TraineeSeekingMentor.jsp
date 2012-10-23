@@ -13,18 +13,9 @@
 <body class="container">
 	<%
 		//lagt til en tom dataliste
-		//MentorsWithSubject m = new MentorsWithSubject("Java 2D");
-		ArrayList<User> mentors = new ArrayList<User>();
+		MentorsWithSubject m = new MentorsWithSubject("Java 2D");
+		ArrayList<User> mentors = m.getMentorsWithSubject();
 
-		User user1 = new User();
-		User user5 = new User();
-		User user2 = new User();
-		User user3 = new User();
-		User user4 = new User();
-		mentors.add(user1);
-		mentors.add(user2);
-		mentors.add(user3);
-		mentors.add(user4);
 	%>
 	<h1 id="Title" style="text-align: center;" class="page-header">List
 		of Mentor</h1>
