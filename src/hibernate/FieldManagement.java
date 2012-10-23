@@ -53,6 +53,12 @@ public class FieldManagement extends HibernateUtil{
 		return (Field) fetchSingle(queryString, queryVariable, title);
 	}
 	
+	public List<Field> getFieldsByParent(Field parent){
+		String queryString = "from models.Field where parent = :parentID and active = true";
+		String queryVariable = "parent";
+		return fetch(queryString, queryVariable, new Integer(parent.getFieldID()));
+	}
+	
 	public void updateTitle(Field field, String newTitle){
 		String queryString = "update models.Field set title = :newTitle where id = :id";
 		String queryVariable = "newTitle";
@@ -63,6 +69,20 @@ public class FieldManagement extends HibernateUtil{
 		String queryString = "update models.Field set description = :newDescription where id = :id";
 		String queryVariable = "newDescription";
 		updateSingle(queryString, queryVariable, newDescription, field.getFieldID());
+	}
+	
+	public void setParentField(Field field, Field newParent){
+		updateParentField(field, newParent);
+	}
+	
+	public void updateParentField(Field field, Field newParent){
+		String queryString = "update models.Field set parent = :newParent where id = :id";
+		String queryVariable = "newParent";
+		updateSingle(queryString, queryVariable, newParent, field.getFieldID());
+	}
+	
+	public void removeParent(Field field){
+		delete(field);
 	}
 	
 	public List<Connection> fetchConnectionList(Field field){
