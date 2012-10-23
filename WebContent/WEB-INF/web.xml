@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0" metadata-complete="true">
   <display-name>MentorFind</display-name>
   <welcome-file-list>
@@ -10,15 +11,19 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
 id="WebApp_ID" version="3.0">
+=======
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0" metadata-complete="true">
+>>>>>>> removed some broken code and had destroyed my web.xml so i took a new
   <display-name>MentorFind</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
     <welcome-file>login.jsp</welcome-file>
+<<<<<<< HEAD
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
 >>>>>>> altered the web.xml to have login.jsp as welcome page and started trying
+=======
+>>>>>>> removed some broken code and had destroyed my web.xml so i took a new
   </welcome-file-list>
  
    
@@ -46,6 +51,7 @@ id="WebApp_ID" version="3.0">
     <url-pattern>/createNewUser</url-pattern>
   </servlet-mapping>
   
+<<<<<<< HEAD
      <servlet>
     <description></description>
     <display-name>LanguageServlet</display-name>
@@ -68,4 +74,6 @@ id="WebApp_ID" version="3.0">
     <servlet-name>SearchServlet</servlet-name>
     <url-pattern>/search</url-pattern>
   </servlet-mapping>
+=======
+>>>>>>> removed some broken code and had destroyed my web.xml so i took a new
 </web-app>
