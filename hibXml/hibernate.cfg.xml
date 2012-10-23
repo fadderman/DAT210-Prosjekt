@@ -16,8 +16,11 @@
     <property name="hibernate.connection.username">
 		root
     </property>
+	<property name="hibernate.connection.password">
+		abc123
+	</property>
     <property name="hibernate.show_sql">
-		false
+		true
 	</property>
 	<property name="hibernate.format_sql">
 		true

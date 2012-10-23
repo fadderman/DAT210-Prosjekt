@@ -9,17 +9,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CONNECTION")
 public class Connection {
-
+	
 	@Id @GeneratedValue
 	@Column(name = "connection_id")
 	private int connectionID;
-
+	
 	@Column(name = "active")
 	private boolean active;
-
+	
 	@Column(name = "difficulty_level")
 	private int difficultyLevel;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "mentor_connection_fk")
 	private User mentor;
@@ -27,24 +27,24 @@ public class Connection {
 	@ManyToOne
 	@JoinColumn(name = "trainee_connection_fk")
 	private User trainee;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "field_fk")
 	private Field field;
-
+	
 	@OneToMany(mappedBy = "connection")
 	@OrderBy("timestamp")
 	private List<Comment> comments;
-
+	
 	public Connection(){
-
+		
 	}
-
+	
 	public Connection(Field field){
 		this.field = field;
 		active = true;
 	}
-
+	
 	public Connection(User mentor, User trainee, Field field) {
 		this.mentor = mentor;
 		this.trainee = trainee;
@@ -52,7 +52,7 @@ public class Connection {
 		active = true;
 		comments = new ArrayList<Comment>();
 	}
-
+	
 	public Connection(User mentor, User trainee, Field field, int difficultyLevel) {
 		this(mentor, trainee, field);
 		this.difficultyLevel = difficultyLevel;
@@ -97,7 +97,6 @@ public class Connection {
 	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
 	}
-
 	public int getConnectionID() {
 		return connectionID;
 	}

@@ -26,7 +26,7 @@ public class Field {
 	@ManyToOne
 	@JoinColumn(name = "subject_fk")
 	private Subject subject;
-	
+		
 	//TODO Ordered or indexed?
 	@OneToMany(mappedBy = "field")
 	@OrderBy("title")
@@ -39,8 +39,6 @@ public class Field {
 	public Field(String title, String description, Subject subject) {
 		this.title = title;
 		this.description = description;
-		this.subject = subject;
-		active = true;
 	}
 	
 	public int getFieldID() {

@@ -32,19 +32,11 @@ public class UserManagementTest {
 		fm.createField("Google tips", "Google like a pro", sm.getSingleByTitle("Non-programming"));
 		fm.createField("Bathroom Wall", "How to copy code from the internet", sm.getSingleByTitle("Non-programming"));
 		fm.createField("COBOL", "Old stuff for old ppl", sm.getSingleByTitle("Programming"));
-	}
-	
-	@Before
-	public void setUp(){
 		
-	}
-
-	@Test
-	public void testUserCreation() {
-		assertEquals(um.createUser("John", "First", "johnfirst@gmail.com", "Here", "It exits on Earth", "numero uno"), true);
-		assertEquals(um.createUser("Bob", "Second", "bob.second@outlook.com", "Not far away", "Ground", "numero dos"), true);
-		assertEquals(um.createUser("Bob", "Last", "phil@last.com", "Here", "It exits on Earth", "numero tres"), true);
-		assertEquals(um.createUser("Some", "Guy", "someguy@somewhere.com", "Somewhere", "Place", "numero quatro"), true);
+		um.createUser("John", "First", "johnfirst@gmail.com", "Here", "It exits on Earth", "numero uno");
+		um.createUser("Bob", "Second", "bob.second@outlook.com", "Not far away", "Ground", "numero dos");
+		um.createUser("Bob", "Last", "phil@last.com", "Here", "It exits on Earth", "numero tres");
+		um.createUser("Some", "Guy", "someguy@somewhere.com", "Somewhere", "Place", "numero quatro");
 		
 		xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Java"));
 		xm.createOpenMentor(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Java"));
@@ -55,6 +47,11 @@ public class UserManagementTest {
 		xm.createConnection(um.getByEmail("someguy@somewhere.com"), um.getByEmail("bob.secon@outlook.com"), fm.getSingleByTitle("COBOL"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Google tips"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Bathroom Wall"));
+	}
+	
+	@Before
+	public void setUp(){
+		
 	}
 
 	@Test
@@ -120,9 +117,9 @@ public class UserManagementTest {
 	
 	@Test
 	public void testUpdateLocation(){
-		User test = um.getByEmail("johnfirst@gmail.com");
+		User test = um.getByEmail("bob.second@outlook.com");
 		um.updateLocation("Stavanger", "Norway", test);
-		assertEquals(um.getByLocation("Stavanger", "Norway").get(0).getFullName(), "Johnathan Firstensen");
+		assertEquals(um.getByLocation("Stavanger", "Norway").get(0).getFullName(), "Bob Second");
 	}
 	@Test
 	public void testFetchMentorConnections(){

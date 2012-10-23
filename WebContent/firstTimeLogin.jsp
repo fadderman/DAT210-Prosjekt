@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +21,7 @@
 
 		<!--left column -->
 		<h4 style="text-shadow: #000000 3px 3px 8px; color: white;"><%=language.getFirsttime_label_personal() %></h4>
-		<form action="index.jsp" method="post">
+		<form action="createNewUser" method="POST" id="register">
 			<div class="well span11" style="box-shadow: 5px 5px 8px -1px #222;">
 				<table class="tableBorderless">
 					<tbody>
@@ -93,7 +92,7 @@
 						<th><%=language.getFirsttime_label_experience() %></th>
 					</thead>
 					<tbody>
-						
+
 					</tbody>
 				</table>
 			</div>
@@ -111,7 +110,7 @@
 	</div>
 
 
-	
+
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
