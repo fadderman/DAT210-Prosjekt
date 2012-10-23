@@ -55,10 +55,10 @@ public class UserManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, location);
 	}
 
-	public List<User> getByOpenId(String identifierOpenID){
+	public User getByOpenId(String identifierOpenID){
 		String queryString = "from models.User where identifierOpenID = :identifierOpenID and active = true";
 		String queryVariable = "identifierOpenID";
-		return fetch(queryString, queryVariable, identifierOpenID);
+		return (User)fetchSingle(queryString, queryVariable, identifierOpenID);
 	}
 
 	public void updateFirstName(String newFirstName, User user){

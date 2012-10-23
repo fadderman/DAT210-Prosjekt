@@ -1,5 +1,7 @@
 package controllers;
 
+import hibernate.UserManagement;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -30,7 +32,7 @@ import business.user.UserHandler;
 public class OpenIDLoginServlet extends HttpServlet{
 
 	private ConsumerManager manager;
-
+	private UserManagement userManager;
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -55,6 +57,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 		manager.setAssociations(new InMemoryConsumerAssociationStore());
 		manager.setNonceVerifier(new InMemoryNonceVerifier(5000));
 		manager.setMinAssocSessEnc(AssociationSessionType.DH_SHA256);
+		userManager = new UserManagement();
 	}
 
 	@Override
@@ -150,8 +153,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 
 				httpReq.setAttribute("identifier", verified.getIdentifier());
 
-				System.out.println("User logged in, identifier: " + verified.getIdentifier());
-				User user = UserHandler.getUserByIdentifier(verified.getIdentifier());			//check if the user already exists
+				User user = userManager.getByOpenId(verified.getIdentifier());			//check if the user already exists
 				if(user!=null){	//forward to main page
 					this.getServletContext().getRequestDispatcher("/index.jsp").forward(httpReq, httpResp);	//User Logged in
 				}
@@ -162,7 +164,6 @@ public class OpenIDLoginServlet extends HttpServlet{
 								.getExtension(AxMessage.OPENID_NS_AX);
 
 						String email = fetchResp.getAttributeValue("email");
-						System.out.println(email);
 						String firstname = fetchResp.getAttributeValue("firstname");
 						String lastname = fetchResp.getAttributeValue("lastname");
 						String fullname = fetchResp.getAttributeValue("fullname");
@@ -172,7 +173,6 @@ public class OpenIDLoginServlet extends HttpServlet{
 							lastname = fullname.substring(fullname.lastIndexOf(" "));
 						}
 						user = new User(firstname, lastname, email, "","", verified.getIdentifier());
-						System.out.println("firstname: " + firstname + ", lastname: " + lastname);
 					}
 					httpReq.setAttribute("user", user);
 					this.getServletContext().getRequestDispatcher("/firstTimeLogin.jsp").forward(httpReq, httpResp);
