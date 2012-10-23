@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+<script type="text/javascript" ></script>
 <head>
 <meta charset="utf-8">
 <title>Trainee Seeking Mentor</title>
