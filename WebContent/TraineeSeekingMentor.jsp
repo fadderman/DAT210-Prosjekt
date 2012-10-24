@@ -36,8 +36,8 @@
 					<td><%=user.getFirstName()%></td>
 					<td><%=user.getLastName()%></td>
 					<td><%=user.getEmail()%></td>
-					<td><input type="button" value="connect" class="btn btn-primary"
-						onclick="self.close();"></td>
+					<td><input type="button" value="connect"
+						class="btn btn-primary" onclick="self.close();"></td>
 					<!-- legger til en masse EL table data -->
 				</tr>
 				<%
