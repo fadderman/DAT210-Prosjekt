@@ -48,6 +48,8 @@ public class CommentManagementTest {
 		cm.createComment(xm.getByID(1), um.getByEmail("johnfirst@gmail.com"), "This is some text");
 		cm.createComment(xm.getByID(3), um.getByEmail("bob.second@outlook.com"), "Some random text");
 		cm.createComment(xm.getByID(2), um.getByEmail("someguy@somewhere.com"), "Comment about programming");
+//		cm.createComment(xm.getByID(4), um.getByEmail("johnfirst@gmail.com"), "This text is a comment from John First");
+		
 		
 		xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Java"));
 		xm.createOpenMentor(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Java"));
@@ -84,14 +86,13 @@ public class CommentManagementTest {
 
 	@Test
 	public void testGetCommentByAuthor(){
-		List<Comment> list = cm.getCommentByAuthor(null);
-	
+		List<Comment> list = cm.getCommentByAuthor(um.getByEmail("johnfirst@gmail.com"));
 		for(Iterator<Comment> i = list.iterator(); i.hasNext(); ){
 			Comment current = i.next();
-			System.out.println(current.getAuthor());
 			assertEquals(current.getClass(), Comment.class);
-			assertEquals(i.next().getClass(), Comment.class);
+//			assertEquals(i.next().getClass(), Comment.class);
 		}
+		assertEquals(list.size(), 2);
 	}
 
 	@Test
@@ -105,8 +106,8 @@ public class CommentManagementTest {
 	
 	@Test
 	public void testGetByConnection(){
-	List<Comment> list = cm.getByConnection(xm.getByID(1));
-	assertEquals(list.get(0), "");
+	List<Comment> list = cm.getByConnection(xm.getByID(0));
+	assertEquals(list.get(0).getAuthor().getEmail(), "someguy@somewhere.com");
 	}
 //
 //	@Test
