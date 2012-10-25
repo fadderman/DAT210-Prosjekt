@@ -11,6 +11,7 @@
 <title>Trainee Seeking Mentor</title>
 </head>
 <body class="container">
+<form action=""></form>
 	<%
 		//lagt til en tom dataliste
 		MentorsWithSubject m = new MentorsWithSubject("Java 2D");
