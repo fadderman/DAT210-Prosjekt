@@ -19,7 +19,7 @@ public class FieldManagement extends HibernateUtil{
 	}
 
 	public void createField(String title, String description, Subject subject){
-		Field field = new Field(title, description, subject);
+		Field field = new Field(title, description);
 		addField(field);
 	}
 

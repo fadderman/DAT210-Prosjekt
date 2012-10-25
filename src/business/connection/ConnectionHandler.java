@@ -39,60 +39,42 @@ public class ConnectionHandler {
 	
 	private Connection createConnection(User user, String field, String description, String experience, String traineeRadioButton, String mentorRadioButton, User emptyUser, Field FIELD){
 		Connection connection = new Connection();
-		System.out.println("user: " + user);
-		System.out.println("field: " + field);
-		System.out.println("des: " + description);
-		System.out.println("exp: " + experience);
-		System.out.println("tra: " + traineeRadioButton);
-		System.out.println("men: " + mentorRadioButton);
 		
 		if(traineeRadioButton.equalsIgnoreCase("yes")){
 			if(experience.equalsIgnoreCase("expert")){
 				connection = new Connection(emptyUser, user, FIELD, description, 2);
-				System.out.println("11");
 			}
 			else if(experience.equalsIgnoreCase("intermediate")){
 				connection = new Connection(emptyUser, user, FIELD, description, 1);
-				System.out.println("12");
 			}
 			else if(experience.equalsIgnoreCase("novice")){
-				System.out.println(connection.getField());
 				connection = new Connection(emptyUser, user, FIELD, description, 0);
-				System.out.println("13");
-				System.out.println(connection.getField());
 			}
 		}
 		else if(mentorRadioButton.equalsIgnoreCase("yes")){
 			if(experience.equalsIgnoreCase("expert")){
 				connection = new Connection(user, emptyUser , FIELD, description, 2);
-				System.out.println("21");
 			}
 			else if(experience.equalsIgnoreCase("intermediate")){
 				connection = new Connection(user, emptyUser, FIELD, description, 1);
-				System.out.println("22");
 			}
 			else if(experience.equalsIgnoreCase("novice")){
 				connection = new Connection(user, emptyUser, FIELD, description, 0);
-				System.out.println("23");
 			}
 		}
 		else if((traineeRadioButton.equalsIgnoreCase("yes") && mentorRadioButton.equalsIgnoreCase("yes")) || (traineeRadioButton.equalsIgnoreCase("no") && mentorRadioButton.equalsIgnoreCase("no") )){
 			if(experience.equalsIgnoreCase("expert")){
 				connection = new Connection(emptyUser, user, FIELD, description, 2);
-				System.out.println("31");
 			}
 			else if(experience.equalsIgnoreCase("intermediate")){
 				connection = new Connection(emptyUser, user, FIELD, description, 1);
-				System.out.println("32");
 
 			}
 			else if(experience.equalsIgnoreCase("novice")){
 				connection = new Connection(emptyUser, user, FIELD, description, 0);
-				System.out.println("33");
 
 			}
 		}
-		System.out.println(connection.getField()+"LOTTTTTTTTTTTTTTTTTSA SPAC");
 		return connection;
 	}
 	
