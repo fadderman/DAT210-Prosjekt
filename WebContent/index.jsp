@@ -10,10 +10,12 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery.catcomplete.css" />
+     
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     
-    <script type="text/javascript" src="js/bootstrap.js"></script>    
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script src="js/bootstrap.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    
 </head>
 
 <%

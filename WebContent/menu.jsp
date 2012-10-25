@@ -1,4 +1,4 @@
-<%@ page import="language.*"%><
+<%@ page import="language.*"%>
 
 <%
 	Language language = new Language();
@@ -88,6 +88,3 @@
 		</div>
 	</div>
 </div>
-
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="js/bootstrap.js"></script>
