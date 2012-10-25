@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
-//Refactor to Field
 @Entity
 @Table(name = "FIELD")
 public class Field {
@@ -31,9 +29,11 @@ public class Field {
 	@JoinColumn(name = "field_fk")
 	private Field parent;
 	
-	@OneToMany(mappedBy = "parent")
-	@OrderBy("title")
-	private List<Field> childrenFields;
+	@ManyToMany
+	@JoinTable(name = "Field_Parents_children",
+		joinColumns = { @JoinColumn(name = "Field_id_parent") },
+		inverseJoinColumns = { @JoinColumn(name = "Field_id_child") })
+	private List<Field> parents;
 	
 	//TODO Ordered or indexed?
 	@OneToMany(mappedBy = "field")
@@ -100,12 +100,12 @@ public class Field {
 		this.parent = parent;
 	}
 
-	public List<Field> getChildrenFields() {
-		return childrenFields;
+	public List<Field> getParents() {
+		return parents;
 	}
 
-	public void setChildrenFields(List<Field> childrenFields) {
-		this.childrenFields = childrenFields;
+	public void setParents(List<Field> parents) {
+		this.parents = parents;
 	}
 
 	public List<Connection> getConnectionList() {

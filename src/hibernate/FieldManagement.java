@@ -63,18 +63,17 @@ public class FieldManagement extends HibernateUtil{
 		updateSingle(queryString, queryVariable, newDescription, field.getFieldID());
 	}
 	
-	public void setParentField(Field field, Field newParent){
-		injectRelation(field.getFieldID(), newParent);
-	}
-	
+	//deprecated: many-to-one
 	public void updateParentField(Field field, Field newParent){
-		String queryString = "update models.Field set parent = :newParent where id = :id";
-		String queryVariable = "newParent";
-		updateSingle(queryString, queryVariable, newParent, field.getFieldID());
+		String queryString = "update models.Field set parent = :newParentID where id = :id";
+		String queryVariable = "newParentID";
+		updateSingle(queryString, queryVariable, new Integer(newParent.getFieldID()), field.getFieldID());
 	}
 	
-	public void removeParent(Field field){
-		delete(field);
+	public void addParentField(Field child, Field parent){
+		String queryString = "update models.Field set parent = :newParentID where id = :id";
+		String queryVariable = "newParentID";
+		updateSingle(queryString, queryVariable, new Integer(parent.getFieldID()), child.getFieldID());
 	}
 	
 	public List<Connection> fetchConnectionList(Field field){
