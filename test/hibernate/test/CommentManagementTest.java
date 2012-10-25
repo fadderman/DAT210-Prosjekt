@@ -106,8 +106,8 @@ public class CommentManagementTest {
 	
 	@Test
 	public void testGetByConnection(){
-	List<Comment> list = cm.getByConnection(xm.getByID(0));
-	assertEquals(list.get(0).getAuthor().getEmail(), "someguy@somewhere.com");
+	List<Comment> list = cm.getByConnection(xm.getByID(3));
+	assertEquals(list.get(0).getAuthor().getEmail(), "bob.second@outlook.com");
 	}
 //
 //	@Test
