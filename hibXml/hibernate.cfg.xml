@@ -17,7 +17,7 @@
 		test
     </property>
     <property name="connection.password">
-    	2GBwzVt57g
+    	test
     </property>
     <property name="hibernate.show_sql">
 		false
