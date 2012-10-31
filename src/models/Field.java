@@ -25,14 +25,10 @@ public class Field {
 	@JoinColumn(name = "subject_fk")
 	private Subject subject;
 	
-	@ManyToOne
-	@JoinColumn(name = "field_fk")
-	private Field parent;
+	@OneToMany(mappedBy = "peon")
+	private List<Field> children;
 	
-	@ManyToMany
-	@JoinTable(name = "Field_Parents_children",
-		joinColumns = { @JoinColumn(name = "Field_id_parent") },
-		inverseJoinColumns = { @JoinColumn(name = "Field_id_child") })
+	@OneToMany(mappedBy = "parent")
 	private List<Field> parents;
 	
 	//TODO Ordered or indexed?
@@ -91,13 +87,12 @@ public class Field {
 		this.subject = subject;
 	}
 
-
-	public Field getParent() {
-		return parent;
+	public List<Field> getChildren() {
+		return children;
 	}
 
-	public void setParent(Field parent) {
-		this.parent = parent;
+	public void setChildren(List<Field> children) {
+		this.children = children;
 	}
 
 	public List<Field> getParents() {
