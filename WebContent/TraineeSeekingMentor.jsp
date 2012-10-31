@@ -11,24 +11,23 @@
 <title>Trainee Seeking Mentor</title>
 </head>
 <body class="container">
-<form action=""></form>
+	<form action=""></form>
 	<%
 		//lagt til en tom dataliste
 		MentorsWithSubject m = new MentorsWithSubject("Java 2D");
 		ArrayList<User> mentors = m.getMentorsWithSubject();
-
 	%>
 	<h1 id="Title" style="text-align: center;" class="page-header">List
 		of Mentor</h1>
 	<div class="well">
-		<table id="ListofMentor" class="table table-hover table-condensed">
-			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Email</th>
-				<th>Join</th>
-			</tr>
-			<form action="" name="send_user" method="post">
+		<form action="" name="select_user_as_mentor" method="post">
+			<table id="ListofMentor" class="table table-hover table-condensed">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Join</th>
+				</tr>
 				<%
 					for (User user : mentors) {
 				%>
@@ -44,8 +43,8 @@
 				<%
 					}
 				%>
-			</form>
-		</table>
+			</table>
+		</form>
 	</div>
 </body>
 </html>
