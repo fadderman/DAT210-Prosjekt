@@ -69,7 +69,7 @@
 				<div class="span5">
 					<div class="row-fluid">
 						<div class="span4"><b>Name</b></div>
-						<div class="span8"><a href="">${user.firstName} ${user.lastName}</a></div>
+						<div class="span8"><a href="viewprofile?id=${user.userID}">${user.firstName} ${user.lastName}</a></div>
 					</div>
 					<div class="row-fluid">
 						<div class="span4"><b>Location</b></div>
@@ -98,7 +98,7 @@
 				<div class="span11">
 					<div class="row-fluid">
 						<div class="span2"><b>Title</b></div>
-						<div class="span10"><a href="">${field.title}</a></div>
+						<div class="span10"><a href="field?id=${field.fieldID}">${field.title}</a></div>
 					</div>
 					<div class="row-fluid">
 						<div class="span2"><b>Description</b></div>

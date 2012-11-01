@@ -21,17 +21,17 @@ public class UserManagement extends HibernateUtil{
 	}
 
 	public List<User> listAllUsers(){
-		String queryString = ("from model.User where active = true");
+		String queryString = ("from models.User where active = true");
 		return fetch(queryString);
 	}
 
 	public List<User> listAllInactiveUsers(){
-		String queryString = ("from model.User where active = false");
+		String queryString = ("from models.User where active = false");
 		return fetch(queryString);
 	}
 
 	public User getByID(int id){
-		String queryString = "from models.User where subjectID = :id";
+		String queryString = "from models.User where user_id = :id";
 		String queryVariable = "id";
 		return (User) fetchSingle(queryString, queryVariable, new Integer(id));
 	}
