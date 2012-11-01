@@ -1,6 +1,7 @@
 package language;
 
 public class NO extends Lang{
+	
 	// ============== SignInPage Strings ===================
 	private String login_btn_lang = "Språk";
 	private String login_btn_learn = "Lær mer";
