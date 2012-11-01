@@ -58,6 +58,7 @@ public class FieldManagementTest {
 		fm.buildTree(fm.getSingleByTitle("COBOL"), fm.getSingleByTitle("Programming"));
 		fm.buildTree(fm.getSingleByTitle("Google tips"), fm.getSingleByTitle("Non-programming"));
 		fm.buildTree(fm.getSingleByTitle("Bathroom Wall"), fm.getSingleByTitle("Non-programming"));
+		fm.buildTree(fm.getSingleByTitle("Bathroom Wall"), fm.getSingleByTitle("Programming"));
 	}
 	
 	@Before
@@ -128,6 +129,33 @@ public class FieldManagementTest {
 			assertEquals(current.getClass(), Field.class);
 		}
 		assertEquals(list.size(), 2);
+	}
+	
+	@Test
+	public void testGetFieldByChild(){
+		fm.changeStatus(fm.getByID(4), true);
+		List<Field> list = fm.getByChild(fm.getSingleByTitle("Bathroom Wall"));
+		for(Iterator<Field> i = list.iterator(); i.hasNext();){
+			Field current = i.next();
+			System.out.println(current.getTitle());
+			assertEquals(current.getClass(), Field.class);
+		}
+		assertEquals(list.size(), 2);
+	}
+	
+	@Test
+	public void testGetSingleBranch(){
+		FieldTree result = fm.getSingleBranch(fm.getSingleByTitle("C--"), fm.getSingleByTitle("Programming"));
+		assertEquals(result.getClass(), FieldTree.class);
+		System.out.println("FieldTree id: " + result.getFieldTreeID() + " connects " + result.getParent().getTitle() + " as a parent and " + result.getChild().getTitle() + " as a child.");
+		assertEquals(result.getFieldTreeID(), 2);
+	}
+	
+	@Test
+	public void testToggleBranchStatus(){
+		fm.toggleBranchStatus(fm.getSingleByTitle("C--"), fm.getSingleByTitle("Programming"), false);
+		FieldTree branch = fm.getSingleBranch(fm.getSingleByTitle("C--"), fm.getSingleByTitle("Programming"));
+		assertEquals(branch.isActive(), false);
 	}
 	
 	@Test

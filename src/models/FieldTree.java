@@ -27,7 +27,7 @@ public class FieldTree{
 
 	}
 	
-	public FieldTree(Field parent, Field child){
+	public FieldTree(Field child, Field parent){
 		this.parent = parent;
 		this.setChild(child);
 		active = true;
