@@ -15,7 +15,7 @@ public class HibernateUtil {
 
 	static {    	
 		Configuration configuration = new Configuration();
-		configuration.configure("../hibXml/hibernate.cfg.xml");
+		configuration.configure("hibernate.cfg.xml");
 		ClassToDatabase classToDatabase = new ClassToDatabase();
 
 		Iterator<Class> ctDBIterator = classToDatabase.getClassToDatabase().iterator();

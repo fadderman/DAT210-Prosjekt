@@ -61,12 +61,14 @@ public class Connection {
 		this.field = field;
 		this.description = description;
 		this.difficultyLevel = difficultyLevel;
+		active = true;
 	}
 
 	public Connection(User mentor, User trainee, Field field, int difficultyLevel) {
 		this(mentor, trainee, field);
 		this.difficultyLevel = difficultyLevel;
 		this.connectionID = connectionID;
+		active = true;
 	}
 
 	public User getMentor() {

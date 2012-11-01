@@ -42,10 +42,11 @@ public class CreateNewUserServlet extends HttpServlet {
 			System.out.println(names.nextElement());
 		}
 
-		ConnectionHandler handler = new ConnectionHandler(firstName, lastName, email, city, country, identifier, field, description, experience, traineeRadioButton, mentorRadioButton);
+		ConnectionHandler handler;
 		
-		User user = handler.createNewUser(firstName, lastName, email, city, country, identifier);
+		User user = new User(firstName, lastName, email, city, country, identifier);
 		request.setAttribute("user", user);
+		handler = new ConnectionHandler(user, field, description, experience, traineeRadioButton, mentorRadioButton);
 		
 		String url = "/index.jsp";
 

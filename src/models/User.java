@@ -62,6 +62,7 @@ public class User {
 
 	public User() {
 		this.emptyUser = true;
+		this.active = true;
 	}
 
 	public User(String emptyUser){
@@ -75,6 +76,9 @@ public class User {
 		this.locationCity = locationCity;
 		this.locationCountry = locationCountry;
 		this.identifierOpenID = identifierOpenID;
+		mapURL = new String("http://maps.googleapis.com/maps/api/staticmap?center=");
+		mapURL += locationCity + ",";
+		mapURL += locationCountry + "&zoom=12&size=500x150&sensor=false";
 		active = true;
 		commentList = new ArrayList<Comment>();
 	}

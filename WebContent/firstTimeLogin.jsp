@@ -137,14 +137,14 @@
 				$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field').val() }))
 						.append($('<span>').append($('#field').val())));
 
-		oTr.append(
-				$('<td>').append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() }))
-						.append($('<span>').append($('#addInfo').val())));
+		//oTr.append(
+			//	$('<td>').append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() }))
+				//		.append($('<span>').append($('#addInfo').val())));
 
 		// legger til en TD til TR med data fra fieldselecten
 		//oTr.append(
 		//	$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field :selected').val() }))
-		//			.append($('<span>').append($('#field :selected').text())));
+ 		//			.append($('<span>').append($('#field :selected').text())));
 
 		// Henter inn valgte option for trainee / mentor
 	    var trMen = $("input[name=optionsRadios]:checked");
