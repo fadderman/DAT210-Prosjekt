@@ -277,6 +277,45 @@ public class HibernateUtil {
 		return updateCounter;
 	}
 	
+	protected int multiCriteriaUpdate(String queryString, String queryUpdateVariable, Object newValue, int id1, int id2){
+		int updateCounter = -1;
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{
+			tx = session.beginTransaction();
+			Query query = session.createQuery(queryString);
+			query.setInteger("id1", id1);
+			query.setInteger("id2", id2);
+			if(newValue instanceof String){
+				query.setString(queryUpdateVariable, (String) newValue);
+			}
+			else if(newValue instanceof Integer){
+				Integer critInt = (Integer) newValue;
+				query.setInteger(queryUpdateVariable, critInt.intValue());
+			}
+			else if(newValue instanceof Date){
+				query.setDate(queryUpdateVariable, (Date)newValue);
+			}
+			else if(newValue instanceof Boolean){
+				query.setBoolean(queryUpdateVariable, (Boolean)newValue);
+			}
+			updateCounter = query.executeUpdate();
+			if(updateCounter < 1)
+				System.out.println("No entities updated.");
+			tx.commit();
+		}catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		}catch (Exception e){
+			if(updateCounter > 1) tx.rollback();
+			System.err.println("More than one value changed, update not applied.");
+			e.printStackTrace();
+		}finally {
+			session.close(); 
+		}	
+		return updateCounter;
+	}
+	
 	protected void delete(Object toBeDeleted){
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
