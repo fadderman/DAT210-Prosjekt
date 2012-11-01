@@ -6,10 +6,6 @@ import hibernate.SubjectManagement;
 import hibernate.UserManagement;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-
-
-import models.Connection;
 import models.Field;
 import models.Subject;
 import models.User;
@@ -18,13 +14,18 @@ public class SeekUsersWithGivenSubject {
 	
 	//skal bruk en metode fra usermanagement for å få en liste med brukere
 	private ArrayList<User> mentors;
-	private String subject;
 	private static FieldManagement fm = new FieldManagement();
 	
 	public SeekUsersWithGivenSubject(String subject) {
-		populateDatabase();
+		/*hvis jeg bruker populateDatabase først så får jeg en feil siden greia lages om igjen
+		 * og da blir database fylt med identisk data som gir feil
+		 */
 		Field foundsubject = fm.getSingleByTitle(subject);
 		mentors = (ArrayList<User>) fm.getMentors(foundsubject);
+		if(mentors.isEmpty()){
+			populateDatabase();
+			mentors = (ArrayList<User>) fm.getMentors(foundsubject);
+		}
 	}
 	
 	private static void populateDatabase(){
