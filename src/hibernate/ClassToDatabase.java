@@ -17,6 +17,7 @@ public class ClassToDatabase {
 		classToDatabase = new ArrayList<Class>();
 		classToDatabase.add(User.class);
 		classToDatabase.add(Connection.class);
+		classToDatabase.add(FieldTree.class);
 		classToDatabase.add(Field.class);
 		classToDatabase.add(Subject.class);
 		classToDatabase.add(Comment.class);

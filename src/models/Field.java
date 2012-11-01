@@ -25,11 +25,13 @@ public class Field {
 	@JoinColumn(name = "subject_fk")
 	private Subject subject;
 	
-	@OneToMany(mappedBy = "peon")
-	private List<Field> children;
-	
-	@OneToMany(mappedBy = "parent")
-	private List<Field> parents;
+//	@OneToMany
+//	@JoinColumn(name = "child_fk")
+//	private List<Field> children;
+//	
+//	@OneToMany
+//	@JoinColumn(name = "parent_fk")
+//	private List<Field> parents;
 	
 	//TODO Ordered or indexed?
 	@OneToMany(mappedBy = "field")
@@ -87,21 +89,21 @@ public class Field {
 		this.subject = subject;
 	}
 
-	public List<Field> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<Field> children) {
-		this.children = children;
-	}
-
-	public List<Field> getParents() {
-		return parents;
-	}
-
-	public void setParents(List<Field> parents) {
-		this.parents = parents;
-	}
+//	public List<Field> getChildren() {
+//		return children;
+//	}
+//
+//	public void setChildren(List<Field> children) {
+//		this.children = children;
+//	}
+//
+//	public List<Field> getParents() {
+//		return parents;
+//	}
+//
+//	public void setParents(List<Field> parents) {
+//		this.parents = parents;
+//	}
 
 	public List<Connection> getConnectionList() {
 		return connectionList;

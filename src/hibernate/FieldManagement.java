@@ -46,9 +46,19 @@ public class FieldManagement extends HibernateUtil{
 	}
 	
 	public List<Field> getByParent(Field parent){
-		String queryString = "from models.Field where parent = :parent and active = true";
-		String queryVariable = "parent";
-		return fetch(queryString, queryVariable, new Integer(parent.getFieldID()));
+		List<FieldTree> fetchedTrees = new ArrayList<FieldTree>();
+		List<Field> children = new ArrayList<Field>();
+		String queryString = "from models.FieldTree where parent = :parentID and active = true";
+		String queryVariable = "parentID";
+		fetchedTrees = fetch(queryString, queryVariable, new Integer(parent.getFieldID()));
+		
+		for(Iterator<FieldTree> i = fetchedTrees.iterator(); i.hasNext();){
+			FieldTree current = i.next();
+			Field nextChild = getByID(current.getParent().getFieldID());
+			children.add(nextChild);
+		}
+		return children;
+		
 	}
 	
 	public void updateTitle(Field field, String newTitle){
@@ -64,7 +74,8 @@ public class FieldManagement extends HibernateUtil{
 	}
 	
 	public void buildTree(Field parent, Field child){
-		addToDatabase(new FieldTree(parent, child));
+		FieldTree newTreeElement = new FieldTree(parent, child);
+		addToDatabase(newTreeElement);
 	}
 	
 	public void disableBranch(Field parent, Field child){

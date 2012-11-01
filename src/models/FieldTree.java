@@ -1,14 +1,20 @@
 package models;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "FieldTree")
-public class FieldTree {
+public class FieldTree{
+
+	@Id @GeneratedValue
+	@Column(name = "field_tree_id")
+	private int fieldTreeID;
 
 	@ManyToOne
-	@JoinColumn(name = "peon_fk")
-	private Field peon;
+	@JoinColumn(name = "child_fk")
+	private Field child;
 	
 	@ManyToOne
 	@JoinColumn(name = "parent_fk")
@@ -21,18 +27,26 @@ public class FieldTree {
 
 	}
 	
-	public FieldTree(Field parent, Field peon){
+	public FieldTree(Field parent, Field child){
 		this.parent = parent;
-		this.setPeon(peon);
+		this.setChild(child);
 		active = true;
 	}
 
-	public Field getPeon() {
-		return peon;
+	public int getFieldTreeID() {
+		return fieldTreeID;
 	}
 
-	public void setPeon(Field peon) {
-		this.peon = peon;
+	public void setFieldTreeID(int fieldTreeID) {
+		this.fieldTreeID = fieldTreeID;
+	}
+
+	public Field getChild() {
+		return child;
+	}
+
+	public void setChild(Field child) {
+		this.child = child;
 	}
 
 	public Field getParent() {

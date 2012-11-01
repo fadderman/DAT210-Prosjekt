@@ -43,12 +43,6 @@ public class FieldManagementTest {
 		fm.createField("Programming", "Parent field for programming related fields", sm.getSingleByTitle("Programming"));
 		fm.createField("Non-programming", "parent subject for fields not related to programming directly", sm.getSingleByTitle("Non-programming"));
 		
-		fm.updateParentField(fm.getSingleByTitle("Java"), fm.getSingleByTitle("Programming"));
-		fm.updateParentField(fm.getSingleByTitle("C++"), fm.getSingleByTitle("Programming"));
-		fm.updateParentField(fm.getSingleByTitle("COBOL"), fm.getSingleByTitle("Programming"));
-		fm.updateParentField(fm.getSingleByTitle("Google tips"), fm.getSingleByTitle("Non-programming"));
-		fm.updateParentField(fm.getSingleByTitle("Bathroom Wall"), fm.getSingleByTitle("Non-programming"));
-		
 		xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Java"));
 		xm.createOpenMentor(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Java"));
 		xm.createOpenMentor(um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Google tips"));
@@ -58,6 +52,12 @@ public class FieldManagementTest {
 		xm.createConnection(um.getByEmail("someguy@somewhere.com"), um.getByEmail("bob.secon@outlook.com"), fm.getSingleByTitle("COBOL"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Google tips"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Bathroom Wall"));
+		
+		fm.buildTree(fm.getSingleByTitle("Java"), fm.getSingleByTitle("Programming"));
+		fm.buildTree(fm.getSingleByTitle("C++"), fm.getSingleByTitle("Programming"));
+		fm.buildTree(fm.getSingleByTitle("COBOL"), fm.getSingleByTitle("Programming"));
+		fm.buildTree(fm.getSingleByTitle("Google tips"), fm.getSingleByTitle("Non-programming"));
+		fm.buildTree(fm.getSingleByTitle("Bathroom Wall"), fm.getSingleByTitle("Non-programming"));
 	}
 	
 	@Before
