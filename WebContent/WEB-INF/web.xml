@@ -1,78 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" metadata-complete="true" version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0" metadata-complete="true">
   <display-name>MentorFind</display-name>
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
+ 
+   
+   <servlet>
     <description></description>
     <display-name>OpenIDLoginServlet</display-name>
     <servlet-name>OpenIDLoginServlet</servlet-name>
     <servlet-class>controllers.OpenIDLoginServlet</servlet-class>
   </servlet>
+ 
   <servlet-mapping>
     <servlet-name>OpenIDLoginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
-  <servlet>
+  
+   <servlet>
     <description></description>
     <display-name>CreateNewUserServlet</display-name>
     <servlet-name>CreateNewUserServlet</servlet-name>
     <servlet-class>controllers.CreateNewUserServlet</servlet-class>
   </servlet>
+ 
   <servlet-mapping>
     <servlet-name>CreateNewUserServlet</servlet-name>
     <url-pattern>/createNewUser</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>LanguageServlet</display-name>
-    <servlet-name>LanguageServlet</servlet-name>
-    <servlet-class>language.CreateNewLanguageServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LanguageServlet</servlet-name>
-    <url-pattern>/chosenLanguage</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>SearchServlet</display-name>
-    <servlet-name>SearchServlet</servlet-name>
-    <servlet-class>controllers.SearchServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SearchServlet</servlet-name>
-    <url-pattern>/search</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ProfileServlet</display-name>
-    <servlet-name>ProfileServlet</servlet-name>
-    <servlet-class>controllers.ProfileServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ProfileServlet</servlet-name>
-    <url-pattern>/profile</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>SettingsServlet</display-name>
-    <servlet-name>SettingsServlet</servlet-name>
-    <servlet-class>controllers.SettingsServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SettingsServlet</servlet-name>
-    <url-pattern>/settings</url-pattern>
-  </servlet-mapping>
   
-  <servlet>
-    <description></description>
-    <display-name>HomeServlet</display-name>
-    <servlet-name>HomeServlet</servlet-name>
-    <servlet-class>controllers.HomeServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HomeServlet</servlet-name>
-    <url-pattern>/home</url-pattern>
-  </servlet-mapping>
 </web-app>

@@ -55,7 +55,6 @@ public class UserManagement extends HibernateUtil{
 		String queryVariable2 = "country";
 		return multiFetch(queryString, queryVariable1, queryVariable2, city, country);
 	}
-
 	
 	public List<User> getByCity(String city){
 		String queryString = "from models.User where locationCity = :city and active = true";
@@ -68,12 +67,11 @@ public class UserManagement extends HibernateUtil{
 		String queryVariable = "country";
 		return fetch(queryString, queryVariable, country);
 	}
-
-	public User getByOpenId(String identifierOpenID){
-
+	
+	public List<User> getByOpenId(String identifierOpenID){
 		String queryString = "from models.User where identifierOpenID = :identifierOpenID and active = true";
 		String queryVariable = "identifierOpenID";
-		return (User)fetchSingle(queryString, queryVariable, identifierOpenID);
+		return fetch(queryString, queryVariable, identifierOpenID);
 	}
 	
 	public void updateFirstName(String newFirstName, User user){
