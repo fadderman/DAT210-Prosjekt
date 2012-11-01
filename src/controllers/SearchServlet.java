@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ public class SearchServlet extends HttpServlet {
 	
 	private SearchResults searchResults;
 	private SearchEngine engine;
-
+	
 	public SearchServlet() {
 		engine = new SearchEngine();
 		engine.createDummyData();
@@ -54,6 +55,7 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("fields", fields);
 		}
 		
+		request.setAttribute("active", "find");
 		request.setAttribute("include", "searchresults.jsp");
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);

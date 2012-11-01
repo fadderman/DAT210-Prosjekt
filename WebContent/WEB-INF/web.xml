@@ -67,7 +67,6 @@
 		<servlet-name>SettingsServlet</servlet-name>
 		<url-pattern>/settings</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<description></description>
 		<display-name>HomeServlet</display-name>
@@ -89,4 +88,25 @@
 	</servlet-mapping>
 	<!-- <listener> <listener-class>hibernate.HibernateListener</listener-class> 
 		</listener> -->
+  <servlet>
+    <description></description>
+    <display-name>ViewProfileServlet</display-name>
+    <servlet-name>ViewProfileServlet</servlet-name>
+    <servlet-class>controllers.ViewProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewProfileServlet</servlet-name>
+    <url-pattern>/viewprofile</url-pattern>
+  </servlet-mapping>
+  
+<servlet>
+    <description></description>
+    <display-name>ViewFieldServlet</display-name>
+    <servlet-name>ViewFieldServlet</servlet-name>
+    <servlet-class>controllers.ViewFieldServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewFieldServlet</servlet-name>
+    <url-pattern>/field</url-pattern>
+  </servlet-mapping>
 </web-app>
