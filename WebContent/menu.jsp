@@ -1,20 +1,5 @@
-<%@ page import="language.*"%>
-
-<%
-	Language language = new Language();
-	
-	if(CookieUtil.getCookieValue(request.getCookies(), "chosenLanguage").equals("")){
-		Cookie chosenLanguageCookie = new Cookie("chosenLanguage",
-				"english");
-		chosenLanguageCookie.setMaxAge(60 * 60 * 24 * 365 * 2); //set its age to 2 years
-		chosenLanguageCookie.setPath("/"); //allow the entire application to access it
-		response.addCookie(chosenLanguageCookie);
-	}
-	else
-		language.setLanguage(CookieUtil.getCookieValue(request.getCookies(), "chosenLanguage"));
-	if (session.getAttribute("lang") != null)
-		language = (Language) session.getAttribute("lang");
-%>
+<%@ page import="language.*" %>
+<%Language language = (Language)session.getAttribute("lang"); %>
 <div class="container">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner shadow">
@@ -24,8 +9,8 @@
 				<!-- NAVIGATION -->
 				<ul class="nav">
 					<li class="active"><a href="home"><i class="icon-home"></i>
-							Home</a></li>
-				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-search"></i> Find <i class="icon-chevron-down"></i>
+							<%=language.getMenu_home() %></a></li>
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-search"></i> <%=language.getMenu_find() %> <i class="icon-chevron-down"></i>
 								</a>
 						<ul class="dropdown-menu" role="menu" aria-labelledby="dlabel">
 							<!-- dropdown menu links -->
@@ -33,14 +18,14 @@
 							<li><a href="#"> Trainee</a></li>
 						</ul>
 				</li>
-					<li><a href="profile"><i class="icon-user"></i> Profile</a></li>
-					<li><a href="settings"><i class="icon-cog"></i> Settings</a></li>
+					<li><a href="profile"><i class="icon-user"></i> <%=language.getMenu_profile() %></a></li>
+					<li><a href="settings"><i class="icon-cog"></i> <%=language.getMenu_settings() %></a></li>
 					<li>
 						<!-- SEARCH -->
 						<form action="search" method="get" class="navbar-form form-search">
 							<div class="input-append">
-								<input class="search-query" type="text" name="query" id="search" placeholder="Search.." />
-								<button class="btn" type="submit">Search</button>
+								<input class="search-query" type="text" name="query" id="search" placeholder="<%=language.getMenu_search() %>..." />
+								<button class="btn" type="submit"><%=language.getMenu_search() %></button>
 							</div>
 							<script>
 									$.widget( "custom.catcomplete", $.ui.autocomplete, {

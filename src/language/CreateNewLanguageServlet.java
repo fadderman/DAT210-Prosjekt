@@ -34,7 +34,7 @@ public class CreateNewLanguageServlet extends HttpServlet {
 		
 		String url = (String) session.getAttribute("CurrentPage");
 		if (url.equals(null)) {
-			url = "/login.jsp";
+			url = "/index.jsp";
 		}
 		
 		RequestDispatcher dispatcher = getServletContext()
