@@ -27,14 +27,6 @@ public class Field {
 	@JoinColumn(name = "subject_fk")
 	private Subject subject;
 	
-	@ManyToOne
-	@JoinColumn(name = "field_fk")
-	private Field parent;
-	
-	@OneToMany(mappedBy = "parent")
-	@OrderBy("title")
-	private List<Field> childrenFields;
-	
 	//TODO Ordered or indexed?
 	@OneToMany(mappedBy = "field")
 	@OrderBy("title")
@@ -91,22 +83,6 @@ public class Field {
 		this.subject = subject;
 	}
 
-
-	public Field getParent() {
-		return parent;
-	}
-
-	public void setParent(Field parent) {
-		this.parent = parent;
-	}
-
-	public List<Field> getChildrenFields() {
-		return childrenFields;
-	}
-
-	public void setChildrenFields(List<Field> childrenFields) {
-		this.childrenFields = childrenFields;
-	}
 
 	public List<Connection> getConnectionList() {
 		return connectionList;

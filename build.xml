@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
 <project name="travis playground" default="dist" basedir=".">
     <description>
         travis stuff
@@ -51,11 +51,34 @@
   <target name="test" depends="compile">
     <junit fork="yes" haltonfailure="true">
 		<classpath>
+			
 			<path refid="classpath.test"/>
-			<fileset dir="${lib}">
-				<include name="**/*.jar" />
-			</fileset>
+				<fileset dir="${lib}">
+					<include name="**/*.jar" />
+				</fileset>
 		</classpath>
+
+	    <mkdir dir="${reports.tests}"/>
+
+	      <classpath>
+	        <pathelement location="${project.class.path}"/>
+	        <pathelement location="${build.tests}"/>
+	        <pathelement path="${java.class.path}"/>
+	      </classpath>
+
+	      <formatter type="plain"/>
+	      <formatter type="xml"/>
+
+	    <batchtest fork="yes" todir="${reports.tests}">
+	    	<fileset dir="${test}">
+	          <include name="**/*Test*.java"/>
+	        </fileset>
+		</batchtest>
     </junit>
-    </target>
+  </target>
+ 
+  <target name="clean" description="clean up" >
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
 </project>

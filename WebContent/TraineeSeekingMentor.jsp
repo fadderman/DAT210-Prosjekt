@@ -11,6 +11,7 @@
 <title>Trainee Seeking Mentor</title>
 </head>
 <body class="container">
+<form action=""></form>
 	<%
 		//lagt til en tom dataliste
 		MentorsWithSubject m = new MentorsWithSubject("Java 2D");
@@ -36,8 +37,8 @@
 					<td><%=user.getFirstName()%></td>
 					<td><%=user.getLastName()%></td>
 					<td><%=user.getEmail()%></td>
-					<td><input type="button" value="connect" class="btn btn-primary"
-						onclick="self.close();"></td>
+					<td><input type="button" value="connect"
+						class="btn btn-primary" onclick="self.close();"></td>
 					<!-- legger til en masse EL table data -->
 				</tr>
 				<%
