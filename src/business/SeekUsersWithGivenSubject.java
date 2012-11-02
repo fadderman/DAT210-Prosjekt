@@ -15,23 +15,23 @@ public class SeekUsersWithGivenSubject {
 	//skal bruk en metode fra usermanagement for å få en liste med brukere
 	private ArrayList<User> mentors;
 	private static FieldManagement fm = new FieldManagement();
+	private static SubjectManagement cm = new SubjectManagement();
+	private static UserManagement um = new UserManagement();
+	private static ConnectionManagement xm = new ConnectionManagement();
+	private static boolean ispopulated = false;
 	
 	public SeekUsersWithGivenSubject(String subject) {
-		/*hvis jeg bruker populateDatabase først så får jeg en feil siden greia lages om igjen
-		 * og da blir database fylt med identisk data som gir feil
-		 */
+		if(!ispopulated){
+			populateDatabase();
+		}
 		Field foundsubject = fm.getSingleByTitle(subject);
 		mentors = (ArrayList<User>) fm.getMentors(foundsubject);
-		if(mentors.isEmpty()){
-			populateDatabase();
-			mentors = (ArrayList<User>) fm.getMentors(foundsubject);
-		}
+		
+			
 	}
 	
 	private static void populateDatabase(){
-		SubjectManagement cm = new SubjectManagement();
-		UserManagement um = new UserManagement();
-		ConnectionManagement xm = new ConnectionManagement();
+		
 		
 		Subject catJava = new Subject("Java", "THIS IS JAVAAAAA");
 		Subject catCsharp = new Subject("C#", "Kinda like Java but not really");
@@ -92,6 +92,7 @@ public class SeekUsersWithGivenSubject {
 		um.addUser(user6);
 		xm.createOpenMentor(user6, subJava2D);
 		xm.createOpenTrainee(user6, subJava3D);
+		ispopulated = true;
 	}
 	
 	public ArrayList<User> getMentorsWithSbject() {
