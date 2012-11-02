@@ -2,7 +2,7 @@ package controllers;
 
 import javax.servlet.http.HttpServlet;
 
-public class Registerconnection extends HttpServlet {
+public class RegisterConnection extends HttpServlet {
 
 	/**
 	 * placeholder serialnumber
