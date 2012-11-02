@@ -11,7 +11,11 @@
 <title>Trainee Seeking Mentor</title>
 </head>
 <body class="container">
+<<<<<<< HEAD
 	<form action=""></form>
+=======
+<form action=""></form>
+>>>>>>> 40054f45817a344d0f77ed31daddab841e892e20
 	<%
 		//lagt til en tom dataliste
 		MentorsWithSubject m = new MentorsWithSubject("Java 2D");
