@@ -8,25 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
 
-	Language language = new Language();
-    Cookie[] co = request.getCookies();
-    if(co == null){
-    	Cookie chosenLanguageCookie = new Cookie("chosenLanguage", "english");
-		chosenLanguageCookie.setMaxAge(60*60*24*365*2); //set its age to 2 years
-		chosenLanguageCookie.setPath("/"); //allow the entire application to access it
-		response.addCookie(chosenLanguageCookie);
-    }
-    if(session.getAttribute("lang") != null)
-    	language = (Language)session.getAttribute("lang");
-    //String chosenLanguage = CookieUtil.getCookieValue(co, "chosenLanguage");
-  
-	
-   // System.out.println("web: " + chosenLanguage);
-    //language.setLanguage(chosenLanguage);
-    
+<jsp:include page="language.jsp" />
+
+<%
+	Language language = (Language) session.getAttribute("lang");
 %>
+
 <!-- top menu -->
 	<div class="navbar navbar-fixed-top navbar-inverse">
 		<div class="navbar">
@@ -35,7 +23,7 @@
 				<a class="brand" href="#"><img alt="" src="img/logo_mini.png" ></a>
 				<div class="btn-group pull-right">
 					<a class="btn dropdown-toggle btn-inverse btn-large" data-toggle="dropdown"
-						href="#"><small> <%=language.getLogin_btn_lang() %> </small><span class="caret"></span>
+						href="#"><b class="icon-white icon-th-large" style="margin-right: 2px"></b><small><%=language.getLogin_btn_lang() %> </small><span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
 						<!-- dropdown menu links -->

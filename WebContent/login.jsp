@@ -16,7 +16,10 @@
 <body class="fullBG">
 
 <%@ include file="loginMenuBar.jsp"%>
-<%session.setAttribute("CurrentPage", "/login.jsp"); %>
+<%
+	session.setAttribute("CurrentPage", "/login.jsp"); 
+%>
+
 	<div class="container">
 
 		<div class="row-fluid">

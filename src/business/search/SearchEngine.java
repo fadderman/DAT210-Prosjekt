@@ -2,23 +2,19 @@ package business.search;
 
 import hibernate.FieldManagement;
 import hibernate.HibernateUtil;
-import hibernate.SubjectManagement;
 import hibernate.UserManagement;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import models.Field;
-import models.Subject;
 import models.User;
-import business.subject.SubjectHandler;
 import business.user.UserHandler;
 
 public class SearchEngine extends HibernateUtil{
 
 	UserManagement userManager = new UserManagement();
 	FieldManagement fieldManagment = new FieldManagement();
-	SubjectManagement subMang = new SubjectManagement();
 	
 	public SearchEngine(){
 		sessionFactory = getSessionFactory();
@@ -41,16 +37,14 @@ public class SearchEngine extends HibernateUtil{
 			userManager.addUser(new User("Åge", "Håland", "email", "Ålesund", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Tom", "Nærland", "email", "Nærbø", "Norway", "identifierOpenID"));
 
-			Subject sub = new Subject("titleeee", "descpritionnnn");
-			subMang.addSubject(sub);
-			fieldManagment.addField(new Field("Java", "description", sub));
-			fieldManagment.addField(new Field("JavaScript", "description", sub));
-			fieldManagment.addField(new Field("C++", "description", sub));
-			fieldManagment.addField(new Field("C#", "description", sub));
-			fieldManagment.addField(new Field("Python", "description", sub));
-			fieldManagment.addField(new Field("Go", "description", sub));
-			fieldManagment.addField(new Field("C", "description", sub));
-			fieldManagment.addField(new Field("MySQL", "description", sub));
+			fieldManagment.addField(new Field("Java", "description"));
+			fieldManagment.addField(new Field("JavaScript", "description"));
+			fieldManagment.addField(new Field("C++", "description"));
+			fieldManagment.addField(new Field("C#", "description"));
+			fieldManagment.addField(new Field("Python", "description"));
+			fieldManagment.addField(new Field("Go", "description"));
+			fieldManagment.addField(new Field("C", "description"));
+			fieldManagment.addField(new Field("MySQL", "description"));
 			hasBeenRun=true;
 		}
 	}

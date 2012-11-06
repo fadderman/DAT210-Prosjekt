@@ -7,19 +7,14 @@ import java.util.List;
 
 import models.*;
 
-
-
-
 public class FieldManagement extends HibernateUtil{
-
-	
 
 	public FieldManagement() {
 		sessionFactory = getSessionFactory();
 	}
 
-	public void createField(String title, String description, Subject subject){
-		Field field = new Field(title, description, subject);
+	public void createField(String title, String description) {
+		Field field = new Field(title, description);
 		addField(field);
 	}
 
