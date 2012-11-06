@@ -2,6 +2,8 @@ package hibernate.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -44,13 +46,6 @@ public class CommentManagementTest {
 		um.createUser("Bob", "Last", "phil@last.com", "Here", "It exits on Earth", "numero tres");
 		um.createUser("Some", "Guy", "someguy@somewhere.com", "Somewhere", "Place", "numero quatro");
 		
-		cm.createComment(xm.getByID(0), um.getByName("John", "First").get(0), "This is a text");
-		cm.createComment(xm.getByID(1), um.getByEmail("johnfirst@gmail.com"), "This is some text");
-		cm.createComment(xm.getByID(3), um.getByEmail("bob.second@outlook.com"), "Some random text");
-		cm.createComment(xm.getByID(2), um.getByEmail("someguy@somewhere.com"), "Comment about programming");
-//		cm.createComment(xm.getByID(4), um.getByEmail("johnfirst@gmail.com"), "This text is a comment from John First");
-		
-		
 		xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Java"));
 		xm.createOpenMentor(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Java"));
 		xm.createOpenMentor(um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Google tips"));
@@ -60,6 +55,15 @@ public class CommentManagementTest {
 		xm.createConnection(um.getByEmail("someguy@somewhere.com"), um.getByEmail("bob.secon@outlook.com"), fm.getSingleByTitle("COBOL"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Google tips"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Bathroom Wall"));
+		
+		cm.createComment(xm.getByID(0), um.getByName("John", "First").get(0), "This is a text");
+		cm.createComment(xm.getByID(1), um.getByEmail("johnfirst@gmail.com"), "This is some text");
+		cm.createComment(xm.getByID(3), um.getByEmail("bob.second@outlook.com"), "Some random text");
+		cm.createComment(xm.getByID(2), um.getByEmail("someguy@somewhere.com"), "Comment about programming");
+//		cm.createComment(xm.getByID(4), um.getByEmail("johnfirst@gmail.com"), "This text is a comment from John First");
+		
+		
+
 		
 
 
@@ -97,9 +101,12 @@ public class CommentManagementTest {
 
 	@Test
 	public void testGetCommentByTimestamp(){
-//		Comment comment = cm.getCommentByTimestamp(um.getByEmail("johnfirst@gmail.com"), , toTime)
-
-
+		Calendar fromDate = Calendar.getInstance();
+		Calendar toDate = Calendar.getInstance();
+		fromDate.add(Calendar.HOUR_OF_DAY, -1);
+		toDate.setTime(new Date());
+		
+		
 
 
 	}
@@ -108,29 +115,7 @@ public class CommentManagementTest {
 	public void testGetByConnection(){
 	List<Comment> list = cm.getByConnection(xm.getByID(3));
 	assertEquals(list.get(0).getAuthor().getEmail(), "bob.second@outlook.com");
-	}
-//
-//	@Test
-//	public void testUpdateCommentText(){
-//		//		List<Comment> test = cm.getCommentByAuthor(author);
-//		//		cm.updateCommentText(test.get(0), "");
-//		//		assertEquals(cm.getCommentByAuthor(author), "");
-//
-//	}
-
-
-	
-	
-//	@Test
-//	public void testChangeStatus(){
-//		cm.changeStatus(cm.getByID(0), false);
-//		cm.changeStatus(cm.getByID(1), false);
-//		
-//		List<Comment> list = cm.getAllInactiveComments();
-//		assertEquals(list.get(0).getAuthor().getEmail(), "johnfirst@gmail.com");
-//		assertEquals(list.get(1).getAuthor().getEmail(), "bob.second@outlook.com");
-//
-//	}
+	}	
 
 	@Test
 	public void testGetByID(){
