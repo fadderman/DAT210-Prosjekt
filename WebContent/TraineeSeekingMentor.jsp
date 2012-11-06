@@ -12,38 +12,49 @@
 </head>
 <body class="container">
 	<%
-		//lagt til en tom dataliste
-		MentorsWithSubject m = new MentorsWithSubject("Java 2D");
+		String field = "Java 2d";
+		MentorsWithSubject m = new MentorsWithSubject(field);
 		ArrayList<User> mentors = m.getMentorsWithSubject();
 	%>
 	<h1 id="Title" style="text-align: center;" class="page-header">List
 		of Mentor</h1>
 	<div class="well">
-		<form action="" name="select_user_as_mentor" method="post">
-			<table id="ListofMentor" class="table table-hover table-condensed">
-				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-					<th>Join</th>
-				</tr>
-				<%
-					for (User user : mentors) {
-				%>
 
-				<tr>
-					<td><%=user.getFirstName()%></td>
-					<td><%=user.getLastName()%></td>
-					<td><%=user.getEmail()%></td>
-					<td><input type="button" value=<%= user.getUserID() %>
-						class="btn btn-primary" onclick="self.close();"></td>
-					<!-- legger til en masse EL table data -->
-				</tr>
-				<%
-					}
-				%>
-			</table>
-		</form>
+		<table id="ListofMentor" class="table table-hover table-condensed">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Join</th>
+			</tr>
+			<%
+				for (User user : mentors) {
+			%>
+
+			<tr>
+				<td><%=user.getFirstName()%></td>
+				<td><%=user.getLastName()%></td>
+				<td><%=user.getEmail()%></td>
+				<td>
+					<form action="" name="select_user_as_mentor" method="post">
+						<input type="hidden" name="userID" value=<%= user.getUserID() %>>
+						<input type="hidden" name="field" value=<%= field %>>
+						<input type="button" value="connect" class="btn btn-primary btn-small"
+							onclick="connectTrainee();">
+					</form>
+				</td>
+			</tr>
+			<%
+				}
+			%>
+		</table>
+
 	</div>
 </body>
+<script type="text/javascript">
+	function connectTrainee() {
+		document.getElementById("select_user_as_mentor").submit();
+		window.self.close();
+	}
+</script>
 </html>
