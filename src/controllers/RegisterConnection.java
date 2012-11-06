@@ -1,5 +1,7 @@
 package controllers;
 
+import hibernate.UserManagement;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -8,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.User;
+
 public class RegisterConnection extends HttpServlet {
+	private static UserManagement um = new UserManagement();
 
 	/**
 	 * placeholder serialnumber
@@ -39,5 +44,6 @@ public class RegisterConnection extends HttpServlet {
 			}
 		}
 		int userID = Integer.parseInt(cookievalue);
+		User trainee = um.getByID(userID);
 	}
 }
