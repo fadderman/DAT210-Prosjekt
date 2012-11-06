@@ -1,5 +1,7 @@
 package controllers;
 
+import hibernate.UserManagement;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -29,13 +31,8 @@ import business.user.UserHandler;
 
 public class OpenIDLoginServlet extends HttpServlet{
 
-	//	private UserLogin userLogin;
-
 	private ConsumerManager manager;
-	private UserHandler userHandler;
-
-	//	private String returnToUrl =  "http://www.MentorFind/login";
-
+	private UserManagement userManager;
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -45,7 +42,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 		} else {
 			String identifier = req.getParameter("openid_identifier");
 			if (identifier != null) {
-				authRequest(identifier, req, resp);		//UserLogin here!!!
+				authRequest(identifier, req, resp);
 			} else {
 				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
 			}
@@ -56,14 +53,11 @@ public class OpenIDLoginServlet extends HttpServlet{
 	public void init() throws ServletException {
 
 		super.init();
-		System.out.println("starting servlet!!!!!!!");
-		//		userLogin = new UserLogin();
 		manager = new ConsumerManager();
 		manager.setAssociations(new InMemoryConsumerAssociationStore());
 		manager.setNonceVerifier(new InMemoryNonceVerifier(5000));
 		manager.setMinAssocSessEnc(AssociationSessionType.DH_SHA256);
-
-		userHandler = new UserHandler();
+		userManager = new UserManagement();
 	}
 
 	@Override
@@ -73,7 +67,6 @@ public class OpenIDLoginServlet extends HttpServlet{
 	}
 
 	private void processReturn(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
-		System.out.println("processing return!");
 		verifyResponse(req, resp);
 	}
 
@@ -160,12 +153,12 @@ public class OpenIDLoginServlet extends HttpServlet{
 
 				httpReq.setAttribute("identifier", verified.getIdentifier());
 
-				System.out.println("User logged in, identifier: " + verified.getIdentifier());
-//				User testUser = new User("https://me.yahoo.com/a/uSTzLiMEq8Fz1Do1ei.oAOlgeVqnDpXV#6fd8e", "", "", "", "");
-//				userHandler.addUser(testUser);
-				User user = userHandler.getUserByIdentifier(verified.getIdentifier());			//check if the user already exists
+				User user = userManager.getByOpenId(verified.getIdentifier());			//check if the user already exists
 				if(user!=null){	//forward to main page
+<<<<<<< HEAD
 					System.out.println("User exists!");
+=======
+>>>>>>> origin/OpenID
 					this.getServletContext().getRequestDispatcher("/index.jsp").forward(httpReq, httpResp);	//User Logged in
 				}
 				else{		 //forward to page where user must enter additional information.
@@ -174,58 +167,23 @@ public class OpenIDLoginServlet extends HttpServlet{
 						FetchResponse fetchResp = (FetchResponse) authSuccess
 								.getExtension(AxMessage.OPENID_NS_AX);
 
-//						List emails = fetchResp.getAttributeValues("email");
-//						String email = (String) emails.get(0);
 						String email = fetchResp.getAttributeValue("email");
-						System.out.println(email);
 						String firstname = fetchResp.getAttributeValue("firstname");
 						String lastname = fetchResp.getAttributeValue("lastname");
 						String fullname = fetchResp.getAttributeValue("fullname");
 
-						if(fullname!=null){		//split fullname into first and lastname
+						if(fullname!=null){	
 							firstname = fullname.substring(0, fullname.lastIndexOf(" "));
 							lastname = fullname.substring(fullname.lastIndexOf(" "));
 						}
-						user = new User(firstname, lastname, email, "","", verified.getIdentifier()); //create a new user based on info from OpenID
-						System.out.println("firstname: " + firstname + ", lastname: " + lastname);
+						user = new User(firstname, lastname, email, "","", verified.getIdentifier());
 					}
 					httpReq.setAttribute("user", user);
-					this.getServletContext().getRequestDispatcher("/firstTimeLogin.jsp").forward(httpReq, httpResp); //change!
+					this.getServletContext().getRequestDispatcher("/firstTimeLogin.jsp").forward(httpReq, httpResp);
 				}
-
-//				if (authSuccess.hasExtension(AxMessage.OPENID_NS_AX))
-//				{
-//					FetchResponse fetchResp = (FetchResponse) authSuccess.getExtension(AxMessage.OPENID_NS_AX);
-//
-//					List emails = fetchResp.getAttributeValues("email");
-//					String email = (String) emails.get(0);
-//					System.out.println(email);
-//					String firstname = fetchResp.getAttributeValue("firstname");
-//					String lastname = fetchResp.getAttributeValue("lastname");
-//					System.out.println(firstname + " " + lastname);
-//
-//					String fullname = fetchResp.getAttributeValue("fullname");
-//					System.out.println(fullname);
-//				}
-
-				//				return verified;  // success
 			}else{
 				this.getServletContext().getRequestDispatcher("/login.jsp").forward(httpReq, httpResp);		//User not logged in
 			}
-
-			//			if (identifier == null) {
-			//				this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);		//User not logged in
-			//			} else {
-			//				req.setAttribute("identifier", identifier.getIdentifier());
-			//				System.out.println("User logged in, identifier: " + identifier.getIdentifier());
-			//				User user = userHandler.getUserByIdentifier(identifier.getIdentifier());
-			//				if(user!=null){
-			//				this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);	//User Logged in
-			//				}
-			//				else{		 //forward to page where user must enter additional information.
-			//					this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp); //change!
-			//				}
-			//			}
 
 
 		}
@@ -233,8 +191,6 @@ public class OpenIDLoginServlet extends HttpServlet{
 		{
 			// present error to the user
 		}
-
-//		return null;
 	}
 
 }

@@ -31,7 +31,11 @@ public class UserManagement extends HibernateUtil{
 	}
 
 	public User getByID(int id){
+<<<<<<< HEAD
 		String queryString = "from models.User where userID = :id";
+=======
+		String queryString = "from models.User where user_id = :id";
+>>>>>>> origin/OpenID
 		String queryVariable = "id";
 		return (User) fetchSingle(queryString, queryVariable, new Integer(id));
 	}
@@ -68,10 +72,10 @@ public class UserManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, country);
 	}
 
-	public List<User> getByOpenId(String identifierOpenID){
+	public User getByOpenId(String identifierOpenID){
 		String queryString = "from models.User where identifierOpenID = :identifierOpenID and active = true";
 		String queryVariable = "identifierOpenID";
-		return fetch(queryString, queryVariable, identifierOpenID);
+		return (User)fetchSingle(queryString, queryVariable, identifierOpenID);
 	}
 
 	public void updateFirstName(String newFirstName, User user){

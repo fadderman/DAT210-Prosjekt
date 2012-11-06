@@ -99,4 +99,123 @@ public class EN extends Lang{
 		return firsttime_drop_loreMaster;
 	}
 	
+	// ============== Home Strings ===================
+	private String home_welcome = "Welcome to MentorFind";
+	private String home_please_search = "Please type in the search box";
+	
+	@Override
+	public String getHome_welcome() {
+		
+		return home_welcome;
+	}
+	@Override
+	public String getHome_please_search() {
+		
+		return home_please_search;
+	}
+	
+	// ============== Menu Strings ===================
+		private String menu_home = "Home";
+		private String menu_find = "Find";
+		private String menu_profile = "Profile";
+		private String menu_settings = "Settings";
+		private String menu_search = "Search";
+		
+	public String getMenu_home() {
+		return menu_home;
+	}
+
+	public String getMenu_find() {
+		return menu_find;
+	}
+
+	public String getMenu_profile() {
+
+		return menu_profile;
+	}
+
+	public String getMenu_settings() {
+
+		return menu_settings;
+	}
+
+	public String getMenu_search() {
+		return menu_search;
+	}
+	
+	// ============== Search Results Strings ===================
+	private String search_sResult = "Search results";
+	private String search_fResult = "Filter results";
+	private String search_location = "Location";
+	private String search_user = "User";
+	private String search_title = "Title";
+	private String search_description = "Description";
+	private String search_error = "You did not enter a search query. Please try again.";
+	private String search_resultStart = "Your search for '";
+	private String search_returned = "' returned ";
+	private String search_success = " result(s).";
+	private String search_noResults = "' did not return any results. Please try again.";
+	private String search_name = "Name";
+	@Override
+	public String getSearch_sResult() {
+		
+		return search_sResult;
+	}
+	@Override
+	public String getSearch_fResult() {
+		
+		return search_fResult;
+	}
+	@Override
+	public String getSearch_location() {
+		
+		return search_location;
+	}
+	@Override
+	public String getSearch_user() {
+		
+		return search_user;
+	}
+	@Override
+	public String getSearch_title() {
+		
+		return search_title;
+	}
+	@Override
+	public String getSearch_description() {
+		
+		return search_description;
+	}
+	@Override
+	public String getSearch_error() {
+		
+		return search_error;
+	}
+	@Override
+	public String getSearch_success() {
+		
+		return search_success;
+	}
+	@Override
+	public String getSearch_resultStart() {
+		
+		return search_resultStart;
+	}
+	@Override
+	public String getSearch_noResults() {
+		
+		return search_noResults;
+	}
+	@Override
+	public String getSearch_returned() {
+		
+		return search_returned;
+	}
+	@Override
+	public String getSearch_name() {
+		
+		return search_name;
+	}
+
+	
 }

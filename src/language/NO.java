@@ -1,6 +1,7 @@
 package language;
 
 public class NO extends Lang{
+	
 	// ============== SignInPage Strings ===================
 	private String login_btn_lang = "Språk";
 	private String login_btn_learn = "Lær mer";
@@ -98,4 +99,109 @@ public class NO extends Lang{
 	public String getFirsttime_drop_loreMaster() {
 		return firsttime_drop_loreMaster;
 	}
+	
+	// ============== Home Strings ===================
+		private String home_welcome = "Velkommen til MentorFind";
+		private String home_please_search = "Skriv i søkefeltet for å starte";
+		
+		@Override
+		public String getHome_welcome() {
+			return home_welcome;
+		}
+		@Override
+		public String getHome_please_search() {
+			return home_please_search;
+		}
+		
+		
+		// ============== Menu Strings ===================
+			private String menu_home = "Hjem";
+			private String menu_find = "Finn";
+			private String menu_profile = "Profil";
+			private String menu_settings = "Instillinger";
+			private String menu_search = "Søk";
+			
+		public String getMenu_home() {
+			return menu_home;
+		}
+
+		public String getMenu_find() {
+			return menu_find;
+		}
+
+		public String getMenu_profile() {
+
+			return menu_profile;
+		}
+
+		public String getMenu_settings() {
+
+			return menu_settings;
+		}
+
+		public String getMenu_search() {
+			return menu_search;
+		}
+		
+		// ============== Search Results Strings ===================
+		private String search_sResult = "Søke resultater";
+		private String search_fResult = "Filter resultater";
+		private String search_location = "Lokasjon";
+		private String search_user = "Bruker";
+		private String search_title = "Tittel";
+		private String search_description = "Beskrivelse";
+		private String search_error = "Du skrev ikke noe i søkefeltet, prøv igjen.";
+		private String search_resultStart = "Ditt søk for '";
+		private String search_returned = "' retunerte ";
+		private String search_success = " resultat(er).";
+		private String search_noResults = "' gav ingen resultater, prøv igjen.";
+		private String search_name = "Navn";
+		@Override
+		public String getSearch_sResult() {
+			return search_sResult;
+		}
+		@Override
+		public String getSearch_fResult() {
+			return search_fResult;
+		}
+		@Override
+		public String getSearch_location() {
+			return search_location;
+		}
+		@Override
+		public String getSearch_user() {
+			return search_user;
+		}
+		@Override
+		public String getSearch_title() {
+			return search_title;
+		}
+		@Override
+		public String getSearch_description() {
+			return search_description;
+		}
+		@Override
+		public String getSearch_error() {
+			return search_error;
+		}
+		@Override
+		public String getSearch_success() {
+			return search_success;
+		}
+		@Override
+		public String getSearch_resultStart() {
+			return search_resultStart;
+		}
+		@Override
+		public String getSearch_noResults() {
+			return search_noResults;
+		}
+		@Override
+		public String getSearch_returned() {
+			return search_returned;
+		}
+		@Override
+		public String getSearch_name() {
+			return search_name;
+		}
 }

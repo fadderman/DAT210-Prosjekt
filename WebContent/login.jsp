@@ -11,35 +11,7 @@
 </head>
 <!-- login_bg taken from interfacelift.com by thekidder. url: http://interfacelift.com/wallpaper/details/3062/stormy_ocean.html -->
 <style type="text/css">
-.contentBox {
-	overflow: scroll;
-	background: url("img/bg.png");
-	background-repeat: repeat-x;
-	background-attachment: fixed;
-}
-.fullBG {
-	background: url("img/login_bg.jpg");
-	background-attachment: fixed;
-		background-repeat:no-repeat;
-	background-size:cover;
-	-moz-background-size: cover;
-}
-.loginLetter{
-  padding: 60px;
-  margin-bottom: 30px;
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-          color: white;
-          text-shadow: #000000 3px 3px 8px;
-}
 
-.shadow {
-  box-shadow: 5px 5px 8px -1px #222;
-}
-.padding {
-	padding: 90px;
-}
 </style>
 <body class="fullBG">
 

@@ -1,9 +1,16 @@
 package business.search.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import hibernate.FieldManagement;
+import hibernate.SubjectManagement;
+import hibernate.UserManagement;
 
 import java.util.ArrayList;
 
+import models.Field;
+import models.Subject;
 import models.User;
 
 import org.junit.After;
@@ -13,18 +20,18 @@ import org.junit.Test;
 
 import business.search.SearchEngine;
 import business.search.SearchResults;
-import business.search.SearchSuggestions;
-import business.search.UserSuggestion;
+import business.subject.SubjectHandler;
 import business.user.UserHandler;
 
 public class SearchEngineTest {
 
 	private SearchEngine searchEngine;
-	static UserHandler userHandler;
+	static FieldManagement fieldHandler;
+	static UserManagement userHandler;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		userHandler = new UserHandler();
+		userHandler = new UserManagement();
 		userHandler.addUser(new User("Thomas", "Hinna", "email", "city","country", "openID"));
 		userHandler.addUser(new User("Thomas", "Nilsen", "email",  "city","country", "openID"));
 		userHandler.addUser(new User("Morten", "Salte", "email",  "city","country","openID"));
@@ -34,6 +41,17 @@ public class SearchEngineTest {
 //			userHandler.addUser(new User("identifier_openID" + i, "firstName" + i, "lastName" + i,
 //					"email" + i, "location" + i));
 //		}
+		fieldHandler = new FieldManagement();
+		Subject sub = new Subject("title", "description");
+		SubjectManagement subMan = new SubjectManagement();
+		subMan.addSubject(sub);
+		fieldHandler.addField(new Field("Java", "description", sub));
+		fieldHandler.addField(new Field("C++", "description", sub));
+		fieldHandler.addField(new Field("Javascript", "description", sub));
+		fieldHandler.addField(new Field("C#", "description", sub));
+		fieldHandler.addField(new Field("Python", "description", sub));
+		fieldHandler.addField(new Field("Go", "description", sub));
+		fieldHandler.addField(new Field("Ruby", "description", sub));
 	}
 	
 	
@@ -45,18 +63,6 @@ public class SearchEngineTest {
 	@After
 	public void tearDown() throws Exception {
 	searchEngine = null;
-	}
-
-
-	@Test
-	public void searchForThomasAndExpectThomasAsSuggested() {
-		String searchFor = "Thomas";
-		SearchSuggestions result = searchEngine.suggest(searchFor);
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
-		assertTrue(!userRes.isEmpty());
-		for(int i=0;i<userRes.size();i++){
-			assertEquals(searchFor, userRes.get(i).getFirstname());
-		}
 	}
 	
 	@Test
@@ -71,15 +77,6 @@ public class SearchEngineTest {
 	}
 	
 	@Test
-	public void searchForHinnaAndExpectHinnaAsSuggested() {
-		SearchSuggestions result = searchEngine.suggest("Hinna");
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
-		assertTrue(!userRes.isEmpty());
-		for(int i=0;i<userRes.size();i++){
-			assertEquals("Hinna", userRes.get(i).getLastname());
-		}
-	}
-	@Test
 	public void searchForHinnaAndExpectHinna() {
 		SearchResults result = searchEngine.search("Hinna");
 		ArrayList<User> userRes = result.getUserResults();
@@ -87,19 +84,6 @@ public class SearchEngineTest {
 		for(int i=0;i<userRes.size();i++){
 			assertEquals("Hinna", userRes.get(i).getLastName());
 		}
-	}
-	
-	@Test
-	public void searchForLastnameHinnaAndExpectFirstnameThomasAsSuggested() {
-//		System.out.println("starting timedtest");
-//		long startTime = System.currentTimeMillis();
-		SearchSuggestions result = searchEngine.suggest("Hinna");
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
-		assertTrue(!userRes.isEmpty());
-		for(int i=0;i<userRes.size();i++){
-			assertEquals("Thomas", userRes.get(i).getFirstname());
-		}
-//		System.out.println("time used: " + (System.currentTimeMillis()-startTime));
 	}
 	
 	@Test
@@ -115,55 +99,6 @@ public class SearchEngineTest {
 //		System.out.println("time used: " + (System.currentTimeMillis()-startTime));
 	}
 	
-	@Test
-	public void searchForHehmaAndExpectHinnaAsSuggested() {
-		SearchSuggestions result = searchEngine.suggest("Hehma");
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
-		assertTrue(!userRes.isEmpty());
-		for(int i=0;i<userRes.size();i++){
-			assertEquals("Hinna", userRes.get(i).getLastname());
-		}
-	}
-	
-	@Test
-	public void searchForHehmaAndExpectHinna() {
-		SearchResults result = searchEngine.search("Hehma");
-		ArrayList<User> userRes = result.getUserResults();
-		assertTrue(!userRes.isEmpty());
-		for(int i=0;i<userRes.size();i++){
-			assertEquals("Hinna", userRes.get(i).getLastName());
-		}
-	}
-	
-	@Test
-	public void searchForT1234sAndExpectThomasAsSuggested() {
-		SearchSuggestions result = searchEngine.suggest("t1234s");
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
-		assertTrue(!userRes.isEmpty());
-		for(int i=0;i<userRes.size();i++){
-			assertEquals("Thomas", userRes.get(i).getFirstname());
-		}
-	}
-	
-	@Test
-	public void searchForT1234sAndExpectThomas() {
-		SearchResults result = searchEngine.search("t1234s");
-		ArrayList<User> userRes = result.getUserResults();
-		assertTrue(!userRes.isEmpty());
-		for(int i=0;i<userRes.size();i++){
-			assertEquals("Thomas", userRes.get(i).getFirstName());
-		}
-	}
-	
-	@Test
-	public void searchForThomasHinnaAndExpectFirstnameThomasAsSuggested() {
-		SearchSuggestions result = searchEngine.suggest("Thomas Hinna");
-		ArrayList<UserSuggestion> userRes = result.getUserResults();
-		assertTrue(!userRes.isEmpty());
-		for(int i=0;i<userRes.size();i++){
-			assertEquals("Thomas", userRes.get(i).getFirstname());
-		}
-	}
 	
 	@Test
 	public void searchForThomasHinnaAndExpectFirstnameThomas() {
@@ -172,6 +107,17 @@ public class SearchEngineTest {
 		assertTrue(!userRes.isEmpty());
 		for(int i=0;i<userRes.size();i++){
 			assertEquals("Thomas", userRes.get(i).getFirstName());
+		}
+	}
+	
+	@Test
+	public void searchForJavaAndExpectJava() {
+		String searchFor = "Java";
+		SearchResults result = searchEngine.search(searchFor);
+		ArrayList<Field> fieldRes = result.getFieldResults();
+		assertTrue(!fieldRes.isEmpty());
+		for(int i=0;i<fieldRes.size();i++){
+			assertTrue(fieldRes.get(i).getTitle().contains(searchFor));
 		}
 	}
 
