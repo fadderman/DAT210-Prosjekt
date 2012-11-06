@@ -10,7 +10,7 @@
 
 <%
 	SearchEngine engine = new SearchEngine();
-	//engine.createDummyData();
+	engine.createDummyData();
 	
 	SearchResults result = engine.search(request.getParameter("term"));
 %>

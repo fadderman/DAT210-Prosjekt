@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.User;
 
+import org.apache.catalina.Session;
 import org.openid4java.OpenIDException;
 import org.openid4java.association.AssociationSessionType;
 import org.openid4java.consumer.ConsumerManager;
@@ -146,6 +147,8 @@ public class OpenIDLoginServlet extends HttpServlet{
 
 			// examine the verification result and extract the verified identifier
 			Identifier verified = verification.getVerifiedId();
+			
+			
 			if (verified != null)			//if not null, user has been verified
 			{
 				AuthSuccess authSuccess =
@@ -156,6 +159,7 @@ public class OpenIDLoginServlet extends HttpServlet{
 				User user = (User) userManager.getByOpenId(verified.getIdentifier());			//check if the user already exists
 
 				if(user!=null){	//forward to main page
+					httpReq.getSession().setAttribute("currentUser", user);
 					this.getServletContext().getRequestDispatcher("/index.jsp").forward(httpReq, httpResp);	//User Logged in
 				}
 				else{		 //forward to page where user must enter additional information.
@@ -175,13 +179,14 @@ public class OpenIDLoginServlet extends HttpServlet{
 						}
 						user = new User(firstname, lastname, email, "","", verified.getIdentifier());
 					}
-					httpReq.setAttribute("user", user);
+					httpReq.getSession().setAttribute("currentUser", user);
 					this.getServletContext().getRequestDispatcher("/firstTimeLogin.jsp").forward(httpReq, httpResp);
 				}
 			}else{
 				this.getServletContext().getRequestDispatcher("/login.jsp").forward(httpReq, httpResp);		//User not logged in
 			}
-
+			
+			
 
 		}
 		catch (OpenIDException e)

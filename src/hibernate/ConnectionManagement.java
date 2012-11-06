@@ -98,5 +98,15 @@ public class ConnectionManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, connection);
 	}
 	
+	public void addMentorToConnection(Connection connection, User mentorToAdd){
+		String queryString = "update models.Connection set mentor =:mentorToAdd where id =:id";
+		String queryVariable = "mentorToAdd";
+		updateSingle(queryString, queryVariable, mentorToAdd, connection.getConnectionID());
+	}
 	
+	public void addTraineeToConnection(Connection connection, User traineeToAdd){
+		String queryString = "update models.Connection set trainee =:traineeToAdd where id =:id";
+		String queryVariable = "traineeToAdd";
+		updateSingle(queryString, queryVariable, traineeToAdd, connection.getConnectionID());
+	}
 }

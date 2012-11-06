@@ -43,6 +43,10 @@ public class User {
 	@OneToMany(mappedBy = "author")
 	private List<Comment>  commentList;
 	
+	@OneToMany(mappedBy = "requestTarget")
+	@OrderBy("requestID")
+	private List<Request> request;
+	
 	public User() {}
 	
 	//TODO Business methods pass empty variables if fields are to be left empty
@@ -154,6 +158,16 @@ public class User {
 	public void setCommentList(ArrayList<Comment> commentList) {
 		this.commentList = commentList;
 	}
+
+	public List<Request> getRequest() {
+		return request;
+	}
+
+	public void setRequest(List<Request> request) {
+		this.request = request;
+	}
+
+
 	
 	/*//TODO broken may to many relationship
 	//TODO setup indexing

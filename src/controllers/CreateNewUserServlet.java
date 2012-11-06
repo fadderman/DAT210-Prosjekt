@@ -34,9 +34,8 @@ public class CreateNewUserServlet extends HttpServlet {
 		
 		User user = new User(firstName, lastName, email, city, country, identifier);
 		request.setAttribute("user", user);
+		request.getSession().setAttribute("currentUser", user);
 		ConnectionHandler handler = new ConnectionHandler(user, field, description, experience, traineeRadioButton, mentorRadioButton);
-		UserManagement userMan = new UserManagement();
-		userMan.addUser(user);
 		
 		String url = "/index.jsp";
 
