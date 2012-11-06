@@ -84,8 +84,7 @@
     <servlet-name>ViewProfileServlet</servlet-name>
     <url-pattern>/viewprofile</url-pattern>
   </servlet-mapping>
-  
-<servlet>
+  <servlet>
     <description></description>
     <display-name>ViewFieldServlet</display-name>
     <servlet-name>ViewFieldServlet</servlet-name>
@@ -94,5 +93,25 @@
   <servlet-mapping>
     <servlet-name>ViewFieldServlet</servlet-name>
     <url-pattern>/field</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RequestServlet</display-name>
+    <servlet-name>RequestServlet</servlet-name>
+    <servlet-class>controllers.RequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RequestServlet</servlet-name>
+    <url-pattern>/answerRequest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>controllers.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
   </servlet-mapping>
 </web-app>

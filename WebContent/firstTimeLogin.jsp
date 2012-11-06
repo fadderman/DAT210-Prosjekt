@@ -5,14 +5,16 @@
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 </head>
 <link rel="shortcut icon" href="img/favicon.ico"></link>
+<%@ page import="models.User"%>
+<%User user = (User) session.getAttribute("currentUser");%>
+	
+<%
+	if(session.getAttribute("currentUser") == null) {
+		response.sendRedirect("login.jsp");
+	} else {
+		%>
+
 <body class="contentBox">
-	<%@ page import="models.User"%>
-	<%User user = (User)request.getAttribute("user"); 
-	if(user != null)
-		session.setAttribute("user", user);
-	else
-		user = (User)session.getAttribute("user");
-	%>
 
 	<div class="container">
 <!-- top menu -->
@@ -47,8 +49,7 @@
 							<td><label class="pull-right"><%=language.getFirsttime_label_city() %></label></td>
 							<td><input name="city" type="text" value=""></td>
 						</tr>
-						<input type="hidden" name="identifier"
-							value="<%=user.getIdentifierOpenID()%>">
+						<input type="hidden" name="identifier" value="<%=user.getIdentifierOpenID()%>">
 					</tbody>
 				</table>
 			</div>
@@ -164,5 +165,8 @@
 	}
 </script>
 
+		<%
+	}
+%>
 
 </html>

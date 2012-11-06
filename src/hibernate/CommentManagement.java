@@ -10,13 +10,13 @@ public class CommentManagement extends HibernateUtil{
 		sessionFactory = getSessionFactory();
 	}
 
-	public void createComment(Connection connection, User author, String text){
+	public boolean createComment(Connection connection, User author, String text){
 		Comment comment = new Comment(connection, author, text);
-		addComment(comment);
+		return addComment(comment);
 	}
 	
-	public void addComment(Comment comment){
-		addToDatabase(comment);
+	public boolean addComment(Comment comment){
+		return addToDatabase(comment);
 	}
 	
 	public List<Comment> getAllComments(){
@@ -37,15 +37,15 @@ public class CommentManagement extends HibernateUtil{
 	}
 	
 	public List<Comment> getByConnection(Connection connection){
-		String queryString = "from models.Comment where connection = :connection";
-		String queryVariable = "connection";
-		return fetch(queryString, queryVariable, connection);
+		String queryString = "from models.Comment where connection = :connectionID";
+		String queryVariable = "connectionID";
+		return fetch(queryString, queryVariable, new Integer(connection.getConnectionID()));
 	}
 	
 	public List<Comment> getCommentByAuthor(User author){
-		String queryString = "from models.Comment where author = :author";
-		String queryVariable = "author";
-		return fetch(queryString, queryVariable, author);
+		String queryString = "from models.Comment where author = :authorID";
+		String queryVariable = "authorID";
+		return fetch(queryString, queryVariable, new Integer(author.getUserID()));
 	}
 	
 	public List<Comment> getCommentByTimestamp(User author, Date fromTime, Date toTime){

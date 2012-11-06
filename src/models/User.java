@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "USER")
 public class User {
@@ -34,8 +33,6 @@ public class User {
 	
 	@Column(name = "location_country")
 	private String locationCountry;
-	
-	//Location: city, country
 
 	@OneToMany(mappedBy = "mentor")
 	private List<Connection> mentorConnection;
@@ -46,8 +43,13 @@ public class User {
 	@OneToMany(mappedBy = "author")
 	private List<Comment>  commentList;
 	
+	@OneToMany(mappedBy = "requestTarget")
+	@OrderBy("requestID")
+	private List<Request> request;
+	
 	public User() {}
-
+	
+	//TODO Business methods pass empty variables if fields are to be left empty
 	public User(String firstName, String lastName, String email, String locationCity, String locationCountry, String identifierOpenID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -56,7 +58,9 @@ public class User {
 		this.locationCountry = locationCountry;
 		this.identifierOpenID = identifierOpenID;
 		active = true;
+
 		commentList = new ArrayList<Comment>();
+		
 	}
 	
 	public int getUserID() {
@@ -126,6 +130,10 @@ public class User {
 	public void setLocationCountry(String locationCountry) {
 		this.locationCountry = locationCountry;
 	}
+	
+	public String getFullLocationString(){
+		return this.locationCity + ", " + this.locationCountry;
+	}
 
 	public List<Connection> getConnectionMentor() {
 		return mentorConnection;
@@ -150,6 +158,16 @@ public class User {
 	public void setCommentList(ArrayList<Comment> commentList) {
 		this.commentList = commentList;
 	}
+
+	public List<Request> getRequest() {
+		return request;
+	}
+
+	public void setRequest(List<Request> request) {
+		this.request = request;
+	}
+
+
 	
 	/*//TODO broken may to many relationship
 	//TODO setup indexing

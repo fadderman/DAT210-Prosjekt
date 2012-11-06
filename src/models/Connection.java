@@ -38,6 +38,10 @@ public class Connection {
 	@OneToMany(mappedBy = "connection")
 	@OrderBy("timestamp")
 	private List<Comment> comments;
+	
+	@OneToMany(mappedBy = "connection")
+	@OrderBy("requestID")
+	private List<Request> request;
 
 	public Connection(){		
 	}

@@ -11,7 +11,7 @@
 		
 		request.setAttribute("active", "home")
 		
-		This will set the "Home" item in the menu as active, all other items will be set to "inactive"
+	This will set the "Home" item in the menu as active, all other items will be reset
 */
 	ActiveMenuItem activeMenuItem = new ActiveMenuItem();
 	

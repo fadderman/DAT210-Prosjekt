@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
-//Refactor to Field
 @Entity
 @Table(name = "FIELD")
 public class Field {
@@ -22,8 +20,7 @@ public class Field {
 	
 	@Column(name = "description")
 	private String description;
-		
-	//TODO Ordered or indexed?
+
 	@OneToMany(mappedBy = "field")
 	@OrderBy("title")
 	private List<Connection> connectionList;
@@ -32,14 +29,9 @@ public class Field {
 		
 	}
 	
-	public Field(String title){
-		this.title = title;
-	}
-	
 	public Field(String title, String description) {
 		this.title = title;
 		this.description = description;
-
 		active=true;
 	}
 	
@@ -82,37 +74,4 @@ public class Field {
 	public void setConnectionList(List<Connection> connectionList) {
 		this.connectionList = connectionList;
 	}
-	
-	/* TODO broken many to many, using query via connection
-	@ManyToMany(
-			targetEntity = models.User.class,
-			cascade = {CascadeType.ALL},
-			mappedBy = "mentorList")
-	private List<User> mentorUserList;
-	
-	@ManyToMany(
-			targetEntity = models.User.class,
-			cascade = {CascadeType.ALL},
-			mappedBy = "traineeList")
-	private List<User> traineeUserList;
-	*/
-	
-	/*
-	public List<User> getMentorUserList() {
-		return  mentorUserList;
-	}
-
-	public void setMentorUserList(ArrayList<User> mentorUserList) {
-		this.mentorUserList = mentorUserList;
-	}
-
-	public List<User> getTraineeUserList() {
-		return traineeUserList;
-	}
-
-	public void setTraineeUserList(ArrayList<User> traineeUserList) {
-		this.traineeUserList = traineeUserList;
-	}
-	*/
-	
 }

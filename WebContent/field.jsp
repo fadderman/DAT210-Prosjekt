@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" import="models.Field"%>
+<%@ page language="java" import="models.Field, language.*"%>
 
 <%
 	Field field = (Field) request.getAttribute("field");
@@ -9,6 +9,8 @@
 	
 	pageContext.setAttribute("field", field);
 	pageContext.setAttribute("nullField", nullField);
+	
+	Language language = (Language) session.getAttribute("lang");
 %>
 
 <div class="container well" style="box-shadow: 5px 5px 8px -1px #222;">
