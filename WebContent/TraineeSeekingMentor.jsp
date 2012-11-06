@@ -36,7 +36,7 @@
 				<td><%=user.getLastName()%></td>
 				<td><%=user.getEmail()%></td>
 				<td>
-					<form action="" name="select_user_as_mentor" method="post">
+					<form action="/RegisterConnection" name="select_user_as_mentor" method="post">
 						<input type="hidden" name="userID" value=<%= user.getUserID() %>>
 						<input type="hidden" name="field" value=<%= field %>>
 						<input type="button" value="connect" class="btn btn-primary btn-small"
