@@ -11,7 +11,7 @@
 		com.mysql.jdbc.Driver
     </property>
     <property name="hibernate.connection.url">
-		jdbc:mysql://localhost/Hibernate
+		jdbc:mysql://wadiya.no-ip.org/MentorFind
     </property>
     <property name="hibernate.connection.username">
 		test
@@ -26,14 +26,10 @@
 		true
 	</property>
     <property name="hbm2ddl.auto">
-		create
+		create-drop
 	</property>
 	<!--Using annotated mapping in persistent classes -->
-	
-	<!--
-	<mapping class="models.Category">
-	</mapping>
-	-->
+
 
 </session-factory>
 </hibernate-configuration>
