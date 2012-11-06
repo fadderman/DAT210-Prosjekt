@@ -137,9 +137,9 @@
 				$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field').val() }))
 						.append($('<span>').append($('#field').val())));
 
-		//oTr.append(
-			//	$('<td>').append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() }))
-				//		.append($('<span>').append($('#addInfo').val())));
+		oTr.append(
+				$('<td>').append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() }))
+						.append($('<span>').append($('#addInfo').val())));
 
 		// legger til en TD til TR med data fra fieldselecten
 		//oTr.append(
@@ -156,8 +156,8 @@
 
 		oTr.append(
 			$('<td>').append($('<input>', { name: "trainee", type: 'hidden', value: (trMen.val() == 'Trainee'?'Yes':'No') }))
-					.append($('<span>').append((trMen.val() == 'Trainee')?'Yes':'No'))
-					.append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() })));
+					.append($('<span>').append((trMen.val() == 'Trainee')?'Yes':'No')));
+					//.append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() })));
 
 		oTr.append(
 				$('<td>').append($('<input>', { name: "experience", type: 'hidden', value: $('#experience :selected').val() }))

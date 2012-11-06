@@ -12,7 +12,6 @@ public class ConnectionHandler {
 	ConnectionManagement connectionHandler;
 	FieldManagement fm;
 	UserManagement userHandler;
-	//	Connection connection;
 	User emptyUser, currentUser;
 
 	public ConnectionHandler(User currentUser, String[] field, String[] description, String[] experience, String[] traineeRadioButton, String[] mentorRadioButton){
@@ -23,18 +22,11 @@ public class ConnectionHandler {
 		userHandler.addUser(emptyUser);
 		connectionHandler = new ConnectionManagement();
 		fm = new FieldManagement();
-		System.out.println(field.length + "BQFBJQEFKØAFKBNAEKØSDBNAEKØBBNASDLFNABASDFLA>DVNLA>VNADFLVN>L" + field[0]);
 		for(int i = 1; i < field.length; i++){
 			Field FIELD = new Field(field[i], description[i]);
 			fm.addField(FIELD);
-			System.out.println("radioButton : " + traineeRadioButton.length);
-			System.out.println("desc 3: " + description[2]);
-			createConnection(currentUser, field[i], description[i], experience[i], traineeRadioButton[i-1], mentorRadioButton[i-1], emptyUser, FIELD);
-			System.out.println("been here liek... xxx times" + i);
-			System.out.println(field.length);
-			
+			createConnection(currentUser, field[i], description[i], experience[i], traineeRadioButton[i-1], mentorRadioButton[i-1], emptyUser, FIELD);			
 		}
-		System.out.println(++globalCounter);
 	}
 
 	private void createConnection(User user, String field, String description, String experience, String traineeRadioButton, String mentorRadioButton, User emptyUser, Field FIELD){		
