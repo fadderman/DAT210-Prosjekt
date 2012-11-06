@@ -27,9 +27,6 @@ public class CreateNewLanguageServlet extends HttpServlet {
 		chosenLanguageCookie.setMaxAge(60*60*24*365*2); //set its age to 2 years
 		chosenLanguageCookie.setPath("/"); //allow the entire application to access it
 		response.addCookie(chosenLanguageCookie);
-
-	
-//		System.out.println("servlet after cookie: " + language);
 		
 		String url = (String) session.getAttribute("CurrentPage");
 		if (url.equals(null)) {

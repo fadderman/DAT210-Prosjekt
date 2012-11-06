@@ -144,8 +144,8 @@ public class NO extends Lang{
 		}
 		
 		// ============== Search Results Strings ===================
-		private String search_sResult = "Søke resultater";
-		private String search_fResult = "Filter resultater";
+		private String search_sResult = "Søkeresultater";
+		private String search_fResult = "Filtrer resultater";
 		private String search_location = "Lokasjon";
 		private String search_user = "Bruker";
 		private String search_title = "Tittel";

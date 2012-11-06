@@ -1,25 +1,20 @@
 package hibernate;
 
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+
+import org.hibernate.NonUniqueResultException;
 
 import models.*;
 
-
-
-
 public class FieldManagement extends HibernateUtil{
-
-	
 
 	public FieldManagement() {
 		sessionFactory = getSessionFactory();
 	}
 
-	public boolean createField(String title, String description, Subject subject){
-		return addField(new Field(title, description, subject));
+	public boolean createField(String title, String description){
+		return addField(new Field(title, description));
 	}
 
 	public boolean addField(Field field){
@@ -53,6 +48,48 @@ public class FieldManagement extends HibernateUtil{
 		return (Field) fetchSingle(queryString, queryVariable, title);
 	}
 	
+	public List<Field> getByParent(Field parent){
+		List<FieldTree> fetchedTrees = new ArrayList<FieldTree>();
+		List<Field> children = new ArrayList<Field>();
+		String queryString = "from models.FieldTree where parent = :parentID and active = true";
+		String queryVariable = "parentID";
+		fetchedTrees = fetch(queryString, queryVariable, new Integer(parent.getFieldID()));
+		
+		for(Iterator<FieldTree> i = fetchedTrees.iterator(); i.hasNext();){
+			FieldTree current = i.next();
+			Field nextChild = getByID(current.getChild().getFieldID());
+			if(nextChild.isActive()) children.add(nextChild);
+		}
+		return children;
+	}
+	
+	public List<Field> getByChild(Field child){
+		List<FieldTree> fetchedTrees = new ArrayList<FieldTree>();
+		List<Field> parents = new ArrayList<Field>();
+		String queryString = "from models.FieldTree where child = :childID and active = true";
+		String queryVariable = "childID";
+		fetchedTrees = fetch(queryString, queryVariable, new Integer(child.getFieldID()));
+		
+		for(Iterator<FieldTree> i = fetchedTrees.iterator(); i.hasNext();){
+			FieldTree current = i.next();
+			Field nextParent = getByID(current.getParent().getFieldID());
+			if(nextParent.isActive()) 
+				parents.add(nextParent);
+		}
+		return parents;
+	}
+	
+	public FieldTree getSingleBranch(Field child, Field parent){
+		List<FieldTree> list = new ArrayList<FieldTree>();
+		String queryString = "from models.FieldTree where child = :childID and parent = :parentID";
+		String queryVariable1 = "childID";
+		String queryVariable2 = "parentID";
+		list = multiFetch(queryString, queryVariable1, queryVariable2, new Integer(child.getFieldID()), new Integer(parent.getFieldID()));
+		if(list.size() > 1)
+			throw new NonUniqueResultException(list.size());		
+		return list.get(0);
+	}
+	
 	public void updateTitle(Field field, String newTitle){
 		String queryString = "update models.Field set title = :newTitle where id = :id";
 		String queryVariable = "newTitle";
@@ -63,6 +100,17 @@ public class FieldManagement extends HibernateUtil{
 		String queryString = "update models.Field set description = :newDescription where id = :id";
 		String queryVariable = "newDescription";
 		updateSingle(queryString, queryVariable, newDescription, field.getFieldID());
+	}
+	
+	public void buildTree(Field child, Field parent){
+		FieldTree newTreeElement = new FieldTree(child, parent);
+		addToDatabase(newTreeElement);
+	}
+	
+	public void toggleBranchStatus(Field child, Field parent, boolean active){
+		String queryString = "update models.FieldTree set active = :active where child = :id1 and parent = :id2";
+		String queryUpdateVariable = "active";
+		multiCriteriaUpdate(queryString, queryUpdateVariable, active, new Integer(child.getFieldID()), new Integer(parent.getFieldID()));
 	}
 	
 	public List<Connection> fetchConnectionList(Field field){

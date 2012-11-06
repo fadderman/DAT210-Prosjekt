@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,14 +5,16 @@
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 </head>
 <link rel="shortcut icon" href="img/favicon.ico"></link>
+<%@ page import="models.User"%>
+<%User user = (User) session.getAttribute("currentUser");%>
+	
+<%
+	if(session.getAttribute("currentUser") == null) {
+		response.sendRedirect("login.jsp");
+	} else {
+		%>
+
 <body class="contentBox">
-	<%@ page import="models.User"%>
-	<%User user = (User)request.getAttribute("user"); 
-	if(user != null)
-		session.setAttribute("user", user);
-	else
-		user = (User)session.getAttribute("user");
-	%>
 
 	<div class="container">
 <!-- top menu -->
@@ -22,7 +23,7 @@
 
 		<!--left column -->
 		<h4 style="text-shadow: #000000 3px 3px 8px; color: white;"><%=language.getFirsttime_label_personal() %></h4>
-		<form action="index.jsp" method="post">
+		<form action="createNewUser" method="POST" id="register">
 			<div class="well span11" style="box-shadow: 5px 5px 8px -1px #222;">
 				<table class="tableBorderless">
 					<tbody>
@@ -48,8 +49,7 @@
 							<td><label class="pull-right"><%=language.getFirsttime_label_city() %></label></td>
 							<td><input name="city" type="text" value=""></td>
 						</tr>
-						<input type="hidden" name="identifier"
-							value="<%=user.getIdentifierOpenID()%>">
+						<input type="hidden" name="identifier" value="<%=user.getIdentifierOpenID()%>">
 					</tbody>
 				</table>
 			</div>
@@ -93,7 +93,7 @@
 						<th><%=language.getFirsttime_label_experience() %></th>
 					</thead>
 					<tbody>
-						
+
 					</tbody>
 				</table>
 			</div>
@@ -111,7 +111,7 @@
 	</div>
 
 
-	
+
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
@@ -124,15 +124,10 @@
 	$("select").change(showValues);
 	showValues();
 
-	// Funksjon for å legge til
+	// Funksjon for ï¿½ legge til
 	function addCourse() {
 		// ny tabellrad
 		oTr = $('<tr>');
-
-		// legger til en TD til TR med data fra kategoriselecten
-		// oTr.append( 
-		//	$('<td>').append($('<input>', { name: "category", type: 'hidden', value: $('#category :selected').val() }))
-		//			.append($('<span>').append($('#category :selected').text()))); 
 
 		oTr.append(
 				$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field').val() }))
@@ -141,11 +136,6 @@
 		oTr.append(
 				$('<td>').append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() }))
 						.append($('<span>').append($('#addInfo').val())));
-
-		// legger til en TD til TR med data fra fieldselecten
-		//oTr.append(
-		//	$('<td>').append($('<input>', { name: "field", type: 'hidden', value: $('#field :selected').val() }))
-		//			.append($('<span>').append($('#field :selected').text())));
 
 		// Henter inn valgte option for trainee / mentor
 	    var trMen = $("input[name=optionsRadios]:checked");
@@ -157,8 +147,7 @@
 
 		oTr.append(
 			$('<td>').append($('<input>', { name: "trainee", type: 'hidden', value: (trMen.val() == 'Trainee'?'Yes':'No') }))
-					.append($('<span>').append((trMen.val() == 'Trainee')?'Yes':'No'))
-					.append($('<input>', { name: "addInfo", type: 'hidden', value: $('#addInfo').val() })));
+					.append($('<span>').append((trMen.val() == 'Trainee')?'Yes':'No')));
 
 		oTr.append(
 				$('<td>').append($('<input>', { name: "experience", type: 'hidden', value: $('#experience :selected').val() }))
@@ -176,5 +165,8 @@
 	}
 </script>
 
+		<%
+	}
+%>
 
 </html>

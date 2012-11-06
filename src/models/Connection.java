@@ -14,6 +14,9 @@ public class Connection {
 	@Column(name = "connection_id")
 	private int connectionID;
 
+	@Column(name ="description")
+	private String description;
+
 	@Column(name = "active")
 	private boolean active;
 
@@ -35,9 +38,12 @@ public class Connection {
 	@OneToMany(mappedBy = "connection")
 	@OrderBy("timestamp")
 	private List<Comment> comments;
+	
+	@OneToMany(mappedBy = "connection")
+	@OrderBy("requestID")
+	private List<Request> request;
 
-	public Connection(){
-
+	public Connection(){		
 	}
 
 	public Connection(Field field){
@@ -53,9 +59,20 @@ public class Connection {
 		comments = new ArrayList<Comment>();
 	}
 
+	public Connection(User mentor, User trainee, Field field, String description, int difficultyLevel) {
+		this.mentor = mentor;
+		this.trainee = trainee;
+		this.field = field;
+		this.description = description;
+		this.difficultyLevel = difficultyLevel;
+		active = true;
+	}
+
 	public Connection(User mentor, User trainee, Field field, int difficultyLevel) {
 		this(mentor, trainee, field);
 		this.difficultyLevel = difficultyLevel;
+		this.connectionID = connectionID;
+		active = true;
 	}
 
 	public User getMentor() {
