@@ -94,8 +94,6 @@ public class Language {
 		return chosenLanguage.getFirsttime_drop_loreMaster();
 	}
 	
-<<<<<<< HEAD
-=======
 	// ============== Home Strings ===================
 
 	public String getHome_welcome() {
@@ -177,8 +175,6 @@ public class Language {
 	public String getSearch_name() {
 		return chosenLanguage.getSearch_name();
 	}
-
->>>>>>> origin/OpenID
 }
 
 

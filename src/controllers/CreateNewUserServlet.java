@@ -1,10 +1,7 @@
 package controllers;
 
-<<<<<<< HEAD
 import hibernate.ConnectionManagement;
 import hibernate.FieldManagement;
-=======
->>>>>>> origin/OpenID
 import hibernate.UserManagement;
 
 import java.io.IOException;
@@ -47,17 +44,11 @@ public class CreateNewUserServlet extends HttpServlet {
 
 		ConnectionHandler handler;
 		
-<<<<<<< HEAD
 		User user = new User(firstName, lastName, email, city, country, identifier);
 		request.setAttribute("user", user);
 		handler = new ConnectionHandler(user, field, description, experience, traineeRadioButton, mentorRadioButton);
-=======
 		UserManagement userMan = new UserManagement();
-		User user = new User(firstName, lastName, email, city,country, identifier);
 		userMan.addUser(user);
-		
-		String url = "/index.jsp";
->>>>>>> origin/OpenID
 		
 		String url = "/index.jsp";
 

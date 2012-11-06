@@ -43,11 +43,8 @@ public class Field {
 	public Field(String title, String description) {
 		this.title = title;
 		this.description = description;
-<<<<<<< HEAD
-=======
 		this.subject = subject;
 		active=true;
->>>>>>> origin/OpenID
 	}
 	
 	public int getFieldID() {

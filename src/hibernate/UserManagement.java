@@ -31,11 +31,7 @@ public class UserManagement extends HibernateUtil{
 	}
 
 	public User getByID(int id){
-<<<<<<< HEAD
 		String queryString = "from models.User where userID = :id";
-=======
-		String queryString = "from models.User where user_id = :id";
->>>>>>> origin/OpenID
 		String queryVariable = "id";
 		return (User) fetchSingle(queryString, queryVariable, new Integer(id));
 	}

@@ -41,7 +41,7 @@ public class SearchEngine extends HibernateUtil{
 			userManager.addUser(new User("Åge", "Håland", "email", "Ålesund", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Tom", "Nærland", "email", "Nærbø", "Norway", "identifierOpenID"));
 
-			Subject sub = new Subject("titleeee", "descpritionnnn");
+			/*Subject sub = new Subject("titleeee", "descpritionnnn");
 			subMang.addSubject(sub);
 			fieldManagment.addField(new Field("Java", "description", sub));
 			fieldManagment.addField(new Field("JavaScript", "description", sub));
@@ -52,6 +52,7 @@ public class SearchEngine extends HibernateUtil{
 			fieldManagment.addField(new Field("C", "description", sub));
 			fieldManagment.addField(new Field("MySQL", "description", sub));
 			hasBeenRun=true;
+			*/
 		}
 	}
 

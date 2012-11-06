@@ -164,6 +164,9 @@ public class HibernateUtil {
 		return results;
 	}
 
+	/* Unsure if needed
+	 * or just duplicate
+	 
 	protected <T> List<T> multiFetch(String queryString, List<String> queryVariables, List<Object> criterias){
 		List<T> results = null;
 		Session session = sessionFactory.openSession();
@@ -195,7 +198,7 @@ public class HibernateUtil {
 		}
 		return results;
 	}
-
+*/
 
 	protected Object fetchSingle(String queryString, String queryVariable, Object criteria){
 		Object result = null;

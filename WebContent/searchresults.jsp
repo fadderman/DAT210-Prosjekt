@@ -11,7 +11,6 @@
 
 <%
 	ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
-<<<<<<< HEAD
 	if(users != null)
 		session.setAttribute("users", users);
 	else
@@ -24,12 +23,8 @@
 		query = (String)session.getAttribute("query");
 	query = query.trim();
 	pageContext.setAttribute("numResults", users.size());
-=======
 	ArrayList<Field> fields = (ArrayList<Field>) request.getAttribute("fields");
-	String query = request.getParameter("query").trim();
-	
 	pageContext.setAttribute("numResults", users.size() + fields.size());
->>>>>>> origin/OpenID
 	pageContext.setAttribute("emptyQuery", query.isEmpty());
 	pageContext.setAttribute("query", query);
 %>
@@ -85,13 +80,10 @@
 				</div>
 				<div class="span5">
 					<div class="row-fluid">
-<<<<<<< HEAD
 						<div class="span4"><b>Name</b></div>
 						<div class="span8"><a href="viewprofile?id=${user.userID}">${user.firstName} ${user.lastName}</a></div>
-=======
 						<div class="span4"><b><%=language.getSearch_name()%></b></div>
 						<div class="span8"><a href="">${user.firstName} ${user.lastName}</a></div>
->>>>>>> 2d92f4c1e295fe958f1bac46fecab85de9636e8f
 					</div>
 					<div class="row-fluid">
 						<div class="span4"><b><%=language.getSearch_location()%></b></div>
@@ -119,13 +111,10 @@
 				</div>
 				<div class="span11">
 					<div class="row-fluid">
-<<<<<<< HEAD
 						<div class="span2"><b>Title</b></div>
 						<div class="span10"><a href="field?id=${field.fieldID}">${field.title}</a></div>
-=======
 						<div class="span2"><b><%=language.getSearch_title()%></b></div>
 						<div class="span10"><a href="">${field.title}</a></div>
->>>>>>> 2d92f4c1e295fe958f1bac46fecab85de9636e8f
 					</div>
 					<div class="row-fluid">
 						<div class="span2"><b><%=language.getSearch_description()%></b></div>
