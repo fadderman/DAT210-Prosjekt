@@ -33,7 +33,7 @@ public class NO extends Lang{
 	private String firsttime_label_field = "Felt:";
 	private String firsttime_radio_mentor = "Mentor";
 	private String firsttime_radio_trainee = "Trainee";
-	private String firsttime_label_addInfo = "ekstra info:";
+	private String firsttime_label_addInfo = "Ekstra info:";
 	private String firsttime_label_experience = "erfaring:";
 	private String firsttime_drop_novice = "Nybegynner";
 	private String firsttime_drop_intermediate = "Mellomnivå";
@@ -145,14 +145,14 @@ public class NO extends Lang{
 		
 		// ============== Search Results Strings ===================
 		private String search_sResult = "Søkeresultater";
-		private String search_fResult = "Filtrer resultater";
+		private String search_fResult = "Filter resultater";
 		private String search_location = "Lokasjon";
 		private String search_user = "Bruker";
 		private String search_title = "Tittel";
 		private String search_description = "Beskrivelse";
 		private String search_error = "Du skrev ikke noe i søkefeltet, prøv igjen.";
 		private String search_resultStart = "Ditt søk for '";
-		private String search_returned = "' retunerte ";
+		private String search_returned = "' returnerte ";
 		private String search_success = " resultat(er).";
 		private String search_noResults = "' gav ingen resultater, prøv igjen.";
 		private String search_name = "Navn";
