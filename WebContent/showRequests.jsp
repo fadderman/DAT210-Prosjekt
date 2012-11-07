@@ -2,10 +2,10 @@
 <%@ page language="java"
 	import="models.Request,models.Connection,models.*,hibernate.*, java.util.ArrayList, business.connection.RequestHandler"%>
 <%
-	ConnectionManagement connectionManager = new ConnectionManagement();
+	//ConnectionManagement connectionManager = new ConnectionManagement();
 	RequestManagement requestManager = new RequestManagement();
 	UserManagement userManagement = new UserManagement();
-	User currentUser = new User("Thomas", "Hinna", "email", "city", "Norge", "OpenID");
+	/*User currentUser = new User("Thomas", "Hinna", "email", "city", "Norge", "testIdentifier");
 	userManagement.addUser(currentUser);
 	User wannabeTrainee = new User("Nils", "Pettersen", "email", "Oslo", "Norge", "OpenID2");
 	userManagement.addUser(wannabeTrainee);
@@ -22,12 +22,13 @@
 	connectionManager.addConnection(connection2);
 	requestManager.createRequest(currentUser, connection, true);
 	requestManager.createRequest(currentUser, connection2, false);
-
+	*/
+	User currentUser = userManagement.getByOpenId("testIdentifier");
 	ArrayList<Request> requests = (ArrayList<Request>)requestManager.getRequestByUserID(currentUser.getUserID());
 	pageContext.setAttribute("requests", requests);	
 	pageContext.setAttribute("hasRequests", !requests.isEmpty());
 	%>
-<<c:if test="${hasRequests eq true}">
+<c:if test="${hasRequests eq true}">
 
 <div class="container well" style="box-shadow: 5px 5px 8px -1px #222;">
 	<h4>You have request(s)</h4>
