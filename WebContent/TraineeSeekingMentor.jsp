@@ -36,11 +36,11 @@
 				<td><%=user.getLastName()%></td>
 				<td><%=user.getEmail()%></td>
 				<td>
-					<form action="/RegisterConnection" name="select_user_as_mentor" method="post">
+					<form action="RegisterConnection" name="select_user" method="post">
 						<input type="hidden" name="userID" value=<%= user.getUserID() %>>
-						<input type="hidden" name="field" value=<%= field %>>
-						<input type="button" value="connect" class="btn btn-primary btn-small"
-							onclick="connectTrainee();">
+						<input type="hidden" name="field" value="Java 2d">
+						<input type="submit" value="connect" class="btn btn-primary btn-small"
+							onclick="self.close();">
 					</form>
 				</td>
 			</tr>
@@ -53,7 +53,7 @@
 </body>
 <script type="text/javascript">
 	function connectTrainee() {
-		document.getElementById("select_user_as_mentor").submit();
+		document.select_form.submit();
 		window.self.close();
 	}
 </script>

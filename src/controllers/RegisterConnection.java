@@ -5,6 +5,7 @@ import hibernate.FieldManagement;
 import hibernate.UserManagement;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -42,25 +43,26 @@ public class RegisterConnection extends HttpServlet {
 		String cookiename = "user_id";
 		String cookievalue = "";
 
-		for(int i = 0; i < cookies.length; i++){
-			Cookie cookie = cookies[i];
-			if(cookiename.equals(cookie.getName())){
-				cookievalue = cookies[i].getValue();
-			}
-		}
-		int userID = Integer.parseInt(cookievalue);
-
-		int traineeUserID = Integer.parseInt(cookievalue);
-		User trainee = um.getByID(traineeUserID);
+//		for(int i = 0; i < cookies.length; i++){
+//			Cookie cookie = cookies[i];
+//			System.out.println(cookie.getValue());
+//			if(cookiename.equals(cookie.getName())){
+//				cookievalue = cookies[i].getValue();
+//			}
+//		}
+//		int traineeUserID = Integer.parseInt(cookievalue);
+		User trainee = um.getByID(4);
 
 		String formUserID = request.getParameter("userID");
+		System.out.println(formUserID);
 		int mentorUserID = Integer.parseInt(formUserID);
 		User mentor = um.getByID(mentorUserID);
 
 		String fieldstring = request.getParameter("field");
-		Field field = (Field) fm.getByTitle(fieldstring);
-
-		cm.createConnection(mentor, trainee, field);
+		System.out.println(fieldstring);
+		ArrayList<Field> fields = (ArrayList<Field>) fm.getByTitle(fieldstring);
+		Field field = fields.get(0);
+		cm.createOpenTrainee(trainee, field);
 
 	}
 }
