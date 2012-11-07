@@ -5,26 +5,32 @@ import hibernate.FieldManagement;
 import hibernate.UserManagement;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import models.Connection;
 import models.Field;
 import models.User;
 
 public class SeekUsersWithGivenSubject {
 	
 	//skal bruk en metode fra usermanagement for å få en liste med brukere
-	private ArrayList<User> mentors;
+	private ArrayList<User> mentors = new ArrayList<User>();
 	private static FieldManagement fm = new FieldManagement();
 	private static UserManagement um = new UserManagement();
 	private static ConnectionManagement xm = new ConnectionManagement();
 	private static boolean ispopulated = false;
+	private Field foundsubject;
+	private ArrayList<Connection> connections;
 	
 	public SeekUsersWithGivenSubject(String subject) {
 		if(!ispopulated){
 			populateDatabase();
 		}
-		Field foundsubject = fm.getSingleByTitle(subject);
-		mentors = (ArrayList<User>) fm.getMentors(foundsubject);
-		
-			
+		foundsubject = fm.getSingleByTitle(subject);
+		connections = (ArrayList<Connection>) xm.getOpenMentorConnections(foundsubject);
+		for(Connection conn : connections){
+			mentors.add(conn.getMentor());
+		}	
 	}
 	
 	private static void populateDatabase(){
@@ -82,5 +88,21 @@ public class SeekUsersWithGivenSubject {
 	
 	public ArrayList<User> getMentorsWithSbject() {
 		return mentors;
+	}
+	
+	public Field getFoundsubject() {
+		return foundsubject;
+	}
+
+	public void setFoundsubject(Field foundsubject) {
+		this.foundsubject = foundsubject;
+	}
+	
+	public ArrayList<Connection> getConnections() {
+		return connections;
+	}
+
+	public void setConnections(ArrayList<Connection> connections) {
+		this.connections = connections;
 	}
 }
