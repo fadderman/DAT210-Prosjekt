@@ -33,7 +33,7 @@
 	} else {
 		%>
 			<jsp:include page="menu.jsp"/>
-			<div style="margin-top: 50px"></div>
+			<div style="margin-top: 60px"></div>
 			<jsp:include page="showRequests.jsp" />
 			<jsp:include page="<%= include %>"/>
 		<%
