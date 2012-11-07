@@ -5,7 +5,11 @@
 	//ConnectionManagement connectionManager = new ConnectionManagement();
 	RequestManagement requestManager = new RequestManagement();
 	UserManagement userManagement = new UserManagement();
+<<<<<<< HEAD
 	/*User currentUser = new User("Thomas", "Hinna", "email", "city", "Norge", "testIdentifier");
+=======
+	User currentUser = new User("Thomas", "Hinna", "email", "city", "Norge", "testIdentifier");
+>>>>>>> 1f2712cfd6576c7d1ca32e5dfee911b271dff8dd
 	userManagement.addUser(currentUser);
 	User wannabeTrainee = new User("Nils", "Pettersen", "email", "Oslo", "Norge", "OpenID2");
 	userManagement.addUser(wannabeTrainee);
@@ -22,8 +26,13 @@
 	connectionManager.addConnection(connection2);
 	requestManager.createRequest(currentUser, connection, true);
 	requestManager.createRequest(currentUser, connection2, false);
+<<<<<<< HEAD
 	*/
 	User currentUser = userManagement.getByOpenId("testIdentifier");
+=======
+	
+	//User currentUser = userManagement.getByOpenId("testIdentifier");
+>>>>>>> 1f2712cfd6576c7d1ca32e5dfee911b271dff8dd
 	ArrayList<Request> requests = (ArrayList<Request>)requestManager.getRequestByUserID(currentUser.getUserID());
 	pageContext.setAttribute("requests", requests);	
 	pageContext.setAttribute("hasRequests", !requests.isEmpty());
