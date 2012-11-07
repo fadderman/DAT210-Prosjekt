@@ -2,15 +2,14 @@ package business.search.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import hibernate.FieldManagement;
-import hibernate.SubjectManagement;
 import hibernate.UserManagement;
 
 import java.util.ArrayList;
 
+import javax.security.auth.Subject;
+
 import models.Field;
-import models.Subject;
 import models.User;
 
 import org.junit.After;
@@ -20,8 +19,6 @@ import org.junit.Test;
 
 import business.search.SearchEngine;
 import business.search.SearchResults;
-import business.subject.SubjectHandler;
-import business.user.UserHandler;
 
 public class SearchEngineTest {
 
@@ -42,16 +39,13 @@ public class SearchEngineTest {
 //					"email" + i, "location" + i));
 //		}
 		fieldHandler = new FieldManagement();
-		Subject sub = new Subject("title", "description");
-		SubjectManagement subMan = new SubjectManagement();
-		subMan.addSubject(sub);
-		fieldHandler.addField(new Field("Java", "description", sub));
-		fieldHandler.addField(new Field("C++", "description", sub));
-		fieldHandler.addField(new Field("Javascript", "description", sub));
-		fieldHandler.addField(new Field("C#", "description", sub));
-		fieldHandler.addField(new Field("Python", "description", sub));
-		fieldHandler.addField(new Field("Go", "description", sub));
-		fieldHandler.addField(new Field("Ruby", "description", sub));
+		fieldHandler.addField(new Field("Java", "description"));
+		fieldHandler.addField(new Field("C++", "description"));
+		fieldHandler.addField(new Field("Javascript", "description"));
+		fieldHandler.addField(new Field("C#", "description"));
+		fieldHandler.addField(new Field("Python", "description"));
+		fieldHandler.addField(new Field("Go", "description"));
+		fieldHandler.addField(new Field("Ruby", "description"));
 	}
 	
 	
