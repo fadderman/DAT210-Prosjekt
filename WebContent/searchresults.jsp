@@ -61,7 +61,7 @@
 	</div>
 	<c:forEach var="user" items="${users}">
 		<div class="row-fluid">
-			<div class="container well span12">
+			<div class="container well span12" style="box-shadow: 0px 0px 5px -1px #222;">
 				
 				<div class="span1">
 					<div class="row-fluid">
@@ -90,7 +90,7 @@
 	
 	<c:forEach var="field" items="${fields}">
 		<div class="row-fluid">
-			<div class="container well span12">
+			<div class="container well span12" style="box-shadow: 0px 0px 5px -1px #222;">
 				
 				<div class="span1">
 					<div class="row-fluid">
