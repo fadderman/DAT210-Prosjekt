@@ -15,7 +15,6 @@ public class FieldManagementTest {
 
 	private static ConnectionManagement xm;
 	private static FieldManagement fm;
-	private static SubjectManagement sm;
 	private static UserManagement um;
 
 	@BeforeClass
@@ -23,30 +22,22 @@ public class FieldManagementTest {
 		
 		xm = new ConnectionManagement();
 		fm = new FieldManagement();
-		sm = new SubjectManagement();
+
 		um = new UserManagement();
-		
-		sm.createSubject("Programming", "Programming related");
-		sm.createSubject("Non-programming", "not programming related");
-		
+
 		um.createUser("John", "First", "johnfirst@gmail.com", "Here", "It exits on Earth", "numero uno");
 		um.createUser("Bob", "Second", "bob.second@outlook.com", "Not far away", "Ground", "numero dos");
 		um.createUser("Bob", "Last", "phil@last.com", "Here", "It exits on Earth", "numero tres");
 		um.createUser("Some", "Guy", "someguy@somewhere.com", "Somewhere", "Place", "numero quatro");
-	}
-	
-	@Before
-	public void setUp(){
 		
-	}
-
-	@Test
-	public void testCreateField() {
-		assertEquals(fm.createField("Java", "This is Java", sm.getSingleByTitle("Programming")), true);
-		assertEquals(fm.createField("C++", "C plus plus", sm.getSingleByTitle("Programming")), true);
-		assertEquals(fm.createField("Google tips", "Google like a pro", sm.getSingleByTitle("Non-programming")), true);
-		assertEquals(fm.createField("Bathroom Wall", "How to copy code from the internet", sm.getSingleByTitle("Non-programming")), true);
-		assertEquals(fm.createField("COBOL", "Old stuff for old ppl", sm.getSingleByTitle("Programming")), true);
+		fm.createField("Java", "This is Java");
+		fm.createField("C++", "C plus plus");
+		fm.createField("Google tips", "Google like a pro");
+		fm.createField("Bathroom Wall", "How to copy code from the internet");
+		fm.createField("COBOL", "Old stuff for old ppl");
+		
+		fm.createField("Programming", "Parent field for programming related fields");
+		fm.createField("Non-programming", "parent subject for fields not related to programming directly");
 		
 		xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Java"));
 		xm.createOpenMentor(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Java"));
@@ -57,6 +48,18 @@ public class FieldManagementTest {
 		xm.createConnection(um.getByEmail("someguy@somewhere.com"), um.getByEmail("bob.secon@outlook.com"), fm.getSingleByTitle("COBOL"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Google tips"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Bathroom Wall"));
+		
+		fm.buildTree(fm.getSingleByTitle("Java"), fm.getSingleByTitle("Programming"));
+		fm.buildTree(fm.getSingleByTitle("C++"), fm.getSingleByTitle("Programming"));
+		fm.buildTree(fm.getSingleByTitle("COBOL"), fm.getSingleByTitle("Programming"));
+		fm.buildTree(fm.getSingleByTitle("Google tips"), fm.getSingleByTitle("Non-programming"));
+		fm.buildTree(fm.getSingleByTitle("Bathroom Wall"), fm.getSingleByTitle("Non-programming"));
+		fm.buildTree(fm.getSingleByTitle("Bathroom Wall"), fm.getSingleByTitle("Programming"));
+	}
+	
+	@Before
+	public void setUp(){
+		
 	}
 	
 	@Test
@@ -65,6 +68,7 @@ public class FieldManagementTest {
 		for(Iterator<Field> i = list.iterator(); i.hasNext();){
 			assertEquals(i.next().getClass(), Field.class);
 		}
+		assertEquals(list.size(), 7);
 	}
 	
 	@Test
@@ -111,6 +115,43 @@ public class FieldManagementTest {
 		fm.updateDescription(list.get(0), "Pro Googling tips for n00bs");
 		
 		assertEquals(fm.getSingleByTitle("Google tips").getDescription(), "Pro Googling tips for n00bs");
+	}
+	
+	@Test
+	public void testGetFieldByParent(){
+		List<Field> list = fm.getByParent(fm.getSingleByTitle("Programming"));
+		for(Iterator<Field> i = list.iterator(); i.hasNext();){
+			Field current = i.next();
+			assertEquals(current.getClass(), Field.class);
+		}
+		assertEquals(list.size(), 2);
+	}
+	
+	@Test
+	public void testGetFieldByChild(){
+		fm.changeStatus(fm.getByID(4), true);
+		List<Field> list = fm.getByChild(fm.getSingleByTitle("Bathroom Wall"));
+		for(Iterator<Field> i = list.iterator(); i.hasNext();){
+			Field current = i.next();
+			System.out.println(current.getTitle());
+			assertEquals(current.getClass(), Field.class);
+		}
+		assertEquals(list.size(), 2);
+	}
+	
+	@Test
+	public void testGetSingleBranch(){
+		FieldTree result = fm.getSingleBranch(fm.getSingleByTitle("C--"), fm.getSingleByTitle("Programming"));
+		assertEquals(result.getClass(), FieldTree.class);
+		System.out.println("FieldTree id: " + result.getFieldTreeID() + " connects " + result.getParent().getTitle() + " as a parent and " + result.getChild().getTitle() + " as a child.");
+		assertEquals(result.getFieldTreeID(), 2);
+	}
+	
+	@Test
+	public void testToggleBranchStatus(){
+		fm.toggleBranchStatus(fm.getSingleByTitle("C--"), fm.getSingleByTitle("Programming"), false);
+		FieldTree branch = fm.getSingleBranch(fm.getSingleByTitle("C--"), fm.getSingleByTitle("Programming"));
+		assertEquals(branch.isActive(), false);
 	}
 	
 	@Test

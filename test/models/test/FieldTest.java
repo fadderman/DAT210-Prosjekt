@@ -2,7 +2,6 @@ package models.test;
 
 import static org.junit.Assert.*;
 
-import models.Subject;
 import models.Field;
 
 import org.junit.After;
@@ -36,12 +35,4 @@ public class FieldTest {
 		field.setDescription(description);
 		assertEquals(description, field.getDescription());
 	}
-	
-	@Test
-	public void testCategory() {
-		Subject subject = new Subject();
-		field.setSubject(subject);
-		assertEquals(subject, field.getSubject());
-	}
-
 }

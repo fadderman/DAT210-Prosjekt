@@ -15,7 +15,6 @@ public class UserManagementTest {
 	static CommentManagement cm;
 	static ConnectionManagement xm;
 	static FieldManagement fm;
-	static SubjectManagement sm;
 	static UserManagement um;
 	
 	@BeforeClass
@@ -24,14 +23,13 @@ public class UserManagementTest {
 		cm = new CommentManagement();
 		xm = new ConnectionManagement();
 		fm = new FieldManagement();
-		sm = new SubjectManagement();
 		um = new UserManagement();
 		
-		fm.createField("Java", "This is Java", sm.getSingleByTitle("Programming"));
-		fm.createField("C++", "C plus plus", sm.getSingleByTitle("Programming"));
-		fm.createField("Google tips", "Google like a pro", sm.getSingleByTitle("Non-programming"));
-		fm.createField("Bathroom Wall", "How to copy code from the internet", sm.getSingleByTitle("Non-programming"));
-		fm.createField("COBOL", "Old stuff for old ppl", sm.getSingleByTitle("Programming"));
+		fm.createField("Java", "This is Java");
+		fm.createField("C++", "C plus plus");
+		fm.createField("Google tips", "Google like a pro");
+		fm.createField("Bathroom Wall", "How to copy code from the internet");
+		fm.createField("COBOL", "Old stuff for old ppl");
 		
 		um.createUser("John", "First", "johnfirst@gmail.com", "Here", "It exits on Earth", "numero uno");
 		um.createUser("Bob", "Second", "bob.second@outlook.com", "Not far away", "Ground", "numero dos");
@@ -90,8 +88,8 @@ public class UserManagementTest {
 	
 	@Test
 	public void testGetByOpenID(){
-		List<User> list = (List<User>) um.getByOpenId("numero tres");
-		assertEquals(list.get(0).getFullName(), "Bob Last");
+		User user = um.getByOpenId("numero tres");
+		assertEquals(user.getFullName(), "Bob Last");
 	}
 	
 	@Test
