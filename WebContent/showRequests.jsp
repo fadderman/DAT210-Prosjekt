@@ -30,44 +30,44 @@
 <<c:if test="${hasRequests eq true}">
 
 <div class="container well" style="box-shadow: 5px 5px 8px -1px #222;">
-	<legend>You have request(s)</legend>
-	
+	<h4>You have request(s)</h4>
+	<table class="table table-hover">
 	<c:forEach var="request" items="${requests}" varStatus="table">
 		<c:choose>
 			<c:when test="${request.traineeRequest eq true}">
 
-				<div class="row-fluid" id="${table.index}">
-					<div class="span6">${request.connection.trainee.firstName}
-						${request.connection.trainee.lastName} wants to be your trainee in
-						${request.connection.field.title}</div>
-					<div class="span4">
-						
-							<button class="btn btn-success"
-								onclick="answerYes('${table.index}','${request.requestID}')">Accept</button>
-							<button class="btn btn-danger" onclick="answerNo('${table.index}','${request.requestID}')">Deny</button>
-						
-					</div>
-
-				</div>
+				<tr id="${table.index}">
+						<td class="span6">${request.connection.trainee.firstName}
+							${request.connection.trainee.lastName} wants to be your trainee in
+							${request.connection.field.title}
+						</td>
+						<td class="span4">
+								<button class="btn btn-success"
+									onclick="answerYes('${table.index}','${request.requestID}')">Accept</button>
+								<button class="btn btn-danger" onclick="answerNo('${table.index}','${request.requestID}')">Deny</button>
+							
+						</td>
+					</tr>
 
 			</c:when>
 			<c:when test="${request.traineeRequest eq false}">
-				<div class="row-fluid" id="${table.index}">
-					<div class="span6">${request.connection.mentor.firstName}
-						${request.connection.trainee.lastName} wants to be your mentor in
-						${request.connection.field.title}</div>
-					<div class="span4">
+				<tr id="${table.index}">
+					<td class="span6">${request.connection.mentor.firstName}
+						${request.connection.mentor.lastName} wants to be your mentor in
+						${request.connection.field.title}</td>
+					<td class="span4">
 					<!-- 	<div class="btn-group">     -->
 							<button class="btn btn-success"
 								onclick="answerYes('${table.index}','${request.requestID}')">Accept</button>
 							<button class="btn btn-danger" onclick="answerNo('${table.index}','${request.requestID}')">Deny</button>
 						
-					</div>
-				</div>
-
+					</td>
+				</tr>			
+		
 			</c:when>
 		</c:choose>
 	</c:forEach>
+	</table>
 </div>
 </c:if>
 <script>
