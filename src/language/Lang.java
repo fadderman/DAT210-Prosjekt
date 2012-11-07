@@ -30,6 +30,7 @@ public abstract class Lang {
 	public abstract String getHome_welcome();
 	public abstract String getHome_please_search();
 	public abstract String getMenu_home();
+	public abstract String getMenu_logout();
 	public abstract String getMenu_find();
 	public abstract String getMenu_profile();
 	public abstract String getMenu_settings();

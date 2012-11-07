@@ -30,7 +30,7 @@ public class NO extends Lang{
 	private String firsttime_label_city = "By:";
 	private String firsttime_label_connections = "Koblinger";
 	private String firsttime_label_subject = "Emne:";
-	private String firsttime_label_field = "Felt:";
+	private String firsttime_label_field = "Felt";
 	private String firsttime_radio_mentor = "Mentor";
 	private String firsttime_radio_trainee = "Trainee";
 	private String firsttime_label_addInfo = "Ekstra info:";
@@ -120,6 +120,11 @@ public class NO extends Lang{
 			private String menu_profile = "Profil";
 			private String menu_settings = "Instillinger";
 			private String menu_search = "Søk";
+			private String menu_logout = "Logg ut";
+			
+		public String getMenu_logout() {
+			return menu_logout;
+		}
 			
 		public String getMenu_home() {
 			return menu_home;

@@ -29,7 +29,7 @@ public class EN extends Lang{
 	private String firsttime_label_city = "City:";
 	private String firsttime_label_connections = "Connections";
 	private String firsttime_label_subject = "Subject:";
-	private String firsttime_label_field = "Field:";
+	private String firsttime_label_field = "Field";
 	private String firsttime_radio_mentor = "Mentor";
 	private String firsttime_radio_trainee = "Trainee";
 	private String firsttime_label_addInfo = "Additional info:";
@@ -120,6 +120,11 @@ public class EN extends Lang{
 		private String menu_profile = "Profile";
 		private String menu_settings = "Settings";
 		private String menu_search = "Search";
+		private String menu_logout = "Log out";
+		
+	public String getMenu_logout() {
+		return menu_logout;
+	}
 		
 	public String getMenu_home() {
 		return menu_home;

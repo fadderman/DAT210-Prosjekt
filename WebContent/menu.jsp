@@ -23,7 +23,7 @@
 					</li>
 					<li class="${activeMenuItem.profile}"><a href="profile"><i class="icon-user"></i> <%= language.getMenu_profile() %></a></li>
 					<li class="${activeMenuItem.settings}"><a href="settings"><i class="icon-cog"></i> <%= language.getMenu_settings() %></a></li>
-					<li><a  href="logout"><i class="icon-off"></i> Log out</a></li>
+					<li><a  href="logout"><i class="icon-off"></i> <%= language.getMenu_logout() %></a></li>
 					<li>
 						<!-- SEARCH -->
 						<form action="search" method="get" class="navbar-form form-search">

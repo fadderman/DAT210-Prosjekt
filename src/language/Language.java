@@ -105,7 +105,11 @@ public class Language {
 	}
 	
 	// ============== Menu Strings ===================
-				
+			
+	public String getMenu_logout() {
+		return chosenLanguage.getMenu_logout();
+	}
+	
 	public String getMenu_home() {
 		return chosenLanguage.getMenu_home();
 	}
