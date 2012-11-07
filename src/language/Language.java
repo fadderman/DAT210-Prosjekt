@@ -94,6 +94,92 @@ public class Language {
 		return chosenLanguage.getFirsttime_drop_loreMaster();
 	}
 	
+	// ============== Home Strings ===================
+
+	public String getHome_welcome() {
+		return chosenLanguage.getHome_welcome();
+	}
+
+	public String getHome_please_search() {
+		return chosenLanguage.getHome_please_search();
+	}
+	
+	// ============== Menu Strings ===================
+			
+	public String getMenu_logout() {
+		return chosenLanguage.getMenu_logout();
+	}
+	
+	public String getMenu_home() {
+		return chosenLanguage.getMenu_home();
+	}
+
+	public String getMenu_find() {
+		return chosenLanguage.getMenu_find();
+	}
+
+	public String getMenu_profile() {
+
+		return chosenLanguage.getMenu_profile();
+	}
+
+	public String getMenu_settings() {
+
+		return chosenLanguage.getMenu_settings();
+	}
+
+	public String getMenu_search() {
+		return chosenLanguage.getMenu_search();
+	}
+	
+	// ============== Search Results Strings ===================
+
+	public String getSearch_sResult() {
+		return chosenLanguage.getSearch_sResult();
+	}
+	public String getSearch_fResult() {
+		return chosenLanguage.getSearch_fResult();
+	}
+
+	public String getSearch_location() {
+		return chosenLanguage.getSearch_location();
+	}
+
+	public String getSearch_user() {
+		return chosenLanguage.getSearch_user();
+	}
+
+	public String getSearch_title() {
+		return chosenLanguage.getSearch_title();
+	}
+
+	public String getSearch_description() {
+		return chosenLanguage.getSearch_description();
+	}
+
+	public String getSearch_error() {
+		return chosenLanguage.getSearch_error();
+	}
+
+	public String getSearch_success() {
+		return chosenLanguage.getSearch_success();
+	}
+
+	public String getSearch_resultStart() {
+		return chosenLanguage.getSearch_resultStart();
+	}
+
+	public String getSearch_noResults() {
+		return chosenLanguage.getSearch_noResults();
+	}
+
+	public String getSearch_returned() {
+		return chosenLanguage.getSearch_returned();
+	}
+	public String getSearch_name() {
+		return chosenLanguage.getSearch_name();
+	}
+
 }
 
 
