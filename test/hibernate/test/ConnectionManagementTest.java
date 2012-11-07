@@ -38,33 +38,22 @@ public class ConnectionManagementTest {
 		um.createUser("Bob", "Last", "phil@last.com", "Here", "It exits on Earth", "numero tres");
 		um.createUser("Some", "Guy", "someguy@somewhere.com", "Somewhere", "Place", "numero quatro");
 		
+		xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Java"));
+		xm.createOpenMentor(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Java"));
+		xm.createOpenMentor(um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Google tips"));
+		
+		xm.createOpenTrainee(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("C++"));
+		xm.createOpenTrainee(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Bathroom Wall"));
+		xm.createOpenTrainee(um.getByEmail("phil@last.com"), fm.getSingleByTitle("COBOL"));
+		
+		xm.createConnection(um.getByEmail("someguy@somewhere.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("COBOL"));
+		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Google tips"));
+		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Bathroom Wall"));
 	}
 	
 	@Before
 	public void setUp(){
 		
-	}
-
-
-	@Test
-	public void testCreateOpenMentor() {
-		assertEquals(xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Java")), true);
-		assertEquals(xm.createOpenMentor(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Java")), true);
-		assertEquals(xm.createOpenMentor(um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Google tips")), true);
-	}
-	
-	@Test
-	public void testCreateOpenTrainee() {
-		assertEquals(xm.createOpenTrainee(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("C++")), true);
-		assertEquals(xm.createOpenTrainee(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Bathroom Wall")), true);
-		assertEquals(xm.createOpenTrainee(um.getByEmail("phil@last.com"), fm.getSingleByTitle("COBOL")), true);
-	}
-	
-	@Test
-	public void testCreateConnection(){
-		assertEquals(xm.createConnection(um.getByEmail("someguy@somewhere.com"), um.getByEmail("bob.secon@outlook.com"), fm.getSingleByTitle("COBOL")), true);
-		assertEquals(xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Google tips")), true);
-		assertEquals(xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Bathroom Wall")), true);
 	}
 	
 	@Test
@@ -161,6 +150,18 @@ public class ConnectionManagementTest {
 		
 		connection = xm.getByField(fm.getSingleByTitle("Google Tips")).get(0);
 		assertEquals(connection.getDifficultyLevel(), 2);
+	}
+	
+	@Test
+	public void testGetOpenTraineeConnections(){
+		List<Connection> list = xm.getOpenTraineeConnections(fm.getSingleByTitle("C++"));
+		assertEquals(list.get(0).getTrainee().getEmail(), "johnfirst@gmail.com");
+	}
+	
+	@Test
+	public void testGetOpenMentorConnections(){
+		List<Connection> list = xm.getOpenMentorConnections(fm.getSingleByTitle("Java"));
+		assertEquals(list.size(), 2);
 	}
 	
 	//TODO testGetCommentList

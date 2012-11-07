@@ -2,12 +2,10 @@ package business;
 
 import hibernate.ConnectionManagement;
 import hibernate.FieldManagement;
-import hibernate.SubjectManagement;
 import hibernate.UserManagement;
 
 import java.util.ArrayList;
 import models.Field;
-import models.Subject;
 import models.User;
 
 public class SeekUsersWithGivenSubject {
@@ -15,7 +13,6 @@ public class SeekUsersWithGivenSubject {
 	//skal bruk en metode fra usermanagement for å få en liste med brukere
 	private ArrayList<User> mentors;
 	private static FieldManagement fm = new FieldManagement();
-	private static SubjectManagement cm = new SubjectManagement();
 	private static UserManagement um = new UserManagement();
 	private static ConnectionManagement xm = new ConnectionManagement();
 	private static boolean ispopulated = false;
@@ -32,25 +29,13 @@ public class SeekUsersWithGivenSubject {
 	
 	private static void populateDatabase(){
 		
+		Field subJava3D = new Field("Java 3D", "Old 3D graphics API for n00bs");
+		Field subJava2D = new Field("Java 2D", "2D Java graphics API");
 		
-		Subject catJava = new Subject("Java", "THIS IS JAVAAAAA");
-		Subject catCsharp = new Subject("C#", "Kinda like Java but not really");
-		Subject catCplus = new Subject("C++", "Cplusplus");
-		Subject catJavaScript = new Subject("JavaScript", "Programming language for adding dynamic elements in websites");
-		Subject catPython = new Subject("Python", "Programming language, often used as scripting language");
-		Subject catPerl = new Subject("Perl", "Programming language");
-		
-		cm.addSubject(catJava);
-		cm.addSubject(catCsharp);
-		cm.addSubject(catCplus);
-		
-		Field subJava3D = new Field("Java 3D", "Old 3D graphics API for n00bs", cm.getByTitle("Java").get(0));
-		Field subJava2D = new Field("Java 2D", "2D Java graphics API", cm.getByTitle("Java").get(0));
-		
-		Field subCSh1 = new Field("C# field 1", "C# for everybody", cm.getByTitle("C#").get(0));
-		Field subCSh2 = new Field("C#", "C# for extreme", cm.getByTitle("C#").get(0));
-		Field subCSh3 = new Field("C#","C# General",cm.getByTitle("C#").get(0));
-		Field subCpluss = new Field("C++","C++ General",cm.getByTitle("C++").get(0));
+		Field subCSh1 = new Field("C# field 1", "C# for everybody");
+		Field subCSh2 = new Field("C#", "C# for extreme");
+		Field subCSh3 = new Field("C#","C# General");
+		Field subCpluss = new Field("C++","C++ General");
 		
 		fm.addField(subJava3D);
 		fm.addField(subJava2D);
