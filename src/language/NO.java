@@ -24,7 +24,7 @@ public class NO extends Lang{
 	// ============== FirstTimeLogIn Strings ===================
 	private String firsttime_label_personal = "Personal";
 	private String firsttime_label_fName = "Fornavn";
-	private String firsttime_label_lName = "Etternavn";
+	private String firsttime_label_lName = "Etternavn:";
 	private String firsttime_label_email = "Epost";
 	private String firsttime_label_country = "Land";
 	private String firsttime_label_city = "By";
@@ -120,6 +120,11 @@ public class NO extends Lang{
 			private String menu_profile = "Profil";
 			private String menu_settings = "Instillinger";
 			private String menu_search = "Søk";
+			private String menu_logout = "Logg ut";
+			
+		public String getMenu_logout() {
+			return menu_logout;
+		}
 			
 		public String getMenu_home() {
 			return menu_home;
@@ -145,14 +150,14 @@ public class NO extends Lang{
 		
 		// ============== Search Results Strings ===================
 		private String search_sResult = "Søkeresultater";
-		private String search_fResult = "Filtrer resultater";
+		private String search_fResult = "Filter resultater";
 		private String search_location = "Lokasjon";
 		private String search_user = "Bruker";
 		private String search_title = "Tittel";
 		private String search_description = "Beskrivelse";
 		private String search_error = "Du skrev ikke noe i søkefeltet, prøv igjen.";
 		private String search_resultStart = "Ditt søk for '";
-		private String search_returned = "' retunerte ";
+		private String search_returned = "' returnerte ";
 		private String search_success = " resultat(er).";
 		private String search_noResults = "' gav ingen resultater, prøv igjen.";
 		private String search_name = "Navn";
