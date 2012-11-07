@@ -76,6 +76,18 @@ public class ConnectionManagement extends HibernateUtil{
 		return fetch(queryString, queryVariable, new Integer(user.getUserID()));
 	}
 	
+	public List<Connection> getOpenTraineeConnections(Field field){
+		String queryString = "from models.Connection where field = :fieldID and mentor = null";
+		String queryVariable = "fieldID";
+		return fetch(queryString, queryVariable, new Integer(field.getFieldID()));
+	}
+	
+	public List<Connection> getOpenMentorConnections(Field field){
+		String queryString = "from models.Connection where field = :fieldID and trainee = null";
+		String queryVariable = "fieldID";
+		return fetch(queryString, queryVariable, new Integer(field.getFieldID()));
+	}
+	
 	public void updateDifficultyLevel(Connection connection, int difficultyLevel){
 		String queryString = "update models.Connection set difficultyLevel = :difficultyLevel where id = :id";
 		String queryVariable = "difficultyLevel";
