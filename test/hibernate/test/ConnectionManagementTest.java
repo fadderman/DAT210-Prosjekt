@@ -41,6 +41,7 @@ public class ConnectionManagementTest {
 		xm.createOpenMentor(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Java"));
 		xm.createOpenMentor(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Java"));
 		xm.createOpenMentor(um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Google tips"));
+<<<<<<< HEAD
 		
 		xm.createOpenTrainee(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("C++"));
 		xm.createOpenTrainee(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Bathroom Wall"));
@@ -49,6 +50,14 @@ public class ConnectionManagementTest {
 		xm.createConnection(um.getByEmail("someguy@somewhere.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("COBOL"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Google tips"));
 		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Bathroom Wall"));
+=======
+		xm.createOpenTrainee(um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("C++"));
+		xm.createOpenTrainee(um.getByEmail("someguy@somewhere.com"), fm.getSingleByTitle("Bathroom Wall"));
+		xm.createOpenTrainee(um.getByEmail("phil@last.com"), fm.getSingleByTitle("COBOL"));
+		xm.createConnection(um.getByEmail("someguy@somewhere.com"), um.getByEmail("bob.secon@outlook.com"), fm.getSingleByTitle("COBOL"));
+		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("johnfirst@gmail.com"), fm.getSingleByTitle("Google tips"));
+		xm.createConnection(um.getByEmail("phil@last.com"), um.getByEmail("bob.second@outlook.com"), fm.getSingleByTitle("Bathroom Wall"));		
+>>>>>>> Added test on ConnectionManagement (from Request)
 	}
 	
 	@Before
@@ -80,7 +89,7 @@ public class ConnectionManagementTest {
 			Connection current = i.next();
 			assertEquals(current.getClass(), Connection.class);
 		}
-		assertEquals(list.size(), 7);
+		assertEquals(list.size(), 9);
 	}
 	
 	@Test
@@ -153,6 +162,7 @@ public class ConnectionManagementTest {
 	}
 	
 	@Test
+<<<<<<< HEAD
 	public void testGetOpenTraineeConnections(){
 		List<Connection> list = xm.getOpenTraineeConnections(fm.getSingleByTitle("C++"));
 		assertEquals(list.get(0).getTrainee().getEmail(), "johnfirst@gmail.com");
@@ -165,4 +175,23 @@ public class ConnectionManagementTest {
 	}
 	
 	//TODO testGetCommentList
+=======
+	public void testAddMentorToConnection(){
+		User mentor = um.getByEmail("johnfirst@gmail.com");
+		Connection connection = xm.getByMentor(mentor).get(0);
+		xm.addMentorToConnection(connection, mentor);
+		assertEquals(mentor.getUserID(), xm.getByMentor(um.getByEmail("johnfirst@gmail.com")).get(0).getMentor().getUserID());
+	}
+	
+	@Test
+	public void testAddTraineeToConnection(){
+		User trainee = um.getByEmail("johnfirst@gmail.com");
+		Connection connection = xm.getByTrainee(trainee).get(0);
+		xm.addTraineeToConnection(connection, trainee);
+		assertEquals(trainee.getUserID(), xm.getByTrainee(um.getByEmail("johnfirst@gmail.com")).get(0).getTrainee().getUserID());
+		}
+	
+	
+	
+>>>>>>> Added test on ConnectionManagement (from Request)
 }
