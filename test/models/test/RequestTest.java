@@ -25,7 +25,6 @@ public class RequestTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
 	}
 	
 
