@@ -114,4 +114,13 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+  <display-name>RegisterConnection</display-name>
+  <servlet-name>RegisterConnection</servlet-name>
+  <servlet-class>controllers.RegisterConnection</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>RegisterConnection</servlet-name>
+  <url-pattern>/RegisterConnection</url-pattern>
+  </servlet-mapping>
 </web-app>
