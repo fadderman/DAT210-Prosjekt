@@ -16,8 +16,9 @@
 		MentorsWithSubject m = new MentorsWithSubject(field);
 		ArrayList<User> mentors = m.getMentorsWithSubject();
 	%>
-	<h1 id="Title" style="text-align: center;" class="page-header">List
-		of Mentor</h1>
+	<h2 id="Title" style="text-align: center;" class="page-header">List
+		of Mentor<br>for <%= field %></h2>
+		
 	<div class="well">
 
 		<table id="ListofMentor" class="table table-hover table-condensed">

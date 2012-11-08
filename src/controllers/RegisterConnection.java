@@ -51,6 +51,7 @@ public class RegisterConnection extends HttpServlet {
 //			}
 //		}
 //		int traineeUserID = Integer.parseInt(cookievalue);
+//		User trainee = (User) request.getAttribute("user");
 		User trainee = um.getByID(4);
 
 		String formUserID = request.getParameter("userID");
