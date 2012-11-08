@@ -13,12 +13,12 @@
 <body class="container">
 	<%
 		String field = "Java 2d";
+		pageContext.setAttribute("field", field);
 		MentorsWithSubject m = new MentorsWithSubject(field);
 		ArrayList<User> mentors = m.getMentorsWithSubject();
 	%>
-	<h2 id="Title" style="text-align: center;" class="page-header">List
-		of Mentor<br>for <%= field %></h2>
-		
+	<h1 id="Title" style="text-align: center;" class="page-header">List
+		of Mentor</h1>
 	<div class="well">
 
 		<table id="ListofMentor" class="table table-hover table-condensed">
@@ -38,9 +38,9 @@
 				<td><%=user.getEmail()%></td>
 				<td>
 					<form action="RegisterConnection" name="select_user" method="post">
-						<input type="hidden" name="userID" value=<%= user.getUserID() %>>
-						<input type="hidden" name="field" value="Java 2d">
-						<input type="submit" value="connect" class="btn btn-primary btn-small"
+						<input type="hidden" name="userID" value=<%=user.getUserID()%>>
+						<input type="hidden" name="field" value="${field}"> <input
+							type="submit" value="connect" class="btn btn-primary btn-small"
 							onclick="self.close();">
 					</form>
 				</td>
