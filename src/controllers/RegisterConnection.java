@@ -44,22 +44,12 @@ public class RegisterConnection extends HttpServlet {
 	}
 
 	private static void createConnectionWithMentor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Cookie[] cookies = request.getCookies();
-		String cookiename = "user_id";
-		String cookievalue = "";
 		HttpSession session = request.getSession();
 		
-//		for(int i = 0; i < cookies.length; i++){
-//			Cookie cookie = cookies[i];
-//			System.out.println(cookie.getValue());
-//			if(cookiename.equals(cookie.getName())){
-//				cookievalue = cookies[i].getValue();
-//			}
-//		}
-//		int traineeUserID = Integer.parseInt(cookievalue);
 		User trainee = (User) session.getAttribute("currentUser");
 		trainee = new User("nils", "pet", "enplass", "enaenplass","", "iD");
 		um.addUser(trainee);
+
 		String formUserID = request.getParameter("userID");
 		System.out.println(formUserID);
 		int mentorUserID = Integer.parseInt(formUserID);

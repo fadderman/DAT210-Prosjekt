@@ -123,4 +123,6 @@
   <servlet-name>RegisterConnection</servlet-name>
   <url-pattern>/RegisterConnection</url-pattern>
   </servlet-mapping>
+  <!-- <listener> <listener-class>hibernate.HibernateListener</listener-class> 
+		</listener> -->
 </web-app>
