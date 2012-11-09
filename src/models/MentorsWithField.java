@@ -1,18 +1,16 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import business.SeekUsersWithGivenSubject;
 
-public class MentorsWithSubject {
+public class MentorsWithField{
 	private ArrayList<User> mentorsWithSubject;
 	
-	public MentorsWithSubject(){
-		
+	public MentorsWithField(){
 	}
 	
-	public MentorsWithSubject(String subject){
+	public MentorsWithField(String subject){
 		mentorsWithSubject = new SeekUsersWithGivenSubject(subject).getMentorsWithSbject();
 	}
 

@@ -14,7 +14,8 @@ import models.User;
 public class SeekUsersWithGivenSubject {
 	
 	//skal bruk en metode fra usermanagement for å få en liste med brukere
-	private ArrayList<User> mentors = new ArrayList<User>();
+	private ArrayList<User> mentors;
+	private ArrayList<User> trainee;
 	private static FieldManagement fm = new FieldManagement();
 	private static UserManagement um = new UserManagement();
 	private static ConnectionManagement xm = new ConnectionManagement();
@@ -28,11 +29,12 @@ public class SeekUsersWithGivenSubject {
 		}
 		foundsubject = fm.getSingleByTitle(subject);
 		connections = (ArrayList<Connection>) xm.getOpenMentorConnections(foundsubject);
-		for(Connection conn : connections){
-			mentors.add(conn.getMentor());
-		}	
+		mentors = new ArrayList<User>();
+		trainee = new ArrayList<User>();
 	}
 	
+	
+
 	private static void populateDatabase(){
 		
 		Field subJava3D = new Field("Java 3D", "Old 3D graphics API for n00bs");
@@ -87,7 +89,22 @@ public class SeekUsersWithGivenSubject {
 	}
 	
 	public ArrayList<User> getMentorsWithSbject() {
+		for(Connection conn : connections){
+			mentors.add(conn.getMentor());
+		}
 		return mentors;
+	}
+	
+	public ArrayList<User> getTrainee() {
+		for(Connection conn : connections){
+			trainee.add(conn.getTrainee());
+		}
+		
+		return trainee;
+	}
+
+	public void setTrainee(ArrayList<User> trainee) {
+		this.trainee = trainee;
 	}
 	
 	public Field getFoundsubject() {
@@ -105,4 +122,6 @@ public class SeekUsersWithGivenSubject {
 	public void setConnections(ArrayList<Connection> connections) {
 		this.connections = connections;
 	}
+	
+	
 }

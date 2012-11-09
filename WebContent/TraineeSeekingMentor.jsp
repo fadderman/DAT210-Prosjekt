@@ -1,4 +1,4 @@
-<%@page import="models.MentorsWithSubject"%>
+<%@page import="models.MentorsWithField"%>
 <%@page import="models.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" pageEncoding="UTF-8" session="false"%>
@@ -13,9 +13,10 @@
 <body class="container">
 	<%
 		String field = "Java 2d";
-		pageContext.setAttribute("field", field);
-		MentorsWithSubject m = new MentorsWithSubject(field);
-		ArrayList<User> mentors = m.getMentorsWithSubject();
+			pageContext.setAttribute("field", field);
+			MentorsWithField m = new MentorsWithField(field);
+			ArrayList<User> mentors = m.getMentorsWithSubject();
+	
 	%>
 	<h1 id="Title" style="text-align: center;" class="page-header">List
 		of Mentor</h1>
