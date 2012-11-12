@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +25,8 @@
 	}
 </script>
 <body>
-<button onClick="JavaScript:newWindow('TraineeSeekingMentor.jsp')">Open Popup Window</button>
-<button onClick="JavaScript:closeWindow();">Close Popup Window</button>
+	<button onClick="JavaScript:newWindow('TraineeSeekingMentor.jsp')">Open
+		Popup Window</button>
+	<button onClick="JavaScript:closeWindow();">Close Popup Window</button>
 </body>
 </html>

@@ -4,18 +4,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Basic Search</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="css/jquery.catcomplete.css" />
-    
-    <script type="text/javascript" src="js/bootstrap.js"></script>    
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.catcomplete.css" />
+
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
 
 </head>
 <body>
 
-<script>
+	<script>
 	$.widget( "custom.catcomplete", $.ui.autocomplete, {
 	    _renderMenu: function( ul, items ) {
 	        var that = this,
@@ -31,7 +34,7 @@
 	});
 </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(function() {
 	    $( "#search" ).catcomplete({
 	        delay: 500,
@@ -41,19 +44,19 @@
 	});
 </script>
 
-<p />
+	<p />
 
-<div class="container well">
-	<div class="row-fluid">
-		<form action="search" method="get">
-			<div class="input-append">
-				<input type="text" name="query" id="search" placeholder="Search.."/>
-				<button class="btn" type="submit">Search</button>
-			</div>
+	<div class="container well">
+		<div class="row-fluid">
+			<form action="search" method="get">
+				<div class="input-append">
+					<input type="text" name="query" id="search" placeholder="Search.." />
+					<button class="btn" type="submit">Search</button>
+				</div>
 
-		</form>
+			</form>
+		</div>
 	</div>
-</div>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-<%@ page import="language.*" %>
+<%@ page import="language.*"%>
 <%
 	Language language = new Language();
 

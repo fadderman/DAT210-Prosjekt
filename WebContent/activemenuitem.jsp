@@ -1,4 +1,4 @@
-<%@ page import="models.ActiveMenuItem" %>
+<%@ page import="models.ActiveMenuItem"%>
 <%
 
 /*

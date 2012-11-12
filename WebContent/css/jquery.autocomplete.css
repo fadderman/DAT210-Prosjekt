@@ -15,15 +15,15 @@
 }
 
 .ac_results iframe {
-	display:none;/*sorry for IE5*/
-	display/**/:block;/*sorry for IE5*/
-	position:absolute;
-	top:0;
-	left:0;
-	z-index:-1;
-	filter:mask();
-	width:3000px;
-	height:3000px;
+	display: none; /*sorry for IE5*/
+	display /**/: block; /*sorry for IE5*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	filter: mask();
+	width: 3000px;
+	height: 3000px;
 }
 
 .ac_results li {
@@ -33,16 +33,15 @@
 	display: block;
 	width: 100%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  	font-size: 14px;
+	font-size: 14px;
 	overflow: hidden;
 }
 
 .ac_loading {
-	background : Window url('./indicator.gif') right center no-repeat;
+	background: Window url('./indicator.gif') right center no-repeat;
 }
 
 .ac_over {
 	background-color: Highlight;
 	color: HighlightText;
 }
-

@@ -122,6 +122,8 @@
   <servlet-mapping>
   <servlet-name>RegisterConnection</servlet-name>
   <url-pattern>/RegisterConnection</url-pattern>
+  <url-pattern>/RegisterMentor</url-pattern>
+  <url-pattern>/RegisterTrainee</url-pattern>
   </servlet-mapping>
   <!-- <listener> <listener-class>hibernate.HibernateListener</listener-class> 
 		</listener> -->
