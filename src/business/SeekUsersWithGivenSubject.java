@@ -28,7 +28,7 @@ public class SeekUsersWithGivenSubject {
 			populateDatabase();
 		}
 		foundsubject = fm.getSingleByTitle(subject);
-		connections = (ArrayList<Connection>) xm.getOpenMentorConnections(foundsubject);
+		connections = new ArrayList<Connection>();
 		mentors = new ArrayList<User>();
 		trainee = new ArrayList<User>();
 	}
@@ -36,7 +36,6 @@ public class SeekUsersWithGivenSubject {
 	
 
 	private static void populateDatabase(){
-		
 		Field subJava3D = new Field("Java 3D", "Old 3D graphics API for n00bs");
 		Field subJava2D = new Field("Java 2D", "2D Java graphics API");
 		
@@ -58,6 +57,8 @@ public class SeekUsersWithGivenSubject {
 		User user4 = new User("Alex", "Smile", "bob@6ytghj.com", "over there", "", "456412");
 		User user5 = new User("Dave", "Store", "bob@adfbafv.com", "here", "", "34898745");
 		User user6 = new User("John", "Robertson", "65tghj@smith.com", "here", "", "3893564");
+		User user7 = new User("Kirk","Douglas","kirk@douglas.com","here","","12345678");
+		User user8 = new User("Adam","Smith","adam@smith.com","here","","12345679");
 		
 		um.addUser(user1);
 		xm.createOpenMentor(user1, subCSh3);
@@ -85,10 +86,19 @@ public class SeekUsersWithGivenSubject {
 		um.addUser(user6);
 		xm.createOpenMentor(user6, subJava2D);
 		xm.createOpenTrainee(user6, subJava3D);
+		
+		um.addUser(user7);
+		xm.createOpenTrainee(user7, subJava2D);
+		xm.createOpenTrainee(user7, subJava3D);
+		
+		um.addUser(user8);
+		xm.createOpenTrainee(user8, subJava2D);
+		xm.createOpenTrainee(user8, subJava3D);
 		ispopulated = true;
 	}
 	
 	public ArrayList<User> getMentorsWithSbject() {
+		connections = (ArrayList<Connection>) xm.getOpenMentorConnections(foundsubject);
 		for(Connection conn : connections){
 			mentors.add(conn.getMentor());
 		}
@@ -96,6 +106,7 @@ public class SeekUsersWithGivenSubject {
 	}
 	
 	public ArrayList<User> getTrainee() {
+		connections = (ArrayList<Connection>) xm.getOpenTraineeConnections(foundsubject);
 		for(Connection conn : connections){
 			trainee.add(conn.getTrainee());
 		}
