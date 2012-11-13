@@ -75,4 +75,14 @@
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
+  <servlet>
+	<description />
+	<display-name>MailServlet</display-name>
+	<servlet-name>MailServlet</servlet-name>
+	<servlet-class>controllers.MailServlet</servlet-class>
+</servlet>
+	<servlet-mapping>
+		<servlet-name>MailServlet</servlet-name>
+		<url-pattern>/newMail</url-pattern>
+	</servlet-mapping>
 </web-app>
