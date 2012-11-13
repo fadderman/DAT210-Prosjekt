@@ -8,6 +8,7 @@ import hibernate.UserManagement;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -26,14 +27,8 @@ public class RegisterConnection extends HttpServlet {
 	private static FieldManagement fm = new FieldManagement();
 	private static RequestManagement rm = new RequestManagement();
 	
-	/**
-	 * placeholder serialnumber
-	 */
 	private static final long serialVersionUID = 1L;
 
-	public RegisterConnection(){
-
-	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		createConnectionWithMentor(request, response);
@@ -43,7 +38,7 @@ public class RegisterConnection extends HttpServlet {
 		createConnectionWithMentor(request, response);
 	}
 
-	private static void createConnectionWithMentor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void createConnectionWithMentor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Cookie[] cookies = request.getCookies();
 		String cookiename = "user_id";
 		String cookievalue = "";
@@ -58,8 +53,9 @@ public class RegisterConnection extends HttpServlet {
 //		}
 //		int traineeUserID = Integer.parseInt(cookievalue);
 		User trainee = (User) session.getAttribute("currentUser");
-		trainee = new User("nils", "pet", "enplass", "enaenplass","", "iD");
-		um.addUser(trainee);
+//		trainee = new User("nils", "pet", "enplass", "enaenplass","", "iD");
+//		um.addUser(trainee);
+		System.out.println("trainee " + trainee.getFirstName());
 		String formUserID = request.getParameter("userID");
 		System.out.println(formUserID);
 		int mentorUserID = Integer.parseInt(formUserID);
@@ -74,5 +70,7 @@ public class RegisterConnection extends HttpServlet {
 		cm.addConnection(con);
 		rm.createRequest(mentor, con, true);
 		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/field?id=" + field.getFieldID());
+		dispatcher.forward(request, response);
 	}
 }

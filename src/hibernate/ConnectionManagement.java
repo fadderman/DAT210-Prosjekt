@@ -23,6 +23,13 @@ public class ConnectionManagement extends HibernateUtil{
 		return addConnection(connection);
 	}
 	
+	public boolean createOpenTrainee(User trainee, Field field, int difficultyLevel){
+		Connection connection = new Connection(field);
+		connection.setTrainee(trainee);
+		connection.setDifficultyLevel(difficultyLevel);
+		return addConnection(connection);
+	}
+	
 	public boolean createOpenTrainee(User trainee, Field field){
 		Connection connection = new Connection(field);
 		connection.setTrainee(trainee);

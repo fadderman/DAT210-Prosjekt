@@ -22,7 +22,7 @@ public class MailServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String mailTo ="davidbarka@gmail.com";// request.getParameter("mailTo");
+		String mailTo = request.getParameter("mailTo");
 		String mailTittle = request.getParameter("mailTitle");
 		String mailMessage = request.getParameter("mailMessage");
 		try {
