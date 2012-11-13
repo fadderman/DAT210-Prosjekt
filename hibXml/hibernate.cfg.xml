@@ -30,6 +30,10 @@
 		</property>
 		<!--Using annotated mapping in persistent classes -->
 
+
+
+		
+
 		<!-- <mapping class="models.Category"> </mapping> -->
 
 	</session-factory>

@@ -45,6 +45,9 @@
 							<a class="btn btn-primary" type="submit"
 								href="mailto:${profile.email}">Contact</a>
 						</div>
+
+						<div class="span12"><a class="btn btn-primary" href="#newMail" data-toggle="modal">Contact</a></div>
+
 					</div>
 				</div>
 				<div class="span6">
