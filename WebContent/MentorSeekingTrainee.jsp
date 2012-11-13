@@ -37,7 +37,7 @@
 				<td><%=user.getLastName()%></td>
 				<td><%=user.getEmail()%></td>
 				<td>
-					<form action="RegisterConnection" name="select_user" method="post">
+					<form action="RegisterTrainee" name="select_user" method="post">
 						<input type="hidden" name="userID" value=<%=user.getUserID()%>>
 						<input type="hidden" name="field" value="${field}"> <input
 							type="submit" value="connect" class="btn btn-primary btn-small"
