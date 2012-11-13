@@ -3,7 +3,7 @@
 <% Language language = (Language) session.getAttribute("lang"); %>
 
 <jsp:include page="activemenuitem.jsp"/>
-
+<jsp:include page="newmail.jsp"/>
 <div class="container">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner shadow">

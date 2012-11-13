@@ -97,7 +97,7 @@
 					</tbody>
 				</table>
 			</div>
-			<input type="submit" class="btn btn-warning btn-large" />
+			<input type="submit" class="btn btn-warning btn-large pull-right" />
 
 
 		</form>

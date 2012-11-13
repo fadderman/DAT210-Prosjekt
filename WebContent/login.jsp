@@ -71,7 +71,7 @@
 <!-- Modal -->
 <div id="dropDownMsg" class="modal hide fade in" style="display: none;">
 	<div class="modal-header">
-		<a class="close" data-dismiss="modal">X</a>
+		<button type="button" class="close" data-dismiss="modal">×</button>
 		<h3>
 			<img alt="" src="img/logo_black.png">Info
 		</h3>
