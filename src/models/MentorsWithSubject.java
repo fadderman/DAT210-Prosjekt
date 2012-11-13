@@ -13,7 +13,7 @@ public class MentorsWithSubject {
 	}
 	
 	public MentorsWithSubject(String subject){
-		mentorsWithSubject = new SeekUsersWithGivenSubject(subject).getMentorsWithSbject();
+		mentorsWithSubject = new SeekUsersWithGivenSubject(subject, true).getMentorsWithSbject();
 	}
 
 	public ArrayList<User> getMentorsWithSubject() {
@@ -21,7 +21,7 @@ public class MentorsWithSubject {
 	}
 
 	public void setMentorsWithSubject(String subject) {
-		SeekUsersWithGivenSubject sug = new SeekUsersWithGivenSubject(subject);
+		SeekUsersWithGivenSubject sug = new SeekUsersWithGivenSubject(subject, true);
 		mentorsWithSubject = sug.getMentorsWithSbject();
 	}
 	

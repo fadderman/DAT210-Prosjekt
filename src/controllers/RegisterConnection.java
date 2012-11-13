@@ -39,36 +39,30 @@ public class RegisterConnection extends HttpServlet {
 	}
 
 	private void createConnectionWithMentor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Cookie[] cookies = request.getCookies();
-		String cookiename = "user_id";
-		String cookievalue = "";
 		HttpSession session = request.getSession();
-		
-//		for(int i = 0; i < cookies.length; i++){
-//			Cookie cookie = cookies[i];
-//			System.out.println(cookie.getValue());
-//			if(cookiename.equals(cookie.getName())){
-//				cookievalue = cookies[i].getValue();
-//			}
-//		}
-//		int traineeUserID = Integer.parseInt(cookievalue);
-		User trainee = (User) session.getAttribute("currentUser");
-//		trainee = new User("nils", "pet", "enplass", "enaenplass","", "iD");
-//		um.addUser(trainee);
-		System.out.println("trainee " + trainee.getFirstName());
+		String isTraineeList = request.getParameter("isTraineeList");
 		String formUserID = request.getParameter("userID");
-		System.out.println(formUserID);
-		int mentorUserID = Integer.parseInt(formUserID);
-		User mentor = um.getByID(mentorUserID);
-
 		String fieldstring = request.getParameter("field");
-		System.out.println(fieldstring);
 		ArrayList<Field> fields = (ArrayList<Field>) fm.getByTitle(fieldstring);
 		Field field = fields.get(0);
 		Connection con = new Connection(field);
-		con.setTrainee(trainee);
-		cm.addConnection(con);
-		rm.createRequest(mentor, con, true);
+		
+		if(isTraineeList.equalsIgnoreCase("true")){
+			User trainee = (User) session.getAttribute("currentUser");
+			int mentorUserID = Integer.parseInt(formUserID);
+			User mentor = um.getByID(mentorUserID);
+			con.setTrainee(trainee);
+			cm.addConnection(con);
+			rm.createRequest(mentor, con, true);
+		}else{
+			User mentor = (User) session.getAttribute("currentUser");
+			int traineeUserID = Integer.parseInt(formUserID);
+			User trainee = um.getByID(traineeUserID);
+			con.setMentor(mentor);
+			cm.addConnection(con);
+			rm.createRequest(trainee, con, true);
+		}
+		
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/field?id=" + field.getFieldID());
 		dispatcher.forward(request, response);

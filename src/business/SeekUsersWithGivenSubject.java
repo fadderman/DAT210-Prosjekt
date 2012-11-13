@@ -22,15 +22,23 @@ public class SeekUsersWithGivenSubject {
 	private Field foundsubject;
 	private ArrayList<Connection> connections;
 
-	public SeekUsersWithGivenSubject(String subject) {
+	public SeekUsersWithGivenSubject(String subject, boolean isLookingForMentors) {
 		if(!ispopulated){
 			populateDatabase();
 		}
 		foundsubject = fm.getSingleByTitle(subject);
 		if(foundsubject != null){
-			connections = (ArrayList<Connection>) xm.getOpenMentorConnections(foundsubject);
+			if(isLookingForMentors){
+				connections = (ArrayList<Connection>) xm.getOpenMentorConnections(foundsubject);
+			}else{
+				connections = (ArrayList<Connection>) xm.getOpenTraineeConnections(foundsubject);
+			}
 			for(Connection conn : connections){
-				mentors.add(conn.getMentor());
+				if(isLookingForMentors){
+					mentors.add(conn.getMentor());
+				}else{
+					mentors.add(conn.getTrainee());
+				}
 			}	
 		}
 	}
