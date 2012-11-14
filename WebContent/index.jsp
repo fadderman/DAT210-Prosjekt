@@ -36,6 +36,7 @@
 			<div style="margin-top: 60px"></div>
 			<jsp:include page="showRequests.jsp" />
 			<jsp:include page="<%= include %>"/>
+			<jsp:include page="newmail.jsp"/>
 		<%
 	}
 %>

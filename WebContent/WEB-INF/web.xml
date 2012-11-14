@@ -133,4 +133,15 @@
 		<servlet-name>MailServlet</servlet-name>
 		<url-pattern>/newMail</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<description/>
+		<display-name>ViewConnectionServlet</display-name>
+		<servlet-name>ViewConnectionServlet</servlet-name>
+		<servlet-class>controllers.ViewConnectionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewConnectionServlet</servlet-name>
+		<url-pattern>/viewConnection</url-pattern>
+	</servlet-mapping>
 </web-app>
