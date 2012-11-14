@@ -109,8 +109,4 @@ public class ConnectionManagement extends HibernateUtil{
 		String queryVariable = "traineeToAdd";
 		updateSingle(queryString, queryVariable, traineeToAdd, connection.getConnectionID());
 	}
-	
-	public void removeConnection(Connection connection) {
-		delete(connection);
-	}
 }

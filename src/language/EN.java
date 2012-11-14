@@ -118,7 +118,7 @@ public class EN extends Lang{
 		private String menu_home = "Home";
 		private String menu_find = "Find";
 		private String menu_profile = "Profile";
-		private String menu_connections = "Connections";
+		private String menu_settings = "Settings";
 		private String menu_search = "Search";
 		private String menu_logout = "Log out";
 		
@@ -139,9 +139,9 @@ public class EN extends Lang{
 		return menu_profile;
 	}
 
-	public String getMenu_connections() {
+	public String getMenu_settings() {
 
-		return menu_connections;
+		return menu_settings;
 	}
 
 	public String getMenu_search() {

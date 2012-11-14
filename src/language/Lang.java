@@ -33,7 +33,7 @@ public abstract class Lang {
 	public abstract String getMenu_logout();
 	public abstract String getMenu_find();
 	public abstract String getMenu_profile();
-	public abstract String getMenu_connections();
+	public abstract String getMenu_settings();
 	public abstract String getMenu_search();
 	// ============== Menu Strings ===================
 	public abstract String getSearch_sResult();

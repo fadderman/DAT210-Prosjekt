@@ -57,14 +57,6 @@ public class SearchEngine extends HibernateUtil{
 		results.setFieldResults(searchForFields(query));
 		return results;
 	}
-	
-	public SearchResults searchFields(String query) {
-		query = query.toLowerCase();
-		query = query.trim();
-		SearchResults results = new SearchResults();
-		results.setFieldResults(searchForFields(query));
-		return results;
-	}
 
 	private ArrayList<User> searchForUsers(String query){
 		ArrayList<User> userResults = searchForUsersUsingString(query);

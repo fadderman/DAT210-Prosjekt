@@ -123,9 +123,9 @@ public class Language {
 		return chosenLanguage.getMenu_profile();
 	}
 
-	public String getMenu_connections() {
+	public String getMenu_settings() {
 
-		return chosenLanguage.getMenu_connections();
+		return chosenLanguage.getMenu_settings();
 	}
 
 	public String getMenu_search() {

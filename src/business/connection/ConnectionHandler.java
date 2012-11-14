@@ -16,7 +16,7 @@ public class ConnectionHandler {
 
 	public ConnectionHandler(User currentUser, String[] field, String[] description, String[] experience, String[] traineeRadioButton, String[] mentorRadioButton){
 		this.currentUser = currentUser;
-
+		// TODO SPØR ALEKS
 		emptyUser = new User();
 		userHandler = new UserManagement();
 		userHandler.addUser(currentUser);

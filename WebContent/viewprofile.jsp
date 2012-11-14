@@ -12,6 +12,7 @@
 %>
 
 <div class="container well" style="box-shadow: 5px 5px 8px -1px #222;">
+
 	<c:choose>
 		<c:when test="${nullUser eq true}">
 			<div class="alert alert-error">
@@ -42,4 +43,5 @@
 			</div>
 		</c:otherwise>
 	</c:choose>
+	
 </div>

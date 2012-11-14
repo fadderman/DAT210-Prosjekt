@@ -2,40 +2,40 @@ package models;
 
 
 public class ActiveMenuItem {
-	private String home, find, connections, profile;
+	private String home, find, settings, profile;
 	
 	public ActiveMenuItem() {
 		home = "active";
 		find = "";
-		connections = "";
+		settings = "";
 		profile = "";
 	}
 
 	public void setHome() {
 		home = "active";
 		find = "";
-		connections = "";
+		settings = "";
 		profile = "";
 	}
 	
 	public void setFind() {
 		home = "";
 		find = "active";
-		connections = "";
+		settings = "";
 		profile = "";
 	}
 	
-	public void setConnections() {
+	public void setSettings() {
 		home = "";
 		find = "";
-		connections = "active";
+		settings = "active";
 		profile = "";
 	}
 	
 	public void setProfile() {
 		home = "";
 		find = "";
-		connections = "";
+		settings = "";
 		profile = "active";
 	}
 
@@ -47,8 +47,8 @@ public class ActiveMenuItem {
 		return find;
 	}
 
-	public String getConnections() {
-		return connections;
+	public String getSettings() {
+		return settings;
 	}
 
 	public String getProfile() {
