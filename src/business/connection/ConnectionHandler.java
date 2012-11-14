@@ -25,7 +25,12 @@ public class ConnectionHandler {
 		fm = new FieldManagement();
 		for(int i = 1; i < field.length; i++){
 			Field FIELD = new Field(field[i], description[i]);
-			fm.addField(FIELD);
+			if(fm.getSingleByTitle(field[i]) == null) {
+				fm.addField(FIELD);
+			} else {
+				FIELD = fm.getSingleByTitle(field[i]);
+			}
+			
 			createConnection(currentUser, field[i], description[i], experience[i], traineeRadioButton[i-1], mentorRadioButton[i-1], emptyUser, FIELD);			
 		}
 	}

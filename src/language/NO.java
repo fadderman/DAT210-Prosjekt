@@ -103,6 +103,7 @@ public class NO extends Lang{
 	// ============== Home Strings ===================
 		private String home_welcome = "Velkommen til MentorFind";
 		private String home_please_search = "Skriv i søkefeltet for å starte";
+		private String connections_welcome = "Koblinger";
 		
 		@Override
 		public String getHome_welcome() {
@@ -112,13 +113,17 @@ public class NO extends Lang{
 		public String getHome_please_search() {
 			return home_please_search;
 		}
-		
-		
-		// ============== Menu Strings ===================
+
+		@Override
+		public String getConnections_welcome() {
+			return connections_welcome;
+		}
+
+			// ============== Menu Strings ===================
 			private String menu_home = "Hjem";
-			private String menu_find = "Finn";
+			private String menu_fields = "Felt";
 			private String menu_profile = "Profil";
-			private String menu_settings = "Instillinger";
+			private String menu_connections = "Koblinger";
 			private String menu_search = "Søk";
 			private String menu_logout = "Logg ut";
 			
@@ -130,8 +135,8 @@ public class NO extends Lang{
 			return menu_home;
 		}
 
-		public String getMenu_find() {
-			return menu_find;
+		public String getMenu_fields() {
+			return menu_fields;
 		}
 
 		public String getMenu_profile() {
@@ -139,9 +144,9 @@ public class NO extends Lang{
 			return menu_profile;
 		}
 
-		public String getMenu_settings() {
+		public String getMenu_connections() {
 
-			return menu_settings;
+			return menu_connections;
 		}
 
 		public String getMenu_search() {
@@ -150,9 +155,9 @@ public class NO extends Lang{
 		
 		// ============== Search Results Strings ===================
 		private String search_sResult = "Søkeresultater";
-		private String search_fResult = "Filter resultater";
+		private String search_fResult = "Filtrer resultater";
 		private String search_location = "Lokasjon";
-		private String search_user = "Bruker";
+		private String search_user = "Brukere";
 		private String search_title = "Tittel";
 		private String search_description = "Beskrivelse";
 		private String search_error = "Du skrev ikke noe i søkefeltet, prøv igjen.";
@@ -209,4 +214,91 @@ public class NO extends Lang{
 		public String getSearch_name() {
 			return search_name;
 		}
+
+		// ============== Fields Strings ===================
+		private String fields_welcome = "Her er en oversikt over alle feltene i MentorFind sortert alfabetisk";
+		private String fields_header = "Felt";
+		
+		@Override
+		public String getFields_header() {
+			return fields_header;
+		}
+		
+		@Override
+		public String getFields_welcome() {
+			return fields_welcome;
+		}
+		
+		// ================ Profile Strings ===============
+		
+		private String profile_name = "Navn";
+		private String profile_location = "Lokasjon";
+		private String profile_city = "By";
+		private String profile_country = "Land";
+		private String profile_edit = "Redigér";
+		private String profile_save = "Lagre";
+		
+		@Override
+		public String getProfile_name() {
+			return profile_name;
+		}
+		@Override
+		public String getProfile_location() {
+			return profile_location;
+		}
+		@Override
+		public String getProfile_city() {
+			return profile_city;
+		}
+		@Override
+		public String getProfile_country() {
+			return profile_country;
+		}
+		@Override
+		public String getProfile_save() {
+			return profile_save;
+		}
+		@Override
+		public String getProfile_edit() {
+			return profile_edit;
+		}
+		
+		// ========== Connections Strings ========
+		private String connections_noconnections = "Du har ingen koblinger for øyeblikket.";
+		private String connections_add = "Legg til";
+		private String connections_remove = "Fjern";
+		private String connections_you ="Deg";
+		private String connections_nomentor = "Ingen mentor";
+		private String connections_notrainee = "Ingen trainee";
+		
+		@Override
+		public String getConnections_noConnections() {
+			return connections_noconnections;
+		}
+		
+		@Override
+		public String getConnections_add() {
+			return connections_add;
+		}
+		@Override
+		public String getConnections_remove() {
+			return connections_remove;
+		}
+		@Override
+		public String getConnections_noMentor() {
+			return connections_nomentor;
+		}
+		@Override
+		public String getConnections_noTrainee() {
+			return connections_notrainee;
+		}
+		@Override
+		public String getConnections_you() {
+			return connections_you;
+		}
+		
+		
+		
+		
+		
 }

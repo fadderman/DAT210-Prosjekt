@@ -23,9 +23,7 @@ public class SearchEngine extends HibernateUtil{
 	private static boolean hasBeenRun = false;
 	public void createDummyData(){
 		if(!hasBeenRun){
-			userManager.addUser(new User("Thomas", "Hinna", "email", "Sandnes", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Thomas", "Nilsen", "email", "Liverpool", "United Kingdom", "identifierOpenID"));
-			userManager.addUser(new User("Morten", "Salte", "email", "Lyefjell", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Steve", "Jobs", "email", "Silicon Valley", "USA", "identifierOpenID"));
 			userManager.addUser(new User("Anders", "Mikkelsen", "email", "Bergen", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Bill", "Gates", "email", "Silicon Valley", "USA", "identifierOpenID"));
@@ -37,14 +35,14 @@ public class SearchEngine extends HibernateUtil{
 			userManager.addUser(new User("Åge", "Håland", "email", "Ålesund", "Norway", "identifierOpenID"));
 			userManager.addUser(new User("Tom", "Nærland", "email", "Nærbø", "Norway", "identifierOpenID"));
 
-			fieldManagment.addField(new Field("Java", "description"));
-			fieldManagment.addField(new Field("JavaScript", "description"));
-			fieldManagment.addField(new Field("C++", "description"));
-			fieldManagment.addField(new Field("C#", "description"));
-			fieldManagment.addField(new Field("Python", "description"));
-			fieldManagment.addField(new Field("Go", "description"));
-			fieldManagment.addField(new Field("C", "description"));
-			fieldManagment.addField(new Field("MySQL", "description"));
+			fieldManagment.addField(new Field("Java", "Object oriented programming language"));
+			fieldManagment.addField(new Field("JavaScript", "Programming language widely used for web pages"));
+			fieldManagment.addField(new Field("C++", "Multi-paradigm programming language"));
+			fieldManagment.addField(new Field("C#", "Multi-paradigm programming language"));
+			fieldManagment.addField(new Field("Python", "Multi-paradigm programming language"));
+			fieldManagment.addField(new Field("Go", "Concurrent programming language"));
+			fieldManagment.addField(new Field("C", "General purpose programming language"));
+			fieldManagment.addField(new Field("MySQL", "The world's most used RDBMS"));
 			hasBeenRun=true;
 		}
 	}
@@ -54,6 +52,14 @@ public class SearchEngine extends HibernateUtil{
 		query = query.trim();
 		SearchResults results = new SearchResults();
 		results.setUserResults(searchForUsers(query));
+		results.setFieldResults(searchForFields(query));
+		return results;
+	}
+	
+	public SearchResults searchFields(String query) {
+		query = query.toLowerCase();
+		query = query.trim();
+		SearchResults results = new SearchResults();
 		results.setFieldResults(searchForFields(query));
 		return results;
 	}

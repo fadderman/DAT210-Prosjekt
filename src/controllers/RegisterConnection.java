@@ -47,7 +47,7 @@ public class RegisterConnection extends HttpServlet {
 		Field field = fields.get(0);
 		Connection con = new Connection(field);
 		
-		if(isTraineeList.equalsIgnoreCase("true")){
+		if(isTraineeList.equalsIgnoreCase("false")){
 			User trainee = (User) session.getAttribute("currentUser");
 			int mentorUserID = Integer.parseInt(formUserID);
 			User mentor = um.getByID(mentorUserID);

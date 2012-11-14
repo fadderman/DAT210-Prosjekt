@@ -134,4 +134,11 @@ public class Connection {
 	public List<Request> getRequest(){
 		return request;
 	}
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

@@ -29,11 +29,12 @@ public abstract class Lang {
 	// ============== Home Strings ===================
 	public abstract String getHome_welcome();
 	public abstract String getHome_please_search();
+	public abstract String getConnections_welcome();
 	public abstract String getMenu_home();
 	public abstract String getMenu_logout();
-	public abstract String getMenu_find();
+	public abstract String getMenu_fields();
 	public abstract String getMenu_profile();
-	public abstract String getMenu_settings();
+	public abstract String getMenu_connections();
 	public abstract String getMenu_search();
 	// ============== Menu Strings ===================
 	public abstract String getSearch_sResult();
@@ -48,4 +49,21 @@ public abstract class Lang {
 	public abstract String getSearch_resultStart();
 	public abstract String getSearch_returned();
 	public abstract String getSearch_name();
+	// ============== Fields Strings ==================
+	public abstract String getFields_header();
+	public abstract String getFields_welcome();
+	// ============== Profile Strings =================
+	public abstract String getProfile_name();
+	public abstract String getProfile_location();
+	public abstract String getProfile_city();
+	public abstract String getProfile_country();
+	public abstract String getProfile_save();
+	public abstract String getProfile_edit();
+	// ============= Connections Strings ==============
+	public abstract String getConnections_noConnections();
+	public abstract String getConnections_add();
+	public abstract String getConnections_remove();
+	public abstract String getConnections_noMentor();
+	public abstract String getConnections_noTrainee();
+	public abstract String getConnections_you();
 }
