@@ -53,7 +53,7 @@ public class RegisterConnection extends HttpServlet {
 			User mentor = um.getByID(mentorUserID);
 			con.setTrainee(trainee);
 			cm.addConnection(con);
-			rm.createRequest(mentor, con, true);
+			rm.createRequest(mentor, con, false);
 		}else{
 			User mentor = (User) session.getAttribute("currentUser");
 			int traineeUserID = Integer.parseInt(formUserID);

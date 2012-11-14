@@ -41,8 +41,8 @@
 			<c:when test="${request.traineeRequest eq true}">
 
 				<tr id="${table.index}">
-						<td class="span6">${request.connection.trainee.firstName}
-							${request.connection.trainee.lastName} wants to be your trainee in
+						<td class="span6">${request.connection.mentor.firstName}
+							${request.connection.mentor.lastName} wants to be your trainee in
 							${request.connection.field.title}
 						</td>
 						<td class="span4">
@@ -56,8 +56,8 @@
 			</c:when>
 			<c:when test="${request.traineeRequest eq false}">
 				<tr id="${table.index}">
-					<td class="span6">${request.connection.mentor.firstName}
-						${request.connection.mentor.lastName} wants to be your mentor in
+					<td class="span6">${request.connection.trainee.firstName}
+						${request.connection.trainee.lastName} wants to be your mentor in
 						${request.connection.field.title}</td>
 					<td class="span4">
 					<!-- 	<div class="btn-group">     -->
@@ -87,7 +87,7 @@
 		}
 		xmlhttp.onreadystatechange=function(){
 			if(xmlhttp.readyState==4 && xmlhttp.status==200){
-				document.getElementById(id).innerHTML="Request answered yes, connection in DB";
+				document.getElementById(id).innerHTML="<div class=\"alert alert-success\">Request accpected</div>";
 			}
 		}
 		xmlhttp.open("POST", "answerRequest?requestId=" + requestID + "&answer=yes&t=" + Math.random(), true);	
@@ -107,7 +107,7 @@
 		}
 		xmlhttp.onreadystatechange=function(){
 			if(xmlhttp.readyState==4 && xmlhttp.status==200){
-				document.getElementById(id).innerHTML="Request denied";
+				document.getElementById(id).innerHTML="<div class=\"alert alert-error\">Request denied</div>";
 			}
 		}
 		xmlhttp.open("POST", "answerRequest?requestId=" + requestID + "&answer=no&t=" + Math.random(), true);	
