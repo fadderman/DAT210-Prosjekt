@@ -17,11 +17,13 @@
 <div class="container well" style="box-shadow: 5px 5px 8px -1px #222;">
 <legend><%=language.getFields_header() %></legend>
 <p><%=language.getFields_welcome() %></p>
-<p>
-<% for(int i=0;i<alphabet.length;i++) { %>
-	<a href="#<%=alphabet[i]%>"><%= alphabet[i] %></a>&nbsp;
-<% } %>
-</p>
+<div class="pagination pagination-centered pagination-small">
+	<ul >
+	<% for(int i=0;i<alphabet.length;i++) { %>
+		<li><a href="#<%=alphabet[i]%>"><%= alphabet[i] %></a></li>
+	<% } %>
+	</ul>
+</div>
 <table class="table table-hover">
 	<thead>
 	<tr>
