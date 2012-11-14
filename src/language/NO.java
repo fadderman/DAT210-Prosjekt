@@ -118,7 +118,7 @@ public class NO extends Lang{
 			private String menu_home = "Hjem";
 			private String menu_find = "Finn";
 			private String menu_profile = "Profil";
-			private String menu_settings = "Instillinger";
+			private String menu_connections = "Koblinger";
 			private String menu_search = "Søk";
 			private String menu_logout = "Logg ut";
 			
@@ -139,9 +139,9 @@ public class NO extends Lang{
 			return menu_profile;
 		}
 
-		public String getMenu_settings() {
+		public String getMenu_connections() {
 
-			return menu_settings;
+			return menu_connections;
 		}
 
 		public String getMenu_search() {
