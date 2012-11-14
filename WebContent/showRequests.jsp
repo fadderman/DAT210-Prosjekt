@@ -2,31 +2,9 @@
 <%@ page language="java"
 	import="models.Request,models.Connection,models.*,hibernate.*, java.util.ArrayList, business.connection.RequestHandler"%>
 <%
-	//ConnectionManagement connectionManager = new ConnectionManagement();
 	RequestManagement requestManager = new RequestManagement();
 	UserManagement userManagement = new UserManagement();
-	/*User currentUser = new User("Thomas", "Hinna", "email", "city", "Norge", "testIdentifier");
-	User currentUser = new User("Thomas", "Hinna", "email", "city", "Norge", "testIdentifier");
-	userManagement.addUser(currentUser);
-	User wannabeTrainee = new User("Nils", "Pettersen", "email", "Oslo", "Norge", "OpenID2");
-	userManagement.addUser(wannabeTrainee);
-	Field java = new Field("Java", "Yes, this is java");
-	Field cSharp = new Field("C#", "Yes, this is C#");
-	FieldManagement fieldManager = new FieldManagement();
-	fieldManager.addField(java);
-	fieldManager.addField(cSharp);
-	Connection connection = new Connection(java);
-	connection.setTrainee(wannabeTrainee);
-	connectionManager.addConnection(connection);
-	Connection connection2 = new Connection(cSharp);
-	connection2.setMentor(wannabeTrainee);
-	connectionManager.addConnection(connection2);
-	requestManager.createRequest(currentUser, connection, true);
-	requestManager.createRequest(currentUser, connection2, false);
-	*/
 	User currentUser = (User)session.getAttribute("currentUser");
-	
-	//User currentUser = userManagement.getByOpenId("testIdentifier");
 	ArrayList<Request> requests = (ArrayList<Request>)requestManager.getRequestByUserID(currentUser.getUserID());
 	pageContext.setAttribute("requests", requests);	
 	pageContext.setAttribute("hasRequests", !requests.isEmpty());

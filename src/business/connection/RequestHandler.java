@@ -12,7 +12,7 @@ public class RequestHandler {
 	
 	public static void answerYes(Request request){
 		Connection connection = request.getConnection();
-		if(request.isTraineeRequest()){
+		if(!request.isTraineeRequest()){
 			connectionManager.addMentorToConnection(connection, request.getRequestTarget());
 //			connection.setMentor(request.getRequestTarget());
 		}else{
