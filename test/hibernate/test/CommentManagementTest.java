@@ -112,10 +112,6 @@ public class CommentManagementTest {
 
 	@Test
 	public void testGetByID(){
-		assertEquals(cm.createComment(xm.getByID(0), um.getByName("John", "First").get(0), "This is a text"), true);
-		assertEquals(cm.createComment(xm.getByID(1), um.getByEmail("johnfirst@gmail.com"), "This is some text"), true);
-		assertEquals(cm.createComment(xm.getByID(3), um.getByEmail("bob.second@outlook.com"), "Some random text"), true);
-		assertEquals(cm.createComment(xm.getByID(2), um.getByEmail("someguy@somewhere.com"), "Comment about programming"), true);
 		assertEquals(cm.getByID(1).getAuthor().getEmail(), "johnfirst@gmail.com");
 	}
 	
