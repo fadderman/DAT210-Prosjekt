@@ -59,6 +59,7 @@ public abstract class Lang {
 	public abstract String getProfile_country();
 	public abstract String getProfile_save();
 	public abstract String getProfile_edit();
+	public abstract String getProfile_email();
 	// ============= Connections Strings ==============
 	public abstract String getConnections_noConnections();
 	public abstract String getConnections_add();

@@ -250,6 +250,7 @@ public class EN extends Lang{
 	private String profile_country = "Country";
 	private String profile_edit = "Edit";
 	private String profile_save = "Save";
+	private String profile_email = "E-Mail";
 	
 	@Override
 	public String getProfile_name() {
@@ -274,6 +275,10 @@ public class EN extends Lang{
 	@Override
 	public String getProfile_edit() {
 		return profile_edit;
+	}
+	@Override
+	public String getProfile_email() {
+		return profile_email;
 	}
 	
 	// ========== Connections Strings ========

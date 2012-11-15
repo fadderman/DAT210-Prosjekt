@@ -9,14 +9,17 @@
 	if(connection.getMentor() != null){
 		if(currentUser.getUserID() == connection.getMentor().getUserID()) {
 			isCurrentUserMentor = true;
-			//session.setAttribute("profile", connection.getTrainee());	
+			session.setAttribute("profile", connection.getTrainee());	
 			pageContext.setAttribute("profile", connection.getTrainee());
 		}
 	}else hasMentor = false;
 	if(connection.getTrainee() != null){
 		hasTrainee = true;
-		//session.setAttribute("profile", connection.getMentor());
-		pageContext.setAttribute("profile", connection.getMentor());
+		
+		if(!isCurrentUserMentor){
+			pageContext.setAttribute("profile", connection.getMentor());
+			session.setAttribute("profile", connection.getMentor());
+		}
 	}
 	pageContext.setAttribute("isCurrentUserMentor", isCurrentUserMentor);
 	pageContext.setAttribute("hasMentor", hasMentor);
@@ -24,7 +27,9 @@
 	
 %>
 <div class="container well" style="box-shadow: 5px 5px 8px -1px #222;">
+	<i class="icon-globe"></i>
 	<legend>Connection</legend>
+	<div class="row-fluid">
 	<div class="span6">
 		<table class="tableBorderless">
 			<tr>
@@ -35,7 +40,7 @@
 						<td></td>
 					</c:when>
 					<c:when test="${isCurrentUserMentor eq false and hasMentor eq true}">
-						<td>${connection.mentor.firstName } ${connection.mentor.lastName }</td>
+						<td><a href="viewprofile?id=${connection.mentor.userID}">${connection.mentor.firstName } ${connection.mentor.lastName }</a></td>
 						<td><a class="btn btn-warning" href="#newMail" data-toggle="modal">Contact</a></td>
 					</c:when>
 					<c:when test="${isCurrentUserMentor eq false and hasMentor eq false}">
@@ -52,7 +57,7 @@
 						<td></td>
 					</c:when>
 					<c:when test="${isCurrentUserMentor eq true and hasTrainee eq true}">
-						<td>${connection.trainee.firstName } ${connection.trainee.lastName }</td>
+						<td><a href="viewprofile?id=${connection.trainee.userID}">${connection.trainee.firstName } ${connection.trainee.lastName }</a></td>
 						<td><a class="btn btn-warning" href="#newMail" data-toggle="modal">Contact</a></td>
 					</c:when>
 					<c:when test="${isCurrentUserMentor eq true and hasTrainee eq false}">
@@ -63,12 +68,12 @@
 			</tr>
 			<tr>
 				<td><b>Field</b></td>
-				<td>${connection.field.title }</td>
+				<td><a href="field?id=${connection.field.fieldID}">${connection.field.title }</a></td>
 				<td></td>
 			</tr>
 		</table>
 	</div>
- 	<div class="span5">
+ 	<div class="span6">
  		<c:choose>
 			<c:when test="${isCurrentUserMentor eq false }">
 			<img src="http://maps.googleapis.com/maps/api/staticmap?center=${connection.mentor.locationCity},${connection.mentor.locationCountry}&zoom=12&size=500x350&sensor=false">
@@ -80,5 +85,6 @@
 				
 			</c:when>
 		</c:choose>
+ 	</div>
  	</div>
 </div>

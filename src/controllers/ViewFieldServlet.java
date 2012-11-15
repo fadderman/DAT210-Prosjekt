@@ -36,7 +36,7 @@ public class ViewFieldServlet extends HttpServlet {
 		Field field = fieldManagement.getByID(fieldId);
 		
 		request.setAttribute("field", field);
-		request.setAttribute("active", "find");
+		request.setAttribute("active", "fields");
 		request.setAttribute("include", "field.jsp?id=" + fieldId);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);

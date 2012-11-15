@@ -1,4 +1,6 @@
-<%@page import="models.*,java.util.ArrayList"%>
+<%@page import="language.*,models.*,java.util.ArrayList"%>
+<%Language language = (Language)session.getAttribute("lang"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Modal -->
 <%
 		Field fieldObject = (Field)request.getAttribute("field");
@@ -6,6 +8,7 @@
 		pageContext.setAttribute("fieldString", fieldString);
 		TraineeWithField t = new TraineeWithField(fieldString);
 		ArrayList<User> trainees = t.getTrainee();
+		pageContext.setAttribute("traineeExists", !trainees.isEmpty());
 	%>
 	<div id="showTraineeList" class="modal hide fade in" style="display: none;">
 		<div class="modal-header">
@@ -15,20 +18,19 @@
 			</h3>
 		</div>
 		<div class="modal-body">
+		<c:if test="${traineeExists eq true}">
 			<table id="ListofMentor" class="table table-hover table-condensed">
 			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
+				<th>Name</th>
 				<th>Location</th>
-				<th>Join</th>
+				<th></th>
 			</tr>
 			<%
 				for (User user : trainees) {
 			%>
 
 			<tr>
-				<td><%=user.getFirstName()%></td>
-				<td><%=user.getLastName()%></td>
+				<td><%=user.getFirstName()%> <%=user.getLastName()%></td>
 				<td><%=user.getLocationCity()%>, <%=user.getLocationCountry() %></td>
 				<td>
 					<form action="RegisterConnection" name="select_user" method="post">
@@ -43,5 +45,9 @@
 				}
 			%>
 		</table>
+		</c:if>
+		<c:if test="${traineeExists eq false}">
+			No trainees available
+		</c:if>
 		</div>
 	</div>

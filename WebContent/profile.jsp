@@ -49,6 +49,17 @@
 						</div>
 					</div>
 					<div class="row-fluid">
+						<div class="span4"><b><%= language.getProfile_email() %></b></div>
+						<div class="span8">
+						<c:choose>
+							<c:when test="${edit eq true}"><input type="text" name="email" value="${profile.email}" placeholder="<%= language.getProfile_email() %>"></c:when>
+							<c:otherwise>
+								${profile.email}
+							</c:otherwise>
+						</c:choose>			
+						</div>
+					</div>
+					<div class="row-fluid">
 						<div class="span4"><b><%= language.getProfile_location() %></b></div>
 						<div class="span8">
 						<c:choose>

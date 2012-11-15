@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "FIELD")
 public class Field {
@@ -18,7 +20,8 @@ public class Field {
 	@Column(name = "title")
 	private String title;
 	
-	@Column(name = "description")
+	@Column(name = "description", columnDefinition = "TEXT")
+	@Type(type="text")
 	private String description;
 
 	@OneToMany(mappedBy = "field")
