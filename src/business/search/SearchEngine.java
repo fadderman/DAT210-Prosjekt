@@ -21,31 +21,31 @@ public class SearchEngine extends HibernateUtil{
 	}
 	
 	private static boolean hasBeenRun = false;
-	public void createDummyData(){
-		if(!hasBeenRun){
-			userManager.addUser(new User("Thomas", "Nilsen", "email", "Liverpool", "United Kingdom", "identifierOpenID"));
-			userManager.addUser(new User("Steve", "Jobs", "email", "Silicon Valley", "USA", "identifierOpenID"));
-			userManager.addUser(new User("Anders", "Mikkelsen", "email", "Bergen", "Norway", "identifierOpenID"));
-			userManager.addUser(new User("Bill", "Gates", "email", "Silicon Valley", "USA", "identifierOpenID"));
-			userManager.addUser(new User("Morten", "Nilsen", "email", "Oslo", "Norway", "identifierOpenID"));
-			userManager.addUser(new User("Petter", "Salte", "email", "Stockholm", "Sweden", "identifierOpenID"));
-			userManager.addUser(new User("Alexander", "Rybak", "email", "Oslo", "Norway", "identifierOpenID"));
-			userManager.addUser(new User("Åge", "Alexandersen", "email", "Stavanger", "Norway", "identifierOpenID"));
-			userManager.addUser(new User("Ørjan", "Rørheim", "email", "Stavanger", "Norway", "identifierOpenID"));
-			userManager.addUser(new User("Åge", "Håland", "email", "Ålesund", "Norway", "identifierOpenID"));
-			userManager.addUser(new User("Tom", "Nærland", "email", "Nærbø", "Norway", "identifierOpenID"));
-
-			fieldManagment.addField(new Field("Java", "Object oriented programming language"));
-			fieldManagment.addField(new Field("JavaScript", "Programming language widely used for web pages"));
-			fieldManagment.addField(new Field("C++", "Multi-paradigm programming language"));
-			fieldManagment.addField(new Field("C#", "Multi-paradigm programming language"));
-			fieldManagment.addField(new Field("Python", "Multi-paradigm programming language"));
-			fieldManagment.addField(new Field("Go", "Concurrent programming language"));
-			fieldManagment.addField(new Field("C", "General purpose programming language"));
-			fieldManagment.addField(new Field("MySQL", "The world's most used RDBMS"));
-			hasBeenRun=true;
-		}
-	}
+//	public void createDummyData(){
+//		if(!hasBeenRun){
+//			userManager.addUser(new User("Thomas", "Nilsen", "email", "Liverpool", "United Kingdom", "identifierOpenID"));
+//			userManager.addUser(new User("Steve", "Jobs", "email", "Silicon Valley", "USA", "identifierOpenID"));
+//			userManager.addUser(new User("Anders", "Mikkelsen", "email", "Bergen", "Norway", "identifierOpenID"));
+//			userManager.addUser(new User("Bill", "Gates", "email", "Silicon Valley", "USA", "identifierOpenID"));
+//			userManager.addUser(new User("Morten", "Nilsen", "email", "Oslo", "Norway", "identifierOpenID"));
+//			userManager.addUser(new User("Petter", "Salte", "email", "Stockholm", "Sweden", "identifierOpenID"));
+//			userManager.addUser(new User("Alexander", "Rybak", "email", "Oslo", "Norway", "identifierOpenID"));
+//			userManager.addUser(new User("Åge", "Alexandersen", "email", "Stavanger", "Norway", "identifierOpenID"));
+//			userManager.addUser(new User("Ørjan", "Rørheim", "email", "Stavanger", "Norway", "identifierOpenID"));
+//			userManager.addUser(new User("Åge", "Håland", "email", "Ålesund", "Norway", "identifierOpenID"));
+//			userManager.addUser(new User("Tom", "Nærland", "email", "Nærbø", "Norway", "identifierOpenID"));
+//
+//			fieldManagment.addField(new Field("Java", "Object oriented programming language"));
+//			fieldManagment.addField(new Field("JavaScript", "Programming language widely used for web pages"));
+//			fieldManagment.addField(new Field("C++", "Multi-paradigm programming language"));
+//			fieldManagment.addField(new Field("C#", "Multi-paradigm programming language"));
+//			fieldManagment.addField(new Field("Python", "Multi-paradigm programming language"));
+//			fieldManagment.addField(new Field("Go", "Concurrent programming language"));
+//			fieldManagment.addField(new Field("C", "General purpose programming language"));
+//			fieldManagment.addField(new Field("MySQL", "The world's most used RDBMS"));
+//			hasBeenRun=true;
+//		}
+//	}
 
 	public SearchResults search(String query){
 		query = query.toLowerCase();

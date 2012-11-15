@@ -68,7 +68,7 @@
 			</tr>
 			<tr>
 				<td><b>Field</b></td>
-				<td>${connection.field.title }</td>
+				<td><a href="field?id=${connection.field.fieldID}">${connection.field.title }</a></td>
 				<td></td>
 			</tr>
 		</table>

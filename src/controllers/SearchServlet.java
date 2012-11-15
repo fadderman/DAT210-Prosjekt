@@ -25,7 +25,7 @@ public class SearchServlet extends HttpServlet {
 	
 	public SearchServlet() {
 		engine = new SearchEngine();
-		engine.createDummyData();
+//		engine.createDummyData();
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
