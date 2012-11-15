@@ -17,10 +17,10 @@
 	<table class="table table-hover">
 	<c:forEach var="request" items="${requests}" varStatus="table">
 		<c:choose>
-			<c:when test="${request.traineeRequest eq true}">
+			<c:when test="${request.traineeRequest eq false}">
 
 				<tr id="${table.index}">
-						<td class="span6"><a href="viewprofile?id=${request.connection.mentor.userID}">${request.connection.mentor.firstName} ${request.connection.mentor.lastName}</a>
+						<td class="span6"><a href="viewprofile?id=${request.connection.trainee.userID}">${request.connection.trainee.firstName} ${request.connection.trainee.lastName}</a>
 							<%=language.getRequest_traniee()%>
 							<a href="field?id=${request.connection.field.fieldID}">${request.connection.field.title}</a>
 						</td>
@@ -33,10 +33,10 @@
 					</tr>
 
 			</c:when>
-			<c:when test="${request.traineeRequest eq false}">
+			<c:when test="${request.traineeRequest eq true}">
 				<tr id="${table.index}">
-					<td class="span6"><a href="viewprofile?id=${request.connection.trainee.userID}">${request.connection.trainee.firstName}
-						${request.connection.trainee.lastName}</a> <%=language.getRequest_mentor()%>
+					<td class="span6"><a href="viewprofile?id=${request.connection.mentor.userID}">${request.connection.mentor.firstName}
+						${request.connection.mentor.lastName}</a> <%=language.getRequest_mentor()%>
 						<a href="field?id=${request.connection.field.fieldID}">${request.connection.field.title}</a></td>
 					<td class="span4">
 					<!-- 	<div class="btn-group">     -->

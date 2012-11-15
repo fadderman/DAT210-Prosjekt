@@ -33,7 +33,7 @@ public class NO extends Lang{
 	private String firsttime_label_field = "Felt";
 	private String firsttime_radio_mentor = "Mentor";
 	private String firsttime_radio_trainee = "Trainee";
-	private String firsttime_label_addInfo = "Ekstra info";
+	private String firsttime_label_addInfo = "Beskrivelse";
 	private String firsttime_label_experience = "Erfaring";
 	private String firsttime_drop_novice = "Nybegynner";
 	private String firsttime_drop_intermediate = "Mellomnivå";

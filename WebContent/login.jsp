@@ -14,7 +14,7 @@
 
 </style>
 <body class="fullBG">
-
+<div class="padding"></div>
 <%@ include file="loginMenuBar.jsp"%>
 <%
 	session.setAttribute("CurrentPage", "/login.jsp"); 

@@ -35,7 +35,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="padding"></div>
 
 </body>
 </html>

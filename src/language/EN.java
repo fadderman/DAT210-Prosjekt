@@ -32,7 +32,7 @@ public class EN extends Lang{
 	private String firsttime_label_field = "Field";
 	private String firsttime_radio_mentor = "Mentor";
 	private String firsttime_radio_trainee = "Trainee";
-	private String firsttime_label_addInfo = "Additional info";
+	private String firsttime_label_addInfo = "Description";
 	private String firsttime_label_experience = "Experience";
 	private String firsttime_drop_novice = "Novice";
 	private String firsttime_drop_intermediate = "Intermediate";
