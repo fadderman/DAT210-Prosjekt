@@ -9,8 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import language.Language;
 import mail.SendMail;
+import models.User;
 
 
 public class MailServlet extends HttpServlet {
@@ -25,6 +28,13 @@ public class MailServlet extends HttpServlet {
 		String mailTo = request.getParameter("mailTo");
 		String mailTittle = request.getParameter("mailTitle");
 		String mailMessage = request.getParameter("mailMessage");
+		HttpSession session = request.getSession();
+		User currentUser = (User) session.getAttribute("currentUser");
+		String mailFrom = currentUser.getEmail();
+		String mailFromMessage = "This message is sent from";
+		mailMessage += " \n\n" + mailFromMessage;
+		mailMessage += "\n" + mailFrom;
+		mailTittle = "MentorFind: " + mailTittle;
 		try {
 			SendMail.Send(mailTo, mailTittle, mailMessage);
 		} catch (AddressException e) {
