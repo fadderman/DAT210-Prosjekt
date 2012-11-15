@@ -45,6 +45,7 @@ public class EditUserServlet extends HttpServlet {
 			String fullName = request.getParameter("name");
 			String city = request.getParameter("locationCity");
 			String country = request.getParameter("locationCountry");
+			String email = request.getParameter("email");
 			
 			String lastName = fullName.substring(fullName.lastIndexOf(" "), fullName.length());
 			String firstName = fullName.substring(0, fullName.lastIndexOf(" "));
@@ -52,6 +53,8 @@ public class EditUserServlet extends HttpServlet {
 			userManagement.updateFirstName(firstName.trim(), currentUser);
 			userManagement.updateLastName(lastName.trim(), currentUser);
 			userManagement.updateLocation(city, country, currentUser);
+			userManagement.updateEmail(email, currentUser);
+			
 		}
 		
 		request.setAttribute("include", "profile");

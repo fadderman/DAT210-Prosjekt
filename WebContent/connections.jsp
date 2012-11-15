@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%Language language = (Language)session.getAttribute("lang"); %>
 <div class="container well" style="box-shadow: 5px 5px 8px -1px #222;">
-
+<i class="icon-globe"></i>
 <legend><%=language.getConnections_welcome() %></legend>
 
 <%
@@ -131,6 +131,9 @@
 					<input type="submit" value="<%= language.getConnections_remove() %>" class="btn btn-danger btn-small">
 				</form>
 			</td>
+			<td>
+				<a href="viewConnection?id=${traineeItem.connectionID}" class="btn btn-info btn-small">View</a>
+			</td>
 		</tr>
 	</c:forEach>
 	<c:forEach var="mentorItem" items="${mentorList}">
@@ -169,6 +172,9 @@
 					<input type="hidden" name="connectionId" value="${mentorItem.connectionID}"/>
 					<input type="submit" value="<%= language.getConnections_remove() %>" class="btn btn-danger btn-small">
 				</form>
+			</td>
+			<td>
+				<a href="viewConnection?id=${mentorItem.connectionID}" class="btn btn-info btn-small">View</a>
 			</td>
 		</tr>
 	</c:forEach>

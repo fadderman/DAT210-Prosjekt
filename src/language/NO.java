@@ -237,6 +237,7 @@ public class NO extends Lang{
 		private String profile_country = "Land";
 		private String profile_edit = "Redigér";
 		private String profile_save = "Lagre";
+		private String profile_email = "E-Post";
 		
 		@Override
 		public String getProfile_name() {
@@ -261,6 +262,10 @@ public class NO extends Lang{
 		@Override
 		public String getProfile_edit() {
 			return profile_edit;
+		}
+		@Override
+		public String getProfile_email() {
+			return profile_email;
 		}
 		
 		// ========== Connections Strings ========

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="models.*,java.util.ArrayList"%>
 <!-- Modal -->
 <%
@@ -6,6 +7,8 @@
 		pageContext.setAttribute("fieldString", fieldString);
 		MentorsWithSubject m = new MentorsWithSubject(fieldString);
 		ArrayList<User> mentors = m.getMentorsWithSubject();
+		pageContext.setAttribute("mentorList", mentors);
+		pageContext.setAttribute("mentorExists", !mentors.isEmpty());
 	%>
 <!--  <form method="post" action="RegisterConnection" style="margin:0px"> -->
 	<div id="showMentorList" class="modal hide fade in" style="display: none;">
@@ -16,33 +19,38 @@
 			</h3>
 		</div>
 		<div class="modal-body">
+		<c:if test="${mentorExists eq true}">
 			<table id="ListofMentor" class="table table-hover table-condensed">
-			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Location</th>
-				<th>Join</th>
-			</tr>
-			<%
-				for (User user : mentors) {
-			%>
-
-			<tr>
-				<td><%=user.getFirstName()%></td>
-				<td><%=user.getLastName()%></td>
-				<td><%=user.getLocationCity()%>, <%=user.getLocationCountry() %></td>
-				<td>
-					<form action="RegisterConnection" name="select_user" method="post">
-						<input type="hidden" name="userID" value=<%=user.getUserID()%>>
-						<input type="hidden" name="field" value="${fieldString}"> 
-						<input type="hidden" name="isTraineeList" value="false">
-						<input type="submit" value="connect" class="btn btn-primary btn-small">
-					</form>
-				</td>
-			</tr>
-			<%
-				}
-			%>
-		</table>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Location</th>
+					<th>Join</th>
+				</tr>
+				<%
+					for (User user : mentors) {
+				%>
+	
+				<tr>
+					<td><%=user.getFirstName()%></td>
+					<td><%=user.getLastName()%></td>
+					<td><%=user.getLocationCity()%>, <%=user.getLocationCountry() %></td>
+					<td>
+						<form action="RegisterConnection" name="select_user" method="post" style="margin : 0px">
+							<input type="hidden" name="userID" value=<%=user.getUserID()%>>
+							<input type="hidden" name="field" value="${fieldString}"> 
+							<input type="hidden" name="isTraineeList" value="false">
+							<input type="submit" value="Connect" class="btn btn-primary btn-small">
+						</form>
+					</td>
+				</tr>
+				<%
+					}
+				%>
+			</table>
+		</c:if>
+		<c:if test="${mentorExists eq false}">
+			No mentors available
+		</c:if>
 		</div>
 	</div>

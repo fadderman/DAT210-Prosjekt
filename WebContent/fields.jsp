@@ -15,6 +15,7 @@
 
 %>
 <div class="container well" style="box-shadow: 5px 5px 8px -1px #222;">
+<i class="icon-book"></i>
 <legend><%=language.getFields_header() %></legend>
 <p><%=language.getFields_welcome() %></p>
 <div class="pagination pagination-centered pagination-small">

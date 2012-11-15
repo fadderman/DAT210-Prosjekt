@@ -37,6 +37,7 @@ public class ViewConnectionServlet extends HttpServlet {
 			connection = new Connection();
 		}
 		request.setAttribute("connection", connection);
+		request.setAttribute("active", "connections");
 		request.setAttribute("include", "viewConnection.jsp?id=" + connectionId);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);

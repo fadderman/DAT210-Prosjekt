@@ -219,6 +219,10 @@ public class Language {
 		return chosenLanguage.getProfile_save();
 	}
 	
+	public String getProfile_email() {
+		return chosenLanguage.getProfile_email();
+	}
+	
 	// ============= Connections Strings ============
 	public String getConnections_add() {
 		return chosenLanguage.getConnections_add();

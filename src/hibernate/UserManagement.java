@@ -93,6 +93,12 @@ public class UserManagement extends HibernateUtil{
 		updateCountry(newCountry, user);
 	}
 	
+	public void updateEmail(String newEmail, User user){
+		String queryString = "update models.User set email = :newEmail where userID = :id";
+		String queryVariable = "newEmail";
+		updateSingle(queryString, queryVariable, newEmail, user.getUserID());
+	}
+	
 	public void updateCity(String newCity, User user){
 		String queryString = "update models.User set locationCity = :newCity where userID = :id";
 		String queryVariable = "newCity";
