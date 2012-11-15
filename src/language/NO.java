@@ -218,6 +218,11 @@ public class NO extends Lang{
 		// ============== Fields Strings ===================
 		private String fields_welcome = "Her er en oversikt over alle feltene i MentorFind sortert alfabetisk";
 		private String fields_header = "Felt";
+		private String fields_find = "Finn";
+		
+		public String getFields_findIn() {
+			return fields_find;
+		}
 		
 		@Override
 		public String getFields_header() {
@@ -275,6 +280,18 @@ public class NO extends Lang{
 		private String connections_you ="Deg";
 		private String connections_nomentor = "Ingen mentor";
 		private String connections_notrainee = "Ingen trainee";
+		private String connections_view = "Vis";
+		private String connections_contact = "Kontakt";
+		
+		@Override
+		public String getConnections_contact() {
+			// TODO Auto-generated method stub
+			return connections_contact;
+		}
+		
+		public String getConnections_view() {
+			return connections_view;
+		}
 		
 		@Override
 		public String getConnections_noConnections() {
@@ -302,8 +319,73 @@ public class NO extends Lang{
 			return connections_you;
 		}
 		
-		
-		
-		
-		
+		// ============== Mentor/Trainee List Strings ===================
+				private String findList_trainee_legend = "Liste av Traineer";
+				private String findList_mentor_legend = "Liste av Mentorer";
+				private String findList_no_mentor = "Ingen mentorer tilgjengelig";
+				private String findList_no_trainee = "Ingen traineer tilgjengelig";
+				private String findList_connect = "Koble til";
+				
+				@Override
+				public String getFindList_connect() {
+					// TODO Auto-generated method stub
+					return findList_connect;
+				}	
+				
+				public String getFindList_trainee_legend() {
+					return findList_trainee_legend;
+				}
+				public String getFindList_mentor_legend() {
+					return findList_mentor_legend;
+				}
+				public String getFindList_no_mentor() {
+					return findList_no_mentor;
+				}
+				public String getFindList_no_trainee() {
+					return findList_no_trainee;
+				}	
+				
+				// ============== Request Strings ===================
+				private String request_accept = "Godta";
+				private String request_deny = "Avslå";
+				private String request_trainee = "vil være din trainee i";
+				private String request_mentor = "vil være din mentor i";
+				private String request_legend = "Du har en eller flere forespørsler";
+				private String request_dinied = "Forespørsel avslått";
+				private String request_accepted = "Forespørsel godtatt";
+				@Override
+				public String getRequest_accept() {
+					// TODO Auto-generated method stub
+					return request_accept;
+				}
+				@Override
+				public String getRequest_deny() {
+					// TODO Auto-generated method stub
+					return request_deny;
+				}
+				@Override
+				public String getRequest_traniee() {
+					// TODO Auto-generated method stub
+					return request_trainee;
+				}
+				@Override
+				public String getRequest_mentor() {
+					// TODO Auto-generated method stub
+					return request_mentor;
+				}
+				@Override
+				public String getRequest_legend() {
+					// TODO Auto-generated method stub
+					return request_legend;
+				}
+				@Override
+				public String getRequest_dinied() {
+					// TODO Auto-generated method stub
+					return request_dinied;
+				}
+				@Override
+				public String getRequest_accepted() {
+					// TODO Auto-generated method stub
+					return request_accepted;
+				}
 }

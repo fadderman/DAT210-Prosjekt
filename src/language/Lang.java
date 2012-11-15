@@ -67,4 +67,21 @@ public abstract class Lang {
 	public abstract String getConnections_noMentor();
 	public abstract String getConnections_noTrainee();
 	public abstract String getConnections_you();
+	public abstract String getConnections_view();
+	public abstract String getConnections_contact();
+	public abstract String getFields_findIn();
+	// ============== Mentor/Trainee List Strings ===================
+	public abstract String getFindList_trainee_legend();
+	public abstract String getFindList_mentor_legend() ;
+	public abstract String getFindList_no_mentor() ;
+	public abstract String getFindList_no_trainee()	;
+	public abstract String getFindList_connect()	;
+	// ============== Request Strings ===================
+		public abstract String getRequest_accept();
+		public abstract String getRequest_deny();
+		public abstract String getRequest_traniee();
+		public abstract String getRequest_mentor();
+		public abstract String getRequest_legend();
+		public abstract String getRequest_dinied();
+		public abstract String getRequest_accepted();
 }
