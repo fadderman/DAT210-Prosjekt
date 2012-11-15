@@ -14,10 +14,11 @@ public class ConnectionManagementTest {
 	private static ConnectionManagement xm;
 	private static FieldManagement fm;
 	private static UserManagement um;
+	private static boolean hasChangeStatusTestRun;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		
+		hasChangeStatusTestRun=false;
 		cm = new CommentManagement();
 		xm = new ConnectionManagement();
 		fm = new FieldManagement();
@@ -68,7 +69,7 @@ public class ConnectionManagementTest {
 				assertEquals(current.isActive(), false);
 			}
 		}
-		
+		hasChangeStatusTestRun=true;
 	}
 	
 	@Test
@@ -78,7 +79,12 @@ public class ConnectionManagementTest {
 			Connection current = i.next();
 			assertEquals(current.getClass(), Connection.class);
 		}
-		assertEquals(list.size(), 9);
+		if(!hasChangeStatusTestRun){
+			assertEquals(list.size(), 9);
+		}else{
+			assertEquals(list.size(), 7);
+		}
+		
 	}
 	
 	@Test
