@@ -33,8 +33,8 @@ public class SeekUsersWithGivenSubject {
 				connections = (ArrayList<Connection>) xm.getOpenTraineeConnections(foundsubject);
 			}
 			ArrayList<Request> requests = (ArrayList<Request>) rm.getAllRequests();
-			for(int i = 0; i<connections.size();i++){
-				for(int k=0; k<requests.size();k++){
+			for(int k=0; k<requests.size();k++){
+				for(int i = 0; i<connections.size();i++){
 					if(requests.get(k).getConnection().getConnectionID()==connections.get(i).getConnectionID()){
 						connections.remove(i);
 					}
