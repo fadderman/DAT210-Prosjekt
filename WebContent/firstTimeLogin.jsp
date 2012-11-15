@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MentorFind Home</title>
-<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+<title>MentorFind Home</title>  
 </head>
 <link rel="shortcut icon" href="img/favicon.ico"></link>
+	
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.catcomplete.css" />
+  
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+
 <%@ page import="models.User"%>
 <%User user = (User) session.getAttribute("currentUser");%>
-
+	
 <%
 	if(session.getAttribute("currentUser") == null) {
 		response.sendRedirect("login.jsp");
@@ -15,11 +23,10 @@
 		%>
 
 <body class="contentBox">
-
 	<div class="container">
-		<!-- top menu -->
-		<%@ include file="loginMenuBar.jsp"%>
-		<%session.setAttribute("CurrentPage", "/firstTimeLogin.jsp");%>
+<!-- top menu -->
+<%@ include file="loginMenuBar.jsp" %>
+<%session.setAttribute("CurrentPage", "/firstTimeLogin.jsp");%>
 
 		<!--left column -->
 		<h4 style="text-shadow: #000000 3px 3px 8px; color: white;"><%=language.getFirsttime_label_personal() %></h4>
@@ -49,41 +56,62 @@
 							<td><label class="pull-right"><%=language.getFirsttime_label_city() %></label></td>
 							<td><input name="city" type="text" value=""></td>
 						</tr>
-						<input type="hidden" name="identifier"
-							value="<%=user.getIdentifierOpenID()%>">
+						<input type="hidden" name="identifier" value="<%=user.getIdentifierOpenID()%>">
 					</tbody>
 				</table>
 			</div>
+			<script>
+					$.widget( "custom.catcomplete", $.ui.autocomplete, {
+					    _renderMenu: function( ul, items ) {
+					        var that = this,
+					            currentCategory = "";
+					        $.each( items, function( index, item ) {
+					            if ( item.category != currentCategory ) {
+					                ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+					                currentCategory = item.category;
+					            }
+					            that._renderItemData( ul, item );
+					        });
+					    }
+					});
+				</script>
+				
+				<script type="text/javascript">
+					$(function() {
+					    $( "#field" ).catcomplete({
+					        delay: 0,
+					        minLength: 1,
+					        source: 'getsearchfieldjson.jsp'
+					    });
+					});
+				</script>		
 			<br />
 			<h4 style="text-shadow: #000000 3px 3px 8px; color: white;"><%=language.getFirsttime_label_connections() %></h4>
 			<div class="well span11" style="box-shadow: 5px 5px 8px -1px #222;">
 				<table class="tableBorderless">
 					<tbody>
 						<tr>
-							<td><label class="pull-right"><%=language.getFirsttime_label_field()%></label></td>
+							<td><label class="pull-right"><%=language.getFirsttime_label_field()%></label></td>	
 							<td><input name="field" type="text" id="field">
 							<td><label class="radio inline"><input type="radio"
 									name="optionsRadios" id="radioMentor" value="Mentor"><%=language.getFirsttime_radio_mentor()%></label></td>
-							<td><label class="radio inline"><input type="radio"
-									checked name="optionsRadios" id="radioTrainee" value="Trainee"><%=language.getFirsttime_radio_trainee()%></label></td>
+							<td><label class="radio inline"><input type="radio" checked
+									name="optionsRadios" id="radioTrainee" value="Trainee"><%=language.getFirsttime_radio_trainee()%></label></td>									
 						</tr>
 						<tr>
 							<td><label class="pull-right"><%=language.getFirsttime_label_addInfo()%></label></td>
 							<td><textarea id="addInfo" name="addInfo"></textarea></td>
 							<td><label class="pull-right"><%=language.getFirsttime_label_experience()%></label></td>
-							<td><select name="experience" id="experience">
-									<option value="novice">
-										<%=language.getFirsttime_drop_novice()%>
-									</option>
-									<option value="intermediate">
-										<%=language.getFirsttime_drop_intermediate()%>
-									</option>
-									<option value="expert">
-										<%=language.getFirsttime_drop_expert()%>
-									</option>
-							</select></td>
-							<td><input type="button" class="btn btn-info"
-								onclick="addCourse();" value="Add" /></td>
+							<td>
+								<select name="experience" id="experience">
+									<option value="novice"> <%=language.getFirsttime_drop_novice()%> </option>
+									<option value="intermediate"> <%=language.getFirsttime_drop_intermediate()%> </option>
+									<option value="expert"> <%=language.getFirsttime_drop_expert()%> </option>
+								</select>
+							</td>
+							<td>
+								<input type="button" class="btn btn-info" onclick="addCourse();" value="<%= language.getConnections_add() %>" />
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -116,8 +144,6 @@
 
 
 
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="js/bootstrap.js"></script>
 </body>
 <script type="text/javascript">
 	$('.dropdown-toggle').dropdown();
@@ -162,14 +188,13 @@
 		trMen.attr('checked',false);
 
 		// legger til removebutton med slettefunskjon
-		oTr.append($('<td>').append($('<input>', {type: 'button', value: 'Remove'}).addClass("btn btn-danger btn-small").click(function() { $(this).parent().parent().remove() })));
+		oTr.append($('<td>').append($('<input>', {type: 'button', value: '<%= language.getConnections_remove() %>'}).addClass("btn btn-danger btn-small").click(function() { $(this).parent().parent().remove() })));
 
 		// legger til selve tabellen
 		$('#tblCourse').append(oTr);
 	}
 </script>
-
-<%
+		<%
 	}
 %>
 

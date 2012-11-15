@@ -32,9 +32,7 @@ public class RequestServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("RequestServlet called!!!");
 		String requestID = request.getParameter("requestId");
-		System.out.println("requestID " + requestID);
 		int reqID;
 		try{
 			reqID = Integer.parseInt(requestID);
@@ -44,10 +42,8 @@ public class RequestServlet extends HttpServlet {
 		Request requestToBeAnswered = requestManager.getRequestByID(reqID);
 		String answer = request.getParameter("answer");
 		if(answer.equals("yes")){
-		System.out.println("answered yes");
 		RequestHandler.answerYes(requestToBeAnswered);
 		}else{
-			System.out.println("answered no");
 			RequestHandler.answerNo(requestToBeAnswered);
 		}
 	}

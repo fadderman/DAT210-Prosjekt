@@ -1,7 +1,6 @@
 <%@ page import="models.ActiveMenuItem"%>
 <%
-
-/*
+	/*
 	This file determines which menu item should be set to active in menu.jsp
 	
 	To utilize this set an attribute by the name of "active" on the request object 
@@ -19,15 +18,15 @@
 	
 	if(active != null) {
 		if(active.equals("home")) {
-			activeMenuItem.setHome();
-		} else if(active.equals("find")) {
-			activeMenuItem.setFind();
+	activeMenuItem.setHome();
+		} else if(active.equals("fields")) {
+	activeMenuItem.setFields();
 		} else if(active.equals("profile")) {
-			activeMenuItem.setProfile();
-		} else if(active.equals("settings")) {
-			activeMenuItem.setSettings();
+	activeMenuItem.setProfile();
+		} else if(active.equals("connections")) {
+	activeMenuItem.setConnections();
 		} else {
-			activeMenuItem.setHome();
+	activeMenuItem.setHome();
 		}
 	}
 	

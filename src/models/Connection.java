@@ -130,4 +130,15 @@ public class Connection {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	
+	public List<Request> getRequest(){
+		return request;
+	}
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

@@ -25,59 +25,65 @@ public class ConnectionHandler {
 		fm = new FieldManagement();
 		for(int i = 1; i < field.length; i++){
 			Field FIELD = new Field(field[i], description[i]);
-			fm.addField(FIELD);
+			if(fm.getSingleByTitle(field[i]) == null) {
+				fm.addField(FIELD);
+			} else {
+				FIELD = fm.getSingleByTitle(field[i]);
+			}
+			
 			createConnection(currentUser, field[i], description[i], experience[i], traineeRadioButton[i-1], mentorRadioButton[i-1], emptyUser, FIELD);			
 		}
 	}
 
 	private void createConnection(User user, String field, String description, String experience, String traineeRadioButton, String mentorRadioButton, User emptyUser, Field FIELD){		
-		Connection connection = new Connection();
+//		Connection connection = new Connection();
 		if(traineeRadioButton != "" && mentorRadioButton != ""){
 			if(traineeRadioButton.equalsIgnoreCase("yes")){
 				if(experience.equalsIgnoreCase("expert")){
-					connection = new Connection(emptyUser, user, FIELD, description, 2);
+//					connection = new Connection(emptyUser, user, FIELD, description, 2);
+					connectionHandler.createOpenTrainee(user, FIELD, 2);
 
 				}
 				if(experience.equalsIgnoreCase("intermediate")){
-					connection = new Connection(emptyUser, user, FIELD, description, 1);
-
+//					connection = new Connection(emptyUser, user, FIELD, description, 1);
+					connectionHandler.createOpenTrainee(user, FIELD, 1);
 				}
 				if(experience.equalsIgnoreCase("novice")){
-					connection = new Connection(emptyUser, user, FIELD, description, 0);
-
+//					connection = new Connection(emptyUser, user, FIELD, description, 0);
+					connectionHandler.createOpenTrainee(user, FIELD, 0);
 				}
 			}
 			if(mentorRadioButton.equalsIgnoreCase("yes")){
 				if(experience.equalsIgnoreCase("expert")){
-					connection = new Connection(user, emptyUser , FIELD, description, 2);
-
+//					connection = new Connection(user, emptyUser , FIELD, description, 2);
+					connectionHandler.createOpenMentor(user, FIELD, 2);
 				}
 				if(experience.equalsIgnoreCase("intermediate")){
-					connection = new Connection(user, emptyUser, FIELD, description, 1);
-
+//					connection = new Connection(user, emptyUser, FIELD, description, 1);
+					connectionHandler.createOpenMentor(user, FIELD, 1);
 				}
 				if(experience.equalsIgnoreCase("novice")){
-					connection = new Connection(user, emptyUser, FIELD, description, 0);
-
+//					connection = new Connection(user, emptyUser, FIELD, description, 0);
+					connectionHandler.createOpenMentor(user, FIELD, 0);
 				}
 			}
 			if((traineeRadioButton.equalsIgnoreCase("yes") && mentorRadioButton.equalsIgnoreCase("yes")) || (traineeRadioButton.equalsIgnoreCase("no") && mentorRadioButton.equalsIgnoreCase("no") )){
 				if(experience.equalsIgnoreCase("expert")){
-					connection = new Connection(emptyUser, user, FIELD, description, 2);
-
+//					connection = new Connection(emptyUser, user, FIELD, description, 2);
+					connectionHandler.createOpenTrainee(user, FIELD, 2);
 				}
 				if(experience.equalsIgnoreCase("intermediate")){
-					connection = new Connection(emptyUser, user, FIELD, description, 1);
-
+//					connection = new Connection(emptyUser, user, FIELD, description, 1);
+					connectionHandler.createOpenTrainee(user, FIELD, 1);
 
 				}
 				if(experience.equalsIgnoreCase("novice")){
-					connection = new Connection(emptyUser, user, FIELD, description, 0);
-
+//					connection = new Connection(emptyUser, user, FIELD, description, 0);
+					connectionHandler.createOpenTrainee(user, FIELD, 0);
 
 				}			
 			}
-			connectionHandler.addConnection(connection);
+//			connectionHandler.addConnection(connection);
 		}
 	}
 }

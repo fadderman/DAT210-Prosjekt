@@ -102,6 +102,7 @@ public class EN extends Lang{
 	// ============== Home Strings ===================
 	private String home_welcome = "Welcome to MentorFind";
 	private String home_please_search = "Please type in the search box";
+	private String connections_welcome = "Connections";
 	
 	@Override
 	public String getHome_welcome() {
@@ -113,12 +114,17 @@ public class EN extends Lang{
 		
 		return home_please_search;
 	}
+
+	@Override
+	public String getConnections_welcome() {
+		return connections_welcome;
+	}
 	
 	// ============== Menu Strings ===================
 		private String menu_home = "Home";
-		private String menu_find = "Find";
+		private String menu_fields = "Fields";
 		private String menu_profile = "Profile";
-		private String menu_settings = "Settings";
+		private String menu_connections = "Connections";
 		private String menu_search = "Search";
 		private String menu_logout = "Log out";
 		
@@ -130,8 +136,8 @@ public class EN extends Lang{
 		return menu_home;
 	}
 
-	public String getMenu_find() {
-		return menu_find;
+	public String getMenu_fields() {
+		return menu_fields;
 	}
 
 	public String getMenu_profile() {
@@ -139,9 +145,9 @@ public class EN extends Lang{
 		return menu_profile;
 	}
 
-	public String getMenu_settings() {
+	public String getMenu_connections() {
 
-		return menu_settings;
+		return menu_connections;
 	}
 
 	public String getMenu_search() {
@@ -222,5 +228,88 @@ public class EN extends Lang{
 		return search_name;
 	}
 
+	// ============== Fields Strings ===================
+	private String fields_welcome = "This is an overview of all available fields on MentorFind sorted alphabetically";
+	private String fields_header = "Fields";
+	
+	@Override
+	public String getFields_header() {
+		return fields_header;
+	}
+	
+	@Override
+	public String getFields_welcome() {
+		return fields_welcome;
+	}
+
+	// ================ Profile Strings ===============
+	
+	private String profile_name = "Name";
+	private String profile_location = "Location";
+	private String profile_city = "City";
+	private String profile_country = "Country";
+	private String profile_edit = "Edit";
+	private String profile_save = "Save";
+	
+	@Override
+	public String getProfile_name() {
+		return profile_name;
+	}
+	@Override
+	public String getProfile_location() {
+		return profile_location;
+	}
+	@Override
+	public String getProfile_city() {
+		return profile_city;
+	}
+	@Override
+	public String getProfile_country() {
+		return profile_country;
+	}
+	@Override
+	public String getProfile_save() {
+		return profile_save;
+	}
+	@Override
+	public String getProfile_edit() {
+		return profile_edit;
+	}
+	
+	// ========== Connections Strings ========
+	private String connections_noconnections = "You have no connections at this time.";
+	private String connections_add = "Add";
+	private String connections_remove = "Remove";
+	private String connections_you ="You";
+	private String connections_nomentor = "No mentor yet";
+	private String connections_notrainee = "No trainee yet";
+	
+	@Override
+	public String getConnections_noConnections() {
+		return connections_noconnections;
+	}
+	
+	@Override
+	public String getConnections_add() {
+		return connections_add;
+	}
+	
+	@Override
+	public String getConnections_remove() {
+		return connections_remove;
+	}
+	@Override
+	public String getConnections_noMentor() {
+		return connections_nomentor;
+	}
+	@Override
+	public String getConnections_noTrainee() {
+		return connections_notrainee;
+	}
+	@Override
+	public String getConnections_you() {
+		return connections_you;
+	}
+	
 	
 }

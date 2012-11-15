@@ -1,41 +1,40 @@
 package controllers;
 
+import hibernate.ConnectionManagement;
+
 import java.io.IOException;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mail.SendMail;
+import models.Connection;
 
-
-public class MailServlet extends HttpServlet {
+public class RemoveConnectionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
+
+	private ConnectionManagement connectionManager;
 	
+	public RemoveConnectionServlet() {
+		connectionManager = new ConnectionManagement();
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String mailTo = request.getParameter("mailTo");
-		String mailTittle = request.getParameter("mailTitle");
-		String mailMessage = request.getParameter("mailMessage");
-		try {
-			SendMail.Send(mailTo, mailTittle, mailMessage);
-		} catch (AddressException e) {
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
+		String connectionId = request.getParameter("connectionId");
 		
-		request.setAttribute("active", "home");
-		request.setAttribute("include", "home.jsp");
+		Connection connection = connectionManager.getByID(Integer.parseInt(connectionId));
+		connectionManager.removeConnection(connection);
+		
+		request.setAttribute("include", "connections.jsp");
+		request.setAttribute("active", "connections");
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
 	}
+
 }

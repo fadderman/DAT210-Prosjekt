@@ -37,4 +37,9 @@ public class RequestManagement extends HibernateUtil {
 	public void removeRequest(Request request){
 		delete(request);
 	}
+	
+	public List<Request> getAllRequests(){
+		String queryString = ("from models.Request"); 
+		return fetch(queryString);
+	}
 }

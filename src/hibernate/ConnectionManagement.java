@@ -23,6 +23,13 @@ public class ConnectionManagement extends HibernateUtil{
 		return addConnection(connection);
 	}
 	
+	public boolean createOpenTrainee(User trainee, Field field, int difficultyLevel){
+		Connection connection = new Connection(field);
+		connection.setTrainee(trainee);
+		connection.setDifficultyLevel(difficultyLevel);
+		return addConnection(connection);
+	}
+	
 	public boolean createOpenTrainee(User trainee, Field field){
 		Connection connection = new Connection(field);
 		connection.setTrainee(trainee);
@@ -120,5 +127,8 @@ public class ConnectionManagement extends HibernateUtil{
 		String queryString = "update models.Connection set trainee =:traineeToAdd where id =:id";
 		String queryVariable = "traineeToAdd";
 		updateSingle(queryString, queryVariable, traineeToAdd, connection.getConnectionID());
+	}
+	public void removeConnection(Connection connection) {
+		delete(connection);
 	}
 }
