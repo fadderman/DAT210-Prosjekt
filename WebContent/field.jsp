@@ -30,11 +30,11 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="row-fluid">
-						<div class="span3"><b>Title</b></div>
+						<div class="span3"><b><%=language.getSearch_title()%> </b></div>
 						<div class="span9">${field.title}</div>
 					</div>
 					<div class="row-fluid">
-						<div class="span3"><b>Description</b></div>
+						<div class="span3"><b><%=language.getSearch_description()%> </b></div>
 						<div class="span9">${field.description}</div>
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 			<p style="margin-top: 50px" />
 			
 			<div class="row-fluid">
-				<div class="span3"><i class="icon-search"></i><legend>Find in ${field.title}</legend></div>
+				<div class="span3"><i class="icon-search"></i><legend><%=language.getFields_findIn()%></legend></div>
 			</div>
 			
 			<div class="row-fluid">

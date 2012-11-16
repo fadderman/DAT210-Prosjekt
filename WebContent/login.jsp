@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ page import="language.*"%>
+    pageEncoding="ISO-8859-1"%>
+    <%@ page import="language.*" %>
 <!DOCTYPE html>
 <html>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MentorFind</title>
-<link rel="shortcut icon" href="img/favicon.ico"></link>
+<link rel="shortcut icon"  href="img/favicon.ico" ></link>
 </head>
 <!-- login_bg taken from interfacelift.com by thekidder. url: http://interfacelift.com/wallpaper/details/3062/stormy_ocean.html -->
 <style type="text/css">
+
 </style>
 <body class="fullBG">
-
-	<%@ include file="loginMenuBar.jsp"%>
-	<%
+<div class="padding"></div>
+<%@ include file="loginMenuBar.jsp"%>
+<%
 	session.setAttribute("CurrentPage", "/login.jsp"); 
 %>
 
@@ -39,11 +40,9 @@
 						<p style="font-size: 16pt;"><%=language.getLogin_signIn()%></p>
 						<hr>
 						<a type="Submit" class="btn btn-large btn-warning span12"
-							style="margin-bottom: 5px"
-							href="<%=response.encodeURL("login?openid_identifier=https://www.google.com/accounts/o8/id")%>">Google</a>
-						<a type="Submit" class="btn btn-large btn-success span12"
-							style="margin-bottom: 5px"
-							href="<%=response.encodeURL("login?openid_identifier=https://me.yahoo.com/")%>">Yahoo</a>
+							style="margin-bottom: 5px" href="<%=response.encodeURL("login?openid_identifier=https://www.google.com/accounts/o8/id")%>">Google</a>
+							<a type="Submit" class="btn btn-large btn-success span12"
+							style="margin-bottom: 5px" href="<%=response.encodeURL("login?openid_identifier=https://me.yahoo.com/")%>">Yahoo</a>
 						<!-- <a type="Submit" class="btn btn-large btn-primary disabled span12"
 							style="margin-bottom: 5px">Facebook</a> <a type="Submit"
 							class="btn btn-large btn-info span12 disabled" style="margin-bottom: 5px">Twitter</a> -->

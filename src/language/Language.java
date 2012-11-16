@@ -192,6 +192,10 @@ public class Language {
 	public String getSearch_name() {
 		return chosenLanguage.getSearch_name();
 	}
+	
+	public String getFields_findIn() {
+		return chosenLanguage.getFields_findIn();
+	}
 
 	// =========== Profile Strings =============
 	
@@ -248,6 +252,69 @@ public class Language {
 		return chosenLanguage.getConnections_noTrainee();
 	}
 	
+	public String getConnections_view() {
+		return chosenLanguage.getConnections_view();
+	}
+	
+	public String getConnections_contact() {
+		return chosenLanguage.getConnections_contact();
+	}
+	
+	// ============== Mentor/Trainee List Strings ===================
+	
+	public String getFindList_trainee_legend() {
+		return chosenLanguage.getFindList_trainee_legend();
+	}
+	public String getFindList_mentor_legend() {
+		return chosenLanguage.getFindList_mentor_legend();
+	}
+	public String getFindList_no_mentor() {
+		return chosenLanguage.getFindList_no_mentor();
+	}
+	public String getFindList_no_trainee() {
+		return chosenLanguage.getFindList_no_trainee();
+	}		
+	public String getFindList_connect() {
+		// TODO Auto-generated method stub
+		return chosenLanguage.getFindList_connect();
+	}	
+	
+	// ============== Request Strings ===================
+
+	public String getRequest_accept() {
+		// TODO Auto-generated method stub
+		return chosenLanguage.getRequest_accept();
+	}
+
+	public String getRequest_deny() {
+		// TODO Auto-generated method stub
+		return chosenLanguage.getRequest_deny();
+	}
+	
+	public String getRequest_traniee() {
+		// TODO Auto-generated method stub
+		return chosenLanguage.getRequest_traniee();
+	}
+
+	public String getRequest_mentor() {
+		// TODO Auto-generated method stub
+		return chosenLanguage.getRequest_mentor();
+	}
+	
+	public String getRequest_legend() {
+		// TODO Auto-generated method stub
+		return chosenLanguage.getRequest_legend();
+	}
+	
+	public String getRequest_dinied() {
+		// TODO Auto-generated method stub
+		return chosenLanguage.getRequest_dinied();
+	}
+
+	public String getRequest_accepted() {
+		// TODO Auto-generated method stub
+		return chosenLanguage.getRequest_accepted();
+	}
 }
 
 

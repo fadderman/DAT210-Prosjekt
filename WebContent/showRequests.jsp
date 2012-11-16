@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java"
-	import="models.Request,models.Connection,models.*,hibernate.*, java.util.ArrayList, business.connection.RequestHandler"%>
+	import="models.Request,models.Connection,models.*,hibernate.*, java.util.ArrayList, business.connection.RequestHandler, language.*"%>
 <%
+	Language language = (Language) session.getAttribute("lang");
 	RequestManagement requestManager = new RequestManagement();
 	UserManagement userManagement = new UserManagement();
 	User currentUser = (User)session.getAttribute("currentUser");
@@ -12,36 +13,36 @@
 <c:if test="${hasRequests eq true}">
 
 <div class="container well" style="box-shadow: 5px 5px 8px -1px #222;">
-	<h4>You have request(s)</h4>
+	<h4><%=language.getRequest_legend()%></h4>
 	<table class="table table-hover">
 	<c:forEach var="request" items="${requests}" varStatus="table">
 		<c:choose>
-			<c:when test="${request.traineeRequest eq true}">
+			<c:when test="${request.traineeRequest eq false}">
 
 				<tr id="${table.index}">
-						<td class="span6">${request.connection.mentor.firstName}
-							${request.connection.mentor.lastName} wants to be your trainee in
-							${request.connection.field.title}
+						<td class="span6"><a href="viewprofile?id=${request.connection.trainee.userID}">${request.connection.trainee.firstName} ${request.connection.trainee.lastName}</a>
+							<%=language.getRequest_traniee()%>
+							<a href="field?id=${request.connection.field.fieldID}">${request.connection.field.title}</a>
 						</td>
 						<td class="span4">
 								<button class="btn btn-success"
-									onclick="answerYes('${table.index}','${request.requestID}')">Accept</button>
-								<button class="btn btn-danger" onclick="answerNo('${table.index}','${request.requestID}')">Deny</button>
+									onclick="answerYes('${table.index}','${request.requestID}')"><%=language.getRequest_accept()%></button>
+								<button class="btn btn-danger" onclick="answerNo('${table.index}','${request.requestID}')"><%=language.getRequest_deny()%></button>
 							
 						</td>
 					</tr>
 
 			</c:when>
-			<c:when test="${request.traineeRequest eq false}">
+			<c:when test="${request.traineeRequest eq true}">
 				<tr id="${table.index}">
-					<td class="span6">${request.connection.trainee.firstName}
-						${request.connection.trainee.lastName} wants to be your mentor in
-						${request.connection.field.title}</td>
+					<td class="span6"><a href="viewprofile?id=${request.connection.mentor.userID}">${request.connection.mentor.firstName}
+						${request.connection.mentor.lastName}</a> <%=language.getRequest_mentor()%>
+						<a href="field?id=${request.connection.field.fieldID}">${request.connection.field.title}</a></td>
 					<td class="span4">
 					<!-- 	<div class="btn-group">     -->
 							<button class="btn btn-success"
-								onclick="answerYes('${table.index}','${request.requestID}')">Accept</button>
-							<button class="btn btn-danger" onclick="answerNo('${table.index}','${request.requestID}')">Deny</button>
+								onclick="answerYes('${table.index}','${request.requestID}')"><%=language.getRequest_accept()%></button>
+							<button class="btn btn-danger" onclick="answerNo('${table.index}','${request.requestID}')"><%=language.getRequest_deny()%></button>
 						
 					</td>
 				</tr>			

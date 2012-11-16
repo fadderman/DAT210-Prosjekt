@@ -22,7 +22,7 @@
 	} else {
 		%>
 
-<body class="contentBox">
+<body class="contentBox" style="margin-top: 60px">
 	<div class="container">
 <!-- top menu -->
 <%@ include file="loginMenuBar.jsp" %>

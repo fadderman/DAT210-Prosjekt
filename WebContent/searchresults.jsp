@@ -84,7 +84,7 @@
 <div class="container well" style="box-shadow: 5px 5px 8px -1px #222;">
 	<div class="row-fluid">
 		<div class="span12">
-			<legend><%= language.getSearch_sResult() %></legend>
+			<i class="icon-search"></i><legend><%= language.getSearch_sResult() %></legend>
 		</div>
 	</div>
 	<div class="row-fluid">

@@ -14,15 +14,15 @@
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<h3>
-				List of Trainees
+				<%=language.getFindList_trainee_legend()%>
 			</h3>
 		</div>
 		<div class="modal-body">
 		<c:if test="${traineeExists eq true}">
 			<table id="ListofMentor" class="table table-hover table-condensed">
 			<tr>
-				<th>Name</th>
-				<th>Location</th>
+				<th><%=language.getProfile_name()%></th>
+				<th><%=language.getSearch_location()%></th>
 				<th></th>
 			</tr>
 			<%
@@ -33,11 +33,11 @@
 				<td><%=user.getFirstName()%> <%=user.getLastName()%></td>
 				<td><%=user.getLocationCity()%>, <%=user.getLocationCountry() %></td>
 				<td>
-					<form action="RegisterConnection" name="select_user" method="post">
+					<form action="RegisterConnection" name="select_user" method="post" style="margin:0px">
 						<input type="hidden" name="userID" value=<%=user.getUserID()%>>
 						<input type="hidden" name="field" value="${fieldString}">
 						<input type="hidden" name="isTraineeList" value="true">
-						 <input	type="submit" value="connect" class="btn btn-primary btn-small">
+						 <input	type="submit" value="<%=language.getFindList_connect()%>" class="btn btn-primary btn-small">
 					</form>
 				</td>
 			</tr>
@@ -47,7 +47,7 @@
 		</table>
 		</c:if>
 		<c:if test="${traineeExists eq false}">
-			No trainees available
+			<%=language.getFindList_no_trainee()%>
 		</c:if>
 		</div>
 	</div>

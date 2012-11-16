@@ -132,7 +132,7 @@
 				</form>
 			</td>
 			<td>
-				<a href="viewConnection?id=${traineeItem.connectionID}" class="btn btn-info btn-small">View</a>
+				<a href="viewConnection?id=${traineeItem.connectionID}" class="btn btn-info btn-small"><%=language.getConnections_view()%></a>
 			</td>
 		</tr>
 	</c:forEach>
@@ -174,7 +174,7 @@
 				</form>
 			</td>
 			<td>
-				<a href="viewConnection?id=${mentorItem.connectionID}" class="btn btn-info btn-small">View</a>
+				<a href="viewConnection?id=${mentorItem.connectionID}" class="btn btn-info btn-small"><%=language.getConnections_view()%></a>
 			</td>
 		</tr>
 	</c:forEach>
