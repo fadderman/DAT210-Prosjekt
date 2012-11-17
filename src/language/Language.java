@@ -104,6 +104,10 @@ public class Language {
 		return chosenLanguage.getHome_please_search();
 	}
 	
+	public String getConnections_welcome() {
+		return chosenLanguage.getConnections_welcome();
+	}
+	
 	// ============== Menu Strings ===================
 			
 	public String getMenu_logout() {
@@ -114,8 +118,8 @@ public class Language {
 		return chosenLanguage.getMenu_home();
 	}
 
-	public String getMenu_find() {
-		return chosenLanguage.getMenu_find();
+	public String getMenu_fields() {
+		return chosenLanguage.getMenu_fields();
 	}
 
 	public String getMenu_profile() {
@@ -123,9 +127,9 @@ public class Language {
 		return chosenLanguage.getMenu_profile();
 	}
 
-	public String getMenu_settings() {
+	public String getMenu_connections() {
 
-		return chosenLanguage.getMenu_settings();
+		return chosenLanguage.getMenu_connections();
 	}
 
 	public String getMenu_search() {
@@ -172,7 +176,16 @@ public class Language {
 	public String getSearch_noResults() {
 		return chosenLanguage.getSearch_noResults();
 	}
+	
+	public String getFields_welcome() {
+		return chosenLanguage.getFields_welcome();
+	}
+	
+	public String getFields_header() {
+		return chosenLanguage.getFields_header();
+	}
 
+	// ========= Fields strings ================
 	public String getSearch_returned() {
 		return chosenLanguage.getSearch_returned();
 	}
@@ -180,6 +193,57 @@ public class Language {
 		return chosenLanguage.getSearch_name();
 	}
 
+	// =========== Profile Strings =============
+	
+	public String getProfile_name() {
+		return chosenLanguage.getProfile_name();
+	}
+	
+	public String getProfile_location() {
+		return chosenLanguage.getProfile_location();
+	}
+	
+	public String getProfile_city() {
+		return chosenLanguage.getProfile_city();
+	}
+	
+	public String getProfile_country() {
+		return chosenLanguage.getProfile_country();
+	}
+	
+	public String getProfile_edit() {
+		return chosenLanguage.getProfile_edit();
+	}
+	
+	public String getProfile_save() {
+		return chosenLanguage.getProfile_save();
+	}
+	
+	// ============= Connections Strings ============
+	public String getConnections_add() {
+		return chosenLanguage.getConnections_add();
+	}
+	
+	public String getConnections_noConnections() {
+		return chosenLanguage.getConnections_noConnections();
+	}
+	
+	public String getConnections_remove() {
+		return chosenLanguage.getConnections_remove();
+	}
+	
+	public String getConnections_you() {
+		return chosenLanguage.getConnections_you();
+	}
+	
+	public String getConnections_noMentor() {
+		return chosenLanguage.getConnections_noMentor();
+	}
+	
+	public String getConnections_noTrainee() {
+		return chosenLanguage.getConnections_noTrainee();
+	}
+	
 }
 
 

@@ -56,13 +56,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>SettingsServlet</display-name>
-    <servlet-name>SettingsServlet</servlet-name>
-    <servlet-class>controllers.SettingsServlet</servlet-class>
+    <display-name>ConnectionsServlet</display-name>
+    <servlet-name>ConnectionsServlet</servlet-name>
+    <servlet-class>controllers.ConnectionsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SettingsServlet</servlet-name>
-    <url-pattern>/settings</url-pattern>
+    <servlet-name>ConnectionsServlet</servlet-name>
+    <url-pattern>/connections</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -113,5 +113,46 @@
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RemoveConnectionServlet</display-name>
+    <servlet-name>RemoveConnectionServlet</servlet-name>
+    <servlet-class>controllers.RemoveConnectionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveConnectionServlet</servlet-name>
+    <url-pattern>/removeConnection</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddConnectionServlet</display-name>
+    <servlet-name>AddConnectionServlet</servlet-name>
+    <servlet-class>controllers.AddConnectionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddConnectionServlet</servlet-name>
+    <url-pattern>/addConnection</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditUserServlet</display-name>
+    <servlet-name>EditUserServlet</servlet-name>
+    <servlet-class>controllers.EditUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditUserServlet</servlet-name>
+    <url-pattern>/editUser</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+    <display-name>FieldsServlet</display-name>
+    <servlet-name>FieldsServlet</servlet-name>
+    <servlet-class>controllers.FieldsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FieldsServlet</servlet-name>
+    <url-pattern>/fields</url-pattern>
   </servlet-mapping>
 </web-app>
