@@ -37,7 +37,7 @@ public class UserHandlerTest {
 		userHandler.addUser(user1);
 		userHandler.addUser(user2);
 		userHandler.addUser(user3);
-		assertEquals(user2, userHandler.getUserByIdentifier(user2.getIdentifierOpenID()));
+		assertEquals(user2.getUserID(), userHandler.getUserByIdentifier(user2.getIdentifierOpenID()).getUserID());
 	}
 	
 	@Test
