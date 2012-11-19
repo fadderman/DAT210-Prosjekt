@@ -82,7 +82,10 @@ public class OpenIDLoginServlet extends HttpServlet{
 			// configure the return_to URL where your application will receive
 			// the authentication responses from the OpenID provider
 			String returnToUrl = httpReq.getRequestURL().toString() + "?is_return=true";
-
+			if(returnToUrl.contains(";")){
+				returnToUrl = returnToUrl.substring(0, returnToUrl.indexOf(";"));
+				returnToUrl += "?is_return=true";
+			}
 			// perform discovery on the user-supplied identifier
 			List discoveries = manager.discover(userSuppliedString);
 
