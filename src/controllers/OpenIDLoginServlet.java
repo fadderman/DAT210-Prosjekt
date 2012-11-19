@@ -28,7 +28,6 @@ import org.openid4java.message.ax.AxMessage;
 import org.openid4java.message.ax.FetchRequest;
 import org.openid4java.message.ax.FetchResponse;
 
-import business.user.UserHandler;
 
 public class OpenIDLoginServlet extends HttpServlet{
 

@@ -9,7 +9,6 @@ import java.util.List;
 
 import models.Field;
 import models.User;
-import business.user.UserHandler;
 
 public class SearchEngine extends HibernateUtil{
 
